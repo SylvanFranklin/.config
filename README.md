@@ -1,4 +1,8 @@
+# Config
 
-### My dotfiles for my mac
-  soon to add latex
+Dotfiles for my math major setup driven by vim and latex. 
+
+**Soon to add*
+- [] Typst support
+
 
