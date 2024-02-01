@@ -1,0 +1,55 @@
+
+key_bindings: 
+  # - { key: Left,     mods: Alt,     chars: "\x1bb"                       } # Skip word left
+  # - { key: Right,    mods: Alt,     chars: "\x1bf"                       } # Skip word right
+  - { key: Left,     mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
+  - { key: Right,    mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
+  - { key: Back,     mods: Command, chars: "\x15"                        } # Delete line
+  # - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    } # Delete word
+
+  - { key: Key0,           mods: Command,                    action: ResetFontSize         }
+  - { key: Equals,         mods: Command,                    action: IncreaseFontSize      }
+  - { key: Plus,           mods: Command,                    action: IncreaseFontSize      }
+  - { key: NumpadAdd,      mods: Command,                    action: IncreaseFontSize      }
+  - { key: Minus,          mods: Command,                    action: DecreaseFontSize      }
+  - { key: NumpadSubtract, mods: Command,                    action: DecreaseFontSize      }
+  - { key: V,              mods: Command,                    action: Paste                 }
+  - { key: C,              mods: Command,                    action: Copy                  }
+  - { key: H,              mods: Command,                    action: Hide                  }
+  - { key: M,              mods: Command,                    action: Minimize              }
+  - { key: Q,              mods: Command,                    action: Quit                  }
+  - { key: W,              mods: Command,                    action: Quit                  }
+  - { key: N,              mods: Command,                    action: SpawnNewInstance      }
+  - { key: F,              mods: Command|Control,            action: None}
+  - { key: F,              mods: Command, mode: ~Search,     action: None}
+  - { key: A,              mods: Command,                    action: None}
+  - { key: B,              mods: Command, mode: ~Search,     action: None}
+
+live_config_reload: true
+window:
+  opacity: 1
+  padding:
+    x: 15
+    y: 15
+  dynamic_padding: false
+  decorations: buttonless
+
+font:
+  normal:
+    family: FiraCode Nerd Font
+    style: Regular
+  size: 18
+  bold:
+    style: Regular 
+
+env:
+  TERM: xterm-256color
+
+import:
+  # uncomment the flavour you want below:
+  # - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+ - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
+ # - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
+ # - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
+
+

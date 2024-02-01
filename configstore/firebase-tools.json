@@ -1,0 +1,51 @@
+{
+	"motd": {
+		"cloudBuildErrorAfter": 1594252800000,
+		"cloudBuildWarnAfter": 1590019200000,
+		"defaultNode10After": 1594252800000,
+		"minVersion": "3.0.5",
+		"node8DeploysDisabledAfter": 1613390400000,
+		"node8RuntimeDisabledAfter": 1615809600000,
+		"node8WarnAfter": 1600128000000,
+		"fetched": 1704385663181
+	},
+	"usage": true,
+	"analytics-uuid": "69f2a571-ba23-4642-993b-91498ddb4fd3",
+	"user": {
+		"iss": "accounts.google.com",
+		"azp": "563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com",
+		"aud": "563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com",
+		"sub": "113070293869275756497",
+		"email": "sudsysquid@gmail.com",
+		"email_verified": true,
+		"at_hash": "VuiK0Wf4KWipKhc32tIW6Q",
+		"iat": 1696643403,
+		"exp": 1696647003
+	},
+	"tokens": {
+		"expires_at": 1704391129960,
+		"refresh_token": "1//0dL1-ESgZscVJCgYIARAAGA0SNwF-L9IrKAlpXSsSKQLfMjLawFkQzVRcir_cMvXKlsnGdrg6SBB_7aZqZ1N2Mv2n4TxLo8B-VN8",
+		"scopes": [],
+		"access_token": "ya29.a0AfB_byDj0BJF-Bh0xc2eFn1z_rcs4MhEDWs54i5v_l75OjRyZJ2pH_cImiRBORTZjliF4CueUlkR9vHhnMY1JapaUKLPaqb01NbkD4u4FLhIQu6k9zlo28n5HpGD9AXR5xthZltczZZLXHI7dL5sKoEuIDcWM34LEumsw_lc39Z1aCgYKAeoSARISFQHGX2MiFaGEHHksMolHOEPGRGA5aw0179",
+		"expires_in": 3599,
+		"scope": "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/firebase",
+		"token_type": "Bearer",
+		"id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxNDEzY2Y0ZmEwY2I5MmEzYzNmNWEwNTQ1MDkxMzJjNDc2NjA5MzciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNTYzNTg0MzM1ODY5LWZncmhnbWQ0N2JxbmVraWo1aThiNXByMDNobzg0OWU2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTEzMDcwMjkzODY5Mjc1NzU2NDk3IiwiZW1haWwiOiJzdWRzeXNxdWlkQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiU2pURWdxYVBTWjRUbWRVOW9yVDZaZyIsImlhdCI6MTcwNDM4NzUzMCwiZXhwIjoxNzA0MzkxMTMwfQ.NjXID9iQVvtOeZwI-anBFtyeaOrgGEB3VRI5i8PiC3kTMvbBiPQ9R_zReUO5S2si9BwjI63L3ui9dwslaL-_OHpKwlcpb00hQwtm_gKsIEPSFrgf4isom7kFYh_40-22GglnYq--kcrQI9_AoJ2_mPefbscYwB8n8JLmNKSor4QfVwf6XnscDbjTZ1Mevc29EuKVKUacih84Of0wE2HcD0ULCjmN50aGXEUDTEDQPFcPQE52uVknWvxV8rX2xWi6YIwRAkFBWa4AItYmc-1fIaNITLusYTJMT4LssbSmTQJrWa-dMhJquYbuHb2bz-sTrjxzDqNCcTZSEEfXe5ajdg"
+	},
+	"previews": {
+		"webframeworks": true
+	},
+	"activeProjects": {
+		"/Users/sylvanfranklin/Documents/projects/farro": "faro-game",
+		"/Users/sylvanfranklin/projects/ChemistryConventions": "chemconv"
+	},
+	"webconfig": {
+		"chemconv": {
+			"projectId": "chemconv",
+			"storageBucket": "chemconv.appspot.com",
+			"apiKey": "AIzaSyAe3UnH47j7_4nLJWP-18WcWfHVrxWs1lA",
+			"authDomain": "chemconv.firebaseapp.com",
+			"messagingSenderId": "270696134367"
+		}
+	}
+}

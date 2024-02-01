@@ -1,0 +1,9 @@
+# Use custom format
+"$schema" = 'https://starship.rs/config-schema.json'
+format = "[$directory❯ ](bold green)"
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the blank line at the start of the prompt
+add_newline = false
