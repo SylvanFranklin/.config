@@ -22,6 +22,7 @@
   "telescope.nvim": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" },
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
   "twilight.nvim": { "branch": "main", "commit": "8b7b50c0cb2dc781b2f4262a5ddd57571556d1e4" },
-  "vimtex": { "branch": "master", "commit": "6179414f2eb3db977a513b7b19c23e7e62a0f388" },
-  "zen-mode.nvim": { "branch": "main", "commit": "78557d972b4bfbb7488e17b5703d25164ae64e6a" }
+  "typst-preview.nvim": { "branch": "master", "commit": "b0fed1d42733143bc8a0734a718c6944e606607b" },
+  "typst.vim": { "branch": "main", "commit": "816ba15885cb5eb742e06bafcd53b1a8531d334b" },
+  "vimtex": { "branch": "master", "commit": "6179414f2eb3db977a513b7b19c23e7e62a0f388" }
 }

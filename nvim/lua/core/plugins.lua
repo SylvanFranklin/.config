@@ -55,8 +55,11 @@ require("lazy").setup({
     { 'aznhe21/actions-preview.nvim' },
     { "lervag/vimtex" },
     { "CRAG666/code_runner.nvim",         config = true },
-
-
+    {
+        'kaarmu/typst.vim',
+        ft = 'typst',
+        lazy = false,
+    },
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -66,7 +69,14 @@ require("lazy").setup({
             -- refer to the configuration section below
         },
     },
-
+    {
+        "folke/zen-mode.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
     -- file manager plugin
     {
         'stevearc/oil.nvim',
@@ -74,6 +84,7 @@ require("lazy").setup({
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
+    -- writing sorta thing
     {
         "folke/twilight.nvim",
         opts = {
@@ -82,4 +93,10 @@ require("lazy").setup({
             -- refer to the configuration section below
         }
     },
+    {
+        'chomosuke/typst-preview.nvim',
+        lazy = false, -- or ft = 'typst'
+        version = '0.1.*',
+        build = function() require 'typst-preview'.update() end,
+    }
 })

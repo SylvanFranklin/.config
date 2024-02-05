@@ -20,3 +20,4 @@ end
 -- keybindings
 vim.api.nvim_set_keymap("n", "<leader>z", "<cmd>lua open_zathura()<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>vc", "<cmd>VimtexCompile<cr>", { noremap = true, silent = true })
+
