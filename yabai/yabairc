@@ -30,7 +30,7 @@ yabai -m config window_animation_frame_rate  0.0
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  10
+yabai -m config top_padding                  0
 yabai -m config bottom_padding               0
 yabai -m config left_padding                 0
 yabai -m config right_padding                0

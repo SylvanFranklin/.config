@@ -29,7 +29,7 @@ alias vi = nvim
 alias z = zoxide
 alias cat = bat
 alias en = zellij
-alias op = zathura (sk -f .pdf$ | sk)
+alias op = bash ~/.local/bin/open-pdf
 alias oa = start (sk) 
 
 let dark_theme = {
