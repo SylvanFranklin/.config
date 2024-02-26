@@ -1,5 +1,21 @@
 -- tab and space config
 
+function _G.preview()
+    -- function that determines the file type, and then opens the file in the correct viewer
+    -- tex: zathura (pdf)
+    -- md: uses :MarkdownPreviewToggle
+    -- typst: user :TypstPreview
+    if vim.fn.expand("%:e") == "tex" then
+        vim.fn.jobstart({ "zathura", vim.fn.expand("%:r") .. ".pdf" }, { detach = true })
+    elseif vim.fn.expand("%:e") == "md" then
+        vim.cmd("MarkdownPreviewToggle")
+    elseif vim.fn.expand("%:e") == "typ" then
+        vim.cmd("TypstPreview")
+    else
+        print("No preview available for this file type")
+    end
+end
+
 -- general
 vim.g.mapleader = " "
 vim.keymap.set('n', '<leader>h', ':set hlsearch!<CR>')
@@ -7,8 +23,7 @@ vim.keymap.set('n', '<leader>q', ':q<CR>')
 vim.keymap.set('n', '<leader>w', ':w<CR>')
 vim.keymap.set('n', '<leader>Q', ':wqa<CR>')
 vim.keymap.set('n', '<leader>y', '"+y')
-vim.keymap.set('v', '<leader>p', '"_dp')
--- close curent buffer
+-- close current buffer
 vim.keymap.set('n', '<leader>c', ':bd<CR>')
 
 -- telescope
@@ -35,3 +50,7 @@ vim.keymap.set({ 'n', 'x', 'v' }, '<up>', '<nop>');
 vim.keymap.set({ 'n', 'x', 'v' }, '<down>', '<nop>');
 vim.keymap.set({ 'n', 'x', 'v' }, '<left>', '<nop>');
 vim.keymap.set({ 'n', 'x', 'v' }, '<right>', '<nop>');
+
+-- preview functions
+vim.keymap.set('n', '<leader>p', ':lua preview()<CR>')
+

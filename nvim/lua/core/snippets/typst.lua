@@ -15,7 +15,7 @@ return {
         fmta("$<>$ ", { i(1) })
     ),
     s({ trig = "mmt", snippetType = "autosnippet" },
-        fmta("$$<>$$ ", { i(1) })
+        fmta("$ <> $ ", { i(1) })
     ),
     s({ trig = "#sep", snippetType = "autosnippet" },
         fmta("#align(center)[#line(length: 80%)]", {})
