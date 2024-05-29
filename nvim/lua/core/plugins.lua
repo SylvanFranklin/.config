@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins
 require("lazy").setup({
     -- general
+    -- Lua
     { "catppuccin/nvim",                          name = "catppuccin", priority = 1000 },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
@@ -104,10 +105,14 @@ require("lazy").setup({
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
-    }
+    },
+    { 'jacoborus/tender.vim' },
+    { 'mhartington/formatter.nvim' },
+    { "ellisonleao/gruvbox.nvim" }
     -- {
     --    "m4xshen/hardtime.nvim",
     --    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     --    opts = {}
+    --
     -- },
 })

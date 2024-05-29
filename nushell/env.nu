@@ -81,8 +81,6 @@ $env.NU_PLUGIN_DIRS = [
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
 # macOS ARM64 (Apple Silicon)
-
-
 $env.PATH = ($env.PATH | split row (char esep) | append '/Users/sylvanfranklin/.local/share/bob/nvim-bin')
 $env.PATH = ($env.PATH | split row (char esep) | append '/Users/sylvanfranklin/.bun/bin')
 $env.PATH = ($env.PATH | split row (char esep) | append '/Users/sylvanfranklin/.local/bin')
@@ -92,7 +90,6 @@ $env.PATH = ($env.PATH | split row (char esep) | append '/Users/sylvanfranklin/b
 $env.PATH = ($env.PATH | split row (char esep) | append '/Users/sylvanfranklin/.')
 $env.PATH = ($env.PATH | split row (char esep) | append '/Users/sylvanfranklin/.nvm/.')
 $env.PATH = ($env.PATH | split row (char esep) | append '/Users/sylvanfranklin/julia-1.10.0/bin/.')
-$env.HELIX_RUNTIME = "/Users/sylvanfranklin/helix/runtime"
-$env.HELIX_RUNTIME = "/Users/sylvanfranklin/helix/runtime"
+$env.PATH = ($env.PATH | split row (char esep) | append '/Users/sylvanfranklin/Downloads/google-cloud-sdk/path.zsh.inc')
 
 

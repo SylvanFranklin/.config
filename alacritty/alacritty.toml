@@ -1,11 +1,13 @@
-import = ["/Users/sylvanfranklin/.config/alacritty/catppuccin/catppuccin-macchiato.toml"]
+import = [
+    "~/.config/alacritty/gruvbox.toml"
+]
 live_config_reload = true
 
 [env]
 TERM = "xterm-256color"
 
 [font]
-size = 18
+size = 23
 
 [font.bold]
 style = "Regular"
@@ -124,5 +126,5 @@ dynamic_padding = false
 opacity = 1
 
 [window.padding]
-x = 15
-y = 15
+x = 0
+y = 0 

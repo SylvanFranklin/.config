@@ -19,18 +19,18 @@ vim.api.nvim_set_keymap("i", "<C-o>", 'copilot#Accept("<CR>")', { silent = true,
 lvim.keys.normal_mode["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true } }
 
 -- keymaps for turning disabling and enabling lsp
-vim.api.nvim_set_keymap("n", "<leader>lo", "<cmd>LspStop<CR>", { silent = true})
-vim.api.nvim_set_keymap("n", "<leader>lp", "<cmd>LspStart<CR>", { silent = true})
+vim.api.nvim_set_keymap("n", "<leader>lo", "<cmd>LspStop<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lp", "<cmd>LspStart<CR>", { silent = true })
 
 -- kemap for enabling and disabling copilot
-vim.api.nvim_set_keymap("n", "<leader>gca", "<cmd>Copilot enable<CR>", { silent = true})
+vim.api.nvim_set_keymap("n", "<leader>gca", "<cmd>Copilot enable<CR>", { silent = true })
 -- now one for disabling
-vim.api.nvim_set_keymap("n", "<leader>gcd", "<cmd>Copilot disable<CR>", { silent = true})
+vim.api.nvim_set_keymap("n", "<leader>gcd", "<cmd>Copilot disable<CR>", { silent = true })
 
 
 ls.config.setup({
-  enable_autosnippets = true,
-  -- store_selection_keys = "<Tab>"
+    enable_autosnippets = true,
+    -- store_selection_keys = "<Tab>"
 })
 -- Define the key mappings for snippet navigation
 -- vim.api.nvim_set_keymap('i', 'kk', [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<CR>']],
@@ -93,40 +93,40 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 
 lvim.builtin.telescope.defaults.file_ignore_patterns = {
-  "%.git/",
-  "node_modules/",
-  "%.jpg",
-  "%.jpeg",
-  "%.png",
-  "%.gif",
-  "%.woff",
-  "%.woff2",
-  "%.ttf",
-  "%.otf",
-  "%.pdf",
-  "%.exe",
-  "%.zip",
-  "%.tar.gz",
-  "%.mkv",
-  "%.mp4",
-  "%.avi",
-  "/dist/",
-  "%.lock",
-  "%.jsonc?",
-  "%.config.json",
-  "%.log",
-  "%.cache",
-  "%.bak",
-  "%.swp",
-  "%.swo",
-  "%.swn",
-  "yarn.lock",
-  "package%-lock.json",
-  "%.solid",
-  "src%-tauri/target/",
-  "src%-tauri/icons/",
-  "%.svelte%-kit",
-  "%.firebase",
+    "%.git/",
+    "node_modules/",
+    "%.jpg",
+    "%.jpeg",
+    "%.png",
+    "%.gif",
+    "%.woff",
+    "%.woff2",
+    "%.ttf",
+    "%.otf",
+    "%.pdf",
+    "%.exe",
+    "%.zip",
+    "%.tar.gz",
+    "%.mkv",
+    "%.mp4",
+    "%.avi",
+    "/dist/",
+    "%.lock",
+    "%.jsonc?",
+    "%.config.json",
+    "%.log",
+    "%.cache",
+    "%.bak",
+    "%.swp",
+    "%.swo",
+    "%.swn",
+    "yarn.lock",
+    "package%-lock.json",
+    "%.solid",
+    "src%-tauri/target/",
+    "src%-tauri/icons/",
+    "%.svelte%-kit",
+    "%.firebase",
 }
 
 lvim.builtin.telescope.defaults.find_command = { 'rg', '--files', '--hidden', '--exclude', '*.node' }
@@ -183,19 +183,19 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
-  "svelte"
+    "bash",
+    "c",
+    "javascript",
+    "json",
+    "lua",
+    "python",
+    "typescript",
+    "tsx",
+    "css",
+    "rust",
+    "java",
+    "yaml",
+    "svelte"
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -248,12 +248,12 @@ lvim.builtin.treesitter.highlight.enable = true
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  {
-    name = "prettier",
-    filetypes = { "typescript", "typescriptreact", "typescript", "javascript" },
-  },
-  { command = "latexindent", filetypes = { "tex" } },
-  { exe = "black",           filetypes = { "python" } },
+    {
+        name = "prettier",
+        filetypes = { "typescript", "typescriptreact", "typescript", "javascript" },
+    },
+    { command = "latexindent", filetypes = { "tex" } },
+    { exe = "black",           filetypes = { "python" } },
 }
 
 -- -- set additional linters
@@ -277,37 +277,37 @@ formatters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-  -- {
-  --   "iamcco/markdown-preview.nvim",
-  --   run = function() vim.fn["mkdp#util#install"]() end,
-  -- },
-  {
-    "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function()
-      vim.g.mkdp_filetypes = {
-        "markdown"
-      }
-    end,
-    ft = { "markdown" },
-  },
-  {
-    "lervag/vimtex",
-    config = function()
-      -- Viewer options
-      vim.g.vimtex_view_method = "zathura"     -- or your preferred PDF viewer
-      -- Compiler method
-      vim.g.vimtex_compiler_method = "latexmk" -- or your preferred LaTeX compiler method
-    end
-  },
-  -- {"sirver/ultisnips", config = function()
-  --   vim.g.UltisnipsExpandTrigger = '<tab>'
-  --   vim.g.UltisnipsJumpForwardTrigger = '<tab>'
-  --   vim.g.UltisnipsJumpBackwardTrigger = '<s-tab>'
-  -- end},
-  { "catppuccin/nvim",   as = "catppuccin" },
-  { "github/copilot.vim" }
-  -- { "evesdropper/luasnip-latex-snippets.nvim" }
+    -- {
+    --   "iamcco/markdown-preview.nvim",
+    --   run = function() vim.fn["mkdp#util#install"]() end,
+    -- },
+    {
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        setup = function()
+            vim.g.mkdp_filetypes = {
+                "markdown"
+            }
+        end,
+        ft = { "markdown" },
+    },
+    {
+        "lervag/vimtex",
+        config = function()
+            -- Viewer options
+            vim.g.vimtex_view_method = "zathura" -- or your preferred PDF viewer
+            -- Compiler method
+            vim.g.vimtex_compiler_method = "latexmk" -- or your preferred LaTeX compiler method
+        end
+    },
+    -- {"sirver/ultisnips", config = function()
+    --   vim.g.UltisnipsExpandTrigger = '<tab>'
+    --   vim.g.UltisnipsJumpForwardTrigger = '<tab>'
+    --   vim.g.UltisnipsJumpBackwardTrigger = '<s-tab>'
+    -- end},
+    { "catppuccin/nvim",   as = "catppuccin" },
+    { "github/copilot.vim" }
+    -- { "evesdropper/luasnip-latex-snippets.nvim" }
 }
 
 
@@ -322,22 +322,22 @@ lvim.plugins = {
 -- -- Treesitter
 local ts = lvim.builtin.treesitter
 ts.textobjects = {
-  select = {
-    enable = true,
-    -- Automatically jump forward to textobj, similar to targets.vim
-    lookahead = true,
-    keymaps = {
-      -- You can use the capture groups defined in textobjects.scm
-      ["af"] = "@function.outer",
-      ["if"] = "@function.inner",
-      ["ac"] = "@class.outer",
-      ["ic"] = "@class.inner",
+    select = {
+        enable = true,
+        -- Automatically jump forward to textobj, similar to targets.vim
+        lookahead = true,
+        keymaps = {
+            -- You can use the capture groups defined in textobjects.scm
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+        },
     },
-  },
-  swap = {
-    enable = false,
-    -- swap_next = textobj_swap_keymaps,
-  },
+    swap = {
+        enable = false,
+        -- swap_next = textobj_swap_keymaps,
+    },
 }
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 --
