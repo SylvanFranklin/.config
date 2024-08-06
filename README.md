@@ -1,8 +1,2 @@
-# Config
-
-Dotfiles for my math major setup driven by vim and latex. 
-
-**Soon to add**
-- [ ] Typst support
-
-
+# Math and programming focused config for macOS
+My Neovim setup supports continuous Latex compiling loop with VimTex and Zathura, but I'm mostly using typst now.  
