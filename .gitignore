@@ -15,3 +15,4 @@ gitui/theme.ron.old
 lvim/plugin
 neofetch
 neovide
+nvim/lazy-lock.json
