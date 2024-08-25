@@ -1,8 +1,3 @@
-require("core.keymap")
-require("core.plugins")
-require("core.plugin_config")
-require("core.neovide")
-
 -- tabs
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -25,3 +20,8 @@ vim.opt.ignorecase = true
 
 -- misc
 vim.opt.backup = false
+
+-- always load last so that I don't lose basic settings
+require("core.keymap")
+require("core.plugins")
+require("core.plugin_config")

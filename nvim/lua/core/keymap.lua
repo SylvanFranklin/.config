@@ -1,6 +1,5 @@
 function _G.format()
     -- runs :Format if the file type is typest, and otherfise uses the normal vim formatting
-
     if vim.fn.expand("%:e") == "typ" then
         -- make this line silent
         vim.cmd(":Format <CR>")
@@ -50,7 +49,7 @@ vim.keymap.set("n", "<leader>b", ":Telescope buffers<CR>")
 
 -- lsp commands
 vim.keymap.set({ "n", "x" }, "<leader>lf", ":lua format()<CR>", { silent = true })
-vim.keymap.set({ "n", "x" }, "<leader>lq", ":Trouble<CR>")
+vim.keymap.set({ "n", "x" }, "<leader>lq", ":Trouble diagnostics toggle focus=true filter.buf=0<CR>")
 vim.keymap.set({ "n", "x" }, "<leader>e", ":Oil<CR>")
 
 -- code runner
@@ -65,14 +64,14 @@ vim.keymap.set({ "n", "x", "v" }, "<right>", "<nop>")
 
 -- terminal config
 -- TODO make this faster and smoother for running C++ code
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
-vim.keymap.set({ "n", "x", "v" }, "<leader>t", ":botright vsp | term <CR>")
-vim.keymap.set({ "n", "x", "v" }, "<leader><space>", ":lua run_code()<CR>")
+-- vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+-- vim.keymap.set({ "n", "x", "v" }, "<leader>t", ":botright vsp | term <CR>")
+-- vim.keymap.set({ "n", "x", "v" }, "<leader><space>", ":lua run_code()<CR>")
 
 -- preview functions
 vim.keymap.set("n", "<leader>p", ":lua preview()<CR>")
 
-
 -- copilot keymaps
 vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
 vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
+

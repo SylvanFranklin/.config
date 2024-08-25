@@ -15,39 +15,30 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins
 require("lazy").setup({
     -- general
-    -- Lua
-    { "catppuccin/nvim",                          name = "catppuccin", priority = 1000 },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
+    { "vague2k/vague.nvim" },
     { "github/copilot.vim" },
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
-
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
-        opts = {} -- this is equalent to setup({}) function
     },
-
-
     {
         'numToStr/Comment.nvim',
-        opts = {
-            -- add any options here
-        },
         lazy = false,
     },
-
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
-    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
+    -- lsp config
+    { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
     {
         'saecki/crates.nvim',
         tag = 'stable',
@@ -56,23 +47,17 @@ require("lazy").setup({
         end,
     },
 
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
     {
         'neovim/nvim-lspconfig',
     },
-
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
     { 'L3MON4D3/LuaSnip' },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'aznhe21/actions-preview.nvim' },
-    { "lervag/vimtex" },
-    { "CRAG666/code_runner.nvim",         config = true },
-    {
-        'kaarmu/typst.vim',
-        ft = 'typst',
-        lazy = false,
-    },
+
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -82,29 +67,22 @@ require("lazy").setup({
             -- refer to the configuration section below
         },
     },
-    {
-        "folke/zen-mode.nvim",
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        }
-    },
+    -- { "CRAG666/code_runner.nvim",         config = true },
+
     -- file manager plugin
     {
         'stevearc/oil.nvim',
         opts = {},
-        -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
-    -- writing sorta thing
+
+    -- typst and latex plugins
+    -- { "lervag/vimtex" },
+    { 'mhartington/formatter.nvim' },
     {
-        "folke/twilight.nvim",
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        }
+        'kaarmu/typst.vim',
+        ft = 'typst',
+        lazy = false,
     },
     {
         'chomosuke/typst-preview.nvim',
@@ -118,13 +96,5 @@ require("lazy").setup({
         ft = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
     },
-    { 'jacoborus/tender.vim' },
-    { 'mhartington/formatter.nvim' },
-    { "ellisonleao/gruvbox.nvim" }
-    -- {
-    --    "m4xshen/hardtime.nvim",
-    --    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    --    opts = {}
-    --
-    -- },
+
 })
