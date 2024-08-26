@@ -87,10 +87,10 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-# alt-h = 'focus left'
-# alt-j = 'focus down'
-# alt-k = 'focus up'
-# alt-l = 'focus right'
+alt-i = 'focus left'
+alt-n = 'focus down'
+alt-e = 'focus up'
+alt-m = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 # alt-shift-h = 'move left'
@@ -99,8 +99,8 @@ alt-comma = 'layout accordion horizontal vertical'
 # alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
+# alt-shift-minus = 'resize smart -50'
+# alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
@@ -114,17 +114,19 @@ alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
 # specific app config 
-alt-a = 'workspace 1' 
-alt-s = 'workspace 3'
-alt-l = 'workspace 2'
-alt-g = 'workspace G'
-alt-k = 'workspace K'
+alt-a = 'workspace 1' # alacritty
+alt-s = 'workspace 3' # spotify
+alt-l = 'workspace 2' # firefox
+alt-g = 'workspace G' # messages
+alt-shift-k = 'workspace K' # keepass
+alt-p = 'workspace P' # pdf viewer
+alt-shift-f = 'workspace F' # finder
+alt-f = 'fullscreen'
 
 # alt-b = 'workspace B'
 # alt-c = 'workspace C'
 # alt-d = 'workspace D'
 # alt-e = 'workspace E'
-alt-f = 'workspace F'
 # alt-g = 'workspace G'
 # alt-i = 'workspace I'
 # alt-m = 'workspace M'
@@ -176,25 +178,25 @@ alt-shift-5 = 'move-node-to-workspace 5'
 # alt-shift-z = 'move-node-to-workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
+# alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+# alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # custom commands here 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-semicolon = 'mode service'
+# alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-[mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = [
-    'layout floating tiling',
-    'mode main',
-] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
-
+# [mode.service.binding]
+# esc = ['reload-config', 'mode main']
+# r = ['flatten-workspace-tree', 'mode main'] # reset layout
+# #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+# f = [
+#     'layout floating tiling',
+#     'mode main',
+# ] # Toggle between floating and tiling layout
+# backspace = ['close-all-windows-but-current', 'mode main']
+#
 # alt-shift-h = ['join-with left', 'mode main']
 # alt-shift-j = ['join-with down', 'mode main']
 # alt-shift-k = ['join-with up', 'mode main']
@@ -224,3 +226,8 @@ run = 'move-node-to-workspace F'
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = 'move-node-to-workspace G'
+
+[[on-window-detected]]
+if.app-id = 'NULL-APP-BUNDLE-ID'
+run = 'move-node-to-workspace P'
+
