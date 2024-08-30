@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     -- general
     { "vague2k/vague.nvim" },
+    { "CRAG666/code_runner.nvim", config = true },
     { "github/copilot.vim" },
     {
         "ThePrimeagen/harpoon",
@@ -90,11 +91,4 @@ require("lazy").setup({
         version = '0.1.*',
         build = function() require 'typst-preview'.update() end,
     },
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
-    },
-
 })

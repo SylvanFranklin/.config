@@ -22,6 +22,7 @@ key = "Left"
 mode = "AppCursor"
 mods = "Command"
 
+
 [[keyboard.bindings]]
 chars = "\u001BOF"
 key = "Right"
