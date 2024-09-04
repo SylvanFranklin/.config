@@ -52,7 +52,7 @@ vim.keymap.set({ "n", "x" }, "<leader>lf", ":lua format()<CR>", { silent = true 
 vim.keymap.set({ "n", "x" }, "<leader>lq", ":Trouble diagnostics toggle focus=true filter.buf=0<CR>")
 vim.keymap.set({ "n", "x" }, "<leader>e", ":Oil<CR>")
 
-vim.keymap.set("n", "<leader><space>", ":RunCode<CR>")
+
 
 -- totally remove mouse, and arrow keys
 vim.opt.mouse = ""
@@ -65,6 +65,7 @@ vim.keymap.set({ "n", "x", "v" }, "<right>", "<nop>")
 -- TODO make this faster and smoother for running C++ code
 -- vim.keymap.set({ "n", "x", "v" }, "<leader>t", ":botright vsp | term <CR>")
 -- vim.keymap.set({ "n", "x", "v" }, "<leader><space>", ":lua run_code()<CR>")
+vim.keymap.set("n", "<leader><cr>", ":RunCode<CR>")
 
 -- preview functions
 vim.keymap.set("n", "<leader>p", ":lua preview()<CR>")

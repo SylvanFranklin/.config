@@ -118,10 +118,12 @@ alt-a = 'workspace 1' # alacritty
 alt-s = 'workspace 3' # spotify
 alt-l = 'workspace 2' # firefox
 alt-g = 'workspace G' # messages
+alt-p = 'workspace P' # pdf
+alt-shift-p = 'move-node-to-workspace P' # pdf
 alt-shift-k = 'workspace K' # keepass
-alt-p = 'workspace P' # pdf viewer
 alt-shift-f = 'workspace F' # finder
-alt-f = 'fullscreen'
+alt-f = 'macos-native-fullscreen'
+
 
 # alt-b = 'workspace B'
 # alt-c = 'workspace C'
@@ -227,7 +229,10 @@ run = 'move-node-to-workspace F'
 if.app-id = 'com.apple.MobileSMS'
 run = 'move-node-to-workspace G'
 
+# zathura 
 [[on-window-detected]]
 if.app-id = 'NULL-APP-BUNDLE-ID'
+if.app-name-regex-substring = 'Users'
+if.window-title-regex-substring = 'Users'
 run = 'move-node-to-workspace P'
 

@@ -9,7 +9,7 @@ require 'typst-preview'.setup {
     -- Setting this to 'always' will invert black and white in the preview
     -- Setting this to 'auto' will invert depending if the browser has enable
     -- dark mode
-    invert_colors = 'auto',
+    -- invert_colors = 'auto',
 
     -- This function will be called to determine the root of the typst project
     get_root = function(bufnr_of_typst_buffer)
