@@ -17,7 +17,23 @@ return {
     s({ trig = "mmt", snippetType = "autosnippet" },
         fmta("$ <> $ ", { i(1) })
     ),
-    s({ trig = "#sep", snippetType = "autosnippet" },
+    s({ trig = "!sep", snippetType = "autosnippet" },
         fmta("#align(center)[#line(length: 80%)]", {})
+    ),
+    s({ trig = "!mla", snippetType = "autosnippet" },
+        fmta([[
+        Sylvan Franklin
+
+        #let today = datetime.today()
+        #today.display()
+
+        <>
+        ]], { i(1) })
+    ),
+    s({ trig = "!date", snippetType = "autosnippet" },
+        fmta([[
+        #let today = datetime.today()
+        #today.display()
+        ]], {})
     )
 }

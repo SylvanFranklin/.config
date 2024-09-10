@@ -1,5 +1,4 @@
 if vim.g.neovide then
-
     vim.o.guifont = "FiraCode Nerd Font:h18" -- text below applies for VimScript
     vim.g.neovide_padding_top = 20
     vim.g.neovide_padding_bottom = 20
