@@ -60,6 +60,6 @@ set recolor-darkcolor "#E0E0E0" #06
 set recolor-reverse-video "true"
 set recolor-keephue "true"
 
-
+set selection-clipboard clipboard
 set render-loading "false"
 set scroll-step 50
