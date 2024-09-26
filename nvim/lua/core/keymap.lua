@@ -1,3 +1,45 @@
+function toggle_asthetic()
+    -- function that toggles the asthetic of the editor, goes into zen mode
+
+
+
+    require("zen-mode").toggle({
+        window = {
+            backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+            width = 0.85,    -- width of the Zen window
+            height = 0.8,    -- height of the Zen window
+            -- by default, no options are changed for the Zen window
+            -- uncomment any of the options below, or add other vim.wo options you want to apply
+            options = {
+                signcolumn = "no",      -- disable signcolumn
+                number = false,         -- disable number column
+                relativenumber = false, -- disable relative numbers
+                cursorline = false,     -- disable cursorline
+                cursorcolumn = false,   -- disable cursor column
+                foldcolumn = "0",       -- disable fold column
+                list = false,           -- disable whitespace characters
+            },
+        },
+
+        plugins = {
+            options = {
+                enabled = true,
+                ruler = false,   -- disables the ruler text in the cmd line area
+                showcmd = false, -- disables the command in the last line of the screen
+                laststatus = 0,  -- turn off the statusline in zen mode
+            },
+            -- gitsigns = { enabled = false }, -- disables git signs
+            tmux = { enabled = true }, -- disables the tmux statusline
+            -- todo = { enabled = false }, -- if set to "true", todo-comments.nvim highlights will be disabled
+            alacritty = {
+                enabled = false,
+                font = "60", -- font size
+            },
+        }
+
+    })
+end
+
 function _G.format()
     -- runs :Format if the file type is typest, and otherfise uses the normal vim formatting
     if vim.fn.expand("%:e") == "typ" then
@@ -33,6 +75,7 @@ end
 
 -- general
 vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>u", ":lua toggle_asthetic()<CR>")
 vim.keymap.set("n", "<leader>h", ":set hlsearch!<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>w", ":w<CR>")
@@ -51,7 +94,6 @@ vim.keymap.set("n", "<leader>b", ":Telescope buffers<CR>")
 vim.keymap.set({ "n", "x" }, "<leader>lf", ":lua format()<CR>", { silent = true })
 vim.keymap.set({ "n", "x" }, "<leader>lq", ":Trouble diagnostics toggle focus=true filter.buf=0<CR>")
 vim.keymap.set({ "n", "x" }, "<leader>e", ":Oil<CR>")
-
 
 
 -- totally remove mouse, and arrow keys
@@ -73,3 +115,5 @@ vim.keymap.set("n", "<leader>p", ":lua preview()<CR>")
 -- copilot keymaps
 vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
 vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
+
+-- :vnoremap i$ T$ot$
