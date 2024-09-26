@@ -14,13 +14,25 @@ return {
     s({ trig = "mt", snippetType = "autosnippet" },
         fmta("$<>$ ", { i(1) })
     ),
+    s({ trig = ";t", snippetType = "autosnippet" },
+        fmta("^(<>) ", { i(1) })
+    ),
+
     s({ trig = "mmt", snippetType = "autosnippet" },
         fmta("$ <> $ ", { i(1) })
     ),
-    s({ trig = "!sep", snippetType = "autosnippet" },
-        fmta("#align(center)[#line(length: 80%)]", {})
+
+    s({ trig = ";q", snippetType = "autosnippet" },
+        fmta([[
+        + #q[
+        <>
+        ][
+        <>
+        ]
+        ]], { i(1), i(2) })
     ),
-    s({ trig = "!mla", snippetType = "autosnippet" },
+
+    s({ trig = ";mla", snippetType = "autosnippet" },
         fmta([[
         Sylvan Franklin
 
@@ -30,10 +42,4 @@ return {
         <>
         ]], { i(1) })
     ),
-    s({ trig = "!date", snippetType = "autosnippet" },
-        fmta([[
-        #let today = datetime.today()
-        #today.display()
-        ]], {})
-    )
 }
