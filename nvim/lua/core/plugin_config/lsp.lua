@@ -1,5 +1,16 @@
 local lsp_zero = require('lsp-zero')
 
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = { "*.typ", "*.md" },
+    callback = function()
+        vim.cmd(":map j gj")
+        vim.cmd(":map k gk")
+        vim.cmd(":set wrap")
+        vim.cmd(":Copilot disable")
+    end
+})
+
 lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
@@ -13,13 +24,6 @@ require('mason-lspconfig').setup({
     },
 })
 
-
-require 'lspconfig'.typst_lsp.setup {
-    settings = {
-        exportPdf = "onSave" -- Choose onType, onSave or never.
-        -- serverPath = "" -- Normally, there is no need to uncomment it.
-    }
-}
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
