@@ -1,0 +1,26 @@
+.LH {
+  border: 0;
+  background-image: none !important;
+  background-color: #ffffff !important;
+  border-radius: 2px;
+  color: #000000;
+}
+
+#bar {
+    background-color: #ffffff !important;
+    border: 0;
+    border-radius: 4px;
+    color: #000000 !important;
+}
+#toolbar {
+    background-color: #000000 !important;
+    border: 0;
+    border-radius: 4px;
+    color: #000000 !important;
+}
+
+#list {
+    border-radius: 4px;
+    border: 0;
+    color: #000000;
+}
