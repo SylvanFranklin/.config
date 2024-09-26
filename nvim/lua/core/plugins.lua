@@ -84,16 +84,24 @@ require("lazy").setup({
 
     -- typst and latex plugins
     -- { "lervag/vimtex" },
+    -- {
     { 'mhartington/formatter.nvim' },
     {
         'kaarmu/typst.vim',
         ft = 'typst',
         lazy = false,
     },
+
     {
         'chomosuke/typst-preview.nvim',
         lazy = false, -- or ft = 'typst'
         version = '0.1.*',
         build = function() require 'typst-preview'.update() end,
+    },
+
+    -- Lua
+    {
+        "folke/zen-mode.nvim",
+        opts = {}
     },
 })
