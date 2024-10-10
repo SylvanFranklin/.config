@@ -18,14 +18,22 @@ end
 
 return {
     s({ trig = ";header", snippetType = "autosnippet" },
-    fmta([[
+        fmta([[
     #ifndef <>
     #define <>
     <>
     #endif // <>
     ]],
-    {
-        f(header_guard), f(header_guard), i(1), f(header_guard)
-    })
+            {
+                f(header_guard), f(header_guard), i(1), f(header_guard)
+            })
     ),
+
+    s({ trig = ";for", snippetType = "autosnippet" },
+        fmta([[
+        for (int i = <>; i <>; i++) {
+            <>
+        }
+        ]], { i(1), i(2), i(3) })
+    )
 }

@@ -30,9 +30,10 @@ local cmp_action = require('lsp-zero').cmp_action()
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-j>'] = cmp_action.luasnip_jump_forward(),
-        ['<C-k>'] = cmp_action.luasnip_jump_backward(),
+        ['<C-l>'] = cmp_action.luasnip_jump_backward(),
         ['<Cr>'] = cmp.mapping.confirm({ select = true }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
     })
 })

@@ -10,7 +10,7 @@ vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.swapfile = false
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 2
 vim.opt.termguicolors = true
 
 -- search

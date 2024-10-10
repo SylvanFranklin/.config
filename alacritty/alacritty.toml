@@ -1,6 +1,6 @@
-import = [
-    "~/.config/alacritty/gruvbox.toml"
-]
+# import = [
+#     "~/.config/alacritty/themes/themes/nord.toml"
+# ]
 live_config_reload = true
 
 [env]

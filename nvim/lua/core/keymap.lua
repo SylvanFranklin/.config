@@ -1,13 +1,10 @@
 function toggle_asthetic()
     -- function that toggles the asthetic of the editor, goes into zen mode
-
-
-
     require("zen-mode").toggle({
         window = {
-            backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-            width = 0.85,    -- width of the Zen window
-            height = 0.8,    -- height of the Zen window
+            backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+            width = 0.85, -- width of the Zen window
+            height = 0.9, -- height of the Zen window
             -- by default, no options are changed for the Zen window
             -- uncomment any of the options below, or add other vim.wo options you want to apply
             options = {
@@ -41,12 +38,10 @@ function toggle_asthetic()
 end
 
 function _G.format()
-    -- runs :Format if the file type is typest, and otherfise uses the normal vim formatting
-    if vim.fn.expand("%:e") == "typ" then
-        -- make this line silent
-        vim.cmd(":Format <CR>")
+    if vim.bo.filetype == "typst" then
+        vim.cmd("Format")
     else
-        vim.cmd("lua vim.lsp.buf.format({async = true})")
+        vim.cmd("lua vim.lsp.buf.format({async = true, silent=true})")
     end
 end
 
@@ -75,25 +70,23 @@ end
 
 -- general
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>u", ":lua toggle_asthetic()<CR>")
+vim.keymap.set("n", "<leader>u", ":lua toggle_asthetic()<CR>", { silent = true })
 vim.keymap.set("n", "<leader>h", ":set hlsearch!<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>w", ":w<CR>")
-vim.keymap.set("n", "<leader>Q", ":wqa<CR>")
-vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 -- close current buffer
-vim.keymap.set("n", "<leader>c", ":bd<CR>")
 
 -- telescope
-vim.keymap.set("n", "<leader>f", ":Telescope find_files<CR>")
-vim.keymap.set("n", "<leader>g", ":Telescope live_grep<CR>")
-vim.keymap.set("n", "<leader>r", ":Telescope oldfiles<CR>")
-vim.keymap.set("n", "<leader>b", ":Telescope buffers<CR>")
+vim.keymap.set("n", "<leader>f", ":Telescope find_files<CR>", { silent = true })
+vim.keymap.set("n", "<leader>g", ":Telescope live_grep<CR>", { silent = true })
+vim.keymap.set("n", "<leader>r", ":Telescope oldfiles<CR>", { silent = true })
+vim.keymap.set("n", "<leader>b", ":Telescope buffers<CR>", { silent = true })
 
 -- lsp commands
 vim.keymap.set({ "n", "x" }, "<leader>lf", ":lua format()<CR>", { silent = true })
-vim.keymap.set({ "n", "x" }, "<leader>lq", ":Trouble diagnostics toggle focus=true filter.buf=0<CR>")
-vim.keymap.set({ "n", "x" }, "<leader>e", ":Oil<CR>")
+vim.keymap.set({ "n", "x" }, "<leader>lq", ":Trouble diagnostics toggle focus=true filter.buf=0<CR>", { silent = true })
+vim.keymap.set({ "n", "x" }, "<leader>e", ":Oil<CR>", { silent = true })
 
 
 -- totally remove mouse, and arrow keys
@@ -110,7 +103,7 @@ vim.keymap.set({ "n", "x", "v" }, "<right>", "<nop>")
 vim.keymap.set("n", "<leader><cr>", ":RunCode<CR>")
 
 -- preview functions
-vim.keymap.set("n", "<leader>p", ":lua preview()<CR>")
+vim.keymap.set("n", "<leader>p", ":lua preview()<CR>", { silent = true })
 
 -- copilot keymaps
 vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")

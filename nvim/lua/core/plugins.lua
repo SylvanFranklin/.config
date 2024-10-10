@@ -53,13 +53,19 @@ require("lazy").setup({
         end,
     },
 
-    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
     {
         'neovim/nvim-lspconfig',
     },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
-    { 'L3MON4D3/LuaSnip' },
+    {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp"
+    },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'aznhe21/actions-preview.nvim' },
@@ -99,9 +105,14 @@ require("lazy").setup({
         build = function() require 'typst-preview'.update() end,
     },
 
-    -- Lua
+    -- Lua theming
     {
         "folke/zen-mode.nvim",
         opts = {}
     },
+
+    {
+        "sainnhe/everforest",
+    }
+
 })
