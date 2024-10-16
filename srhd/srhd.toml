@@ -1,0 +1,24 @@
+[[bindings]]
+key = "KeyL"
+command = "open /Applications/FireFox.app"
+mods = ["Option"]
+
+[[bindings]]
+key = "KeyM"
+command = "open /Applications/Messages.app"
+mods = ["Option"]
+
+[[bindings]]
+key = "KeyA"
+command = "open /Applications/Alacritty.app"
+mods = ["Option"]
+
+[[bindings]]
+key = "KeyS"
+command = "open /Applications/Spotify.app"
+mods = ["Option"]
+
+[[bindings]]
+key = "KeyK"
+command = "open /Applications/KeePassXC.app"
+mods = ["Option", "Shift"]

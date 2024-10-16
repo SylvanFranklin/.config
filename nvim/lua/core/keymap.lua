@@ -38,11 +38,7 @@ function toggle_asthetic()
 end
 
 function _G.format()
-    if vim.bo.filetype == "typst" then
-        vim.cmd("Format")
-    else
-        vim.cmd("lua vim.lsp.buf.format({async = true, silent=true})")
-    end
+    vim.cmd("lua vim.lsp.buf.format({async = true, silent=true})")
 end
 
 function run_code()
@@ -108,5 +104,10 @@ vim.keymap.set("n", "<leader>p", ":lua preview()<CR>", { silent = true })
 -- copilot keymaps
 vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
 vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
+
+-- sorting by dates (s-d)
+vim.keymap.set({ "v", "x" }, "<leader>s", ":!sort -M<CR>")
+
+
 
 -- :vnoremap i$ T$ot$
