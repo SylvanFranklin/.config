@@ -3,7 +3,14 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/documents/projects ~/ ~/documents/cs2300  ~/documents/notes/EDU ~/documents/notes -mindepth 1 -maxdepth 1 -type d | sk --margin 10% --color="bw")
+    selected=$(find ~/documents/projects ~/ ~/documents/cs2300  ~/documents/notes/EDU ~/documents/notes -mindepth 1 -maxdepth 1 -type d | \
+        sed "s|^$HOME/||" | \
+        sk --margin 10% --color="bw" 
+    )
+    # Add home path back
+    if [[ -n "$selected" ]]; then
+        selected="$HOME/$selected"
+    fi
 fi
 
 if [[ -z $selected ]]; then
