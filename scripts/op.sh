@@ -7,7 +7,8 @@ else
     dir=$(tmux run "echo #{pane_start_path}")
     selected=$(find $dir ~/downloads ~/documents/notes/EDU -mindepth 1 -maxdepth 1 -name "*.pdf" | \
         sed "s|^$HOME/||" | \
-        sk --margin 10% --color=bw)
+        sk --margin 10% --color=bw
+    )
 
     # Add home path back
     if [[ -n "$selected" ]]; then
