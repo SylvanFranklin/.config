@@ -24,7 +24,6 @@ set zoom-min 10
 set guioptions ""
 
 # zathurarc-dark
-
 set font "inconsolata 15"
 set default-bg "#000000" #00
 set default-fg "#F7F7F6" #01
@@ -44,11 +43,11 @@ set notification-warning-fg "#151515" #00
 set highlight-color "#F4BF75" #0A
 set highlight-active-color "#6A9FB5" #0D
 
-set completion-highlight-fg "#151515" #02
-set completion-highlight-bg "#90A959" #0C
+set completion-highlight-fg "#000000" #02
+set completion-highlight-bg "#00BCD4B3" #0C
 
-set completion-bg "#303030" #02
-set completion-fg "#E0E0E0" #0C
+set completion-bg "#30303003" #02
+set completion-fg "#FFC107C4" #0C
 
 set notification-bg "#90A959" #0B
 set notification-fg "#151515" #00

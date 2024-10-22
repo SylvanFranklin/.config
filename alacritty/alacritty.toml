@@ -122,10 +122,10 @@ mode = "~Search"
 mods = "Command"
 
 [window]
+opacity = 0.6
+
 decorations = "buttonless"
 dynamic_padding = false
-opacity = 0
-
 [window.padding]
 x = 0
-y = 0 
+y = 0
