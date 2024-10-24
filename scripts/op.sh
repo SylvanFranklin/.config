@@ -26,5 +26,5 @@ tmux_running=$(pgrep tmux)
 tmux new-window -n  $selected_name -d zathura $selected
 
 
-sleep 0.4
+sleep 0.7
 aerospace focus --dfs-index 1 && aerospace move-node-to-workspace P --focus-follows-window && aerospace macos-native-fullscreen

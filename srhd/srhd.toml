@@ -4,8 +4,8 @@ command = "open /Applications/FireFox.app"
 mods = ["Option"]
 
 [[bindings]]
-key = "KeyM"
-command = "open /Applications/Messages.app"
+key = "KeyG"
+command = "open /System/Applications/Messages.app"
 mods = ["Option"]
 
 [[bindings]]
