@@ -6,6 +6,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
         vim.cmd(":map j gj")
         vim.cmd(":map k gk")
+        vim.cmd(":set wrap")
         vim.cmd(":Copilot disable")
     end
 })
