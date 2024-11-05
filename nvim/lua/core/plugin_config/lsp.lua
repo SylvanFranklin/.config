@@ -1,6 +1,5 @@
 local lsp_zero = require('lsp-zero')
 
-
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.typ", "*.md" },
     callback = function()
@@ -19,6 +18,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
+    ensure_installed = { "lua_ls", "rust_analyzer", "tinymist" },
     handlers = {
         lsp_zero.default_setup,
     },
@@ -34,6 +34,15 @@ cmp.setup({
         ['<Cr>'] = cmp.mapping.confirm({ select = true }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-
     })
 })
+
+require("lspconfig")["tinymist"].setup {
+    settings = {
+        tinymist = {
+            settings = {
+                formatterMode = "typstyle"
+            },
+        },
+    },
+}
