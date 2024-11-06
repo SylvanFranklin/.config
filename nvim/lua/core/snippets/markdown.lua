@@ -16,4 +16,7 @@ return {
         > {}  
         ]], { i(1) })
     ),
+    s({ trig = ";link", snippetType = "autosnippet" },
+        fmta([[[<>](<>)]], { i(1), i(2) })
+    ),
 }
