@@ -16,7 +16,6 @@ apps=(
 casks=(
 "aerospace",
 "alacritty",
-"discord",
 "figma",
 "firefox",
 "font-0xproto-nerd-font",
