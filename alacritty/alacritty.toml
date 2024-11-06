@@ -1,6 +1,11 @@
 # import = [
 #     "~/.config/alacritty/themes/themes/nord.toml"
 # ]
+
+# to install the themes
+# mkdir -p ~/.config/alacritty/themes
+# git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+
 live_config_reload = true
 
 [env]
