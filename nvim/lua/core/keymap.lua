@@ -8,13 +8,13 @@ function toggle_asthetic()
             -- by default, no options are changed for the Zen window
             -- uncomment any of the options below, or add other vim.wo options you want to apply
             options = {
-                signcolumn = "no",      -- disable signcolumn
+                signcolumn = "no",     -- disable signcolumn
                 number = true,         -- disable number column
                 relativenumber = true, -- disable relative numbers
-                cursorline = false,     -- disable cursorline
-                cursorcolumn = false,   -- disable cursor column
-                foldcolumn = "0",       -- disable fold column
-                list = false,           -- disable whitespace characters
+                cursorline = false,    -- disable cursorline
+                cursorcolumn = false,  -- disable cursor column
+                foldcolumn = "0",      -- disable fold column
+                list = false,          -- disable whitespace characters
             },
         },
 
@@ -108,6 +108,3 @@ vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
 -- sorting by dates (s-d)
 vim.keymap.set({ "v", "x" }, "<leader>s", ":!sort -M<CR>")
 
-
-
--- :vnoremap i$ T$ot$
