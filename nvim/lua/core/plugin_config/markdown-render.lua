@@ -1,4 +1,5 @@
 require('render-markdown').setup({
+    render_modes = true,
     anti_conceal = {
         enabled = true,
         -- Which elements to always show, ignoring anti conceal behavior. Values can either be booleans
