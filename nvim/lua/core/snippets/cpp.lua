@@ -35,5 +35,11 @@ return {
             <>
         }
         ]], { i(1), i(2), i(3) })
+    ),
+    s({ trig = ";up", snippetType = "autosnippet" },
+        fmt([[unique_ptr<{}>]], { i(1) })
+    ),
+    s({ trig = ";mu", snippetType = "autosnippet" },
+        fmt([[make_unique<{}>({})]], { i(1), i(2) })
     )
 }
