@@ -11,10 +11,16 @@ local rep = require("luasnip.extras").rep
 
 
 return {
-    -- s({ trig = "print", snippetType = "autosnippet" },
-    --     fmta([[println!("{}", <>)]],
-    --         {
-    --             i(1),
-    --         })
-    -- ),
+    s({ trig = ";dpl", snippetType = "autosnippet" },
+        fmta([[println!("{:?}", <>)]],
+            {
+                i(1),
+            })
+    ),
+    s({ trig = ";pl", snippetType = "autosnippet" },
+        fmta([[println!("{}", <>)]],
+            {
+                i(1),
+            })
+    ),
 }
