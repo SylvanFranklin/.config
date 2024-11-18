@@ -4,7 +4,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     dir=$(tmux run "echo #{pane_start_path}")
-    selected=$(find $dir ~/downloads ~/documents/notes/EDU -mindepth 1 -maxdepth 1 -type f \( -iname \*.png -o -iname \*.pdf \) | \
+    selected=$(find $dir ~/downloads ~/documents/notes/EDU -mindepth 1 -maxdepth 1 -type f \( -iname \*.png -o -iname \*.pdf -o -iname \*.jpg -o -iname \*.jpeg -o -iname \*.tiff \) | \
         sed "s|^$HOME/||" | \
         sk --margin 10% --color=bw
     )
