@@ -18,7 +18,7 @@ require('render-markdown').setup({
         enabled = true,
         sign = false,
         style = 'normal',
-        position = 'left',
+        position = 'inline',
         language_pad = 0,
         language_name = false,
         disable_background = { 'diff' },
@@ -34,4 +34,30 @@ require('render-markdown').setup({
         highlight_inline = 'RenderMarkdownCodeInline',
         highlight_language = nil,
     },
+
+    heading = {
+        enabled = true,
+        sign = true,
+        position = 'inline',
+        icons = {},
+        signs = { '󰫎 ' },
+        width = 'full',
+        backgrounds = {
+            'RenderMarkdownH1Bg',
+            'RenderMarkdownH2Bg',
+            'RenderMarkdownH3Bg',
+            'RenderMarkdownH4Bg',
+            'RenderMarkdownH5Bg',
+            'RenderMarkdownH6Bg',
+        },
+        foregrounds = {
+            'RenderMarkdownH1',
+            'RenderMarkdownH2',
+            'RenderMarkdownH3',
+            'RenderMarkdownH4',
+            'RenderMarkdownH5',
+            'RenderMarkdownH6',
+        },
+    }
+
 })
