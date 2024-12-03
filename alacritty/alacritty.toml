@@ -70,13 +70,13 @@ key = "C"
 mods = "Command"
 
 [[keyboard.bindings]]
-action = "Hide"
-key = "H"
+action = "Copy"
+key = "C"
 mods = "Command"
 
 [[keyboard.bindings]]
-action = "Minimize"
-key = "M"
+action = "Hide"
+key = "H"
 mods = "Command"
 
 [[keyboard.bindings]]

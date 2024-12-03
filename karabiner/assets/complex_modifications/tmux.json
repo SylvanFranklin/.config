@@ -1,0 +1,28 @@
+{
+    "description": "Change Command to Control and Space for tmux on in alacritty terminal",
+    "manipulators": [
+        {
+            "conditions": [
+                {
+                    "bundle_identifiers": [
+                        "^org\\.alacritty"
+                    ],
+                    "type": "frontmost_application_if"
+                }
+            ],
+            "from": {
+                "key_code": "left_command"
+            },
+            "to": [
+                {
+                    "key_code": "spacebar",
+                    "modifiers": [
+                        "left_control"
+                    ]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}
+
