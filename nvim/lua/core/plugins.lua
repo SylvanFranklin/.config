@@ -66,46 +66,36 @@ require("lazy").setup({
         -- install jsregexp (optional!).
         build = "make install_jsregexp"
     },
-    { 'williamboman/mason.nvim' },
+    {
+        'williamboman/mason.nvim',
+        opts = {
+            ensure_installed = {
+                "tinymist",
+            },
+        }
+    },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'aznhe21/actions-preview.nvim' },
-
     {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-        },
+        opts = {},
     },
-    -- { "CRAG666/code_runner.nvim",         config = true },
-
-    -- file manager plugin
     {
         'stevearc/oil.nvim',
         opts = {},
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
-    -- typst and latex plugins
-    -- { "lervag/vimtex" },
-    -- {
-    { 'mhartington/formatter.nvim' },
-    {
-        'kaarmu/typst.vim',
-        ft = 'typst',
-        lazy = false,
-    },
 
     {
         'chomosuke/typst-preview.nvim',
         lazy = false, -- or ft = 'typst'
-        version = '0.1.*',
+        version = '1.*',
         build = function() require 'typst-preview'.update() end,
     },
 
-    -- Lua theming
+    -- Cosmetic plugins
     {
         "folke/zen-mode.nvim",
         opts = {}
@@ -116,9 +106,7 @@ require("lazy").setup({
     },
     {
         'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
