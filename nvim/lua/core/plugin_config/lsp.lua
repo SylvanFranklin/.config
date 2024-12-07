@@ -11,8 +11,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 lsp_zero.on_attach(function(client, bufnr)
-    -- see :help lsp-zero-keybindings
-    -- to learn the available actions
     lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
@@ -45,10 +43,34 @@ require("lspconfig")["tinymist"].setup {
             },
         },
     },
-
 }
 
-
+require("lspconfig")["lua_ls"].setup {
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {
+          'vim',
+          'require'
+        },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
 
 for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
     local default_diagnostic_handler = vim.lsp.handlers[method]
@@ -59,4 +81,3 @@ for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) d
         return default_diagnostic_handler(err, result, context, config)
     end
 end
-

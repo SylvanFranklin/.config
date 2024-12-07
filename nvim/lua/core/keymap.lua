@@ -112,7 +112,7 @@ vim.keymap.set({ "v", "x" }, "<leader>s", ":!sort -M<CR>")
 
 function jump_header()
     -- Get the full path of the current file
-    local file = vim.fn.expand("%:p")
+    -- local file = vim.fn.expand("%:p")
     local ext = vim.fn.expand("%:e")
 
     -- Define potential source and header file extensions
