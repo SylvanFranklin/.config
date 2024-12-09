@@ -26,9 +26,7 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
 fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected "nvim" nvim
-    tmux new-window -t $selected_name -c $selected -n "fish"
-    tmux new-window -t $selected_name -c $selected -n "lazygit" lazygit
+    tmux new-session -ds $selected_name -c $selected 
     # select first window
     tmux select-window -t $selected_name:1
 fi
