@@ -5,6 +5,7 @@
                 "rules": [
                     {
                         "description": "Use Command as a tmux prefix key in Alacritty",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
