@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/documents/projects ~/  ~/documents/notes/EDU ~/documents/notes -mindepth 1 -maxdepth 1 -type d | \
+    selected=$(find ~/documents/projects ~/ ~/documents/notes/EDU ~/documents/notes -mindepth 1 -maxdepth 1 -type d | \
         sed "s|^$HOME/||" | \
         sk --margin 10% --color="bw" 
     )
