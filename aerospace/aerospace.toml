@@ -1,5 +1,3 @@
-
-# Sylvan Simple config, single space per application  
 start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -29,15 +27,20 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout tiles horizontal horizontal'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-# alt-shift-h = 'move left'
-# alt-shift-j = 'move down'
-# alt-shift-k = 'move up'
-# alt-shift-l = 'move right'
+alt-m = 'focus left'
+alt-n = 'focus down'
+alt-e = 'focus up'
+alt-i = 'focus right'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#resize
-# alt-shift-minus = 'resize smart -50'
-# alt-shift-equal = 'resize smart +50'
+alt-shift-m = 'move left'
+alt-shift-n = 'move down'
+alt-shift-e = 'move up'
+alt-shift-i = 'move right'
 
+alt-cmd-m = 'resize smart -50'
+alt-cmd-i = 'resize smart +50'
+
+alt-shift-h = 'move-mouse monitor-force-center'
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
@@ -59,8 +62,6 @@ alt-shift-p = 'move-node-to-workspace P' # pdf
 alt-shift-k = 'workspace K'              # keepass
 alt-shift-f = 'workspace F'              # finder
 alt-f = 'macos-native-fullscreen'
-
-
 # alt-b = 'workspace B'
 # alt-c = 'workspace C'
 # alt-d = 'workspace D'
