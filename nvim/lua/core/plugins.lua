@@ -21,6 +21,20 @@ require("lazy").setup({
         branch = "harpoon2",
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+    {
+        'hat0uma/csvview.nvim',
+        config = function()
+            require('csvview').setup(
+                {
+                    view = {
+                        -- min_column_width = 5,
+                        spacing = 2,
+                        display_mode = "border",
+                    },
+                }
+            )
+        end
+    },
     -- {
     --     "otavioschwanck/arrow.nvim",
     --     dependencies = {

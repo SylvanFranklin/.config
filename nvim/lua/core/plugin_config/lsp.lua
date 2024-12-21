@@ -1,6 +1,13 @@
 local lsp_zero = require('lsp-zero')
 
 vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = { "*.csv" },
+    callback = function()
+        vim.cmd(":CsvViewEnable")
+    end
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.typ", "*.md" },
     callback = function()
         vim.cmd(":map j gj")
