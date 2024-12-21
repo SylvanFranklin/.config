@@ -17,7 +17,6 @@ require("lazy").setup({
     -- general
     { "vague2k/vague.nvim" },
     { "CRAG666/code_runner.nvim", config = true },
-    { "github/copilot.vim" },
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
@@ -41,7 +40,6 @@ require("lazy").setup({
         -- use opts = {} for passing setup options
         -- this is equivalent to setup({}) function
     },
-
 
     {
         'numToStr/Comment.nvim',
@@ -121,6 +119,18 @@ require("lazy").setup({
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
-    }
+    },
+    {
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+        require("peek").setup({
+            app ="browser",
+        })
+        vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+        vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
+},
 
 })

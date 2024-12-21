@@ -1,5 +1,5 @@
-function toggle_asthetic()
-    -- function that toggles the asthetic of the editor, goes into zen mode
+function toggle_aesthetic()
+    -- function that toggles the aesthetic of the editor, goes into zen mode
     require("zen-mode").toggle({
         window = {
             backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
@@ -56,7 +56,7 @@ function _G.preview()
     if vim.fn.expand("%:e") == "tex" then
         vim.fn.jobstart({ "zathura", vim.fn.expand("%:r") .. ".pdf" }, { detach = true })
     elseif vim.fn.expand("%:e") == "md" then
-        vim.cmd("MarkdownPreviewToggle")
+        vim.cmd("PeekOpen")
     elseif vim.fn.expand("%:e") == "typ" then
         vim.cmd("TypstPreview")
     else
@@ -66,7 +66,7 @@ end
 
 -- general
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>u", ":lua toggle_asthetic()<CR>", { silent = true })
+vim.keymap.set("n", "<leader>u", ":lua toggle_aesthetic()<CR>", { silent = true })
 vim.keymap.set("n", "<leader>h", ":set hlsearch!<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>w", ":w<CR>")
