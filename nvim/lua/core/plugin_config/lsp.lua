@@ -5,8 +5,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
         vim.cmd(":map j gj")
         vim.cmd(":map k gk")
-        vim.cmd(":set wrap")
-        vim.cmd(":Copilot disable")
+        -- vim.cmd(":set wrap")
+        -- vim.cmd(":Copilot disable")
     end
 })
 
@@ -39,37 +39,39 @@ require("lspconfig")["tinymist"].setup {
     settings = {
         tinymist = {
             settings = {
-                formatterMode = "typstyle"
+                formatterMode = "typstyle",
+                exportPdf = "onType",
+                semanticTokens = "disable"
             },
         },
     },
 }
 
 require("lspconfig")["lua_ls"].setup {
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {
-          'vim',
-          'require'
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using
+                -- (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {
+                    'vim',
+                    'require'
+                },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
         },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
     },
-  },
 }
 
 for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
