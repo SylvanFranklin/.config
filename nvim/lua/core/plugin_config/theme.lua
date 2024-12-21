@@ -1,5 +1,5 @@
 require("vague").setup({
-    transparent = true, -- don't set background
+    transparent = true,
     style = {
         -- "none" is the same thing as default. But "italic" and "bold" are also valid options
         boolean = "none",
@@ -13,21 +13,16 @@ require("vague").setup({
         operators = "none",
         strings = "italic",
         variables = "none",
-
-        -- keywords
         keywords = "none",
         keyword_return = "none",
         keywords_loop = "none",
         keywords_label = "none",
         keywords_exception = "none",
-
-        -- builtin
         builtin_constants = "none",
         builtin_functions = "none",
         builtin_types = "none",
         builtin_variables = "none",
     },
-    -- Override colors
     colors = {
         bg = "#18191a",
         fg = "#cdcdcd",

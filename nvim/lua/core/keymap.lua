@@ -1,4 +1,4 @@
-function toggle_aesthetic()
+ function toggle_aesthetic()
     -- function that toggles the aesthetic of the editor, goes into zen mode
     require("zen-mode").toggle({
         window = {
@@ -91,17 +91,10 @@ vim.keymap.set({ "n", "x", "v" }, "<up>", "<nop>")
 vim.keymap.set({ "n", "x", "v" }, "<down>", "<nop>")
 vim.keymap.set({ "n", "x", "v" }, "<left>", "<nop>")
 vim.keymap.set({ "n", "x", "v" }, "<right>", "<nop>")
-
--- terminal config
--- TODO make this faster and smoother for running C++ code
--- vim.keymap.set({ "n", "x", "v" }, "<leader>t", ":botright vsp | term <CR>")
--- vim.keymap.set({ "n", "x", "v" }, "<leader><space>", ":lua run_code()<CR>")
 vim.keymap.set("n", "<leader><cr>", ":RunCode<CR>")
 
 -- preview functions
 vim.keymap.set("n", "<leader>p", ":lua preview()<CR>", { silent = true })
-
--- copilot keymaps
 vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
 vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
 

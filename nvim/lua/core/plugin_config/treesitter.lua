@@ -2,7 +2,7 @@ require 'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "lua", "javascript", "typescript", "tsx", "svelte", "python", "vim", "vimdoc", "rust", "json", "css"},
   sync_install = true,
   auto_install = true,
-  disable={"dockerfile"},
+  disable={"dockerfile", "comment"},
   highlight = {
     enable = true,
     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
@@ -23,6 +23,6 @@ require 'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
   },
 }

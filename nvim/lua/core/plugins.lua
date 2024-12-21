@@ -6,17 +6,16 @@ if not vim.loop.fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        "--branch=stable",
         lazypath,
     })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 -- Plugins
 require("lazy").setup({
     -- general
-    { "vague2k/vague.nvim" },
-    { "CRAG666/code_runner.nvim", config = true },
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
@@ -34,14 +33,6 @@ require("lazy").setup({
     --     }
     -- },
     {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        config = true
-        -- use opts = {} for passing setup options
-        -- this is equivalent to setup({}) function
-    },
-
-    {
         'numToStr/Comment.nvim',
         lazy = false,
     },
@@ -50,39 +41,25 @@ require("lazy").setup({
         tag = '0.1.5',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp"
+    },
 
     -- lsp config
     { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
-    {
-        'saecki/crates.nvim',
-        tag = 'stable',
-        config = function()
-            require('crates').setup()
-        end,
-    },
-
-    { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
-    {
-        'neovim/nvim-lspconfig',
-    },
+    { 'VonHeikemen/lsp-zero.nvim',                branch = 'v3.x' },
+    { 'neovim/nvim-lspconfig' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
-    {
-        "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp"
-    },
-    {
-        'williamboman/mason.nvim',
-        opts = {
-            ensure_installed = {
-                "tinymist",
-            },
-        }
-    },
+    { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'aznhe21/actions-preview.nvim' },
     {
@@ -90,47 +67,24 @@ require("lazy").setup({
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {},
     },
+
+    -- Cosmetic plugins
+    { "folke/zen-mode.nvim" },
+    { "vague2k/vague.nvim" },
     {
-        'stevearc/oil.nvim',
-        opts = {},
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        "toppair/peek.nvim",
+        event = { "VeryLazy" },
+        build = "deno task --quiet build:fast",
+        config = function()
+            require("peek").setup({ app = "browser" })
+            vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+            vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+        end,
     },
-
-
     {
         'chomosuke/typst-preview.nvim',
         lazy = false, -- or ft = 'typst'
         version = '1.*',
         build = function() require 'typst-preview'.update() end,
-    },
-
-    -- Cosmetic plugins
-    {
-        "folke/zen-mode.nvim",
-        opts = {}
-    },
-
-    {
-        "sainnhe/everforest",
-    },
-    {
-        'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-        ---@module 'render-markdown'
-        ---@type render.md.UserConfig
-        opts = {},
-    },
-    {
-    "toppair/peek.nvim",
-    event = { "VeryLazy" },
-    build = "deno task --quiet build:fast",
-    config = function()
-        require("peek").setup({
-            app ="browser",
-        })
-        vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-        vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-    end,
-},
-
+    }
 })
