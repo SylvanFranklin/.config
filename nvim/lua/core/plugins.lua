@@ -35,14 +35,14 @@ require("lazy").setup({
             )
         end
     },
-    {
-        "otavioschwanck/arrow.nvim",
-        lazy=false,
-        opts = {
-            leader_key = ';', -- Recommended to be a single key
-            buffer_leader_key = 'm', -- Per Buffer Mappings
-        }
-    },
+    -- {
+    --     "otavioschwanck/arrow.nvim",
+    --     lazy=false,
+    --     opts = {
+    --         leader_key = ';', -- Recommended to be a single key
+    --         buffer_leader_key = 'm', -- Per Buffer Mappings
+    --     }
+    -- },
     {
         'numToStr/Comment.nvim',
         lazy = false,
@@ -54,7 +54,12 @@ require("lazy").setup({
     },
     {
         'stevearc/oil.nvim',
-        opts = {},
+        opts = {
+            view_options = {
+                show_hidden = true,
+            }
+        },
+
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
