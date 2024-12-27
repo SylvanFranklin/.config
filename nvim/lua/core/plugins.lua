@@ -101,6 +101,6 @@ require("lazy").setup({
         'chomosuke/typst-preview.nvim',
         lazy = false, -- or ft = 'typst'
         version = '1.*',
-        build = function() require 'typst-preview'.update() end,
+        opts = {}, -- lazy.nvim will implicitly calls `setup {}`
     }
 })
