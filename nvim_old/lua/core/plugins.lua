@@ -71,7 +71,6 @@ require("lazy").setup({
 
     -- lsp config
     { "nvim-treesitter/nvim-treesitter",          build = ":TSUpdate" },
-    { 'VonHeikemen/lsp-zero.nvim',                branch = 'v3.x' },
     { 'neovim/nvim-lspconfig' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
@@ -99,7 +98,8 @@ require("lazy").setup({
     },
     {
         'chomosuke/typst-preview.nvim',
-        lazy = false, -- or ft = 'typst'
+        -- lazy = false, -- or ft = 'typst'
+        ft = 'typst',
         version = '1.*',
         opts = {}, -- lazy.nvim will implicitly calls `setup {}`
     }
