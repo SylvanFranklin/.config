@@ -8,6 +8,8 @@ vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 
 -- plugin
 vim.keymap.set({ "n", "x" }, "<leader>e", ":Oil<CR>", { silent = true })
+vim.keymap.set({ "n", "x" }, "<C-L>", ":Lazy<CR>", { silent = true })
+vim.keymap.set({ "n", "x" }, "<C-M>", ":Mason<CR>", { silent = true })
 
 -- totally remove mouse, and arrow keys
 -- vim.opt.mouse = ""
