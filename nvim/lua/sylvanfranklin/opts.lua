@@ -1,18 +1,20 @@
 vim.opt.guicursor = ""
-
 vim.opt.tabstop = 4
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = false
-
 vim.opt.expandtab = true
-
 vim.opt.wrap = false
-
 vim.opt.number = true
 vim.opt.relativenumber = true
-
 vim.opt.swapfile = false
-vim.opt.scrolloff = 2
 vim.opt.termguicolors = true
 vim.opt.hlsearch = true
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
+vim.opt.scrolloff = 4
+vim.opt.signcolumn = "yes"
