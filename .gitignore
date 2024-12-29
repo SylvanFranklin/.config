@@ -1,4 +1,5 @@
 .DS_Store
+nvim_old
 .zcompdump
 .zsh_history
 .zsh_history.new
