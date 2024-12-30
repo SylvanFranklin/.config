@@ -43,7 +43,7 @@ return {
             local success, err = pcall(function()
                 vim.lsp.buf.execute_command({
                     command = "tinymist.doStartPreview",
-                    arguments = { { buf_name } },
+                    arguments = { { buf_name, "--partial-rendering" } },
                 })
             end)
 
