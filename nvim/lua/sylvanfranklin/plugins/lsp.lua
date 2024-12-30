@@ -135,11 +135,11 @@ return {
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
         vim.api.nvim_set_hl(0, "CmpNormal", {})
         cmp.setup({
-            -- snippet = {
-            --     expand = function(args)
-            --         require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            --     end,
-            -- },
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                end,
+            },
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -155,7 +155,12 @@ return {
             },
 
             sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
+                {
+                    name = "nvim_lsp",
+                    entry_filter = function(entry, ctx)
+                        return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+                    end,
+                },
                 -- { name = 'luasnip' }, -- For luasnip users.
             }, {
                 { name = 'buffer' },
@@ -168,7 +173,8 @@ return {
                 local opts = { buffer = e.buf }
                 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
                 vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-                vim.keymap.set("n", "p", ":TypstPreview<CR>", opts)
+
+                -- vim.keymap.set("n", "<leader>p", ":TypstPreview<CR>", opts)
                 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
                 vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
                 vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
