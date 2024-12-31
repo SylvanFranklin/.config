@@ -61,7 +61,7 @@ return {
                     return path_of_buffer
                 end,
             }
-            vim.keymap.set("n", "<leader>p", ":TypstPreview<CR>")
+            -- vim.keymap.set("n", "<leader>p", ":TypstPreview<CR>")
         end,
     }
 }

@@ -43,7 +43,7 @@ return {
             local success, err = pcall(function()
                 vim.lsp.buf.execute_command({
                     command = "tinymist.doStartPreview",
-                    arguments = { { buf_name, "--partial-rendering" } },
+                    arguments = { { "--partial-rendering", buf_name } },
                 })
             end)
 
@@ -104,11 +104,11 @@ return {
                             exportPdf = "onType"
                         },
                         commands = {
-                            -- TypstPreview = {
-                            --     client_with_fn(Preview),
-                            --     description = 'Start the Live Preview',
-                            -- },
-                            ExportPng = {
+                            TinyMistPreview = {
+                                client_with_fn(Preview),
+                                description = 'Start the Live Preview',
+                            },
+                            TinyMistExportPng = {
                                 client_with_fn(Export),
                                 description = 'Start the Live Preview',
                             },
