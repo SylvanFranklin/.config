@@ -100,13 +100,14 @@ return {
                     require("lspconfig")["tinymist"].setup {
                         capabilities = capabilities,
                         settings = {
-                            formatterMode = "typstyle"
+                            formatterMode = "typstyle",
+                            exportPdf = "onType"
                         },
                         commands = {
-                            TypstPreview = {
-                                client_with_fn(Preview),
-                                description = 'Start the Live Preview',
-                            },
+                            -- TypstPreview = {
+                            --     client_with_fn(Preview),
+                            --     description = 'Start the Live Preview',
+                            -- },
                             ExportPng = {
                                 client_with_fn(Export),
                                 description = 'Start the Live Preview',

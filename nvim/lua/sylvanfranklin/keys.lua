@@ -2,12 +2,11 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>h", ":set hlsearch!<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
-vim.keymap.set("n", "<leader>w", ":w<CR>")
+vim.keymap.set("n", "<leader>w", "<CMD>write<CR>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 
 -- plugin
-vim.keymap.set({ "n", "x" }, "<leader>e", ":Oil<CR>", { silent = true })
 -- vim.keymap.set({ "n", "x" }, "<C-L>", ":Lazy<CR>", { silent = true })
 -- vim.keymap.set({ "n", "x" }, "<C-M>", ":Mason<CR>", { silent = true })
 
@@ -41,9 +40,9 @@ function toggle_aesthetic()
         plugins = {
             options = {
                 enabled = true,
-                ruler = false,   -- disables the ruler text in the cmd line area
-                showcmd = false, -- disables the command in the last line of the screen
-                laststatus = 0,  -- turn off the statusline in zen mode
+                ruler = false,         -- disables the ruler text in the cmd line area
+                showcmd = false,       -- disables the command in the last line of the screen
+                laststatus = 0,        -- turn off the statusline in zen mode
             },
             tmux = { enabled = true }, -- disables the tmux statusline
         }
