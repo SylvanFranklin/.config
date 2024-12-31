@@ -10,5 +10,12 @@ return {
                 },
             }
         )
+
+        vim.api.nvim_create_autocmd("BufEnter", {
+            pattern = { "*.csv" },
+            callback = function()
+                vim.cmd(":CsvViewEnable")
+            end
+        })
     end
 }
