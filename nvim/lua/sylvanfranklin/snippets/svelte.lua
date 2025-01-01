@@ -1,4 +1,4 @@
-return {}, {
+return {
     s({ trig = "m" }, fmt(
         [[
         <main>
@@ -21,7 +21,7 @@ return {}, {
         [[
         <nav>
             {}
-          </nav>
+        </nav>
         ]], { i(1) })),
     s({ trig = "(%d)", regTrig = true }, fmt(
         [[
@@ -34,6 +34,58 @@ return {}, {
             f(function(_, snip) return snip.captures[1] end, {}),
         }
     )),
+    s({ trig = "each" },
+        fmta([[
+        {#each <> as <>}
+            <>
+        {/each}
+        ]],
+            {
+                i(1),
+                i(2),
+                i(3),
+            })
+    ),
+    s({ trig = "if" },
+        fmta([[
+        {#if <>}
+            <>
+        {/if}
+        ]],
+            {
+                i(1),
+                i(2),
+            })
+    ),
+    s({ trig = "elif" },
+        fmta([[
+        {:else if}
+            <>
+        ]],
+            {
+                i(1),
+            })
+    ),
+    s({ trig = "else" },
+        fmta([[
+        {:else}
+            <>
+        ]],
+            {
+                i(1),
+            })
+    ),
+    s({ trig = "script" },
+        fmt([[
+        <script lang="ts">
+           {}
+        </script>
+        ]],
+            {
+                i(1)
+            })
+    ),
+}, {
 }
 
 -- s({ trig = "<([%w%p]+)>", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
