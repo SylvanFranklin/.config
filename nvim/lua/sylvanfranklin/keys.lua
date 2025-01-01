@@ -1,6 +1,5 @@
 -- general
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>h", ":set hlsearch!<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>w", "<CMD>write<CR>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
