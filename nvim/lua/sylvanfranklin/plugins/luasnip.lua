@@ -9,7 +9,8 @@ return {
         vim.keymap.set({ "i", "s" }, "<C-c>", function()
             ls.setup({ enable_autosnippets = false })
         end, { silent = false })
-        vim.keymap.set({ "i" }, "<Tab>", function() ls.expand() end, { silent = true })
+        -- vim.keymap.set({ "i" }, "<Tab>", function() ls.expand() end, { silent = true })
+        vim.keymap.set({ "i" }, "<C-s>e", function() ls.expand() end, { silent = true })
         vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
         vim.keymap.set({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 

@@ -8,5 +8,5 @@ return {
             })
         end
     },
-    { 'rasulomaroff/reactive.nvim' }
+    -- { 'rasulomaroff/reactive.nvim' }
 }

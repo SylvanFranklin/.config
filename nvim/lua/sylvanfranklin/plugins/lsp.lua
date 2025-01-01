@@ -131,6 +131,7 @@ return {
                     }
                 end,
             }
+
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -145,28 +146,35 @@ return {
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                 ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                -- ["<C-Space>"] = cmp.mapping.complete(),
             }),
 
             window = {
                 completion = {
+                    scrollbar = false,
+                    border = "rounded",
+                    winhighlight = "Normal:CmpNormal",
+                },
+                documentation = {
+                    scrollbar = false,
                     border = "rounded",
                     winhighlight = "Normal:CmpNormal",
                 }
             },
-
             sources = cmp.config.sources({
                 {
                     name = "nvim_lsp",
+                    max_item_count = 7,
                     entry_filter = function(entry, ctx)
                         return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
                     end,
                 },
+                -- No need because I use autosnip
                 -- { name = 'luasnip' }, -- For luasnip users.
             }, {
-                { name = 'buffer' },
+                -- { name = 'buffer' },
             })
         })
+
 
         local autocmd = vim.api.nvim_create_autocmd
         autocmd('LspAttach', {

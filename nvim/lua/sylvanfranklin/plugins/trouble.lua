@@ -1,18 +1,34 @@
 return {
     "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    -- opts = {
+    --     -- win = {
+    --     --     type = "floating"
+    --     -- }
+    --     warn_no_results = "false",
+    -- },
     cmd = "Trouble",
     keys = {
         {
             "<leader>lq",
-            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-            desc = "Buffer Diagnostics (Trouble)",
+            "<cmd>Trouble diagnostics toggle<cr>",
+            desc = "Diagnostics (Trouble)",
         },
         {
             "<leader>ls",
             "<cmd>Trouble symbols toggle focus=false<cr>",
             desc = "Symbols (Trouble)",
         },
-    }
+        {
+            "<leader>la",
+            "<cmd>Trouble qflist toggle<cr>",
+            desc = "Quickfix List (Trouble)",
+        },
+    },
+    config = function()
+        require("trouble").setup {
+            focus = true,
+            warn_no_results = false,
+        }
+    end
 }
 
