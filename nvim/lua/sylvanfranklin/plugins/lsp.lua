@@ -11,7 +11,7 @@ return {
         -- "L3MON4D3/LuaSnip",
         -- "saadparwaiz1/cmp_luasnip",
         -- formatter
-        "stevearc/conform.nvim",
+        -- "stevearc/conform.nvim",
     },
 
     config = function()
@@ -67,10 +67,12 @@ return {
             -- vim.notify('Preview Started', vim.log.levels.INFO)
         end
 
-        require("conform").setup({
-            formatters_by_ft = {
-            }
-        })
+        -- require("conform").setup({
+        --     formatters_by_ft = {
+        --     }
+        -- })
+
+
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -101,7 +103,7 @@ return {
                         capabilities = capabilities,
                         settings = {
                             formatterMode = "typstyle",
-                            exportPdf = "onType"
+                            -- exportPdf = "never"
                         },
                         commands = {
                             TinyMistPreview = {
@@ -163,7 +165,7 @@ return {
             sources = cmp.config.sources({
                 {
                     name = "nvim_lsp",
-                    max_item_count = 7,
+                    -- max_item_count = 7,
                     entry_filter = function(entry, ctx)
                         return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
                     end,

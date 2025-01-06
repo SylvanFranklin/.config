@@ -104,15 +104,9 @@ vim.keymap.set({ "v", "x" }, "<leader>s", ":!sort -M<CR>")
 
 
 function jump_header()
-    -- Get the full path of the current file
-    -- local file = vim.fn.expand("%:p")
     local ext = vim.fn.expand("%:e")
-
-    -- Define potential source and header file extensions
-    local source_exts = { "cpp", "c" }
+    local source_exts = { "cpp", "c", "cc" }
     local header_exts = { "h", "hpp", "hh" }
-
-    -- Determine the new extension
     local target_exts = nil
     if vim.tbl_contains(header_exts, ext) then
         target_exts = source_exts
@@ -123,7 +117,6 @@ function jump_header()
         return
     end
 
-    -- Attempt to find and open the counterpart file
     local base_name = vim.fn.expand("%:r")
     for _, target_ext in ipairs(target_exts) do
         local target_file = base_name .. "." .. target_ext
@@ -136,5 +129,4 @@ function jump_header()
     print("Corresponding file not found.")
 end
 
--- Key mapping to jump between header and source files
 vim.keymap.set("n", "<leader>b", ":lua jump_header()<CR>", { silent = true })

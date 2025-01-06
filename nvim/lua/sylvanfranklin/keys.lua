@@ -49,4 +49,31 @@ function toggle_aesthetic()
     })
 end
 
+function jump_header()
+    local ext = vim.fn.expand("%:e")
+    local source_exts = { "cpp", "c", "cc" }
+    local header_exts = { "h", "hpp", "hh" }
+    local target_exts = nil
+    if vim.tbl_contains(header_exts, ext) then
+        target_exts = source_exts
+    elseif vim.tbl_contains(source_exts, ext) then
+        target_exts = header_exts
+    else
+        print("Not a recognized C++ header or source file.")
+        return
+    end
+
+    local base_name = vim.fn.expand("%:r")
+    for _, target_ext in ipairs(target_exts) do
+        local target_file = base_name .. "." .. target_ext
+        if vim.fn.filereadable(target_file) == 1 then
+            vim.cmd("edit " .. target_file)
+            return
+        end
+    end
+
+    print("Corresponding file not found.")
+end
+
+vim.keymap.set("n", "<leader>b", ":lua jump_header()<CR>", { silent = true })
 vim.keymap.set("n", "<leader>u", ":lua toggle_aesthetic()<CR>")
