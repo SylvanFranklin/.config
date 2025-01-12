@@ -8,7 +8,7 @@ local fmta = require("luasnip.extras.fmt").fmta
 
 return {
     -- Warning Admonition
-    s({ trig = ";warn", snippetType = "autosnippet" },
+    s({ trig = "warn" },
         fmt([[
         > [!WARNING]
         > {}
@@ -16,7 +16,7 @@ return {
     ),
 
     -- Info Admonition
-    s({ trig = ";info", snippetType = "autosnippet" },
+    s({ trig = "info" },
         fmt([[
         > [!INFO]
         > {}
@@ -24,7 +24,7 @@ return {
     ),
 
     -- Tip Admonition
-    s({ trig = ";tip", snippetType = "autosnippet" },
+    s({ trig = "tip" },
         fmt([[
         > [!TIP]
         > {}
@@ -32,7 +32,7 @@ return {
     ),
 
     -- Hint Admonition
-    s({ trig = ";hint", snippetType = "autosnippet" },
+    s({ trig = "hint" },
         fmt([[
         > [!HINT]
         > {}
@@ -40,7 +40,7 @@ return {
     ),
 
     -- Note Admonition
-    s({ trig = ";note", snippetType = "autosnippet" },
+    s({ trig = "note" },
         fmt([[
         > [!NOTE]
         > {}
@@ -48,7 +48,7 @@ return {
     ),
 
     -- Danger Admonition
-    s({ trig = ";danger", snippetType = "autosnippet" },
+    s({ trig = "danger" },
         fmt([[
         > [!DANGER]
         > {}
@@ -56,12 +56,12 @@ return {
     ),
 
     -- Link Snippet
-    s({ trig = ";link", snippetType = "autosnippet" },
+    s({ trig = "link" },
         fmta([[[<>](<>)]], { i(1), i(2) })
     ),
 
     -- Table Snippet
-    s({ trig = ";table", snippetType = "autosnippet" },
+    s({ trig = "table" },
         fmta([[
         | <> | <> |
         | :----: | :----: |
@@ -71,13 +71,13 @@ return {
     ),
 
     -- Image Snippet
-    s({ trig = ";img", snippetType = "autosnippet" },
+    s({ trig = "img" },
         fmt([[![{}]({})]], { i(1), i(2) })
     ),
 
-    s({ trig = ";date", snippetType = "autosnippet" },
+    s({ trig = "date" },
         fmt([[{}]], { f(function(_, _)
             return os.date("%Y-%m-%d")
         end) })
     )
-}
+}, {}
