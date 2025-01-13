@@ -1,25 +1,36 @@
-.LH {
-  border: 0;
-  background-image: none !important;
-  background-color: #ffffff !important;
-  border-radius: 2px;
-  color: #000000;
-}
+/* #ui */
+/* #omni */
+/* #find */
+/* #find:host */
+/* #find:selection */
 
+/* #omni */
 #bar {
     background-color: #ffffff !important;
     border: 0;
     border-radius: 4px;
     color: #000000 !important;
 }
-#toolbar {
+
+/* #omni */
+#list {
+    border-radius: 4px;
+    border: 0;
+    color: #000000;
+}
+
+/* #ui */
+#find {
     background-color: #000000 !important;
     border: 0;
     border-radius: 4px;
     color: #000000 !important;
 }
-#list {
-    border-radius: 4px;
-    border: 0;
-    color: #000000;
+
+.LH {
+  border: 0;
+  background-image: none !important;
+  background-color: #ffffff !important;
+  border-radius: 2px;
+  color: #000000;
 }
