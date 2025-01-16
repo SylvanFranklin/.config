@@ -94,6 +94,21 @@ return {
                     }
                 end,
 
+                ["svelte"] = function()
+                    require("lspconfig")["svelte"].setup({
+                        capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            vim.api.nvim_create_autocmd("BufWritePost", {
+                                pattern = { "*.js", "*.ts" },
+                                callback = function(ctx)
+                                    -- Here use ctx.match instead of ctx.file
+                                    client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+                                end,
+                            })
+                        end
+                    })
+                end,
+
                 -- other config stuff, tested to be correct
                 ["tinymist"] = function()
                     require("lspconfig")["tinymist"].setup {
@@ -163,6 +178,7 @@ return {
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                 ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-e>'] = vim.NIL
             }),
 
             window = {
@@ -193,7 +209,9 @@ return {
         })
 
 
+
         local autocmd = vim.api.nvim_create_autocmd
+
         autocmd('LspAttach', {
             callback = function(e)
                 local opts = { buffer = e.buf }
