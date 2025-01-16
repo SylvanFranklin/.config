@@ -1,39 +1,4 @@
 return {
-    s({ trig = "m" }, fmt(
-        [[
-        <main>
-            {}
-        </main>
-        ]], { i(1) })),
-    s({ trig = "d" }, fmt(
-        [[
-        <div>
-            {}
-        </div>
-        ]], { i(1) })),
-    s({ trig = "s" }, fmt(
-        [[
-        <span>
-            {}
-        </span>
-        ]], { i(1) })),
-    s({ trig = "n" }, fmt(
-        [[
-        <nav>
-            {}
-        </nav>
-        ]], { i(1) })),
-    s({ trig = "(%d)", regTrig = true }, fmt(
-        [[
-        <h{}>
-            {}
-        </h{}>
-        ]], {
-            f(function(_, snip) return snip.captures[1] end, {}),
-            i(1),
-            f(function(_, snip) return snip.captures[1] end, {}),
-        }
-    )),
     s({ trig = "each" },
         fmta([[
         {#each <> as <>}
