@@ -9,7 +9,7 @@ return {
             require("omni-preview").setup({})
             require("typst-preview").setup({
                 dependencies_bin = {
-                    ['tinymist'] = nil,
+                    ['tinymist'] = "/Users/sylvanfranklin/.cargo/bin/tinymist",
                     ['websocat'] = nil
                 },
             })
