@@ -1,7 +1,7 @@
 return {
-    { "toppair/peek.nvim",            lazy = true }, -- markdown
-    { 'chomosuke/typst-preview.nvim', lazy = true }, -- typst
-    { 'hat0uma/csvview.nvim',         lazy = true }, -- csv
+    { "toppair/peek.nvim",            lazy = true, build = "deno task --quiet build:fast" }, -- markdown
+    { 'chomosuke/typst-preview.nvim', lazy = true },                                         -- typst
+    { 'hat0uma/csvview.nvim',         lazy = true },                                         -- csv
     {
         "omni-preview",
         dir = "~/documents/projects/omni-preview.nvim",
