@@ -6,7 +6,13 @@ return {
         "omni-preview",
         dir = "~/documents/projects/omni-preview.nvim",
         config = function()
-            require("omni-preview").setup()
+            require("omni-preview").setup({})
+            require("typst-preview").setup({
+                dependencies_bin = {
+                    ['tinymist'] = nil,
+                    ['websocat'] = nil
+                },
+            })
             vim.keymap.set("n", "<leader>p", ":OmniPreviewToggle<CR>", { silent = true })
         end
     }
