@@ -2,6 +2,6 @@
 vim and other configs.  
 
 <p align="center">
-  <img src="./logo.png" />
+  <img src="./sh.png" />
 </p>
 
