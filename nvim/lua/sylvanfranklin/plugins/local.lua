@@ -14,8 +14,11 @@ return {
                 ['websocat'] = nil
             },
         })
-        require("peek").setup({app = "browser"})
+        require("peek").setup({ app = "browser" })
         -- require("csvview").setup({})
         vim.keymap.set("n", "<leader>p", ":OmniPreviewToggle<CR>", { silent = true })
     end
 }
+
+
+
