@@ -11,13 +11,7 @@ local rep = require("luasnip.extras").rep
 
 
 return {
-    s({ trig = ";dpl", snippetType = "autosnippet" },
-        fmta([[println!("{:?}", <>)]],
-            {
-                i(1),
-            })
-    ),
-    s({ trig = ";pl", snippetType = "autosnippet" },
+    s({ trig = "print" },
         fmta([[println!("{}", <>)]],
             {
                 i(1),

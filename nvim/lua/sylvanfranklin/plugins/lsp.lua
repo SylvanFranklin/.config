@@ -8,26 +8,9 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
-        -- "L3MON4D3/LuaSnip",
-        -- "saadparwaiz1/cmp_luasnip",
-        -- formatter
-        "stevearc/conform.nvim",
     },
 
     config = function()
-        require("conform").setup({
-            formatters_by_ft = {
-                lua = { "stylua" },
-                -- Conform will run multiple formatters sequentially
-                python = { "isort", "black" },
-                -- You can customize some of the format options for the filetype (:help conform.format)
-                -- rust = { "rustfmt", lsp_format = "fallback" },
-                -- Conform will run the first available formatter
-                javascript = { "prettierd", "prettier", stop_after_first = true },
-                svelte = { "prettierd", "rustywind" }
-            },
-        })
-
         local util = require 'lspconfig.util'
         local function client_with_fn(fn)
             return function()
@@ -73,16 +56,12 @@ return {
                     vim.api.nvim_buf_get_name(0)
                     -- position = { line = pos[1] - 1, character = pos[2] },
                     -- newName = tostring(new),
-                    -- lua =vim.lsp.get_clients()[1].server_capabilities
+                    -- lua = vim.lsp.get_clients()[1].server_capabilities
                 },
             }
             -- vim.notify('Preview Started', vim.log.levels.INFO)
         end
 
-        require("conform").setup({
-            formatters_by_ft = {
-            }
-        })
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -130,18 +109,49 @@ return {
                             formatterMode = "typstyle",
                             exportPdf = "never"
                         },
-                        commands = {
-                            TinyMistPreview = {
-                                client_with_fn(Preview),
-                                description = 'Start the Live Preview',
-                            },
-                            TinyMistExportPng = {
-                                client_with_fn(Export),
-                                description = 'Start the Live Preview',
-                            },
-                        }
                     }
+
+                    local tinymist_commands = {
+                        "doClearCache",
+                        "doGetTemplateEntry",
+                        "doInitTemplate",
+                        "doKillPreview",
+                        "doStartPreview",
+                        "focusMain",
+                        "getDocumentMetrics",
+                        "getDocumentTrace",
+                        "getResources",
+                        "getServerInfo",
+                        "getWorkspaceLabels",
+                        "interactCodeContext",
+                        "pinMain",
+                        "scrollPreview",
+                        "exportHtml",
+                        "exportMarkdown",
+                        "exportPdf",
+                        "exportPng",
+                        "exportSvg",
+                        "exportText",
+                    }
+
+                    vim.api.nvim_create_user_command("Tinymist", function(opts)
+                        local sub = opts.args
+                        local command = "tinymist." .. sub
+                        vim.lsp.buf.execute_command {
+                            command = command,
+                            arguments = {
+                                vim.api.nvim_buf_get_name(0)
+                            }
+                        }
+                    end, {
+                        nargs = 1,
+                        complete = function()
+                            return tinymist_commands
+                        end,
+                        desc = "Run Tinymist Commands"
+                    })
                 end,
+
 
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
