@@ -17,7 +17,7 @@ return {
         })
 
         require("peek").setup({
-                app = "browser"
+            app = "browser"
         })
         require("csvview").setup({
             view = {
