@@ -11,6 +11,20 @@ return {
                 i(3),
             })
     ),
+    s({ trig = "await" },
+        fmta([[
+        {#await <> }
+            <>
+        {:then}
+            <>
+        {/await}
+        ]],
+            {
+                i(1),
+                i(2),
+                i(3),
+            })
+    ),
     s({ trig = "if" },
         fmta([[
         {#if <>}
@@ -40,7 +54,7 @@ return {
                 i(1),
             })
     ),
-    s({ trig = "script" },
+    s({ trig = "ts" },
         fmt([[
         <script lang="ts">
            {}

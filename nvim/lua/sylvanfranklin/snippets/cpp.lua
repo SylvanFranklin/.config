@@ -17,7 +17,7 @@ function header_guard()
 end
 
 return {
-    s({ trig = ";header", snippetType = "autosnippet" },
+    s({ trig = "header", },
         fmta([[
     #ifndef <>
     #define <>
@@ -29,17 +29,17 @@ return {
             })
     ),
 
-    s({ trig = ";for", snippetType = "autosnippet" },
+    s({ trig = "for", },
         fmta([[
         for (int i = <>; i <>; i++) {
             <>
         }
         ]], { i(1), i(2), i(3) })
     ),
-    s({ trig = ";up", snippetType = "autosnippet" },
+    s({ trig = "up", },
         fmt([[unique_ptr<{}>]], { i(1) })
     ),
-    s({ trig = ";mu", snippetType = "autosnippet" },
+    s({ trig = "mu", },
         fmt([[make_unique<{}>({})]], { i(1), i(2) })
     )
 }
