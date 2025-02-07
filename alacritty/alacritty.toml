@@ -2,32 +2,35 @@
 TERM = "xterm-256color"
 
 [font]
-size = 27
+size = 28
 
-[font.bold]
-style = "Bold"
+# [font.bold]
+# style = "Bold"
+
+# to install the themes
+# mkdir -p ~/.config/alacritty/themes
+# git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
 [font.normal]
 family = "FiraCode Nerd Font"
 style = "Regular"
 
-[[keyboard.bindings]]
-chars = "\u001BOH"
-key = "Left"
-mode = "AppCursor"
-mods = "Command"
-
-
-[[keyboard.bindings]]
-chars = "\u001BOF"
-key = "Right"
-mode = "AppCursor"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0015"
-key = "Back"
-mods = "Command"
+# [[keyboard.bindings]]
+# chars = "\u001BOH"
+# key = "Left"
+# mode = "AppCursor"
+# mods = "Command"
+#
+# [[keyboard.bindings]]
+# chars = "\u001BOF"
+# key = "Right"
+# mode = "AppCursor"
+# mods = "Command"
+#
+# [[keyboard.bindings]]
+# chars = "\u0015"
+# key = "Back"
+# mods = "Command"
 
 [[keyboard.bindings]]
 action = "ResetFontSize"
@@ -117,15 +120,13 @@ mode = "~Search"
 mods = "Command"
 
 [window]
-opacity = 0.8
-
-decorations = "buttonless"
+opacity = 1
+decorations = "none"
 dynamic_padding = false
+
 [window.padding]
-x = 0
-y = 0
+x = 10
+y = 10
 
-
-# to install the themes
-# mkdir -p ~/.config/alacritty/themes
-# git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+[general]
+import = ["switcher.toml"]
