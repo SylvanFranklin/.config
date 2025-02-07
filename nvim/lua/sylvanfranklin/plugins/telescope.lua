@@ -1,25 +1,32 @@
 return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.5",
-    dependencies = { "nvim-lua/plenary.nvim", { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' } },
+    dependencies = { 'nvim-telescope/telescope-ui-select.nvim', "nvim-lua/plenary.nvim", { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' } },
     config = function()
         require('telescope').setup({
             extensions = {
                 fzf = {
-                    fuzzy = true,     -- false will only do exact matching
-                    override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true, -- override the file sorter
-                    case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-                    -- the default case_mode is "smart_case"
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
                 }
             }
         })
         local builtin = require('telescope.builtin')
+        local previewers = require('telescope.previewers')
         vim.keymap.set('n', '<leader>f', builtin.find_files, { silent = true })
-        vim.keymap.set('n', '<leader>if', builtin.git_files, { silent = true })
-        vim.keymap.set("n", "<leader>g", ":Telescope live_grep<CR>", { silent = true })
+        vim.keymap.set("n", "<leader>g", builtin.live_grep, { silent = true })
         vim.keymap.set("n", "<leader>r", ":Telescope oldfiles<CR>", { silent = true })
+        vim.keymap.set('n', '<leader>h', builtin.help_tags, { desc = 'Telescope help tags' })
+        vim.keymap.set('n', '<leader>c', builtin.commands, { desc = 'Telescope help tags' })
+        vim.keymap.set('n', '<leader>co', builtin.colorscheme, { desc = 'Telescope help tags' })
+        vim.keymap.set('n', '<leader>lt', builtin.treesitter, { desc = 'List functions' })
+        vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'List functions' })
+        -- vim.keymap.set('n', '<leader>lq', vim.lsp.diagnostic.get, { desc = 'List functions' })
+
         require('telescope').load_extension('fzf')
+        require("telescope").load_extension("ui-select")
     end
 
 }
