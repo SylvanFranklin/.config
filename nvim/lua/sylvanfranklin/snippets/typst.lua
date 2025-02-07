@@ -14,7 +14,7 @@ return {
     s({ trig = "mt", snippetType = "autosnippet" },
         fmta("$<>$ ", { i(1) })
     ),
-    s({ trig = ";t", snippetType = "autosnippet" },
+    s({ trig = "t" },
         fmta("^(<>) ", { i(1) })
     ),
 
@@ -22,17 +22,7 @@ return {
         fmta("$ <> $ ", { i(1) })
     ),
 
-    s({ trig = ";q", snippetType = "autosnippet" },
-        fmta([[
-        + #q[
-        <>
-        ][
-        <>
-        ]
-        ]], { i(1), i(2) })
-    ),
-
-    s({ trig = ";mla", snippetType = "autosnippet" },
+    s({ trig = "mla" },
         fmta([[
         Sylvan Franklin
 
