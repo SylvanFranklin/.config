@@ -22,6 +22,13 @@ return {
         fmta("$ <> $ ", { i(1) })
     ),
 
+    s({ trig = "iff", snippetType = "autosnippet" },
+        fmt("<==>", {})
+    ),
+    s({ trig = "impl" },
+        fmt("==>", {})
+    ),
+
     s({ trig = "mla" },
         fmta([[
         Sylvan Franklin
