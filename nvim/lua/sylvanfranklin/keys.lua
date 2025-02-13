@@ -28,8 +28,8 @@ function jump_header()
     local ext = vim.fn.expand("%:e")
 
     -- Define potential source and header file extensions
-    local source_exts = { "cpp", "c" }
-    local header_exts = { "h", "hpp", "hh" }
+    local source_exts = { "cpp", "c", "frag" }
+    local header_exts = { "h", "hpp", "hh", "vert" }
 
     -- Determine the new extension
     local target_exts = nil
@@ -57,3 +57,6 @@ end
 
 -- Key mapping to jump between header and source files
 vim.keymap.set("n", "<leader>b", ":lua jump_header()<CR>", { silent = true })
+
+
+
