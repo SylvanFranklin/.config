@@ -1,6 +1,5 @@
 return {
-    "omni-preview",
-    dir = "~/documents/projects/omni-preview.nvim",
+    "sylvanfranklin/omni-preview.nvim",
     dependencies = {
         { "toppair/peek.nvim",            lazy = true, build = "deno task --quiet build:fast" }, -- markdown
         { 'chomosuke/typst-preview.nvim', lazy = true },                                         -- typst
