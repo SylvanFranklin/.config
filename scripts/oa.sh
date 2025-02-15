@@ -23,3 +23,4 @@ selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 tmux new-window -n  $selected_name -d open $selected
+
