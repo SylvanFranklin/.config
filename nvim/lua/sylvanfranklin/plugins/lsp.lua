@@ -257,7 +257,7 @@ return {
                 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
                 vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, opts)
                 vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
-                vim.keymap.set("n", "<leader>lk", function() vim.diagnostic.open_float() end, opts)
+                vim.keymap.set("n", "<leader>k", function() vim.diagnostic.open_float() end, opts)
                 vim.keymap.set("n", "<leader>ln", function() vim.diagnostic.goto_next() end, opts)
                 vim.keymap.set("n", "<leader>lp", function() vim.diagnostic.goto_prev() end, opts)
                 -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)

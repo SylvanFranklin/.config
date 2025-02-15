@@ -57,6 +57,3 @@ end
 
 -- Key mapping to jump between header and source files
 vim.keymap.set("n", "<leader>b", ":lua jump_header()<CR>", { silent = true })
-
-
-
