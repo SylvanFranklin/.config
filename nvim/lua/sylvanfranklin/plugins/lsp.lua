@@ -8,6 +8,7 @@ return {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
+        "jcha0713/cmp-tw2css",
         "hrsh7th/nvim-cmp",
     },
 
@@ -231,6 +232,7 @@ return {
                     end,
                 },
                 -- No need because I use autosnip
+                { name = 'cmp-tw2css' },
                 -- { name = 'luasnip' }, -- For luasnip users.
             }, {
                 -- { name = 'buffer' },
