@@ -5,23 +5,6 @@ vim.keymap.set("n", "<leader>w", "<CMD>write<CR>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 
--- plugin
--- vim.keymap.set({ "n", "x" }, "<C-L>", ":Lazy<CR>", { silent = true })
--- vim.keymap.set({ "n", "x" }, "<C-M>", ":Mason<CR>", { silent = true })
-
--- totally remove mouse, and arrow keys
--- vim.opt.mouse = ""
--- vim.keymap.set({ "n", "x", "v" }, "<up>", "<nop>")
--- vim.keymap.set({ "n", "x", "v" }, "<down>", "<nop>")
--- vim.keymap.set({ "n", "x", "v" }, "<left>", "<nop>")
--- vim.keymap.set({ "n", "x", "v" }, "<right>", "<nop>")
-
-local function toggle_aesthetic()
-    require("zen-mode").toggle()
-end
-
-vim.keymap.set("n", "<leader>u", toggle_aesthetic, { silent = true })
-
 function jump_header()
     -- Get the full path of the current file
     -- local file = vim.fn.expand("%:p")
