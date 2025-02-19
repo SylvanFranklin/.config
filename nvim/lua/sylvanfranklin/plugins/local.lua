@@ -13,6 +13,7 @@ return {
                 ['websocat'] = nil
             },
         })
+
         require("peek").setup({ app = "browser" })
         require("csvview").setup({
             view = {
