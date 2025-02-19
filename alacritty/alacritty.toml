@@ -129,4 +129,4 @@ x = 10
 y = 10
 
 [general]
-import = ["switcher.toml"]
+import = ["themes/catppuccin_mocca.toml"]
