@@ -12,62 +12,10 @@ return {
         "hrsh7th/nvim-cmp",
     },
 
-
     config = function()
-        local util = require 'lspconfig.util'
         vim.diagnostic.config({
             float = { border = "rounded" }
         })
-
-        -- local function client_with_fn(fn)
-        --     return function()
-        --         local bufnr = vim.api.nvim_get_current_buf()
-        --         local client = util.get_active_client_by_name(bufnr, 'tinymist')
-        --         if not client then
-        --             return vim.notify(('tinymist client not found %d'):format(bufnr), vim.log.levels.ERROR)
-        --         end
-        --         fn(client, bufnr)
-        --     end
-        -- end
-        --
-        -- local function Preview(client, bufnr)
-        --     local buf_name = vim.api.nvim_buf_get_name(bufnr)
-        --     if buf_name == "" then
-        --         return vim.notify("No file associated with the current buffer", vim.log.levels.ERROR)
-        --     end
-        --
-        --     -- Log the command being sent
-        --     print("Executing command:", vim.inspect({
-        --         command = "tinymist.doStartPreview",
-        --         arguments = { { buf_name } },
-        --     }))
-        --
-        --     local success, err = pcall(function()
-        --         vim.lsp.buf.execute_command({
-        --             command = "tinymist.doStartPreview",
-        --             arguments = { { "--partial-rendering", buf_name } },
-        --         })
-        --     end)
-        --
-        --     if not success then
-        --         vim.notify("Failed to execute command: " .. err, vim.log.levels.ERROR)
-        --     else
-        --         vim.notify("Command sent successfully!", vim.log.levels.INFO)
-        --     end
-        -- end
-        --
-        -- local function Export(client, bufnr)
-        --     vim.lsp.buf.execute_command {
-        --         command = 'tinymist.exportPng',
-        --         arguments = {
-        --             vim.api.nvim_buf_get_name(0)
-        --             -- position = { line = pos[1] - 1, character = pos[2] },
-        --             -- newName = tostring(new),
-        --             -- lua = vim.lsp.get_clients()[1].server_capabilities
-        --         },
-        --     }
-        --     -- vim.notify('Preview Started', vim.log.levels.INFO)
-        -- end
 
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
@@ -78,16 +26,16 @@ return {
             cmp_lsp.default_capabilities())
 
         require("mason").setup()
+
         require("mason-lspconfig").setup({
             automatic_installation = false,
             ensure_installed = {
+                'bashls',
                 "lua_ls",
                 "rust_analyzer",
                 "tinymist",
-                "glsl_analyzer"
             },
             handlers = {
-                -- handles default behavior
                 function(server_name)
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
@@ -100,7 +48,7 @@ return {
                             vim.api.nvim_create_autocmd("BufWritePost", {
                                 pattern = { "*.js", "*.ts" },
                                 callback = function(ctx)
-                                    -- Here use ctx.match instead of ctx.file
+                                    -- this bad boy updates imports between svelte and ts/js files
                                     client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
                                 end,
                             })
@@ -116,44 +64,35 @@ return {
                             formatterMode = "typstyle",
                             exportPdf = "never"
                         },
-                    }
 
-                    local tinymist_commands = {
-                        "doClearCache",
-                        "doGetTemplateEntry",
-                        "doInitTemplate",
-                        "doKillPreview",
-                        "doStartPreview",
-                        "focusMain",
-                        "getDocumentMetrics",
-                        "getDocumentTrace",
-                        "getResources",
-                        "getServerInfo",
-                        "getWorkspaceLabels",
-                        "interactCodeContext",
-                        "pinMain",
-                        "scrollPreview",
-                        "exportHtml",
-                        "exportMarkdown",
-                        "exportPdf",
-                        "exportPng",
-                        "exportSvg",
-                        "exportText",
                     }
 
                     vim.api.nvim_create_user_command("Tinymist", function(opts)
                         local sub = opts.args
                         local command = "tinymist." .. sub
-                        vim.lsp.buf.execute_command {
-                            command = command,
-                            arguments = {
-                                vim.api.nvim_buf_get_name(0)
-                            }
-                        }
+                        local client = {}
+
+                        for _, v in pairs(vim.lsp.buf_get_clients(0)) do
+                            if v.name == "tinymist" then
+                                client = v
+                                break
+                            end
+                        end
+
+                        if not command then
+                            print("Tinymist LSP not attached")
+                            return
+                        end
+
+                        client.request(command, nil, function(err, _, _)
+                            if err then
+                                print("Error running command: " .. err)
+                            end
+                        end)
                     end, {
                         nargs = 1,
                         complete = function()
-                            return tinymist_commands
+                            return {}
                         end,
                         desc = "Run Tinymist Commands"
                     })
