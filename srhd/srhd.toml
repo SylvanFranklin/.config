@@ -22,3 +22,8 @@ mods = ["option"]
 key = "k"
 command = "open /Applications/KeePassXC.app"
 mods = ["option", "shift"]
+
+[[bindings]]
+key = "f"
+command = "open /Applications/Figma.app"
+mods = ["option"]
