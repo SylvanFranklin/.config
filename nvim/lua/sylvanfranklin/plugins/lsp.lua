@@ -2,7 +2,6 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "williamboman/mason.nvim",
-        "nvimdev/lspsaga.nvim",
         "williamboman/mason-lspconfig.nvim",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
@@ -16,7 +15,6 @@ return {
         vim.diagnostic.config({
             float = { border = "rounded" }
         })
-
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -26,7 +24,6 @@ return {
             cmp_lsp.default_capabilities())
 
         require("mason").setup()
-
         require("mason-lspconfig").setup({
             automatic_installation = false,
             ensure_installed = {
@@ -56,7 +53,6 @@ return {
                     })
                 end,
 
-                -- other config stuff, tested to be correct
                 ["tinymist"] = function()
                     require("lspconfig")["tinymist"].setup {
                         capabilities = capabilities,
@@ -64,41 +60,8 @@ return {
                             formatterMode = "typstyle",
                             exportPdf = "never"
                         },
-
                     }
-
-                    vim.api.nvim_create_user_command("Tinymist", function(opts)
-                        local sub = opts.args
-                        local command = "tinymist." .. sub
-                        local client = {}
-
-                        for _, v in pairs(vim.lsp.buf_get_clients(0)) do
-                            if v.name == "tinymist" then
-                                client = v
-                                break
-                            end
-                        end
-
-                        if not command then
-                            print("Tinymist LSP not attached")
-                            return
-                        end
-
-                        client.request(command, nil, function(err, _, _)
-                            if err then
-                                print("Error running command: " .. err)
-                            end
-                        end)
-                    end, {
-                        nargs = 1,
-                        complete = function()
-                            return {}
-                        end,
-                        desc = "Run Tinymist Commands"
-                    })
                 end,
-
-
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
@@ -112,13 +75,11 @@ return {
                             }
                         }
                     }
-                end,
+                end
             }
 
         })
-
         local l = vim.lsp
-
         l.handlers["textDocument/hover"] = function(_, result, ctx, config)
             config = config or { border = "rounded", focusable = true }
             config.focus_id = ctx.method
@@ -170,12 +131,8 @@ return {
                         return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
                     end,
                 },
-                -- No need because I use autosnip
                 { name = 'cmp-tw2css' },
-                -- { name = 'luasnip' }, -- For luasnip users.
-            }, {
-                -- { name = 'buffer' },
-            })
+            }, {})
         })
 
 
@@ -189,7 +146,12 @@ return {
 
         })
 
-
+        autocmd({ "BufEnter", "BufWinEnter" }, {
+            pattern = { "*.typst", "*.typ" },
+            callback = function(e)
+                vim.keymap.set("n", "<leader>ep", function() vim.cmd(":ExportPicker") end, opts)
+            end
+        })
 
         autocmd('LspAttach', {
             callback = function(e)
@@ -202,9 +164,6 @@ return {
                 vim.keymap.set("n", "<leader>k", function() vim.diagnostic.open_float() end, opts)
                 vim.keymap.set("n", "<leader>ln", function() vim.diagnostic.goto_next() end, opts)
                 vim.keymap.set("n", "<leader>lp", function() vim.diagnostic.goto_prev() end, opts)
-                -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-                -- vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-                -- vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
             end
         })
     end
