@@ -12,6 +12,7 @@ ghc
 github-copilot
 gitui/theme.ron.old
 karabiner/automatic_backups
+karabiner/**/*.json
 nvim/lazy-lock.json
 nvim/spell
 raycast 
