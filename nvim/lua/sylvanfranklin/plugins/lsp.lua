@@ -12,9 +12,11 @@ return {
     },
 
     config = function()
+        -- Consistent ronding for boders
         vim.diagnostic.config({
             float = { border = "rounded" }
         })
+
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -27,7 +29,6 @@ return {
         require("mason-lspconfig").setup({
             automatic_installation = false,
             ensure_installed = {
-                'bashls',
                 "lua_ls",
                 "rust_analyzer",
                 "tinymist",
@@ -52,7 +53,6 @@ return {
                         end
                     })
                 end,
-
                 ["tinymist"] = function()
                     require("lspconfig")["tinymist"].setup {
                         capabilities = capabilities,
@@ -126,7 +126,6 @@ return {
             sources = cmp.config.sources({
                 {
                     name = "nvim_lsp",
-                    max_item_count = 7,
                     entry_filter = function(entry, ctx)
                         return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
                     end,
@@ -137,20 +136,12 @@ return {
 
 
         local autocmd = vim.api.nvim_create_autocmd
-
         autocmd({ "BufEnter", "BufWinEnter" }, {
             pattern = { "*.vert", "*.frag" },
             callback = function(e)
                 vim.cmd("set filetype=glsl")
             end
 
-        })
-
-        autocmd({ "BufEnter", "BufWinEnter" }, {
-            pattern = { "*.typst", "*.typ" },
-            callback = function(e)
-                vim.keymap.set("n", "<leader>ep", function() vim.cmd(":ExportPicker") end, opts)
-            end
         })
 
         autocmd('LspAttach', {

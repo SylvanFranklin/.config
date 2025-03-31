@@ -6,4 +6,3 @@ return {
     s("gh", t("github.com/sylvanfranklin")),
 }, {
 }
-

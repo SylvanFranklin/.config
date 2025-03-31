@@ -25,5 +25,10 @@ mods = ["option", "shift"]
 
 [[bindings]]
 key = "f"
+command = "open /System/Library/CoreServices/Finder.app"
+mods = ["option", "shift"]
+
+[[bindings]]
+key = "f"
 command = "open /Applications/Figma.app"
 mods = ["option"]
