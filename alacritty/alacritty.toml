@@ -120,13 +120,13 @@ mode = "~Search"
 mods = "Command"
 
 [window]
-opacity = 1
+opacity = 0.6
 decorations = "none"
-dynamic_padding = false
+dynamic_padding = true
 
 [window.padding]
-x = 10
-y = 10
+x = 0
+y = 0
 
 [general]
-import = ["themes/catppuccin_mocca.toml"]
+import = ["themes/bloodmoon.toml"]

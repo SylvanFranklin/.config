@@ -5,38 +5,42 @@ vim.keymap.set("n", "<leader>w", "<CMD>write<CR>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 
-function jump_header()
-    -- Get the full path of the current file
-    -- local file = vim.fn.expand("%:p")
-    local ext = vim.fn.expand("%:e")
 
-    -- Define potential source and header file extensions
-    local source_exts = { "cpp", "c", "frag", "server.ts" }
-    local header_exts = { "h", "hpp", "hh", "vert", "svelte" }
+-- ZenMode keymaps
+vim.keymap.set("n", "<leader>u", ":ZenMode <CR>", { silent = true })
 
-    -- Determine the new extension
-    local target_exts = nil
-    if vim.tbl_contains(header_exts, ext) then
-        target_exts = source_exts
-    elseif vim.tbl_contains(source_exts, ext) then
-        target_exts = header_exts
-    else
-        print("Not a recognized C++ header or source file.")
-        return
-    end
 
-    -- Attempt to find and open the counterpart file
-    local base_name = vim.fn.expand("%:r")
-    for _, target_ext in ipairs(target_exts) do
-        local target_file = base_name .. "." .. target_ext
-        if vim.fn.filereadable(target_file) == 1 then
-            vim.cmd("edit " .. target_file)
-            return
+local function tree()
+    local node = vim.treesitter.get_node()
+    local i = 0
+    while true do
+        print(node:type())
+        if (node:type() ~= "code") then
+            node = node:parent()
+        else
+            break
         end
+
+        if i < 10 then
+            break
+        end
+        i = i + 1
     end
 
-    print("Corresponding file not found.")
+    local start_row, start_col, end_row, end_col = node:range()
+
+    vim.api.nvim_win_set_cursor(0, { start_row + 1, start_col - 1 })
+    vim.cmd('normal! v') -- start visual mode
+    vim.api.nvim_win_set_cursor(0, { end_row + 1, end_col - 1 })
+
+    -- local captures = vim.treesitter.get_captures_at_cursor()
+    -- for _, capture in ipairs(captures) do
+    --     print(capture)
+    -- end
 end
 
--- Key mapping to jump between header and source files
-vim.keymap.set("n", "<leader>b", ":lua jump_header()<CR>", { silent = true })
+
+vim.keymap.set({ "n", "v" }, "<leader>o", tree, {})
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+vim.keymap.set('n', '<leader>k', [[:split | terminal
+A]], { desc = "Exit terminal mode" })
