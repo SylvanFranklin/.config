@@ -32,3 +32,9 @@ mods = ["option", "shift"]
 key = "f"
 command = "open /Applications/Figma.app"
 mods = ["option"]
+
+[[bindings]]
+key = "m"
+command = "open /Applications/iMovie.app"
+mods = ["option", "shift"]
+

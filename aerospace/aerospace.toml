@@ -88,10 +88,10 @@ alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
-# alt-shift-6 = 'move-node-to-workspace 6'
-# alt-shift-7 = 'move-node-to-workspace 7'
-# alt-shift-8 = 'move-node-to-workspace 8'
-# alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-6 = 'move-node-to-workspace 6'
+alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-8 = 'move-node-to-workspace 8'
+alt-shift-9 = 'move-node-to-workspace 9'
 
 # alt-shift-a = 'move-node-to-workspace A'
 # alt-shift-b = 'move-node-to-workspace B'
@@ -165,6 +165,14 @@ run = 'move-node-to-workspace F'
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = 'move-node-to-workspace G'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iMovieApp'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.figma.Desktop'
+run = 'move-node-to-workspace D'
 
 # zathura 
 [[on-window-detected]]
