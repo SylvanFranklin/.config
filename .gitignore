@@ -11,6 +11,8 @@ gh
 ghc
 github-copilot
 gitui/theme.ron.old
+karabiner
+gtk-2.0/
 karabiner/automatic_backups
 karabiner/**/*.json
 nvim/lazy-lock.json
