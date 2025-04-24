@@ -1,5 +1,5 @@
 # .config
-vim and other configs.  
+Ultra Minimal Presentation dotfiles 
 
 <p align="center">
   <img src="./sh.png" />
