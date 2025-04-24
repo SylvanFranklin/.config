@@ -1,8 +1,0 @@
-{
-    "diagnostics.globals": [
-        "vim",
-        "require",
-        "toggle_asthetic",
-        "jump_header"
-    ]
-}

@@ -1,1 +1,0 @@
-require('Comment').setup()
