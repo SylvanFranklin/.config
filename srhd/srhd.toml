@@ -38,3 +38,7 @@ key = "m"
 command = "open /Applications/iMovie.app"
 mods = ["option", "shift"]
 
+[[bindings]]
+key = "m"
+command = "open /System/Applications/Mail.app"
+mods = ["option"]
