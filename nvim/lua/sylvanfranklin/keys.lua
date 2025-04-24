@@ -5,6 +5,8 @@ vim.keymap.set("n", "<leader>w", "<CMD>write<CR>", { silent = true })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "v" }, "<leader>d", '"+d')
 
+-- Key mapping to jump between header and source files
+vim.keymap.set("n", "<leader>b", ":lua jump_pair()<CR>", { silent = true })
 
 -- ZenMode keymaps
 vim.keymap.set("n", "<leader>u", ":ZenMode <CR>", { silent = true })

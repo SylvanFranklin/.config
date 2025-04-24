@@ -3,8 +3,8 @@ return {
     opts = {
         window = {
             backdrop = 0.95,            -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-            width = 0.16 * 6,                -- width of the Zen window
-            height = 0.09 * 6,               -- height of the Zen window
+            width = 0.16 * 6,           -- width of the Zen window
+            height = 0.09 * 6,          -- height of the Zen window
             options = {
                 signcolumn = "no",      -- disable signcolumn
                 number = false,         -- disable number column
