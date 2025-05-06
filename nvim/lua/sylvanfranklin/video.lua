@@ -1,6 +1,6 @@
 local function aesthetic_record()
-    local current_file = vim.fn.expand("%:t") -- get filename WITH extension, no path
-    local time = os.date("%H-%M")             -- hour and minute
+    local current_file = vim.fn.expand("%:t")
+    local time = os.date("%H-%M")
     local output_filename = string.format('%s(%s).mp4', current_file, time)
     local full_path = vim.fn.expand("~/Movies/") .. output_filename
 
@@ -78,12 +78,6 @@ local conf = require("telescope.config").values
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 
-
-local pickers = require("telescope.pickers")
-local finders = require("telescope.finders")
-local conf = require("telescope.config").values
-local actions = require("telescope.actions")
-local action_state = require("telescope.actions.state")
 
 local recording_actions = {
     "Screenshot",
