@@ -20,12 +20,10 @@ return {
         vim.keymap.set("n", "<leader>r", ":Telescope oldfiles<CR>", { silent = true })
         vim.keymap.set('n', '<leader>h', builtin.help_tags, { desc = 'Telescope help tags' })
         -- vim.keymap.set('n', '<leader>c', builtin.commands, { desc = 'Telescope help tags' })
-        vim.keymap.set('n', '<leader>co', builtin.colorscheme, { desc = 'Telescope help tags' })
         vim.keymap.set('n', '<leader>lt', builtin.treesitter, { desc = 'List functions' })
         vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'List functions' })
         vim.keymap.set('n', '<leader>lq', '<cmd>Telescope diagnostics<CR>', { desc = 'List functions' })
         vim.keymap.set('n', '<leader>lt', builtin.treesitter, { desc = 'List functions' })
-
         require('telescope').load_extension('fzf')
         require("telescope").load_extension("ui-select")
     end
