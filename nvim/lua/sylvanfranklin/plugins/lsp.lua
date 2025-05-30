@@ -1,9 +1,9 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
         "hrsh7th/cmp-nvim-lsp",
+        { "mason-org/mason.nvim",           version = "^1.0.0" },
+        { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
@@ -23,6 +23,9 @@ return {
             {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
+
+
+
 
         require("mason").setup()
         require("mason-lspconfig").setup({
