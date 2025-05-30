@@ -35,11 +35,7 @@ end
 
 -- Key mapping to jump between header and source files
 vim.keymap.set("n", "<leader>b", ":lua jump_pair()<CR>", { silent = true })
-
-
--- ZenMode keymaps
 vim.keymap.set("n", "<leader>u", ":ZenMode <CR>", { silent = true })
-
 
 local function tree()
     local node = vim.treesitter.get_node()
