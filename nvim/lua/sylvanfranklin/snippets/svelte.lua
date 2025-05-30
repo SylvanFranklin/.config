@@ -64,6 +64,16 @@ return {
                 i(1)
             })
     ),
+    s({ trig = "buttonstd" },
+        fmt([[
+        <button class="rounded-md text-white font-mono px-4 py-2 shadow-sm hover:scale-95 {}">
+           {}
+        </button>
+        ]],
+            {
+                i(1), i(2)
+            })
+    ),
 }, {
 }
 
