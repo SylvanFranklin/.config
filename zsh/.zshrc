@@ -16,5 +16,5 @@ _comp_options+=(globdots)		# Include hidden files.
 export PATH="/Users/sylvanfranklin/.local/share/bob/nvim-bin/:$PATH"
 # Load zsh-syntax-highlighting; should be last.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-
+alias love="/Applications/love.app/Contents/MacOS/love"
+alias venv="source .venv/bin/activate"
