@@ -18,3 +18,6 @@ export PATH="/Users/sylvanfranklin/.local/share/bob/nvim-bin/:$PATH"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias venv="source .venv/bin/activate"
+alias vi="nvim"
+alias nm="neomutt"
+export EDITOR="nvim"
