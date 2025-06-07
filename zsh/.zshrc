@@ -21,4 +21,6 @@ alias venv="source .venv/bin/activate"
 alias vim=nvim
 alias vi="nvim"
 alias nm="neomutt"
+alias p="poetry"
 export EDITOR="nvim"
+export MANPAGER="nvim +Man!"
