@@ -1,6 +1,8 @@
 vim.opt.mouse = ""
 vim.opt.tabstop = 4
-vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor100"
+vim.opt.cursorcolumn = false
+vim.opt.cursorline = false
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = false
