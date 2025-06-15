@@ -32,3 +32,4 @@ alias nm="neomutt"
 alias p="poetry"
 export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
+MAILSYNC_MUTE=1
