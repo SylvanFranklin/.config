@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 
-
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
     dir=$(tmux run "echo #{pane_start_path}")
-    selected=$(find $dir ~/downloads ~/documents/notes/EDU ~/documents/textbooks -mindepth 1 -maxdepth 1 -name "*.pdf" | \
-        sed "s|^$HOME/||" | \
-        sk --margin 10% --color=bw
+    selected=$(find $dir ~/downloads ~/documents/notes/EDU ~/documents/textbooks -mindepth 1 -maxdepth 1 -name "*.pdf" | sed "s|^$HOME/||" | sk --tmux --margin 10% --color=bw
     )
 
-    # Add home path back
     if [[ -n "$selected" ]]; then
         selected="$HOME/$selected"
     fi
