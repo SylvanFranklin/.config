@@ -1880,15 +1880,6 @@
             },
             "devices": [
                 {
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "escape" }]
-                        }
-                    ]
-                },
-                {
                     "identifiers": {
                         "is_keyboard": true,
                         "product_id": 14649,

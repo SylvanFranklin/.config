@@ -1,1 +1,0 @@
-require "sylvanfranklin.macros.svelte"
