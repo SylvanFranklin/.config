@@ -3,8 +3,7 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-        { "<leader>i",  ft = "lua",          desc = "LÖVE" },
-        { "<leader>ir", "<cmd>LoveRun<cr>",  ft = "lua",   desc = "Run LÖVE" },
-        { "<leader>ic", "<cmd>LoveStop<cr>", ft = "lua",   desc = "Stop LÖVE" },
+        { "<leader>i", "<cmd>LoveRun<cr>", ft = "lua", desc = "Run LÖVE" },
+
     },
 }

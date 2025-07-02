@@ -138,12 +138,12 @@ return {
 
 
         local autocmd = vim.api.nvim_create_autocmd
+
         autocmd({ "BufEnter", "BufWinEnter" }, {
             pattern = { "*.vert", "*.frag" },
             callback = function(e)
                 vim.cmd("set filetype=glsl")
             end
-
         })
 
         autocmd('LspAttach', {
