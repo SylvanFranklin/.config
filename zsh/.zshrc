@@ -21,6 +21,7 @@ zmodload zsh/complist
 _comp_options+=(globdots)		# Include hidden files.
 
 export PATH="/Users/sylvanfranklin/.local/share/bob/nvim-bin/:$PATH"
+export PATH="/Users/sylvanfranklin/Library/Python/3.9/bin/:$PATH"
 # Load zsh-syntax-highlighting; should be last.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -30,6 +31,15 @@ alias vim=nvim
 alias vi="nvim"
 alias nm="neomutt"
 alias p="poetry"
+alias mb="~/Documents/projects/microbrew/target/debug/microbrew" 
 export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
+alias rip="yt-dlp -x --audio-format=\"mp3\""
+
+# edit command line
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line
+
+
 MAILSYNC_MUTE=1
