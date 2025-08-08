@@ -1,0 +1,16 @@
+Moon safari 
+Blue lines
+Orphan Loops
+Goes West
+Time out
+Tourist
+Good the bad and the ugly
+Entroducing
+Big Calm Morcheeba 
+Simple Things
+
+You can either add the vim runtime to your lua_ls path or disable diagnostics for “undefined-global”. 
+
+The reason why it doesn’t source it by default is performance. 
+
+12:09 The reason why it is “yes” instead of true is because it accepts enum values instead of a boolean. This is the same for other settings like  “backupcopy”.

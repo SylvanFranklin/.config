@@ -1,4 +1,6 @@
 vim.opt.winborder = "rounded"
+vim.opt.hlsearch = false
+vim.cmd([[set mouse=]])
 vim.opt.tabstop = 2
 vim.opt.cursorcolumn = false
 vim.opt.ignorecase = true
@@ -14,13 +16,13 @@ vim.opt.incsearch = true
 vim.opt.signcolumn = "yes"
 
 local map = vim.keymap.set
-
 vim.g.mapleader = " "
 map('n', '<leader>o', ':update<CR> :source<CR>')
 map('n', '<leader>w', ':write<CR>')
 map('n', '<leader>q', ':quit<CR>')
-map({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
-map({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
+map({ 'n', 'v', 'x' }, '<leader>y', '"+y')
+map({ 'n', 'v', 'x' }, '<leader>d', '"+d')
+map({ 'n', 'v', 'x' }, '<leader>v', ':e $MYVIMRC<CR>')
 map({ 'n', 'v', 'x' }, '<leader>s', ':e #<CR>')
 map({ 'n', 'v', 'x' }, '<leader>S', ':sf #<CR>')
 
@@ -28,10 +30,11 @@ vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/echasnovski/mini.pick" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
-	{ src = 'https://github.com/NvChad/showkeys',                opt = true },
+	{ src = 'https://github.com/NvChad/showkeys',                 opt = true },
+	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 })
 
 require "mason".setup()
@@ -47,8 +50,22 @@ map('t', '', "")
 map('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.lsp.enable({ "lua_ls", "svelte", "tinymist", "emmetls" })
+require('nvim-treesitter.configs').setup({
+	auto_install = true,
+	highlight = {
+		enable = true,
+	},
+})
 
 -- colors
 require "vague".setup({ transparent = true })
 vim.cmd("colorscheme vague")
 vim.cmd(":hi statusline guibg=NONE")
+
+-- snippets
+require("luasnip").setup({ enable_autosnippets = true })
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+local ls = require("luasnip")
+map({ "i" }, "<C-e>", function() ls.expand() end, { silent = true })
+map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
+map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
