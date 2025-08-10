@@ -42,7 +42,7 @@ return {
 				i(1),
 			})
 	),
-	s({ trig = "script" },
+	s({ trig = "ts" },
 		fmt([[
         <script lang="ts">
            {}
