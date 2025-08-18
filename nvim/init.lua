@@ -50,7 +50,6 @@ map('t', '', "")
 map('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.lsp.enable({ "lua_ls", "svelte", "tinymist", "emmetls" })
-require('nvim-treesitter.configs').setup({ highlight = { enable = true, }, })
 
 -- colors
 require "vague".setup({ transparent = true })
