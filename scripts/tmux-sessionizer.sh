@@ -3,7 +3,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/documents/projects ~/ ~/documents/notes/EDU ~/documents/notes ~/documents/ ~/documents/textbooks/ -mindepth 1 -maxdepth 1 -type d | \
+    selected=$(find 
+		~/documents/projects ~/ ~/documents/notes/EDU ~/documents/notes ~/documents/ ~/documents/textbooks/ -mindepth 1 -maxdepth 1 -type d | \
         sed "s|^$HOME/||" | \
         sk --margin 10% --color="bw" 
     )
@@ -27,7 +28,6 @@ fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected 
-    # select first window
     tmux select-window -t $selected_name:1
 fi
 
