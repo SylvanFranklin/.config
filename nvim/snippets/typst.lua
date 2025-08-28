@@ -29,13 +29,23 @@ return {
 			i(1)
 		})
 	),
-	s({ trig = "([^%s]+)t", regTrig = true },
-		fmta("(<>)^(<>) ", {
-			f(function(_, s) return s.captures[1] end),
-			i(1)
-		})
-	),
 	s({ trig = "mmt", snippetType = "autosnippet" },
 		fmta("$ <> $ ", { i(1) })
+	),
+	s({ trig = "cent" },
+		fmta("#align(center)[<>]", { i(1) })
+	),
+	s({ trig = "mla" },
+		fmta([[
+#set page(header: context align(right)[Franklin #counter(page).get().first()])
+#set par(first-line-indent: 1em, spacing: 2.4em)
+
+Sylvan Franklin
+
+#datetime.today().display("[day] [month repr:long] [year]")
+<>
+
+<>
+		]], { i(1), i(2) })
 	),
 }
