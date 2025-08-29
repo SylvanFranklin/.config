@@ -1,2 +1,6 @@
-# .config
-I'm rewriting these, they're bloated.
+# Sylvan's Config files 
+
+TODO 
+- [ ] using the :compiler directory and settings for make
+- [ ] better snippets for Typst 
+- [ ] native snippets possibly
