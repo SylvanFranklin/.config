@@ -17,7 +17,8 @@ local map = vim.keymap.set
 vim.g.mapleader = " "
 map('n', '<leader>o', ':update<CR> :source<CR>')
 map('n', '<leader>w', ':write<CR>')
-map('n', '<leader>r', ':update<CR> :make<CR>')
+map('n', 'mk', ':update<CR> :make<CR>')
+map('n', 'co', ':open<CR>')
 map('n', '<leader>q', ':quit<CR>')
 map('n', '<C-f>', ':Open .<CR>')
 map('n', '<leader>v', ':e $MYVIMRC<CR>')
