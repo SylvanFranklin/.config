@@ -19,6 +19,7 @@ map('n', '<leader>o', ':update<CR> :source<CR>')
 map('n', '<leader>w', ':write<CR>')
 map('n', '<leader>r', ':update<CR> :make<CR>')
 map('n', '<leader>q', ':quit<CR>')
+map('n', '<C-f>', ':Open .<CR>')
 map('n', '<leader>v', ':e $MYVIMRC<CR>')
 map('n', '<leader>z', ':e ~/.config/zsh/.zshrc<CR>')
 map('n', '<leader>s', ':e #<CR>')
@@ -57,7 +58,16 @@ map('t', '', "")
 map('n', '<leader>lf', vim.lsp.buf.format)
 
 vim.lsp.enable(
-	{ "lua_ls", "svelte", "tinymist", "emmetls", "rust_analyzer", "clangd", "glsl_analyzer" })
+	{ "lua_ls",
+		"svelte",
+		"tinymist",
+		"emmetls",
+		"rust_analyzer",
+		"clangd",
+		"black",
+		"ruff",
+		"glsl_analyzer" }
+)
 
 -- colors
 require "vague".setup({ transparent = true })
