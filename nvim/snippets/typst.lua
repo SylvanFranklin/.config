@@ -38,7 +38,6 @@ return {
 	s({ trig = "mla" },
 		fmta([[
 #set page(header: context align(right)[Franklin #counter(page).get().first()])
-#set par(first-line-indent: 1em, spacing: 2.4em)
 
 Sylvan Franklin
 
