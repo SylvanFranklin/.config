@@ -17,8 +17,6 @@ vim.opt.signcolumn = "yes"
 local map = vim.keymap.set
 vim.g.mapleader = " "
 map('n', '<leader>w', ':write<CR>')
--- map('n', 'mk', 'make<CR>')
--- map('n', 'co', ':cw<CR>')
 map('n', '<leader>q', ':quit<CR>')
 map('n', '<C-f>', ':Open .<CR>')
 map('n', '<leader>v', ':e $MYVIMRC<CR>')
@@ -57,10 +55,38 @@ map('n', '<leader>f', ":Pick files<CR>")
 map('n', '<leader>b', function() require("pear").jump_pair() end)
 map('n', '<leader>h', ":Pick help<CR>")
 map('n', '<leader>e', ":Oil<CR>")
+map('i', '<c-e>', function() vim.lsp.completion.get() end)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('my.lsp', {}),
+	callback = function(args)
+		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+		if client:supports_method('textDocument/completion') then
+			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
+			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+			client.server_capabilities.completionProvider.triggerCharacters = chars
+			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+		end
+	end,
+})
+
 map('t', '', "")
 map('t', '', "")
 map('n', '<leader>lf', vim.lsp.buf.format)
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
+-- vim.lsp.start({
+-- 	on_attach = function(client, bufnr)
+-- 		vim.lsp.completion.enable(true, client.id, bufnr, {
+-- 			autotrigger = true,
+-- 			convert = function(item)
+-- 				return { abbr = item.label:gsub('%b()', '') }
+-- 			end,
+-- 		})
+-- 	end,
+-- })
+--
+--
 vim.lsp.enable(
 	{
 		"lua_ls",
