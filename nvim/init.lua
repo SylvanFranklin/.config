@@ -13,26 +13,10 @@ vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 
-
-local map = vim.keymap.set
-vim.g.mapleader = " "
-map('n', '<leader>w', '<Cmd>write<CR>')
-map('n', '<leader>q', '<Cmd>quit<CR>')
-map('n', '<C-f>', '<Cmd>Open .<CR>')
-map('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
-map('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
-map('n', '<leader>s', '<Cmd>e #<CR>')
-map('n', '<leader>S', '<Cmd>bot sf #<CR>')
-map({ 'n', 'v' }, '<leader>n', ':norm ')
-map({ 'n', 'v' }, '<leader>y', '"+y')
-map({ 'n', 'v' }, '<leader>d', '"+d')
-map({ 'n', 'v' }, '<leader>c', '1z=')
-map({ 'n', 'v' }, '<leader>o', ':update<CR> :source<CR>')
-
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
-	{ src = "https://github.com/echasnovski/mini.pick" },
+	{ src = "https://github.com/echasnovski/mini.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "nvim-treesitter/nvim-treesitter-textobjects" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
@@ -42,21 +26,10 @@ vim.pack.add({
 	{ src = "https://github.com/SylvanFranklin/pear" },
 })
 
-
 require "mason".setup()
-require "mini.pick".setup({
-	mappings = {
-		choose_marked = "<C-G>"
-	}
-})
+require "mini.pick".setup()
+require "mini.bufremove".setup()
 require "oil".setup()
-
-map('n', '<leader>f', "<Cmd>Pick files<CR>")
-map('n', '<leader>r', "<Cmd>Pick buffers<CR>")
-map('n', '<leader>b', function() require("pear").jump_pair() end)
-map('n', '<leader>h', "<Cmd>Pick help<CR>")
-map('n', '<leader>e', "<Cmd>Oil<CR>")
-map('i', '<c-e>', function() vim.lsp.completion.get() end)
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -71,23 +44,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end,
 })
 
-map('t', '', "")
-map('t', '', "")
-map('n', '<leader>lf', vim.lsp.buf.format)
-vim.cmd [[set completeopt+=menuone,noselect,popup]]
-
--- vim.lsp.start({
--- 	on_attach = function(client, bufnr)
--- 		vim.lsp.completion.enable(true, client.id, bufnr, {
--- 			autotrigger = true,
--- 			convert = function(item)
--- 				return { abbr = item.label:gsub('%b()', '') }
--- 			end,
--- 		})
--- 	end,
--- })
---
---
+-- lsp
 vim.lsp.enable(
 	{
 		"lua_ls",
@@ -100,8 +57,10 @@ vim.lsp.enable(
 		"glsl_analyzer",
 		"haskell-language-server",
 		"hlint",
+
 	}
 )
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
 -- colors
 require "vague".setup({ transparent = true })
@@ -112,37 +71,31 @@ vim.cmd(":hi statusline guibg=NONE")
 require("luasnip").setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
 local ls = require("luasnip")
+
+-- mappings
+local map = vim.keymap.set
+vim.g.mapleader = " "
+map('n', '<leader>w', '<Cmd>write<CR>')
+map('n', '<leader>q', require("mini.bufremove").delete)
+map('n', '<C-f>', '<Cmd>Open .<CR>')
+map('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
+map('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
+map('n', '<leader>s', '<Cmd>e #<CR>')
+map('n', '<leader>S', '<Cmd>bot sf #<CR>')
+map({ 'n', 'v' }, '<leader>n', ':norm ')
+map({ 'n', 'v' }, '<leader>y', '"+y')
+map({ 'n', 'v' }, '<leader>d', '"+d')
+map({ 'n', 'v' }, '<leader>c', '1z=')
+map({ 'n', 'v' }, '<leader>o', ':update<CR> :source<CR>')
+map('t', '', "")
+map('t', '', "")
+map('n', '<leader>lf', vim.lsp.buf.format)
 map("i", "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
-
-
--- treesitter
-
-require 'nvim-treesitter.configs'.setup {
-	highlight = {
-		enable = true,
-		-- custom_captures = {
-		-- 	["math"] = "math",
-		-- },
-		additional_vim_regex_highlighting = false,
-	},
-}
-require 'nvim-treesitter.configs'.setup {
-	textobjects = {
-		select = {
-			enable = true,
-			lookahead = true,
-			keymaps = {
-				["if"] = "@function.inner",
-				["af"] = "@function.outer",
-				["im"] = "@math.inner",
-				["am"] = "@math.outer",
-				["ar"] = "@return.outer",
-				["ir"] = "@return.inner",
-				["ac"] = "@class.outer",
-				-- ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
-			},
-		},
-	},
-}
+map('n', '<leader>f', "<Cmd>Pick files<CR>")
+map('n', '<leader>r', "<Cmd>Pick buffers<CR>")
+map('n', '<leader>b', function() require("pear").jump_pair() end)
+map('n', '<leader>h', "<Cmd>Pick help<CR>")
+map('n', '<leader>e', "<Cmd>Oil<CR>")
+map('i', '<c-e>', function() vim.lsp.completion.get() end)
