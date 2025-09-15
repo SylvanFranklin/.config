@@ -16,18 +16,18 @@ vim.opt.signcolumn = "yes"
 
 local map = vim.keymap.set
 vim.g.mapleader = " "
-map('n', '<leader>w', ':write<CR>')
-map('n', '<leader>q', ':quit<CR>')
-map('n', '<C-f>', ':Open .<CR>')
-map('n', '<leader>v', ':e $MYVIMRC<CR>')
-map('n', '<leader>z', ':e ~/.config/zsh/.zshrc<CR>')
-map('n', '<leader>s', ':e #<CR>')
-map('n', '<leader>S', ':bot sf #<CR>')
+map('n', '<leader>w', '<Cmd>write<CR>')
+map('n', '<leader>q', '<Cmd>quit<CR>')
+map('n', '<C-f>', '<Cmd>Open .<CR>')
+map('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
+map('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
+map('n', '<leader>s', '<Cmd>e #<CR>')
+map('n', '<leader>S', '<Cmd>bot sf #<CR>')
 map({ 'n', 'v' }, '<leader>n', ':norm ')
 map({ 'n', 'v' }, '<leader>y', '"+y')
 map({ 'n', 'v' }, '<leader>d', '"+d')
 map({ 'n', 'v' }, '<leader>c', '1z=')
-map({ 'n', 'v' }, '<leader>o', ':update<CR> :source<CR>')
+map({ 'n', 'v' }, '<leader>o', '<Cmd>update<CR> <Cmd>source<CR>')
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
@@ -51,10 +51,10 @@ require "mini.pick".setup({
 })
 require "oil".setup()
 
-map('n', '<leader>f', ":Pick files<CR>")
+map('n', '<leader>f', "<Cmd>Pick files<CR>")
 map('n', '<leader>b', function() require("pear").jump_pair() end)
-map('n', '<leader>h', ":Pick help<CR>")
-map('n', '<leader>e', ":Oil<CR>")
+map('n', '<leader>h', "<Cmd>Pick help<CR>")
+map('n', '<leader>e', "<Cmd>Oil<CR>")
 map('i', '<c-e>', function() vim.lsp.completion.get() end)
 
 vim.api.nvim_create_autocmd('LspAttach', {
