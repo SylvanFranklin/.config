@@ -27,7 +27,7 @@ map({ 'n', 'v' }, '<leader>n', ':norm ')
 map({ 'n', 'v' }, '<leader>y', '"+y')
 map({ 'n', 'v' }, '<leader>d', '"+d')
 map({ 'n', 'v' }, '<leader>c', '1z=')
-map({ 'n', 'v' }, '<leader>o', '<Cmd>update<CR> <Cmd>source<CR>')
+map({ 'n', 'v' }, '<leader>o', ':update<CR> <Cmd>source<CR>')
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
