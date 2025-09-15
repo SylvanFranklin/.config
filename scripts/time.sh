@@ -2,6 +2,7 @@
 
 CATEGORIES=(
     "MATH"
+		"OTHER"
     "WORKFLOW"
     "STORMY"
     "VIDEO"
@@ -22,8 +23,7 @@ tmux set -g status-interval 5
 
 if [[ "$selected" == "STOP" ]]; then
     timew stop
-    tmux set -g status-right " "
-    tmux set -g status-right "#{?client_prefix,#[fg=$ACTIVE_COLOR](■‿■⌐),#[fg=grey](•‿• )}"
+    tmux set -g status-right "#{?client_prefix, _ ,}#(timew | awk "/^ *Total/ {print \$NF}") #[bg=green,fg=black,bold]#(timew | awk "/^ *Tracking/ {print \" \" \$NF \" \"}")#[bg=default]"
 else
     timew start "$selected"
     tmux set -g status-right "$selected #(timew | awk '/^ *Total/ {print \$NF}')"
