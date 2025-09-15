@@ -52,6 +52,7 @@ require "mini.pick".setup({
 require "oil".setup()
 
 map('n', '<leader>f', "<Cmd>Pick files<CR>")
+map('n', '<leader>r', "<Cmd>Pick buffers<CR>")
 map('n', '<leader>b', function() require("pear").jump_pair() end)
 map('n', '<leader>h', "<Cmd>Pick help<CR>")
 map('n', '<leader>e', "<Cmd>Oil<CR>")
@@ -96,7 +97,9 @@ vim.lsp.enable(
 		"rust_analyzer",
 		"clangd",
 		"ruff",
-		"glsl_analyzer"
+		"glsl_analyzer",
+		"haskell-language-server",
+		"hlint",
 	}
 )
 
