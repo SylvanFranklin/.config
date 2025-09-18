@@ -77,18 +77,33 @@ local map = vim.keymap.set
 vim.g.mapleader = " "
 map('n', '<leader>w', '<Cmd>write<CR>')
 map('n', '<leader>q', require("mini.bufremove").delete)
+map('n', '<leader>Q', '<Cmd>:wqa<CR>')
 map('n', '<C-f>', '<Cmd>Open .<CR>')
+
+-- open RC files. 
 map('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
 map('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
+
+-- quickly swtich files with alternate / switch it
 map('n', '<leader>s', '<Cmd>e #<CR>')
 map('n', '<leader>S', '<Cmd>bot sf #<CR>')
+
+-- I use norm so much this makes sense
 map({ 'n', 'v' }, '<leader>n', ':norm ')
+
+-- system clipboard
 map({ 'n', 'v' }, '<leader>y', '"+y')
 map({ 'n', 'v' }, '<leader>d', '"+d')
+
+-- auto correct spelling under cursor
 map({ 'n', 'v' }, '<leader>c', '1z=')
+
+-- soft reload config file
 map({ 'n', 'v' }, '<leader>o', ':update<CR> :source<CR>')
+
 map('t', '', "")
 map('t', '', "")
+
 map('n', '<leader>lf', vim.lsp.buf.format)
 map("i", "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
@@ -99,3 +114,8 @@ map('n', '<leader>b', function() require("pear").jump_pair() end)
 map('n', '<leader>h', "<Cmd>Pick help<CR>")
 map('n', '<leader>e', "<Cmd>Oil<CR>")
 map('i', '<c-e>', function() vim.lsp.completion.get() end)
+
+map("n", "<M-n>", "<cmd>resize +2<CR>")         -- Increase height
+map("n", "<M-e>", "<cmd>resize -2<CR>")       -- Decrease height
+map("n", "<M-i>", "<cmd>vertical resize +5<CR>") -- Increase width
+map("n", "<M-m>", "<cmd>vertical resize -5<CR>")  -- Decrease width
