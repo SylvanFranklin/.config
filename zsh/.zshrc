@@ -24,6 +24,7 @@ _comp_options+=(globdots)		# Include hidden files.
 
 export PATH="/Users/sylvanfranklin/.local/share/bob/nvim-bin/:$PATH"
 export PATH="/Users/sylvanfranklin/Library/Python/3.9/bin/:$PATH"
+export PATH="/Users/sylvanfranklin/.local/bin:$PATH"
 
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
@@ -34,11 +35,12 @@ alias im="nvim"
 alias nm="neomutt"
 alias p="poetry"
 alias mb="~/Documents/projects/microbrew/target/debug/microbrew" 
-export EDITOR="nvim"
-export MANPAGER="nvim +Man!"
 alias yt="lux"
 alias dl="lux"
 alias rip="yt-dlp -x --audio-format=\"mp3\""
+
+export EDITOR="nvim"
+export MANPAGER="nvim +Man!"
 
 # edit command line
 autoload edit-command-line
