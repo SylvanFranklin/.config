@@ -1,15 +1,10 @@
 #!/bin/bash
 
 CATEGORIES=(
-    "MATH"
-		"OTHER"
-    "WORKFLOW"
-    "STORMY"
-    "VIDEO"
-    "PROGRAMMING"
-    "DRAWING"
-    "WASTED"
-    "STOP"
+    "WORK"
+    "VIM"
+		"WASTE" 
+		"STOP"
 )
 
 selected=$(printf "%s\n" "${CATEGORIES[@]}" | sk --margin 10% --color="bw" --bind 'q:abort')
@@ -23,8 +18,25 @@ tmux set -g status-interval 5
 
 if [[ "$selected" == "STOP" ]]; then
     timew stop
-    tmux set -g status-right "#{?client_prefix, _ ,}#(timew | awk "/^ *Total/ {print \$NF}") #[bg=green,fg=black,bold]#(timew | awk "/^ *Tracking/ {print \" \" \$NF \" \"}")#[bg=default]"
+    tmux set -g status-right ""
 else
     timew start "$selected"
     tmux set -g status-right "$selected #(timew | awk '/^ *Total/ {print \$NF}')"
+
+		if [[ "$selected" == "WASTE" ]]; then
+			hostess rm studio.youtube.com
+			hostess rm www.youtube.com
+			hostess rm www.reddit.com
+			hostess rm www.x.com
+			hostess rm www.linkedin.com
+			hostess rm www.privatemail.com
+		else 
+			hostess add studio.youtube.com 127.0.0.1
+			hostess add www.youtube.com 127.0.0.1
+			hostess add www.reddit.com 127.0.0.1
+			hostess add www.x.com 127.0.0.1
+			hostess add www.linkedin.com 127.0.0.1
+			hostess add www.privateemail.com 127.0.0.1
+		fi
+
 fi
