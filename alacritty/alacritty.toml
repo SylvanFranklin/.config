@@ -30,7 +30,7 @@ style = "Regular"
 # [[keyboard.bindings]]
 # chars = "\u0015"
 # key = "Back"
-# mods = "Command"
+# mods = "Command
 
 [[keyboard.bindings]]
 action = "ResetFontSize"
@@ -121,6 +121,7 @@ mods = "Command"
 
 [window]
 opacity = 0.6
+option_as_alt = "both"
 decorations = "none"
 dynamic_padding = true
 
