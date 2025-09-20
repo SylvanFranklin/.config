@@ -36,7 +36,7 @@ else
 			hostess add www.reddit.com 127.0.0.1
 			hostess add www.x.com 127.0.0.1
 			hostess add www.linkedin.com 127.0.0.1
-			hostess add www.privateemail.com 127.0.0.1
+			hostess add www.privatemail.com 127.0.0.1
 		fi
 
 fi
