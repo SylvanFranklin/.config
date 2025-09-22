@@ -18,7 +18,6 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/echasnovski/mini.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
-	{ src = "nvim-treesitter/nvim-treesitter-textobjects" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
 	{ src = "https://github.com/mason-org/mason.nvim" },
@@ -26,6 +25,9 @@ vim.pack.add({
 	{ src = "https://github.com/SylvanFranklin/pear" },
 })
 
+-- local ts = require("treesitter")
+-- ts.setup()
+-- ts.disable("cpp")
 require "mason".setup()
 require "mini.pick".setup()
 require "mini.bufremove".setup()
@@ -44,7 +46,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end,
 })
 
--- lsp
+-- LSP
 vim.lsp.enable(
 	{
 		"lua_ls",
@@ -80,13 +82,14 @@ map('n', '<leader>q', require("mini.bufremove").delete)
 map('n', '<leader>Q', '<Cmd>:wqa<CR>')
 map('n', '<C-f>', '<Cmd>Open .<CR>')
 
--- open RC files. 
+-- open RC files.
 map('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
 map('n', '<leader>z', '<Cmd>e ~/.config/zsh/.zshrc<CR>')
 
--- quickly swtich files with alternate / switch it
+-- quickly switch files with alternate / switch it
 map('n', '<leader>s', '<Cmd>e #<CR>')
 map('n', '<leader>S', '<Cmd>bot sf #<CR>')
+map({ 'n', 'v', 'x' }, '<leader>m', ':move ')
 
 -- I use norm so much this makes sense
 map({ 'n', 'v' }, '<leader>n', ':norm ')
@@ -94,9 +97,7 @@ map({ 'n', 'v' }, '<leader>n', ':norm ')
 -- system clipboard
 map({ 'n', 'v' }, '<leader>y', '"+y')
 map({ 'n', 'v' }, '<leader>d', '"+d')
-
--- auto correct spelling under cursor
-map({ 'n', 'v' }, '<leader>c', '1z=')
+map({ 'n', 'v' }, '<leader>c', ':')
 
 -- soft reload config file
 map({ 'n', 'v' }, '<leader>o', ':update<CR> :source<CR>')
@@ -115,7 +116,8 @@ map('n', '<leader>h', "<Cmd>Pick help<CR>")
 map('n', '<leader>e', "<Cmd>Oil<CR>")
 map('i', '<c-e>', function() vim.lsp.completion.get() end)
 
-map("n", "<M-n>", "<cmd>resize +2<CR>")         -- Increase height
-map("n", "<M-e>", "<cmd>resize -2<CR>")       -- Decrease height
+map("n", "<M-n>", "<cmd>resize +2<CR>")          -- Increase height
+map("n", "<M-e>", "<cmd>resize -2<CR>")          -- Decrease height
 map("n", "<M-i>", "<cmd>vertical resize +5<CR>") -- Increase width
-map("n", "<M-m>", "<cmd>vertical resize -5<CR>")  -- Decrease width
+map("n", "<M-m>", "<cmd>vertical resize -5<CR>") -- Decrease width
+map("i", "<C-s>", "<c-g>u<Esc>[s1z=`]a<c-g>u")

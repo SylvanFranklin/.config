@@ -30,6 +30,13 @@ else
 			hostess rm www.x.com
 			hostess rm www.linkedin.com
 			hostess rm www.privatemail.com
+			hostess rm discord.com
+			hostess rm status.discord.com
+			hostess rm cdn.discordapp.com
+			hostess rm latency.discord.media
+			hostess rm gateway.discord.gg
+
+
 		else 
 			hostess add studio.youtube.com 127.0.0.1
 			hostess add www.youtube.com 127.0.0.1
@@ -37,6 +44,11 @@ else
 			hostess add www.x.com 127.0.0.1
 			hostess add www.linkedin.com 127.0.0.1
 			hostess add www.privatemail.com 127.0.0.1
+			hostess add discord.com
+			hostess add status.discord.com
+			hostess add cdn.discordapp.com
+			hostess add latency.discord.media
+			hostess add gateway.discord.gg
 		fi
 
 fi
