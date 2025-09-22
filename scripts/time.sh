@@ -44,11 +44,11 @@ else
 			hostess add www.x.com 127.0.0.1
 			hostess add www.linkedin.com 127.0.0.1
 			hostess add www.privatemail.com 127.0.0.1
-			hostess add discord.com
-			hostess add status.discord.com
-			hostess add cdn.discordapp.com
-			hostess add latency.discord.media
-			hostess add gateway.discord.gg
+			hostess add discord.com 127.0.0.1
+			hostess add status.discord.com 127.0.0.1
+			hostess add cdn.discordapp.com 127.0.0.1
+			hostess add latency.discord.media 127.0.0.1
+			hostess add gateway.discord.gg 127.0.0.1
 		fi
 
 fi
