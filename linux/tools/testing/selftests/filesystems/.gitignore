@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: GPL-2.0-only
+dnotify_test
+devpts_pts
+file_stressor
+anon_inode_test
+kernfs_test
