@@ -50,5 +50,49 @@ export HISTIGNORE='exit:cd:ls:bg:fg:history:f:fd:vim'
 
 MAILSYNC_MUTE=1
 
+
+lazy_load_nvm() {
+  unset -f node nvm
+  export NVM_DIR=~/.nvm
+  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+}
+
+node() {
+  lazy_load_nvm
+  node $@
+}
+
+nvm() {
+  lazy_load_nvm
+  node $@
+}
+
+GG_HOME=~/documents/work
+export GG_HOME=${GG_HOME} 
+export GG_API=${GG_HOME}/gg-api 
+export GG_WEB=${GG_HOME}/esports-web/gg-web 
+export GG_EW=${GG_HOME}/esports-web 
+export GG_GCP_USERNAME="sylvan" 
+export NODE_ENV=development 
+alias cd-ew="cd ${GG_EW}" 
+alias cd-w="cd ${GG_WEB}" 
+alias cd-a="cd ${GG_API}"
+alias src="source ~/.config/zsh/.zshrc"
+alias phpcs="${GG_API}/lib/vendor/bin/phpcs"
+alias phpmd="${GG_API}/lib/vendor/bin/phpmd"
+export PATH=${GG_API}/ops/bin:$PATH
+export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH" 
+export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH" 
+
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/sylvanfranklin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sylvanfranklin/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/sylvanfranklin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sylvanfranklin/google-cloud-sdk/completion.zsh.inc'; fi
+
 # Load zsh-syntax-highlighting; should be last.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
