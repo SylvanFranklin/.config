@@ -25,13 +25,21 @@ vim.pack.add({
 	{ src = "https://github.com/SylvanFranklin/pear" },
 })
 
--- local ts = require("treesitter")
--- ts.setup()
--- ts.disable("cpp")
 require "mason".setup()
 require "mini.pick".setup()
 require "mini.bufremove".setup()
-require "oil".setup()
+require("oil").setup({
+	lsp_file_methods = {
+		enabled = true,
+		timeout_ms = 1000,
+		autosave_changes = true,
+	},
+	float = {
+		max_width = 0.7,
+		max_height = 0.6,
+		border = "rounded",
+	},
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -59,6 +67,7 @@ vim.lsp.enable(
 		"glsl_analyzer",
 		"haskell-language-server",
 		"hlint",
+		"intelephense"
 
 	}
 )
@@ -78,7 +87,8 @@ local ls = require("luasnip")
 local map = vim.keymap.set
 vim.g.mapleader = " "
 map('n', '<leader>w', '<Cmd>write<CR>')
-map('n', '<leader>q', require("mini.bufremove").delete)
+map('n', '<leader>bd', require("mini.bufremove").delete)
+map('n', '<leader>q', '<Cmd>:quit<CR>')
 map('n', '<leader>Q', '<Cmd>:wqa<CR>')
 map('n', '<C-f>', '<Cmd>Open .<CR>')
 
@@ -106,14 +116,19 @@ map('t', '', "")
 map('t', '', "")
 
 map('n', '<leader>lf', vim.lsp.buf.format)
+
 map("i", "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
+
+map('n', '<leader>g', "<Cmd>Pick grep_live<CR>")
 map('n', '<leader>f', "<Cmd>Pick files<CR>")
 map('n', '<leader>r', "<Cmd>Pick buffers<CR>")
+
 map('n', '<leader>b', function() require("pear").jump_pair() end)
 map('n', '<leader>h', "<Cmd>Pick help<CR>")
 map('n', '<leader>e', "<Cmd>Oil<CR>")
+map('n', '<leader>E', require("oil").open_float)
 map('i', '<c-e>', function() vim.lsp.completion.get() end)
 
 map("n", "<M-n>", "<cmd>resize +2<CR>")          -- Increase height
@@ -121,3 +136,30 @@ map("n", "<M-e>", "<cmd>resize -2<CR>")          -- Decrease height
 map("n", "<M-i>", "<cmd>vertical resize +5<CR>") -- Increase width
 map("n", "<M-m>", "<cmd>vertical resize -5<CR>") -- Decrease width
 map("i", "<C-s>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
+
+
+map("n", "<C-q>", ":copen<CR>", { silent = true })
+
+for i = 1, 9 do
+	map('n', '<leader>' .. i, ':cc ' .. i .. '<CR>', { noremap = true, silent = true })
+end
+
+map("n", "<leader>a",
+	function() vim.fn.setqflist({ { filename = vim.fn.expand("%"), lnum = 1, col = 1, text = vim.fn.expand("%"), } }, "a") end,
+	{ desc = "Add current file to QuickFix" })
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = "*",
+	group = vim.api.nvim_create_augroup("qf", { clear = true }),
+	callback = function()
+		if vim.bo.buftype == "quickfix" then
+			map("n", "<C-q>", ":ccl<cr>", { buffer = true, silent = true })
+			map("n", "dd", function()
+				local idx = vim.fn.line('.')
+				local qflist = vim.fn.getqflist()
+				table.remove(qflist, idx)
+				vim.fn.setqflist(qflist, 'r')
+			end, { buffer = true })
+		end
+	end,
+})
