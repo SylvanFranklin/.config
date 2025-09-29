@@ -151,8 +151,12 @@ map("n", "<M-n>", "<cmd>resize +2<CR>")          -- Increase height
 map("n", "<M-e>", "<cmd>resize -2<CR>")          -- Decrease height
 map("n", "<M-i>", "<cmd>vertical resize +5<CR>") -- Increase width
 map("n", "<M-m>", "<cmd>vertical resize -5<CR>") -- Decrease width
-map("i", "<C-s>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
 
+-- spelling piste
+-- map("i", "<C-s>", "<c-g>u<ESC>[sass=`]a<c-g>u")
+
+map({ "x", "n" }, "<C-s>", [[<esc>:'<,'>s/\V/]],
+	{ desc = "Enter substitue mode in selection" })
 
 map("n", "<C-q>", ":copen<CR>", { silent = true })
 
