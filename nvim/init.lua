@@ -15,6 +15,7 @@ vim.opt.signcolumn = "yes"
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
+	{ src = "https://github.com/chentoast/marks.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/echasnovski/mini.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
@@ -25,9 +26,21 @@ vim.pack.add({
 	{ src = "https://github.com/SylvanFranklin/pear" },
 })
 
+require 'marks'.setup {
+	builtin_marks = { "<", ">", "^" },
+	force_write_shada = false,
+	refresh_interval = 250,
+	sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
+	excluded_filetypes = {},
+	excluded_buftypes = {},
+	mappings = {}
+
+}
 require "mason".setup()
 require "mini.pick".setup()
 require "mini.bufremove".setup()
+require "mini.bufremove".setup()
+
 require("oil").setup({
 	lsp_file_methods = {
 		enabled = true,
@@ -58,6 +71,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.lsp.enable(
 	{
 		"lua_ls",
+		"css-lsp",
 		"svelte",
 		"tinymist",
 		"emmetls",
@@ -91,6 +105,8 @@ map('n', '<leader>bd', require("mini.bufremove").delete)
 map('n', '<leader>q', '<Cmd>:quit<CR>')
 map('n', '<leader>Q', '<Cmd>:wqa<CR>')
 map('n', '<C-f>', '<Cmd>Open .<CR>')
+map({ 'n', 'v', 'x' }, ';', ':')
+map({ 'n', 'v', 'x' }, ':', ';')
 
 -- open RC files.
 map('n', '<leader>v', '<Cmd>e $MYVIMRC<CR>')
@@ -147,6 +163,7 @@ end
 map("n", "<leader>a",
 	function() vim.fn.setqflist({ { filename = vim.fn.expand("%"), lnum = 1, col = 1, text = vim.fn.expand("%"), } }, "a") end,
 	{ desc = "Add current file to QuickFix" })
+
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*",
