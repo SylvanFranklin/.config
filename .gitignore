@@ -27,3 +27,4 @@ mutt/accounts/sylvanfranklin@sylvanfranklin.com.muttrc
 mutt/muttrc
 mutt/.mailsynclastrun
 msmtp
+nvim/ggapi.lua
