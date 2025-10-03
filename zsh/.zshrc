@@ -1,7 +1,6 @@
 autoload -U colors && colors
 bindkey -e
 PS1="%{$fg[magenta]%}%~%{$fg[red]%} %{$reset_color%}$%b "
-
 source <(fzf --zsh)
 finder() {
     open .
@@ -9,12 +8,10 @@ finder() {
 
 zle -N finder
 bindkey '^f' finder
-
 normalize() {
   ffmpeg -i "$1" -af loudnorm=I=-14:TP=-1.0:LRA=11 -c:v copy -c:a aac -b:a 192k output.mp4
 }
-
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots)
 
 export PATH="/Users/sylvanfranklin/.local/share/bob/nvim-bin/:$PATH"
 export PATH="/Users/sylvanfranklin/Library/Python/3.9/bin/:$PATH"
@@ -69,18 +66,15 @@ alias im="nvim"
 alias nm="neomutt"
 alias p="poetry"
 alias mb="~/Documents/projects/microbrew/target/debug/microbrew" 
-alias yt="lux" # this
-alias dl="lux" # test
-alias dl-audio="yt-dlp -x --audio-format=\"mp3\"" # download audio
+alias yt="lux" 
+alias dl="lux" 
+alias dl-audio="yt-dlp -x --audio-format=\"mp3\"" 
 alias ls="ls -C -t -U -A -p --color=auto" 
 alias src="source ~/.config/zsh/.zshrc"
-
 alias phpcs="${GG_API}/lib/vendor/bin/phpcs"
 alias phpmd="${GG_API}/lib/vendor/bin/phpmd"
 alias cd-ew="cd ${GG_EW}" 
 alias cd-w="cd ${GG_WEB}" 
 alias cd-a="cd ${GG_API}"
 
-
-# stay at bottom
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
