@@ -28,3 +28,4 @@ mutt/muttrc
 mutt/.mailsynclastrun
 msmtp
 nvim/ggapi.lua
+weechat
