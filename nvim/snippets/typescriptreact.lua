@@ -7,4 +7,10 @@ return {
 			f(function(_, s) return s.captures[1] end)
 		})
 	),
+	s({ trig = "(.*) cl", regTrig = true },
+		fmta([[console.log(<>, <>)]], {
+			f(function(_, s) return s.captures[1] end),
+			i(1)
+		})
+	),
 }
