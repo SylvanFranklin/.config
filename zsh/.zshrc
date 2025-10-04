@@ -13,11 +13,11 @@ normalize() {
 }
 _comp_options+=(globdots)
 
-export PATH="/Users/sylvanfranklin/.local/share/bob/nvim-bin/:$PATH"
-export PATH="/Users/sylvanfranklin/Library/Python/3.9/bin/:$PATH"
-export PATH="/Users/sylvanfranklin/.local/bin:$PATH"
+export PATH="/Users/$USER/.local/share/bob/nvim-bin/:$PATH"
+export PATH="/Users/$USER/Library/Python/3.9/bin/:$PATH"
+export PATH="/Users/$USER/.local/bin:$PATH"
+export RIPGREP_CONFIG_PATH="/Users/$USER/.config/ripgrep/rgrc"
 export EDITOR="nvim"
-export RIPGREP_CONFIG_PATH="/Users/sylvanfranklin/.config/ripgrep/rgrc"
 export MANPAGER="nvim +Man!"
 export MAILSYNC_MUTE=1
 export HISTIGNORE='exit:cd:ls:bg:fg:history:f:fd:vim'
@@ -54,8 +54,8 @@ nvm() {
   node $@
 }
 
-if [ -f '/Users/sylvanfranklin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sylvanfranklin/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/sylvanfranklin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sylvanfranklin/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/$USER/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/$USER/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/$USER/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/$USER/google-cloud-sdk/completion.zsh.inc'; fi
 
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
