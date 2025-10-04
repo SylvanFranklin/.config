@@ -121,7 +121,6 @@ mods = "Command"
 
 [window]
 opacity = 0.6
-option_as_alt = "both"
 decorations = "none"
 dynamic_padding = true
 
