@@ -1936,6 +1936,10 @@
                         "vendor_id": 1452
                     },
                     "ignore": true
+                },
+                {
+                    "identifiers": { "is_keyboard": true },
+                    "manipulate_caps_lock_led": false
                 }
             ],
             "name": "Default profile",
