@@ -5,6 +5,9 @@ source <(fzf --zsh)
 finder() {
     open .
 }
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
 
 zle -N finder
 bindkey '^f' finder
