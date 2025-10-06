@@ -207,6 +207,19 @@ map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 map({ "n", "t" }, "<Leader>t", "<Cmd>tabnew<CR>")
 map({ "n", "t" }, "<Leader>x", "<Cmd>tabclose<CR>")
+
+
+vim.cmd([[
+	nnoremap g= g+| " g=g=g= is less awkward than g+g+g+
+	nnoremap gK @='ddkPJ'<cr>| " join lines but reversed. `@=` so [count] works
+	xnoremap gK <esc><cmd>keeppatterns '<,'>-global/$/normal! ddpkJ<cr>
+	noremap! <c-r><c-d> <c-r>=strftime('%F')<cr>
+	noremap! <c-r><c-t> <c-r>=strftime('%T')<cr>
+	noremap! <c-r><c-f> <c-r>=expand('%:t')<cr>
+	noremap! <c-r><c-p> <c-r>=expand('%:p')<cr>
+	xnoremap <expr> . "<esc><cmd>'<,'>normal! ".v:count1.'.<cr>'
+]])
+
 for i = 1, 8 do
 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
@@ -222,9 +235,9 @@ map({ "n", "v", "x" }, "<leader>lf", vim.lsp.buf.format, { desc = "Format curren
 map({ "v", "x", "n" }, "<C-y>", '"+y', { desc = "System clipboard yank." })
 map({ "n" }, "<leader>f", builtin.find_files, { desc = "Telescope live grep" })
 map({ "n" }, "<leader>g", builtin.live_grep, { desc = "Telescope live grep" })
-map({ "n" }, "<leader>si", builtin.grep_string, { desc = "Telescope live string" })
-map({ "n" }, "<leader>sr", builtin.oldfiles, { desc = "Telescope buffers" })
 map({ "n" }, "<leader>b", builtin.buffers, { desc = "Telescope buffers" })
+map({ "n" }, "<leader>si", builtin.grep_string, { desc = "Telescope live string" })
+map({ "n" }, "<leader>so", builtin.oldfiles, { desc = "Telescope buffers" })
 map({ "n" }, "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
 map({ "n" }, "<leader>sm", builtin.man_pages, { desc = "Telescope man pages" })
 map({ "n" }, "<leader>sr", builtin.lsp_references, { desc = "Telescope tags" })
@@ -244,6 +257,10 @@ map({ "n" }, "<leader>w", "<Cmd>update<CR>", { desc = "Write the current buffer.
 map({ "n" }, "<leader>q", "<Cmd>:quit<CR>", { desc = "Quit the current buffer." })
 map({ "n" }, "<leader>Q", "<Cmd>:wqa<CR>", { desc = "Quit all buffers and write." })
 map({ "n" }, "<C-f>", "<Cmd>Open .<CR>", { desc = "Open current directory in Finder." })
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = "*.jsx,*.tsx",
