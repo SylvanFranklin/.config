@@ -17,7 +17,6 @@ vim.opt.relativenumber = true
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
-	{ src = "https://github.com/LinArcX/telescope-env.nvim" },
 	{ src = "https://github.com/chentoast/marks.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -30,6 +29,7 @@ vim.pack.add({
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
+	{ src = "https://github.com/LinArcX/telescope-env.nvim" },
 })
 
 require "marks".setup {
@@ -47,6 +47,7 @@ local default_color = "vague"
 require "mason".setup()
 require "telescope".setup({
 	defaults = {
+		preview = false,
 		color_devicons = true,
 		sorting_strategy = "ascending",
 		borderchars = { "", "", "", "", "", "", "", "" },
@@ -56,10 +57,18 @@ require "telescope".setup({
 			height = 100,
 			width = 400,
 			prompt_position = "top",
-			preview_cutoff = 40,
+			preview_cutoff = 0,
 		}
 	}
 })
+require("actions-preview").setup {
+	backend = { "telescope" },
+	extensions = { "env" },
+	telescope = vim.tbl_extend(
+		"force",
+		require("telescope.themes").get_dropdown(), {}
+	)
+}
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -75,14 +84,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
-require("actions-preview").setup {
-	backend = { "telescope" },
-	extensions = { "env" },
-	telescope = vim.tbl_extend(
-		"force",
-		require("telescope.themes").get_dropdown(), {}
-	)
-}
 
 vim.lsp.enable({
 	"lua_ls", "cssls", "svelte", "tinymist",
