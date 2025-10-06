@@ -81,3 +81,4 @@ alias cd-w="cd ${GG_WEB}"
 alias cd-a="cd ${GG_API}"
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
