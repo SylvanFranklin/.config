@@ -17,36 +17,26 @@ fi
 tmux set -g status-interval 5
 
 if [[ "$selected" == "STOP" ]]; then
-    timew stop
+    timew stop > /dev/null 2>&1
     tmux set -g status-right ""
 else
-    timew start "$selected"
+    timew start "$selected" > /dev/null 2>&1
     tmux set -g status-right "$selected #(timew | awk '/^ *Total/ {print \$NF}')"
 
 		if [[ "$selected" == "WASTE" ]]; then
-			hostess rm studio.youtube.com
-			hostess rm www.youtube.com
-			hostess rm www.reddit.com
-			hostess rm www.x.com
-			hostess rm www.linkedin.com
-			hostess rm www.privatemail.com
-			# hostess rm discord.com
-			# hostess rm status.discord.com
-			# hostess rm cdn.discordapp.com
-			# hostess rm latency.discord.media
-			# hostess rm gateway.discord.gg
+			hostess rm studio.youtube.com > /dev/null 2>&1
+			hostess rm www.youtube.com > /dev/null 2>&1
+			hostess rm www.reddit.com > /dev/null 2>&1
+			hostess rm www.x.com > /dev/null 2>&1
+			hostess rm www.linkedin.com > /dev/null 2>&1
+			hostess rm www.privatemail.com > /dev/null 2>&1
 		else 
-			hostess add studio.youtube.com 127.0.0.1
-			hostess add www.youtube.com 127.0.0.1
-			hostess add www.reddit.com 127.0.0.1
-			hostess add www.x.com 127.0.0.1
-			hostess add www.linkedin.com 127.0.0.1
-			hostess add www.privatemail.com 127.0.0.1
-			# hostess add discord.com 127.0.0.1
-			# hostess add status.discord.com 127.0.0.1
-			# hostess add cdn.discordapp.com 127.0.0.1
-			# hostess add latency.discord.media 127.0.0.1
-			# hostess add gateway.discord.gg 127.0.0.1
+			hostess add studio.youtube.com 127.0.0.1 > /dev/null 2>&1
+			hostess add www.youtube.com 127.0.0.1 > /dev/null 2>&1
+			hostess add www.reddit.com 127.0.0.1 > /dev/null 2>&1
+			hostess add www.x.com 127.0.0.1 > /dev/null 2>&1
+			hostess add www.linkedin.com 127.0.0.1 > /dev/null 2>&1
+			hostess add www.privatemail.com 127.0.0.1 > /dev/null 2>&1
 		fi
 
 fi
