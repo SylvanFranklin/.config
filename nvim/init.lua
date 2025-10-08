@@ -13,7 +13,6 @@ vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.number = true
-vim.opt.relativenumber = true
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
@@ -47,20 +46,20 @@ local default_color = "vague"
 require "mason".setup()
 require "telescope".setup({
 	defaults = {
-		preview = false,
+		preview = { treesitter = false },
 		color_devicons = true,
 		sorting_strategy = "ascending",
 		borderchars = { "", "", "", "", "", "", "", "" },
-		path_displays = "smart",
-		layout_strategy = "horizontal",
+		path_displays = { "hidden" },
 		layout_config = {
 			height = 100,
 			width = 400,
 			prompt_position = "top",
-			preview_cutoff = 0,
+			preview_cutoff = 40,
 		}
 	}
 })
+
 require("actions-preview").setup {
 	backend = { "telescope" },
 	extensions = { "env" },
@@ -149,7 +148,6 @@ local color_group = vim.api.nvim_create_augroup("colors", { clear = true })
 vim.api.nvim_create_autocmd("ColorScheme", {
 	group = color_group,
 	callback = function(args)
-		print("run")
 		if vim.t.color then
 			vim.cmd("colorscheme " .. vim.t.color)
 		else
@@ -161,7 +159,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 vim.api.nvim_create_autocmd("TabEnter", {
 	group = color_group,
 	callback = function(args)
-		print("run")
 		if vim.t.color then
 			vim.cmd("colorscheme " .. vim.t.color)
 		else
@@ -174,8 +171,8 @@ local colors = {}
 vim.api.nvim_create_autocmd("ColorScheme", {
 	group = color_group,
 	callback = function(args)
-		vim.cmd("hi statusline guibg=NONE")
-		vim.cmd("hi TabLineFill guibg=NONE")
+		-- vim.cmd("hi statusline guibg=NONE")
+		-- vim.cmd("hi TabLineFill guibg=NONE")
 	end,
 })
 
@@ -203,6 +200,8 @@ end
 
 vim.g.mapleader = " "
 map({ "n" }, "<leader>m", function() random_theme() end)
+map({ "n", "x" }, "<leader>y", '"+y')
+map({ "n", "x" }, "<leader>d", '"+d')
 map({ "i", "s" }, "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
@@ -229,7 +228,7 @@ map({ "n", "v", "x" }, ":", ";", { desc = "Self explanatory" })
 map({ "n", "v", "x" }, "<leader>v", "<Cmd>edit $MYVIMRC<CR>", { desc = "Edit " .. vim.fn.expand("$MYVIMRC") })
 map({ "n", "v", "x" }, "<leader>z", "<Cmd>e ~/.config/zsh/.zshrc<CR>", { desc = "Edit .zshrc" })
 map({ "n", "v", "x" }, "<leader>n", ":norm ", { desc = "ENTER NORM COMMAND." })
-map({ "n", "v", "x" }, "<leader>o", "<Cmd>source $MYVIMRC<CR>", { desc = "Source " .. vim.fn.expand("$MYVIMRC") })
+map({ "n", "v", "x" }, "<leader>o", "<Cmd>source %<CR>", { desc = "Source " .. vim.fn.expand("$MYVIMRC") })
 map({ "n", "v", "x" }, "<leader>O", "<Cmd>restart<CR>", { desc = "Restart vim." })
 map({ "n", "v", "x" }, "<C-s>", [[:s/\V]], { desc = "Enter substitue mode in selection" })
 map({ "n", "v", "x" }, "<leader>lf", vim.lsp.buf.format, { desc = "Format current buffer" })
@@ -271,3 +270,19 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end
 })
 vim.cmd('colorscheme ' .. default_color)
+
+-- Run gg-repo-sync automatically after saving a PHP file
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*.php",
+  callback = function()
+    vim.fn.jobstart("gg-repo-sync", {
+      on_exit = function(_, exit_code, _)
+        if exit_code == 0 then
+          vim.notify("gg-repo-sync successful", vim.log.levels.INFO)
+        else
+          vim.notify("gg-repo-sync failed", vim.log.levels.ERROR)
+        end
+      end,
+    })
+  end,
+})
