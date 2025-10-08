@@ -1,5 +1,8 @@
+
+
 [env]
 TERM = "screen-256color"
+
 
 [font]
 size = 28
@@ -123,6 +126,7 @@ mods = "Command"
 opacity = 0.6
 decorations = "none"
 dynamic_padding = true
+option_as_alt = "Both"
 
 [window.padding]
 x = 0
