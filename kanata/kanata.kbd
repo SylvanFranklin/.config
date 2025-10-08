@@ -1,0 +1,67 @@
+;; https://youtu.be/jvJ3f4HHiMY
+
+;; Kanata docs
+;; https://github.com/jtroo/kanata/blob/main/docs/config.adoc
+
+;; OS key code mappings
+;; https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs
+
+(defcfg
+  process-unmapped-keys yes
+  log-layer-changes no
+  danger-enable-cmd yes
+  concurrent-tap-hold yes
+
+  ;; When any non-chord activation happens, this timeout begins. Until this timeout expires
+  ;; all inputs will immediately skip chords processing and be processed by the active layer.
+  ;; chords-v2-min-idle 250
+)
+
+;; Variables
+(defvar
+ tap-higher 400
+ tap-time 300
+ hold-time 300
+ chord-time 60
+ subl-time 200
+ tmux-delay 40
+)
+
+(defalias
+  msymb (tap-hold-press $tap-time $hold-time rmeta (layer-while-held symbols))
+)
+
+;; Only one defsrc is allowed.
+;;
+;; defsrc defines the keys that will be intercepted by kanata. The order of the
+;; keys matches with deflayer declarations and all deflayer declarations must
+;; have the same number of keys as defsrc. Any keys not listed in defsrc will
+;; be passed straight to the operating system.
+
+(defsrc
+  esc    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv    1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps   a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft   z    x    c    v    b    n    m    ,    .    /    ▲   rsft
+  fn   lctl  lalt lmet          spc         rmet ralt ◀    ▼    ▶
+)
+
+(deflayer main
+  esc    f1  f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv    1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab    q    w    f    p    b    j    l    u    y    ;    [    ]    \
+  lctl   a    r    s    t    g    m    n    e    i    o    '    ret
+  lsft   x    c    d    v    z    k    h    ,    .    /    ▲   rsft
+  fn   lctl  lalt lmet          spc         @msymb ralt ◀  ▼    ▶
+
+)
+
+(deflayer symbols
+  XX   XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX
+  XX   XX     XX      XX      XX      XX      XX      XX      XX      XX      XX      XX      XX     XX
+  S--  S-1    S-2     S-3     S-4     S-5     S-6     S-7     S-8     S-9     S-0     -       XX     -
+  S-`  1      2       3       4       5       6       7       8       9       0       `       ret
+  S-=  S-,    S-.     S-/     [       ]       S-[     S-]     ,       .       /       XX      =
+  XX    XX   XX     XX         spc            ret      XX         XX     XX     XX                   ;;MOD
+)
