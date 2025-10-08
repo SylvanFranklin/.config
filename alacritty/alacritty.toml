@@ -123,7 +123,7 @@ mode = "~Search"
 mods = "Command"
 
 [window]
-opacity = 0.6
+opacity = 1.0
 decorations = "none"
 dynamic_padding = true
 option_as_alt = "Both"

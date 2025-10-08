@@ -50,7 +50,7 @@ require "telescope".setup({
 		color_devicons = true,
 		sorting_strategy = "ascending",
 		borderchars = { "", "", "", "", "", "", "", "" },
-		path_displays = { "hidden" },
+		path_displays = { "smart" },
 		layout_config = {
 			height = 100,
 			width = 400,
@@ -257,6 +257,9 @@ map({ "n" }, "<leader>w", "<Cmd>update<CR>", { desc = "Write the current buffer.
 map({ "n" }, "<leader>q", "<Cmd>:quit<CR>", { desc = "Quit the current buffer." })
 map({ "n" }, "<leader>Q", "<Cmd>:wqa<CR>", { desc = "Quit all buffers and write." })
 map({ "n" }, "<C-f>", "<Cmd>Open .<CR>", { desc = "Open current directory in Finder." })
+map({ "n" }, "<leader>a", ":edit #<CR>", { desc = "Open current directory in Finder." })
+
+
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
