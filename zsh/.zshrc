@@ -80,4 +80,13 @@ alias cd-ew="cd ${GG_EW}"
 alias cd-w="cd ${GG_WEB}" 
 alias cd-a="cd ${GG_API}"
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+if [ -f '/Users/sf/y/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/sf/y/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/completion.zsh.inc'; fi
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
