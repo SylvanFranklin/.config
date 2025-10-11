@@ -22,12 +22,12 @@ vim.pack.add({
 	{ src = "https://github.com/aznhe21/actions-preview.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        version = "main" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim",          version = "0.1.8" },
+	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
-	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/LinArcX/telescope-env.nvim" },
 })
 
@@ -49,7 +49,16 @@ require "telescope".setup({
 		preview = { treesitter = false },
 		color_devicons = true,
 		sorting_strategy = "ascending",
-		borderchars = { "", "", "", "", "", "", "", "" },
+		borderchars = {
+			"─", -- top
+			"│", -- right
+			"─", -- bottom
+			"│", -- left
+			"┌", -- top-left
+			"┐", -- top-right
+			"┘", -- bottom-right
+			"└", -- bottom-left
+		},
 		path_displays = { "smart" },
 		layout_config = {
 			height = 100,
@@ -243,7 +252,7 @@ map({ "n" }, "<leader>sm", builtin.man_pages, { desc = "Telescope man pages" })
 map({ "n" }, "<leader>sr", builtin.lsp_references, { desc = "Telescope tags" })
 map({ "n" }, "<leader>st", builtin.builtin, { desc = "Telescope tags" })
 map({ "n" }, "<leader>sd", builtin.registers, { desc = "Telescope tags" })
-map({ "n" }, "<leader>sc", builtin.colorscheme, { desc = "Telescope tags" })
+map({ "n" }, "<leader>sc", builtin.git_bcommits, { desc = "Telescope tags" })
 map({ "n" }, "<leader>se", "<cmd>Telescope env<cr>", { desc = "Telescope tags" })
 map({ "n" }, "<leader>sa", require("actions-preview").code_actions)
 map({ "n" }, "<M-n>", "<cmd>resize +2<CR>")
@@ -276,16 +285,16 @@ vim.cmd('colorscheme ' .. default_color)
 
 -- Run gg-repo-sync automatically after saving a PHP file
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*.php",
-  callback = function()
-    vim.fn.jobstart("gg-repo-sync", {
-      on_exit = function(_, exit_code, _)
-        if exit_code == 0 then
-          vim.notify("gg-repo-sync successful", vim.log.levels.INFO)
-        else
-          vim.notify("gg-repo-sync failed", vim.log.levels.ERROR)
-        end
-      end,
-    })
-  end,
+	pattern = "*.php",
+	callback = function()
+		vim.fn.jobstart("gg-repo-sync", {
+			on_exit = function(_, exit_code, _)
+				if exit_code == 0 then
+					vim.notify("gg-repo-sync successful", vim.log.levels.INFO)
+				else
+					vim.notify("gg-repo-sync failed", vim.log.levels.ERROR)
+				end
+			end,
+		})
+	end,
 })
