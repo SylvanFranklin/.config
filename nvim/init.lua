@@ -44,7 +44,9 @@ require "marks".setup {
 local default_color = "vague"
 
 require "mason".setup()
-require "telescope".setup({
+
+local telescope = require("telescope")
+telescope.setup({
 	defaults = {
 		preview = { treesitter = false },
 		color_devicons = true,
@@ -68,6 +70,7 @@ require "telescope".setup({
 		}
 	}
 })
+telescope.load_extension("ui-select")
 
 require("actions-preview").setup {
 	backend = { "telescope" },
