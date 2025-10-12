@@ -1,8 +1,5 @@
-
-
 [env]
 TERM = "screen-256color"
-
 
 [font]
 size = 28
