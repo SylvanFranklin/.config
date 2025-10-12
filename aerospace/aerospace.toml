@@ -55,37 +55,37 @@ alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-m = 'move-workspace-to-monitor --wrap-around next'
 
 [[on-window-detected]]
-if.app-id = 'org.alacritty'
-run = 'move-node-to-workspace 1' 
+if.app-name-regex-substring = 'alacritty'
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
+if.app-name-regex-substring = 'firefox'
 run = 'move-node-to-workspace 2' 
 
 [[on-window-detected]]
-if.app-id = 'com.spotify.client'
+if.app-name-regex-substring = 'spotify'
 run = 'move-node-to-workspace S' 
 
 [[on-window-detected]]
-if.app-id = 'org.keepassxc.keepassxc'
+if.app-name-regex-substring = 'keepassxc'
 run = 'move-node-to-workspace K'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.finder'
+if.app-name-regex-substring = 'finder'
 run = 'move-node-to-workspace F'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.MobileSMS'
+if.app-name-regex-substring = 'messages'
 run = 'move-node-to-workspace G'
 
 [[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
+if.app-name-regex-substring = 'figma'
 run = 'move-node-to-workspace f'
 
 [[on-window-detected]]
-if.app-id = 'com.spikehd.dorion'
+if.app-name-regex-substring = 'dorion'
 run = 'move-node-to-workspace D'
 
 [[on-window-detected]]
-if.app-id = 'com.obsproject.obs-studio'
+if.app-name-regex-substring = 'obs'
 run = 'move-node-to-workspace o'
