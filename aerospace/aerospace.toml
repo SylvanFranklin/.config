@@ -32,14 +32,17 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
-alt-a = 'workspace 1' # Alacritty
-alt-l = 'workspace 2' # Alacritty
-alt-s = 'workspace S' # Spotify
-alt-g = 'workspace G' # Messages
-alt-f = 'workspace f' # Figma
-alt-shift-f = 'workspace F' # Finder 
-alt-shift-k = 'workspace K' # Keepassxc
-alt-v = 'workspace V' # Davinci 
+alt-a = 'exec-and-forget open -a /Applications/Alacritty.app'
+alt-l = 'exec-and-forget open -a /Applications/FireFox.app'
+alt-s = 'exec-and-forget open -a /Applications/Spotify.app'
+alt-g = 'exec-and-forget open -a /Applications/Messages.app'
+alt-f = 'exec-and-forget open -a /Applications/Figma.app'
+alt-m = 'exec-and-forget open -a /Applications/Mail.app'
+alt-shift-m = 'exec-and-forget open -a /Applications/iMovie.app'
+alt-shift-f = 'exec-and-forget open -a /System/Library/CoreServices/Finder.app'
+alt-shift-k = 'exec-and-forget open -a /Applications/KeePassXC.app'
+
+alt-v = 'workspace V' # Davinci
 alt-d = 'workspace D' # Dorion
 alt-o = 'workspace o' # OBS
 
