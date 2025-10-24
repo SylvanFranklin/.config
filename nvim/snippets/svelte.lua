@@ -52,6 +52,18 @@ return {
 				i(1)
 			})
 	),
+	-- s({ trig = "(.+)", regTrig = true },
+	-- 	fmt([[
+	--        <{}>
+	--           {}
+	--        </{}>
+	--        ]],
+	-- 		{
+	-- 			f(function(_, s) return s.captures[1] end),
+	-- 			i(1),
+	-- 			f(function(_, s) return s.captures[1] end)
+	-- 		})
+	-- ),
 }, {
 }
 
