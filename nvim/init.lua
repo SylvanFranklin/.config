@@ -81,6 +81,8 @@ require("actions-preview").setup {
 	)
 }
 
+
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
 	callback = function(args)
@@ -93,15 +95,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end
 	end,
 })
+
 vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
-
 vim.lsp.enable({
-	"lua_ls", "cssls", "svelte", "tinymist",
+	"lua_ls", "cssls", "svelte", "tinymist", "svelteserver",
 	"rust_analyzer", "clangd", "ruff",
 	"glsl_analyzer", "haskell-language-server", "hlint",
 	"intelephense", "biome", "tailwindcss",
-	"ts_ls", "emmet_language_server"
+	"ts_ls", "emmet_language_server", "emmet_ls", "solargraph"
 })
 
 require("oil").setup({
@@ -193,25 +195,8 @@ local builtin = require("telescope.builtin")
 local map = vim.keymap.set
 local current = 1
 
-function random_theme()
-	local colors = vim.fn.getcompletion("", "color")
-	-- print(#colors)
-	-- for i, v in ipairs(colors) do
-	-- 	print(v)
-	-- end
-	if current < #colors then
-		current = current + 1
-	else
-		current = 1
-	end
-	local color = colors[current]
-	-- print(current .. " " .. color)
-	vim.t.color = color
-	vim.cmd("colorscheme " .. color)
-end
-
 vim.g.mapleader = " "
-map({ "n" }, "<leader>m", function() random_theme() end)
+
 map({ "n", "x" }, "<leader>y", '"+y')
 map({ "n", "x" }, "<leader>d", '"+d')
 map({ "i", "s" }, "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
@@ -219,7 +204,6 @@ map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 map({ "n", "t" }, "<Leader>t", "<Cmd>tabnew<CR>")
 map({ "n", "t" }, "<Leader>x", "<Cmd>tabclose<CR>")
-
 
 vim.cmd([[
 	nnoremap g= g+| " g=g=g= is less awkward than g+g+g+
@@ -246,17 +230,25 @@ map({ "n", "v", "x" }, "<C-s>", [[:s/\V]], { desc = "Enter substitue mode in sel
 map({ "n", "v", "x" }, "<leader>lf", vim.lsp.buf.format, { desc = "Format current buffer" })
 map({ "v", "x", "n" }, "<C-y>", '"+y', { desc = "System clipboard yank." })
 map({ "n" }, "<leader>f", builtin.find_files, { desc = "Telescope live grep" })
-map({ "n" }, "<leader>g", builtin.live_grep, { desc = "Telescope live grep" })
-map({ "n" }, "<leader>b", builtin.buffers, { desc = "Telescope buffers" })
-map({ "n" }, "<leader>si", builtin.grep_string, { desc = "Telescope live string" })
-map({ "n" }, "<leader>so", builtin.oldfiles, { desc = "Telescope buffers" })
-map({ "n" }, "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
-map({ "n" }, "<leader>sm", builtin.man_pages, { desc = "Telescope man pages" })
-map({ "n" }, "<leader>sr", builtin.lsp_references, { desc = "Telescope tags" })
-map({ "n" }, "<leader>st", builtin.builtin, { desc = "Telescope tags" })
-map({ "n" }, "<leader>sd", builtin.registers, { desc = "Telescope tags" })
-map({ "n" }, "<leader>sc", builtin.git_bcommits, { desc = "Telescope tags" })
-map({ "n" }, "<leader>se", "<cmd>Telescope env<cr>", { desc = "Telescope tags" })
+
+function git_files() builtin.find_files({ no_ignore = true }) end
+
+map({ "n" }, "<leader>g", builtin.live_grep)
+map({ "n" }, "<leader>sg", git_files)
+map({ "n" }, "<leader>sb", builtin.buffers)
+map({ "n" }, "<leader>si", builtin.grep_string)
+map({ "n" }, "<leader>so", builtin.oldfiles)
+map({ "n" }, "<leader>sh", builtin.help_tags)
+map({ "n" }, "<leader>sm", builtin.man_pages)
+map({ "n" }, "<leader>sr", builtin.lsp_references)
+map({ "n" }, "<leader>sd", builtin.diagnostics)
+map({ "n" }, "<leader>si", builtin.lsp_implementations)
+map({ "n" }, "<leader>sT", builtin.lsp_type_definitions)
+map({ "n" }, "<leader>ss", builtin.current_buffer_fuzzy_find)
+map({ "n" }, "<leader>st", builtin.builtin)
+map({ "n" }, "<leader>sc", builtin.git_bcommits)
+map({ "n" }, "<leader>sk", builtin.keymaps)
+map({ "n" }, "<leader>se", "<cmd>Telescope env<cr>")
 map({ "n" }, "<leader>sa", require("actions-preview").code_actions)
 map({ "n" }, "<M-n>", "<cmd>resize +2<CR>")
 map({ "n" }, "<M-e>", "<cmd>resize -2<CR>")
