@@ -50,12 +50,15 @@ local function enable_treesitter()
     return ret
 end
 
-vim.api.nvim_create_autocmd({"FileType"}, {
-    pattern = enable_treesitter(),
-    callback = function (ev)
-        vim.treesitter.start(ev.buf)
-    end
-})
+local enabled_filetypes = enable_treesitter()
+if #enabled_filetypes ~= 0 then
+    vim.api.nvim_create_autocmd({"FileType"}, {
+        pattern = enable_treesitter(),
+        callback = function (ev)
+            vim.treesitter.start(ev.buf)
+        end
+    })
+end
 
 require "marks".setup {
 	builtin_marks = { "<", ">", "^" },
