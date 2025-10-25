@@ -31,6 +31,32 @@ vim.pack.add({
 	{ src = "https://github.com/LinArcX/telescope-env.nvim" },
 })
 
+vim.opt.runtimepath:append(vim.pack.get({"nvim-treesitter"})[1].path .. "/runtime")
+
+
+local function enable_treesitter()
+    local filetypes = {}
+    for _, lang in ipairs(require"nvim-treesitter".get_installed()) do
+        for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
+            filetypes[ft] = true
+        end
+    end
+
+    local ret = {}
+    for k, _ in pairs(filetypes) do
+        ret[#ret+1] = k
+    end
+
+    return ret
+end
+
+vim.api.nvim_create_autocmd({"FileType"}, {
+    pattern = enable_treesitter(),
+    callback = function (ev)
+        vim.treesitter.start(ev.buf)
+    end
+})
+
 require "marks".setup {
 	builtin_marks = { "<", ">", "^" },
 	refresh_interval = 250,
