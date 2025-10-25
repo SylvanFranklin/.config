@@ -35,29 +35,29 @@ vim.opt.runtimepath:append(vim.pack.get({"nvim-treesitter"})[1].path .. "/runtim
 
 
 local function enable_treesitter()
-    local filetypes = {}
-    for _, lang in ipairs(require"nvim-treesitter".get_installed()) do
-        for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
-            filetypes[ft] = true
-        end
-    end
+	local filetypes = {}
+	for _, lang in ipairs(require"nvim-treesitter".get_installed()) do
+		for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
+			filetypes[ft] = true
+		end
+	end
 
-    local ret = {}
-    for k, _ in pairs(filetypes) do
-        ret[#ret+1] = k
-    end
+	local ret = {}
+	for k, _ in pairs(filetypes) do
+		ret[#ret+1] = k
+	end
 
-    return ret
+	return ret
 end
 
 local enabled_filetypes = enable_treesitter()
 if #enabled_filetypes ~= 0 then
-    vim.api.nvim_create_autocmd({"FileType"}, {
-        pattern = enable_treesitter(),
-        callback = function (ev)
-            vim.treesitter.start(ev.buf)
-        end
-    })
+	vim.api.nvim_create_autocmd({"FileType"}, {
+		pattern = enable_treesitter(),
+		callback = function (ev)
+			vim.treesitter.start(ev.buf)
+		end
+	})
 end
 
 require "marks".setup {
