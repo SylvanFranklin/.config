@@ -269,13 +269,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.api.nvim_create_autocmd("BufWinEnter", {
-	pattern = "*.jsx,*.tsx",
-	group = vim.api.nvim_create_augroup("TS", { clear = true }),
-	callback = function()
-		vim.cmd([[set filetype=typescriptreact]])
-	end
-})
 vim.cmd('colorscheme ' .. default_color)
 
 -- Run gg-repo-sync automatically after saving a PHP file
