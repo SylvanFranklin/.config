@@ -1,18 +1,19 @@
 vim.cmd([[set mouse=]])
 vim.cmd([[set noswapfile]])
 
-vim.opt.winborder = "rounded"
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.showtabline = 2
-vim.opt.signcolumn = "yes"
-vim.opt.wrap = false
-vim.opt.cursorcolumn = false
-vim.opt.ignorecase = true
-vim.opt.smartindent = true
-vim.opt.termguicolors = true
-vim.opt.undofile = true
-vim.opt.number = true
+local cfg = vim.opt
+cfg.winborder = "rounded"
+cfg.tabstop = 2
+cfg.shiftwidth = 2
+cfg.showtabline = 2
+cfg.signcolumn = "yes"
+cfg.wrap = false
+cfg.cursorcolumn = false
+cfg.ignorecase = true
+cfg.smartindent = true
+cfg.termguicolors = true
+cfg.undofile = true
+cfg.number = true
 
 vim.pack.add({
 	{ src = "https://github.com/vague2k/vague.nvim" },
