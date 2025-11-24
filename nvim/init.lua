@@ -1,6 +1,6 @@
 vim.cmd([[set mouse=]])
 vim.cmd([[set noswapfile]])
-
+vim.cmd([[hi @lsp.type.number gui=italic]])
 vim.opt.winborder = "rounded"
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -19,8 +19,8 @@ vim.pack.add({
 	{ src = "https://github.com/chentoast/marks.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/aznhe21/actions-preview.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        version = "main" },
+	{ src = "https://github.com/aznhe21/actions-preview.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim",          version = "0.1.8" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
@@ -33,33 +33,31 @@ vim.pack.add({
 
 require "marks".setup {
 	builtin_marks = { "<", ">", "^" },
-	refresh_interval = 250,
-	sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
-	excluded_filetypes = {},
-	excluded_buftypes = {},
-	mappings = {}
 }
 
-
-local default_color = "vague"
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'glsl' },
+	callback = function() vim.treesitter.start() end,
+})
 
 require "mason".setup()
 
 local telescope = require("telescope")
+local default_color = "vague"
 telescope.setup({
 	defaults = {
 		preview = { treesitter = false },
 		color_devicons = true,
 		sorting_strategy = "ascending",
 		borderchars = {
-			"─", -- top
-			"│", -- right
-			"─", -- bottom
-			"│", -- left
-			"┌", -- top-left
-			"┐", -- top-right
-			"┘", -- bottom-right
-			"└", -- bottom-left
+			"", -- top
+			"", -- right
+			"", -- bottom
+			"", -- left
+			"", -- top-left
+			"", -- top-right
+			"", -- bottom-right
+			"", -- bottom-left
 		},
 		path_displays = { "smart" },
 		layout_config = {
@@ -99,11 +97,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.cmd [[set completeopt+=menuone,noselect,popup]]
 
 vim.lsp.enable({
-	"lua_ls", "cssls", "svelte", "tinymist", "svelteserver",
+	"lua_ls", "cssls", "svelte", "tinymist",
 	"rust_analyzer", "clangd", "ruff",
 	"glsl_analyzer", "haskell-language-server", "hlint",
-	"intelephense", "biome", "tailwindcss",
-	"ts_ls", "emmet_language_server", "emmet_ls", "solargraph"
+	"intelephense", "tailwindcss", "ts_ls",
+	"emmet_language_server", "emmet_ls", "solargraph"
 })
 
 require("oil").setup({
@@ -155,41 +153,7 @@ local function pack_clean()
 end
 
 vim.keymap.set("n", "<leader>pc", pack_clean)
-
-
-local color_group = vim.api.nvim_create_augroup("colors", { clear = true })
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-	group = color_group,
-	callback = function(args)
-		if vim.t.color then
-			vim.cmd("colorscheme " .. vim.t.color)
-		else
-			vim.cmd("colorscheme " .. default_color)
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("TabEnter", {
-	group = color_group,
-	callback = function(args)
-		if vim.t.color then
-			vim.cmd("colorscheme " .. vim.t.color)
-		else
-			vim.cmd("colorscheme " .. default_color)
-		end
-	end,
-})
-
 local colors = {}
-vim.api.nvim_create_autocmd("ColorScheme", {
-	group = color_group,
-	callback = function(args)
-		-- vim.cmd("hi statusline guibg=NONE")
-		-- vim.cmd("hi TabLineFill guibg=NONE")
-	end,
-})
-
 local ls = require("luasnip")
 local builtin = require("telescope.builtin")
 local map = vim.keymap.set
@@ -216,6 +180,7 @@ vim.cmd([[
 	xnoremap <expr> . "<esc><cmd>'<,'>normal! ".v:count1.'.<cr>'
 ]])
 
+
 for i = 1, 8 do
 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
@@ -233,7 +198,9 @@ map({ "n" }, "<leader>f", builtin.find_files, { desc = "Telescope live grep" })
 
 function git_files() builtin.find_files({ no_ignore = true }) end
 
-map({ "n" }, "<leader>g", builtin.live_grep)
+function grep() builtin.live_grep({ additional_args = { "-e" } }) end
+
+map({ "n" }, "<leader>g", grep)
 map({ "n" }, "<leader>sg", git_files)
 map({ "n" }, "<leader>sb", builtin.buffers)
 map({ "n" }, "<leader>si", builtin.grep_string)
@@ -242,7 +209,7 @@ map({ "n" }, "<leader>sh", builtin.help_tags)
 map({ "n" }, "<leader>sm", builtin.man_pages)
 map({ "n" }, "<leader>sr", builtin.lsp_references)
 map({ "n" }, "<leader>sd", builtin.diagnostics)
-map({ "n" }, "<leader>si", builtin.lsp_implementations)
+-- map({ "n" }, "<leader>si", builtin.lsp_implementations)
 map({ "n" }, "<leader>sT", builtin.lsp_type_definitions)
 map({ "n" }, "<leader>ss", builtin.current_buffer_fuzzy_find)
 map({ "n" }, "<leader>st", builtin.builtin)
@@ -277,7 +244,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end
 })
 vim.cmd('colorscheme ' .. default_color)
-
 -- Run gg-repo-sync automatically after saving a PHP file
 vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "*.php",
@@ -293,3 +259,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		})
 	end,
 })
+
+
+
