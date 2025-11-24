@@ -39,7 +39,7 @@ alt-g = 'workspace G' # Messages
 alt-f = 'workspace f' # Figma
 alt-shift-f = 'workspace F' # Finder 
 alt-shift-k = 'workspace K' # Keepassxc
-alt-v = 'workspace V' # Davinci 
+# alt-v = 'workspace V' # Davinci 
 alt-d = 'workspace D' # Dorion
 alt-o = 'workspace o' # OBS
 
