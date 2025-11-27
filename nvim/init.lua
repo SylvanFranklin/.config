@@ -36,7 +36,7 @@ require "marks".setup {
 }
 
 vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'glsl' },
+	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp' },
 	callback = function() vim.treesitter.start() end,
 })
 
@@ -101,7 +101,7 @@ vim.lsp.enable({
 	"rust_analyzer", "clangd", "ruff",
 	"glsl_analyzer", "haskell-language-server", "hlint",
 	"intelephense", "tailwindcss", "ts_ls",
-	"emmet_language_server", "emmet_ls", "solargraph"
+	"emmet_language_server", "emmet_ls", "solargraph", "zls"
 })
 
 require("oil").setup({
@@ -260,5 +260,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	end,
 })
 
-
-
+require('vim._extui').enable({
+	enable = true, -- Whether to enable or disable the UI.
+	msg = {       -- Options related to the message module.
+		---@type 'cmd'|'msg' Where to place regular messages, either in the
+		---cmdline or in a separate ephemeral message window.
+		target = 'cmd',
+		timeout = 4000, -- Time a message is visible in the message window.
+	},
+})
