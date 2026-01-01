@@ -29,14 +29,20 @@ vim.pack.add({
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
 	{ src = "https://github.com/LinArcX/telescope-env.nvim" },
+	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
+	{ src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
+	{ src = "https://github.com/julianolf/nvim-dap-lldb" }
 })
 
+
+require("debug")
 require "marks".setup {
 	builtin_marks = { "<", ">", "^" },
 }
 
 vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp' },
+	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'glsl', 'zig' },
 	callback = function() vim.treesitter.start() end,
 })
 
@@ -46,7 +52,7 @@ local telescope = require("telescope")
 local default_color = "vague"
 telescope.setup({
 	defaults = {
-		preview = { treesitter = false },
+		preview = { treesitter = true },
 		color_devicons = true,
 		sorting_strategy = "ascending",
 		borderchars = {
@@ -111,11 +117,10 @@ require("oil").setup({
 		autosave_changes = true,
 	},
 	columns = {
-		"permissions",
 		"icon",
 	},
 	float = {
-		max_width = 0.7,
+		max_width = 0.3,
 		max_height = 0.6,
 		border = "rounded",
 	},
@@ -184,6 +189,9 @@ vim.cmd([[
 for i = 1, 8 do
 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
+-- NOTE (sylvan)
+-- TODO (sylvan)
+--
 map({ "n", "v", "x" }, ";", ":", { desc = "Self explanatory" })
 map({ "n", "v", "x" }, ":", ";", { desc = "Self explanatory" })
 map({ "n", "v", "x" }, "<leader>v", "<Cmd>edit $MYVIMRC<CR>", { desc = "Edit " .. vim.fn.expand("$MYVIMRC") })
@@ -198,9 +206,7 @@ map({ "n" }, "<leader>f", builtin.find_files, { desc = "Telescope live grep" })
 
 function git_files() builtin.find_files({ no_ignore = true }) end
 
-function grep() builtin.live_grep({ additional_args = { "-e" } }) end
-
-map({ "n" }, "<leader>g", grep)
+map({ "n" }, "<leader>g", builtin.live_grep)
 map({ "n" }, "<leader>sg", git_files)
 map({ "n" }, "<leader>sb", builtin.buffers)
 map({ "n" }, "<leader>si", builtin.grep_string)
@@ -244,28 +250,3 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end
 })
 vim.cmd('colorscheme ' .. default_color)
--- Run gg-repo-sync automatically after saving a PHP file
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = "*.php",
-	callback = function()
-		vim.fn.jobstart("gg-repo-sync", {
-			on_exit = function(_, exit_code, _)
-				if exit_code == 0 then
-					vim.notify("gg-repo-sync successful", vim.log.levels.INFO)
-				else
-					vim.notify("gg-repo-sync failed", vim.log.levels.ERROR)
-				end
-			end,
-		})
-	end,
-})
-
-require('vim._extui').enable({
-	enable = true, -- Whether to enable or disable the UI.
-	msg = {       -- Options related to the message module.
-		---@type 'cmd'|'msg' Where to place regular messages, either in the
-		---cmdline or in a separate ephemeral message window.
-		target = 'cmd',
-		timeout = 4000, -- Time a message is visible in the message window.
-	},
-})
