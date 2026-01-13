@@ -4,33 +4,9 @@ TERM = "screen-256color"
 [font]
 size = 28
 
-# [font.bold]
-# style = "Bold"
-
-# to install the themes
-# mkdir -p ~/.config/alacritty/themes
-# git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
-
 [font.normal]
 family = "FiraCode Nerd Font"
 style = "Regular"
-
-# [[keyboard.bindings]]
-# chars = "\u001BOH"
-# key = "Left"
-# mode = "AppCursor"
-# mods = "Command"
-#
-# [[keyboard.bindings]]
-# chars = "\u001BOF"
-# key = "Right"
-# mode = "AppCursor"
-# mods = "Command"
-#
-# [[keyboard.bindings]]
-# chars = "\u0015"
-# key = "Back"
-# mods = "Command
 
 [[keyboard.bindings]]
 action = "ResetFontSize"
@@ -128,6 +104,3 @@ option_as_alt = "Both"
 [window.padding]
 x = 0
 y = 0
-
-[general]
-import = ["themes/bloodmoon.toml"]
