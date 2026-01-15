@@ -16,6 +16,7 @@ outer.top = 0
 outer.right = 0
 
 [mode.main.binding]
+alt-tab = 'workspace-back-and-forth'
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout tiles horizontal horizontal'
 alt-cmd-m = 'resize smart -50'
@@ -32,16 +33,16 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
-alt-a = 'workspace 1' # Alacritty
-alt-l = 'workspace 2' # Alacritty
-alt-s = 'workspace S' # Spotify
-alt-g = 'workspace G' # Messages
-alt-f = 'workspace f' # Figma
-alt-shift-f = 'workspace F' # Finder 
-alt-shift-k = 'workspace K' # Keepassxc
-# alt-v = 'workspace V' # Davinci 
-alt-d = 'workspace D' # Dorion
-alt-o = 'workspace o' # OBS
+alt-a = 'exec-and-forget open -a /Applications/Alacritty.app'
+alt-l = 'exec-and-forget open -a /Applications/FireFox.app'
+alt-s = 'exec-and-forget open -a /Applications/Spotify.app'
+alt-g = 'exec-and-forget open -a /System/Applications/Messages.app'
+alt-f = 'exec-and-forget open -a /Applications/Figma.app'
+alt-m = 'exec-and-forget open -a /System/Applications/Mail.app'
+alt-shift-f = 'exec-and-forget open -a /System/Library/CoreServices/Finder.app'
+alt-shift-k = 'exec-and-forget open -a /Applications/KeePassXC.app'
+alt-d = 'exec-and-forget open -a /Applications/Dorion.app'
+alt-o = 'exec-and-forget open -a /Applications/OBS.app'
 
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
@@ -56,15 +57,15 @@ alt-shift-m = 'move-workspace-to-monitor --wrap-around next'
 
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
-run = 'move-node-to-workspace 1' 
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
-run = 'move-node-to-workspace 2' 
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace S' 
+run = 'move-node-to-workspace S'
 
 [[on-window-detected]]
 if.app-id = 'org.keepassxc.keepassxc'
