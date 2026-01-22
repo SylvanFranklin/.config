@@ -52,7 +52,7 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-m = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-m = 'move-node-to-monitor --wrap-around next'
 
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
