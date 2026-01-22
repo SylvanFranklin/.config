@@ -57,7 +57,7 @@ require "marks".setup {
 }
 
 vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'glsl', 'zig' },
+	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'glsl', 'zig', 'python' },
 	callback = function() vim.treesitter.start() end,
 })
 
@@ -122,7 +122,7 @@ vim.lsp.enable({
 	"rust_analyzer", "clangd", "ruff",
 	"glsl_analyzer", "haskell-language-server", "hlint",
 	"intelephense", "tailwindcss", "ts_ls",
-	"emmet_language_server", "emmet_ls", "solargraph", "zls"
+	"emmet_language_server", "emmet_ls", "solargraph", "zls", "pyright"
 })
 
 require("oil").setup({
