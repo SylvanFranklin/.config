@@ -36,7 +36,6 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-neotest/nvim-nio" }
 })
 
-
 require("dap-lldb").setup()
 local dap, dapui = require("dap"), require("dapui")
 
@@ -99,8 +98,6 @@ require("actions-preview").setup {
 		require("telescope.themes").get_dropdown(), {}
 	)
 }
-
-
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('my.lsp', {}),
@@ -200,7 +197,6 @@ vim.cmd([[
 	xnoremap <expr> . "<esc><cmd>'<,'>normal! ".v:count1.'.<cr>'
 ]])
 
-
 for i = 1, 8 do
 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
@@ -250,7 +246,6 @@ map({ "n" }, "<leader>q", "<Cmd>:quit<CR>", { desc = "Quit the current buffer." 
 map({ "n" }, "<leader>Q", "<Cmd>:wqa<CR>", { desc = "Quit all buffers and write." })
 map({ "n" }, "<C-f>", "<Cmd>Open .<CR>", { desc = "Open current directory in Finder." })
 map({ "n" }, "<leader>a", ":edit #<CR>", { desc = "Open current directory in Finder." })
-
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
