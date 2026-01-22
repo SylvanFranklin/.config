@@ -1,17 +1,17 @@
 #!/bin/bash
 
 DIRS=(
+    "$HOME/documents/notes"
     "$HOME/documents/work"
     "$HOME/documents/projects"
     "$HOME/downloads"
-    "$HOME/documents/notes"
     "$HOME"
 )
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . "${DIRS[@]}" --max-depth=2 --extension="pdf" --full-path --base-directory $HOME \
+    selected=$(fd . "${DIRS[@]}" --max-depth=2 --extension="djvu" --extension="epub" --extension="pdf" --full-path --base-directory $HOME \
         | sed "s|^$HOME/||" \
         | sk --margin 10% --color="bw")
 
