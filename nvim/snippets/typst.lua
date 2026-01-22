@@ -5,15 +5,6 @@ return {
 	s({ trig = "mt", snippetType = "autosnippet" },
 		fmta("$<>$ ", { i(1) })
 	),
-	s({ trig = "(%d+)", regTrig = true },
-		fmta([[
-#for i in range(<>) {
-	<>
-}]], {
-			f(function(_, s) return s.captures[1] end),
-			i(1)
-		})
-	),
 	s({ trig = "mmt", snippetType = "autosnippet" },
 		fmta("$ <> $ ", { i(1) })
 	),
@@ -22,6 +13,11 @@ return {
 	),
 	s({ trig = "cent" },
 		fmta("#align(center)[<>]", { i(1) })
+	),
+	s({ trig = "p" },
+		fmta([[_Proof_: $quad$ <>
+
+		]], { i(1) })
 	),
 	s({ trig = "pi" },
 		fmta([[
