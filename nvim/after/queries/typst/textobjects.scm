@@ -1,7 +1,6 @@
 ; extends
 (math) @math.outer
 
-
 ; (math
 ; 	body: ()
 ; 	.
