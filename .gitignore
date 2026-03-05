@@ -29,3 +29,6 @@ mutt/.mailsynclastrun
 msmtp
 nvim/ggapi.lua
 weechat
+mole
+opencode/agents
+opencode
