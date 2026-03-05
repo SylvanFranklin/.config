@@ -5,8 +5,7 @@
 #let qed = align(right, $square.filled$)
 #let pf = text(style: "italic", [proof:])
 
-// #set page(fill: black)
-// #set text(fill: white)
+
 
 #align(center)[Math 3517 | Section A | HW 3 | Sylvan Franklin  |
   2026-02-04 ]
