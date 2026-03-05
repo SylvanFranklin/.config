@@ -1,16 +1,6 @@
-; extends
+; Outer captures the entire math block including $ delimiters
 (math) @math.outer
 
-
-; (math
-; 	body: ()
-; 	.
-; 	"$"
-;     .
-;     (_) @_start @_end
-;     (_)? @_end
-;     .
-; 	"$"
-; 	(#make-range! "math.inner" @_start @_end)
-; )
-;
+; Inner captures just the formula content (without $ delimiters)
+(math
+  (formula) @math.inner)
