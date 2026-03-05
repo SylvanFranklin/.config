@@ -5,6 +5,7 @@ DIRS=(
     "$HOME/documents/work"
     "$HOME/documents/projects"
     "$HOME/downloads"
+    "$HOME/documents/textbooks"
     "$HOME"
 )
 
@@ -13,6 +14,7 @@ if [[ $# -eq 1 ]]; then
 else
     selected=$(fd . "${DIRS[@]}" --max-depth=2 --extension="djvu" --extension="epub" --extension="pdf" --full-path --base-directory $HOME \
         | sed "s|^$HOME/||" \
+        | sort -uf \
         | sk --margin 10% --color="bw")
 
     [[ $selected ]] && selected="$HOME/$selected"
@@ -22,5 +24,5 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 
-tmux neww -d zathura $selected
+tmux neww -d sioyek $selected
 
