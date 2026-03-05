@@ -5,8 +5,9 @@ TERM = "screen-256color"
 size = 28
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "Firacode Nerd Font"
 style = "Regular"
+
 
 [[keyboard.bindings]]
 action = "ResetFontSize"
