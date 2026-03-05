@@ -19,9 +19,10 @@ vim.pack.add({
 	{ src = "https://github.com/chentoast/marks.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",        version = "main" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",            version = "main" },
 	{ src = "https://github.com/aznhe21/actions-preview.nvim" },
-	{ src = "https://github.com/nvim-telescope/telescope.nvim",          version = "0.1.8" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim",              version = "0.1.8" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
@@ -57,9 +58,10 @@ require "marks".setup {
 }
 
 vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'glsl', 'zig', 'python' },
+	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'glsl', 'zig', 'python', "typescriptreact", "react", },
 	callback = function() vim.treesitter.start() end,
 })
+
 
 require "mason".setup()
 
@@ -99,6 +101,7 @@ require("actions-preview").setup {
 		require("telescope.themes").get_dropdown(), {}
 	)
 }
+
 
 
 
@@ -186,7 +189,7 @@ map({ "n", "x" }, "<leader>y", '"+y')
 map({ "i", "s" }, "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
-map({ "n", "t" }, "<Leader>t", "<Cmd>tabnew<CR>")
+map({ "n", "t" }, "<Leader>t", "<Cmd>split<CR> <Cmd>term<CR>i")
 map({ "n", "t" }, "<Leader>x", "<Cmd>tabclose<CR>")
 
 vim.cmd([[
@@ -250,6 +253,7 @@ map({ "n" }, "<leader>q", "<Cmd>:quit<CR>", { desc = "Quit the current buffer." 
 map({ "n" }, "<leader>Q", "<Cmd>:wqa<CR>", { desc = "Quit all buffers and write." })
 map({ "n" }, "<C-f>", "<Cmd>Open .<CR>", { desc = "Open current directory in Finder." })
 map({ "n" }, "<leader>a", ":edit #<CR>", { desc = "Open current directory in Finder." })
+map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Make terminal mode appear normal" })
 
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
