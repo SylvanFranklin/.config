@@ -1,3 +1,5 @@
+# https://nikitabobko.github.io/AeroSpace/guide#config-samples
+
 start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -32,16 +34,16 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
-alt-a = 'workspace 1' # Alacritty
-alt-l = 'workspace 2' # Alacritty
-alt-s = 'workspace S' # Spotify
-alt-g = 'workspace G' # Messages
-alt-f = 'workspace f' # Figma
+# alt-a = 'workspace 1' # Alacritty
+# alt-l = 'workspace 2' # Alacritty
+# alt-s = 'workspace S' # Spotify
+# alt-g = 'workspace G' # Messages
+# alt-f = 'workspace f' # Figma
+# alt-d = 'workspace D' # Dorion
+# alt-o = 'workspace o' # OBS
 alt-shift-f = 'workspace F' # Finder 
 alt-shift-k = 'workspace K' # Keepassxc
 # alt-v = 'workspace V' # Davinci 
-alt-d = 'workspace D' # Dorion
-alt-o = 'workspace o' # OBS
 
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
