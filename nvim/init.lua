@@ -269,3 +269,4 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end
 })
 vim.cmd('colorscheme ' .. default_color)
+-- Custom statusbar highlight
