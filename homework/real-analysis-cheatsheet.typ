@@ -103,3 +103,8 @@
 // each but coming up with the tactic is one of the hardest
 // parts of writing a proof, because you might try 5 different
 // strategies before landing on one that works
+
+// mean you should use the degree to augment your own
+// work and your own progress, if you do nothing outside
+// of what’s assigned to you in class that won’t get you
+// anywhere

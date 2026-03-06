@@ -1,24 +1,8 @@
+#import "prelude.typ": *;
+#show: styling
 Sylvan Franklin | Real Analysis | 2026/02/18
 
 #line(length: 100%, stroke: 0.5pt)
-
-#let neq = $eq.not$
-#let geq = $>=$
-#let def = $:=$
-#let leq = $<=$
-#let iff = $<==>$
-#let ep = $epsilon$
-#let qed = align(right, $square.filled$)
-#let ff = $cal(F)$
-#let pf = text(style: "italic", [proof:])
-#let rn = $RR^n$
-#let r2 = $RR^2$
-#let sub = math.subset.eq
-#let r3 = $RR^3$
-#let en = $V_ep$
-#show regex("(?i)Proof"): it => [_Proof:_]
-#show regex("qed"): it => align(right, $square.filled$)
-#show regex("Problem \d"): it => text(weight: "bold", [#it. ])
 
 Problem 1
 If $S subset.eq RR^n$ prove that $"int"(S)$ is the
