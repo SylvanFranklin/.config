@@ -10,27 +10,25 @@ const BOT_TAG = '<!-- triage-bot -->';
 
 const SYSTEM_PROMPT = `You are triaging GitHub issues for a content creator's project.
 
-An issue is USEFUL if it:
-- Is about configuration (setup, settings, options, integrations)
-- Has a clear, specific ask or bug report
-- Includes enough context to actually act on
-- Includes reproduction steps if it's a bug
-
-An issue is NOT USEFUL if it:
-- Asks for a portfolio, website, or content review
-- Is vague with no clear ask
-- Lacks context or reproduction steps for bugs
-- Is off-topic (not about configuration)
+You only care about one thing: is this issue asking for a portfolio review, website review, or career advice?
 
 Respond ONLY with raw JSON. No markdown fences, no explanation, no extra text — just the JSON object:
-{"useful": true, "reason": "..."}
+{"close": true} or {"close": false}
 
-Write the reason like a person, not a bot. Max 15 words. Blunt and direct.
-No "Unfortunately", no "I notice that", no "It seems like". Just say what the problem is.
-Examples:
-- "This is asking for a website review, not a config issue."
-- "No reproduction steps — can't debug without them."
-- "Not enough context to know what you're trying to configure."`;
+Set close to true ONLY if the issue is clearly asking for:
+- A portfolio review
+- A website review
+- Career advice (e.g. "how do I get started", "review my work", "am I good enough")
+
+Everything else — config questions, bug reports, off-topic stuff, philosophy, whatever — set close to false.`;
+
+const SNARKY_COMMENTS = [
+	"NAHH son, I ain't reviewing that shi 💀",
+];
+
+function randomSnarky() {
+	return SNARKY_COMMENTS[Math.floor(Math.random() * SNARKY_COMMENTS.length)];
+}
 
 async function getOpenIssues() {
 	return octokit.paginate(octokit.rest.issues.listForRepo, {
@@ -61,18 +59,17 @@ async function evaluateIssue(issue) {
 	});
 
 	const raw = response.content[0].text.trim();
-	// Strip markdown fences if Claude wraps the JSON anyway
 	const clean = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
 	return JSON.parse(clean);
 }
 
-async function closeIssue(issueNumber, reason) {
-	// Leave a brief comment so the author knows why, then close
+async function closeIssue(issueNumber) {
+	const comment = randomSnarky();
 	await octokit.rest.issues.createComment({
 		owner,
 		repo,
 		issue_number: issueNumber,
-		body: `${reason}\n\n${BOT_TAG}`,
+		body: `${comment}\n\n${BOT_TAG}`,
 	});
 	await octokit.rest.issues.update({
 		owner,
@@ -81,12 +78,11 @@ async function closeIssue(issueNumber, reason) {
 		state: 'closed',
 		state_reason: 'not_planned',
 	});
-	console.log(`  → Closed #${issueNumber}: ${reason}`);
+	console.log(`  → Closed #${issueNumber}: "${comment}"`);
 }
 
 async function main() {
 	const allIssues = await getOpenIssues();
-	// Filter out pull requests
 	const issues = allIssues.filter((i) => !i.pull_request);
 
 	console.log(`Checking ${issues.length} open issues...`);
@@ -103,16 +99,15 @@ async function main() {
 		try {
 			const result = await evaluateIssue(issue);
 
-			if (result.useful) {
-				console.log('✓ useful');
+			if (result.close) {
+				await closeIssue(issue.number);
 			} else {
-				await closeIssue(issue.number, result.reason);
+				console.log('✓ keeping open');
 			}
 		} catch (err) {
 			console.error(`error: ${err.message}`);
 		}
 
-		// Be polite to the APIs
 		await new Promise((r) => setTimeout(r, 500));
 	}
 
