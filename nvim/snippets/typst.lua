@@ -11,6 +11,12 @@ return {
 	s({ trig = "i" },
 		fmt("==>", {})
 	),
+	s({ trig = "([^%s]*)", regTrig = true },
+		fmta([[$<>$ <>]], {
+			f(function(_, s) return s.captures[1] end),
+			i(1)
+		})
+	),
 	s({ trig = "cent" },
 		fmta("#align(center)[<>]", { i(1) })
 	),
