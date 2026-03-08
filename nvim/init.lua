@@ -207,11 +207,9 @@ vim.cmd([[
 for i = 1, 8 do
 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
--- NOTE (sylvan)
--- TODO (sylvan)
---
-map({ "n", "v", "x" }, ";", ":", { desc = "Self explanatory" })
-map({ "n", "v", "x" }, ":", ";", { desc = "Self explanatory" })
+map("n", "gh", "0", { desc = "Jump: Start of line" })
+map("n", "gl", "$", { desc = "Jump: End of line" })
+map({ "n", "v", "x" }, "<CR>", ":", { desc = "Self explanatory" })
 map({ "n", "v", "x" }, "<leader>v", "<Cmd>edit $MYVIMRC<CR>", { desc = "Edit " .. vim.fn.expand("$MYVIMRC") })
 map({ "n", "v", "x" }, "<leader>z", "<Cmd>e ~/.config/zsh/.zshrc<CR>", { desc = "Edit .zshrc" })
 map({ "n", "v", "x" }, "<leader>n", ":norm ", { desc = "ENTER NORM COMMAND." })
