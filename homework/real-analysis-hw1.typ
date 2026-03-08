@@ -1,5 +1,6 @@
 Sylvan Franklin | 2026-02-05
 
+
 #let neq = $eq.not$
 #let geq = $>=$
 #let leq = $<=$

@@ -18,8 +18,8 @@
   show regex("(?i)Proof"): it => [_Proof:_]
   show regex("qed"): it => align(right, $square.filled$)
   show regex("Problem \d"): it => text(weight: "bold", [#it. ])
-  set text(white)
-  set page(fill: color.rgb("#323C4A"))
+  // set text(white)
+  // set page(fill: color.rgb("#323C4A"))
   it
 }
 

@@ -5,7 +5,7 @@
 ]
 
 
-#import "../prelude.typ": *;
+#import "prelude.typ": *;
 #show: styling
 
 // color scheme
