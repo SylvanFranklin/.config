@@ -36,81 +36,81 @@ Examples of good reasons:
 - "Not enough context to know what you're trying to configure."`;
 
 async function getOpenIssues() {
-  return octokit.paginate(octokit.rest.issues.listForRepo, {
-    owner,
-    repo,
-    state: 'open',
-    per_page: 100,
-  });
+	return octokit.paginate(octokit.rest.issues.listForRepo, {
+		owner,
+		repo,
+		state: 'open',
+		per_page: 100,
+	});
 }
 
 async function botAlreadyCommented(issueNumber) {
-  const { data: comments } = await octokit.rest.issues.listComments({
-    owner,
-    repo,
-    issue_number: issueNumber,
-  });
-  return comments.some((c) => c.body.includes(BOT_TAG));
+	const { data: comments } = await octokit.rest.issues.listComments({
+		owner,
+		repo,
+		issue_number: issueNumber,
+	});
+	return comments.some((c) => c.body.includes(BOT_TAG));
 }
 
 async function evaluateIssue(issue) {
-  const content = `Title: ${issue.title}\n\nBody:\n${issue.body?.trim() || '(empty)'}`;
+	const content = `Title: ${issue.title}\n\nBody:\n${issue.body?.trim() || '(empty)'}`;
 
-  const response = await anthropic.messages.create({
-    model: 'claude-sonnet-4-20250514',
-    max_tokens: 200,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content }],
-  });
+	const response = await anthropic.messages.create({
+		model: 'claude-sonnet-4-20250514',
+		max_tokens: 200,
+		system: SYSTEM_PROMPT,
+		messages: [{ role: 'user', content }],
+	});
 
-  const text = response.content[0].text.trim();
-  return JSON.parse(text);
+	const text = response.content[0].text.trim();
+	return JSON.parse(text);
 }
 
 async function postComment(issueNumber, reason) {
-  await octokit.rest.issues.createComment({
-    owner,
-    repo,
-    issue_number: issueNumber,
-    body: `${reason}\n\n${BOT_TAG}`,
-  });
-  console.log(`  → Commented on #${issueNumber}`);
+	await octokit.rest.issues.createComment({
+		owner,
+		repo,
+		issue_number: issueNumber,
+		body: `${reason}\n\n${BOT_TAG}`,
+	});
+	console.log(`  → Commented on #${issueNumber}`);
 }
 
 async function main() {
-  const allIssues = await getOpenIssues();
-  // Filter out pull requests
-  const issues = allIssues.filter((i) => !i.pull_request);
+	const allIssues = await getOpenIssues();
+	// Filter out pull requests
+	const issues = allIssues.filter((i) => !i.pull_request);
 
-  console.log(`Checking ${issues.length} open issues...`);
+	console.log(`Checking ${issues.length} open issues...`);
 
-  for (const issue of issues) {
-    process.stdout.write(`#${issue.number} "${issue.title}" — `);
+	for (const issue of issues) {
+		process.stdout.write(`#${issue.number} "${issue.title}" — `);
 
-    const alreadyDone = await botAlreadyCommented(issue.number);
-    if (alreadyDone) {
-      console.log('skipped (already triaged)');
-      continue;
-    }
+		const alreadyDone = await botAlreadyCommented(issue.number);
+		if (alreadyDone) {
+			console.log('skipped (already triaged)');
+			continue;
+		}
 
-    try {
-      const result = await evaluateIssue(issue);
+		try {
+			const result = await evaluateIssue(issue);
 
-      if (result.useful) {
-        console.log('✓ useful');
-      } else {
-        console.log(`✗ not useful: ${result.reason}`);
-        await postComment(issue.number, result.reason);
-      }
-    } catch (err) {
-      console.error(`error: ${err.message}`);
-    }
+			if (result.useful) {
+				console.log('✓ useful');
+			} else {
+				console.log(`✗ not useful: ${result.reason}`);
+				await postComment(issue.number, result.reason);
+			}
+		} catch (err) {
+			console.error(`error: ${err.message}`);
+		}
 
-    // Be polite to the APIs
-    await new Promise((r) => setTimeout(r, 500));
-  }
+		// Be polite to the APIs
+		await new Promise((r) => setTimeout(r, 500));
+	}
 
-  console.log('Done.');
+	console.log('Done.');
 }
 
 main();
