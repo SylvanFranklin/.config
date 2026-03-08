@@ -1,7 +1,7 @@
 const Anthropic = require('@anthropic-ai/sdk');
 const { Octokit } = require('@octokit/rest');
 
-const anthropic = new Anthropic.default({ apiKey: process.env.ANTHROPIC_API_KEY });
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
 
@@ -22,15 +22,12 @@ An issue is NOT USEFUL if it:
 - Lacks context or reproduction steps for bugs
 - Is off-topic (not about configuration)
 
-Respond ONLY with raw JSON, no markdown, no explanation:
-{
-  "useful": true or false,
-  "reason": "one sentence, max 15 words, blunt and direct"
-}
+Respond ONLY with raw JSON. No markdown fences, no explanation, no extra text — just the JSON object:
+{"useful": true, "reason": "..."}
 
-The reason will be posted publicly as a GitHub comment. Write like a person, not a bot.
+Write the reason like a person, not a bot. Max 15 words. Blunt and direct.
 No "Unfortunately", no "I notice that", no "It seems like". Just say what the problem is.
-Examples of good reasons:
+Examples:
 - "This is asking for a website review, not a config issue."
 - "No reproduction steps — can't debug without them."
 - "Not enough context to know what you're trying to configure."`;
@@ -44,7 +41,7 @@ async function getOpenIssues() {
 	});
 }
 
-async function botAlreadyCommented(issueNumber) {
+async function botAlreadyTriaged(issueNumber) {
 	const { data: comments } = await octokit.rest.issues.listComments({
 		owner,
 		repo,
@@ -63,18 +60,28 @@ async function evaluateIssue(issue) {
 		messages: [{ role: 'user', content }],
 	});
 
-	const text = response.content[0].text.trim();
-	return JSON.parse(text);
+	const raw = response.content[0].text.trim();
+	// Strip markdown fences if Claude wraps the JSON anyway
+	const clean = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
+	return JSON.parse(clean);
 }
 
-async function postComment(issueNumber, reason) {
+async function closeIssue(issueNumber, reason) {
+	// Leave a brief comment so the author knows why, then close
 	await octokit.rest.issues.createComment({
 		owner,
 		repo,
 		issue_number: issueNumber,
 		body: `${reason}\n\n${BOT_TAG}`,
 	});
-	console.log(`  → Commented on #${issueNumber}`);
+	await octokit.rest.issues.update({
+		owner,
+		repo,
+		issue_number: issueNumber,
+		state: 'closed',
+		state_reason: 'not_planned',
+	});
+	console.log(`  → Closed #${issueNumber}: ${reason}`);
 }
 
 async function main() {
@@ -87,7 +94,7 @@ async function main() {
 	for (const issue of issues) {
 		process.stdout.write(`#${issue.number} "${issue.title}" — `);
 
-		const alreadyDone = await botAlreadyCommented(issue.number);
+		const alreadyDone = await botAlreadyTriaged(issue.number);
 		if (alreadyDone) {
 			console.log('skipped (already triaged)');
 			continue;
@@ -99,8 +106,7 @@ async function main() {
 			if (result.useful) {
 				console.log('✓ useful');
 			} else {
-				console.log(`✗ not useful: ${result.reason}`);
-				await postComment(issue.number, result.reason);
+				await closeIssue(issue.number, result.reason);
 			}
 		} catch (err) {
 			console.error(`error: ${err.message}`);
