@@ -1,0 +1,17 @@
+# For mounting devices and volume
+# Default binds: https://github.com/yazi-rs/plugins/tree/main/mount.yazi
+[[mgr.prepend_keymap]]
+on  = "M"
+run = "plugin mount"
+
+# Automatically copy yanked files to the clipboard
+[[mgr.prepend_keymap]]
+on = [ "y" ]
+run = [ "yank", "plugin clippy" ]
+
+# For deleting and managing bin
+# Default binds: https://github.com/uhs-robert/recycle-bin.yazi
+[[mgr.prepend_keymap]]
+on = [ "R", "b" ]
+run = "plugin recycle-bin"
+desc = "Open Recycle Bin menu"
