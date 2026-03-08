@@ -8,7 +8,7 @@ on:
 jobs:
   triage:
     runs-on: ubuntu-latest
-    environment: triage bot
+    environment: Triage Bot
     permissions:
       issues: write
     steps:
