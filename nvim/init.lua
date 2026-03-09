@@ -217,7 +217,6 @@ vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { noremap = true, silent = true })
 map("n", "gl", "$", { desc = "Jump: End of line" })
-vim.keymap.set("n", "<leader>qe", ":e!<CR>", { desc = "Open from disk" })
 
 map({ "n", "v", "x" }, "<CR>", ":", { desc = "Self explanatory" })
 

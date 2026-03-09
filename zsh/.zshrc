@@ -92,3 +92,4 @@ if [ -f '/Users/sf/y/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sf/y
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # gh repo create <REPO_NAME> --public --source=. --remote=origin --push
+export PATH="/Users/sylvanfranklin/.bun/bin:$PATH"
