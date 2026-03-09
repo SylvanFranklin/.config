@@ -1,5 +1,3 @@
-
-
 Unknown
 Watching sylvan cycle:
 wow he's so relatable ->
@@ -13,22 +11,14 @@ both harm each other a lot and I think thats cool
 here we don't say "Mountain" we say "Two-block parking lot" and I think that is
 beautiful
 
-
-finn
-There should also be a rule that if someone says something super insightful or
-funny, you're allowed to delete their message and then repost it as if you
-thought of it
-
 mirthrilsb:
 you should make a leaderboard of all the stream viewers that uses some
 completely arbitrary metric that you do not disclose and just have it up on
 stream in the corner
 
-
 Poseidon
 have a discord session where you read absurd verbose research paper cause that
 world has great ideas but don't explain shit clearly
-
 
 Anouarac
 start a chann where every week you post 1 new thing to try where there's no
@@ -55,7 +45,7 @@ Brad Warner
 Faust, Milton (paradise lost)
 
 Affective Neuroscience
+
 Rewire.
 
-
-
+Ghost in the shell 1995
