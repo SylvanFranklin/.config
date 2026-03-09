@@ -90,3 +90,5 @@ if [ -f '/Users/sf/y/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sf/y/googl
 if [ -f '/Users/sf/y/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/completion.zsh.inc'; fi
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# gh repo create <REPO_NAME> --public --source=. --remote=origin --push

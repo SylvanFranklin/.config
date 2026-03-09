@@ -207,9 +207,20 @@ vim.cmd([[
 for i = 1, 8 do
 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
+local opts = { noremap = true, silent = true }
 map("n", "gh", "0", { desc = "Jump: Start of line" })
+vim.keymap.set("n", "yag", ":%y<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "vag", "ggVG", { noremap = true, silent = true })
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("v", "<", "<gv", opts)
+vim.keymap.set("v", ">", ">gv", opts)
+vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { noremap = true, silent = true })
 map("n", "gl", "$", { desc = "Jump: End of line" })
+vim.keymap.set("n", "<leader>qe", ":e!<CR>", { desc = "Open from disk" })
+
 map({ "n", "v", "x" }, "<CR>", ":", { desc = "Self explanatory" })
+
 map({ "n", "v", "x" }, "<leader>v", "<Cmd>edit $MYVIMRC<CR>", { desc = "Edit " .. vim.fn.expand("$MYVIMRC") })
 map({ "n", "v", "x" }, "<leader>z", "<Cmd>e ~/.config/zsh/.zshrc<CR>", { desc = "Edit .zshrc" })
 map({ "n", "v", "x" }, "<leader>n", ":norm ", { desc = "ENTER NORM COMMAND." })
