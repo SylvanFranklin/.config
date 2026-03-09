@@ -4,6 +4,7 @@
   - And stream to remove LeoLectures
 - Working on the aesthetic. Simpler thumbnails, fonts, style.
 - Technical person of the week podcast.
+- Remove email from channl description. 
 
 = Streaming improvements
 - Auto sensor dumb, redundant questions.
@@ -19,17 +20,18 @@
       - Dean on Lean and formalization
       - Dzjonie on many math topics.
 - Start working on a project with Tom.
+- Nonsense linkedin
+
 
 - CULTURAL
   - Server hackathons / jams.
   - Banning RifRaf, anti rifraf protocol, dedicated rifraf "pen".
 
 = Ricing and trying new software / workflow
-- Glove80 redo
 - Tuna for MacOS, acme, Language Tool
-- Self hosted niche
 - alt-tab cleanup and configuration
-- Helium browser
+- Hotkey for help.
+- Self hosted niche
 
 = Software projects
 - Nonsense (clean up, rev2, reinvent).
@@ -45,3 +47,5 @@
 - RSS / blogs / alternative media sources. For cutting youtube.
 ah there are chinese internet aggregators
 - Ewan obsidian follow up.
+
+- End stream by saying I don't wanna
