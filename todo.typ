@@ -1,10 +1,17 @@
+
+= RICE
+- navidrome for music. 
+
+https://www.youtube.com/watch?v=mNwhdghR-VQ
+
+
 = Channel Direction
 - Purge bot for stupid comments.
   - Purge Bot Safe role on discord.
   - And stream to remove LeoLectures
 - Working on the aesthetic. Simpler thumbnails, fonts, style.
 - Technical person of the week podcast.
-- Remove email from channl description. 
+- Remove email from channl description.
 
 = Streaming improvements
 - Auto sensor dumb, redundant questions.
@@ -27,11 +34,6 @@
   - Server hackathons / jams.
   - Banning RifRaf, anti rifraf protocol, dedicated rifraf "pen".
 
-= Ricing and trying new software / workflow
-- Tuna for MacOS, acme, Language Tool
-- alt-tab cleanup and configuration
-- Hotkey for help.
-- Self hosted niche
 
 = Software projects
 - Nonsense (clean up, rev2, reinvent).
