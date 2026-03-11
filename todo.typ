@@ -1,6 +1,6 @@
 
 = RICE
-- navidrome for music. 
+- navidrome for music.
 
 https://www.youtube.com/watch?v=mNwhdghR-VQ
 
@@ -38,7 +38,6 @@ https://www.youtube.com/watch?v=mNwhdghR-VQ
 = Software projects
 - Nonsense (clean up, rev2, reinvent).
 - Get personal website pdf hosted.
-- Thavlik pair programming.
 
 = Channel Merch
 - Apocalypse march, intricate mechanistic designs.
@@ -51,3 +50,9 @@ ah there are chinese internet aggregators
 - Ewan obsidian follow up.
 
 - End stream by saying I don't wanna
+
+RADIO
+read autobiographies.
+https://nickbostrom.com/papers/astronomical-waste/
+highlight reels, videos with lots of microclips.
+self hosted meeting software.
