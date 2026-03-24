@@ -1,7 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "instructions": ["~/.config/opencode/rules.md"],
-  "plugin": ["opencode-antigravity-auth@latest"],
+  "plugin": [
+    "opencode-antigravity-auth@latest",
+    "openviking-memory-plugin@latest"
+  ],
   "permission": {
     "read": {
       "~/.config/opencode/get-shit-done/*": "allow"
