@@ -37,7 +37,6 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-neotest/nvim-nio" }
 })
 
-
 require("dap-lldb").setup()
 local dap, dapui = require("dap"), require("dapui")
 
@@ -227,6 +226,7 @@ map({ "n", "v", "x" }, "<leader>n", ":norm ", { desc = "ENTER NORM COMMAND." })
 map({ "n", "v", "x" }, "<leader>o", "<Cmd>source %<CR>", { desc = "Source " .. vim.fn.expand("$MYVIMRC") })
 map({ "n", "v", "x" }, "<leader>O", "<Cmd>restart<CR>", { desc = "Restart vim." })
 map({ "n", "v", "x" }, "<C-s>", [[:s/\V]], { desc = "Enter substitue mode in selection" })
+map({ "n", "v", "x" }, "<leader>ci", [[<Cmd>tabedit .gitignore<CR>]], { desc = "Enter substitue mode in selection" })
 map({ "n", "v", "x" }, "<leader>lf", vim.lsp.buf.format, { desc = "Format current buffer" })
 map({ "v", "x", "n" }, "<C-y>", '"+y', { desc = "System clipboard yank." })
 map({ "n" }, "<leader>f", builtin.find_files, { desc = "Telescope live grep" })
@@ -255,7 +255,7 @@ map({ "n" }, "<M-e>", "<cmd>resize -2<CR>")
 map({ "n" }, "<M-i>", "<cmd>vertical resize +5<CR>")
 map({ "n" }, "<M-m>", "<cmd>vertical resize -5<CR>")
 map({ "n" }, "<leader>e", "<cmd>Oil<CR>")
-map({ "n" }, "<leader>c", "1z=")
+map({ "n" }, "<leader>cs", "1z=")
 map({ "n" }, "<C-q>", ":copen<CR>", { silent = true })
 map({ "n" }, "<leader>w", "<Cmd>update<CR>", { desc = "Write the current buffer." })
 map({ "n" }, "<leader>q", "<Cmd>:quit<CR>", { desc = "Quit the current buffer." })
@@ -279,3 +279,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 vim.cmd('colorscheme ' .. default_color)
 -- Custom statusbar highlight
+--
+--
+--
+--
