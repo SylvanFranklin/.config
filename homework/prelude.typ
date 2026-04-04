@@ -15,17 +15,22 @@
 #let cong = math.eq.triple
 #let en = $V_ep$
 #let problem = counter("problem")
+#let problem-heading = regex("(?i)Problem(?: (\\d+))?")
 
 
 #let styling = it => {
   show regex("(?i)Proof"): it => [_Proof:_]
   show regex("qed"): it => align(right, $square.filled$)
-  show regex("(?i)Problem"): it => {
-    problem.step()
+  show problem-heading: it => {
+    let matched = it.text.match(problem-heading)
+    let explicit = matched.captures.at(0)
+    if explicit != none {
+      problem.update(int(explicit))
+    } else {
+      problem.step()
+    }
     context text(weight: "bold", [Problem #problem.display()])
   }
   it
 }
-
-
 
