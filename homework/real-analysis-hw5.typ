@@ -62,15 +62,13 @@ Problem
 
 proof
 
-We will show that the sequence is Cauchy. Take $1/n < 1/m$ WLOG.  
-By the mean value theorem $f'(c) = (f(1/m) - f(1/n))/(1/m - 1/n)$. 
-Now since $f' < 1$, we have $f(1/m) - f(1/n) < (1/m - 1/n)$, now 
-$|a_m - a_n| < |1/m + 1/n|$. Let $e>0$. Choose $N$, st. $2/N > ep$. 
-Now we have for $m, n >= N$  $|a_m - a_n| < |1/N + 1/N| < ep$. 
+We will show that the sequence is Cauchy. Take $1/n < 1/m$ WLOG.
+By the mean value theorem $f'(c) = (f(1/m) - f(1/n))/(1/m - 1/n)$.
+Now since $f' < 1$, we have $f(1/m) - f(1/n) < (1/m - 1/n)$, now
+$|a_m - a_n| < |1/m + 1/n|$. Let $e>0$. Choose $N$, st. $2/N > ep$.
+Now we have for $m, n >= N$  $|a_m - a_n| < |1/N + 1/N| < ep$.
 
 qed
-
-
 
 
 
