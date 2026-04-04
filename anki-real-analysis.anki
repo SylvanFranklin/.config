@@ -1,0 +1,82 @@
+Remove all <br> as they do not paste well.
+Below is an example that's good
+
+What is the definition of the derivative of \(f\) at \(a\)?
+A function \(f\) is differentiable at \(a\) if the limit \[f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}\] exists as a finite real number.
+
+These should all be of that form
+
+What does it mean for \(f\) to be continuous at \(a\)?
+A function \(f\) is continuous at \(a\) if \[\lim_{x\to a} f(x)=f(a).\] Equivalently: for every \(\varepsilon>0\), there exists \(\delta>0\) such that if \(|x-a|<\delta\), then \(|f(x)-f(a)|<\varepsilon\).
+
+What is the \(\varepsilon\)-\(\delta\) definition of \(\lim_{x\to a} f(x)=L\)?
+\[\lim_{x\to a} f(x)=L\] means: for every \(\varepsilon>0\), there exists \(\delta>0\) such that if \(0<|x-a|<\delta\), then \(|f(x)-L|<\varepsilon\).
+
+What is the definition of convergence of a sequence \((a_n)\) to \(L\)?
+The sequence \((a_n)\) converges to \(L\) if for every \(\varepsilon>0\), there exists \(N\in\mathbb{N}\) such that for all \(n\ge N\), \[|a_n-L|<\varepsilon.\]
+
+What is the definition of uniform continuity of \(f\) on a set \(A\)?
+A function \(f:A\to\mathbb{R}\) is uniformly continuous on \(A\) if for every \(\varepsilon>0\), there exists \(\delta>0\) such that for all \(x,y\in A\), if \(|x-y|<\delta\), then \[|f(x)-f(y)|<\varepsilon.\] The key point is that \(\delta\) depends only on \(\varepsilon\), not on the point.
+
+State the Intermediate Value Theorem (IVT).
+If \(f\) is continuous on the closed interval \([a,b]\), and \(N\) is any number between \(f(a)\) and \(f(b)\), then there exists \(c\in[a,b]\) such that \[f(c)=N.\]
+
+State the Extreme Value Theorem (EVT).
+If \(f\) is continuous on the closed interval \([a,b]\), then \(f\) attains both an absolute maximum and an absolute minimum on \([a,b]\). That is, there exist \(x_{\min},x_{\max}\in[a,b]\) such that \[f(x_{\min})\le f(x)\le f(x_{\max})\quad\text{for all }x\in[a,b].\]
+
+State Rolle's Theorem.
+If \(f\) is continuous on \([a,b]\), differentiable on \((a,b)\), and \(f(a)=f(b)\), then there exists \(c\in(a,b)\) such that \[f'(c)=0.\]
+
+State the Mean Value Theorem (MVT).
+If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then there exists \(c\in(a,b)\) such that \[f'(c)=\frac{f(b)-f(a)}{b-a}.\]
+
+Why is Rolle's Theorem a special case of the Mean Value Theorem?
+If \(f(a)=f(b)\), then the MVT conclusion becomes \[f'(c)=\frac{f(b)-f(a)}{b-a}=0,\] which is exactly Rolle's Theorem.
+
+What is the geometric meaning of the Mean Value Theorem?
+If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then at some point \(c\in(a,b)\), the tangent line has the same slope as the secant line through \((a,f(a))\) and \((b,f(b))\).
+
+What does differentiable at \(a\) imply about continuity at \(a\)?
+If \(f\) is differentiable at \(a\), then \(f\) is continuous at \(a\). Differentiability is strictly stronger than continuity.
+
+What is the definition of a Cauchy sequence?
+A sequence \((a_n)\) is Cauchy if for every \(\varepsilon>0\), there exists \(N\in\mathbb{N}\) such that for all \(m,n\ge N\), \[|a_n-a_m|<\varepsilon.\]
+
+What is the completeness property of \(\mathbb{R}\)?
+Every Cauchy sequence of real numbers converges to a real number. Equivalently, every nonempty subset of \(\mathbb{R}\) that is bounded above has a least upper bound (supremum).
+
+What is the identity for \(\sin A-\sin B\)?
+\[\sin A-\sin B = 2\cos\left(\frac{A+B}{2}\right)\sin\left(\frac{A-B}{2}\right).\]
+
+What must you check before applying Rolle's Theorem?
+You must check all three hypotheses: \(f\) is continuous on \([a,b]\), \(f\) is differentiable on \((a,b)\), and \(f(a)=f(b)\).
+
+What must you check before applying the Mean Value Theorem?
+You must check both hypotheses: \(f\) is continuous on \([a,b]\) and \(f\) is differentiable on \((a,b)\).
+
+If \(f'(x)=0\) for every \(x\in(a,b)\), what does the Mean Value Theorem imply about \(f\)?
+\(f\) is constant on \((a,b)\). For any \(x<y\) in the interval, the MVT gives a \(c\in(x,y)\) with \[f'(c)=\frac{f(y)-f(x)}{y-x}=0,\] so \(f(y)=f(x)\).
+
+If \(f'(x)>0\) for every \(x\in(a,b)\), what does the Mean Value Theorem imply?
+\(f\) is strictly increasing on \((a,b)\). For \(x<y\), the MVT gives \[f(y)-f(x)=f'(c)(y-x)\] for some \(c\in(x,y)\). Since both factors on the right are positive, \(f(y)>f(x)\).
+
+How does the Mean Value Theorem give the estimate \(|f(b)-f(a)|\le M|b-a|\)?
+If \(|f'(x)|\le M\) on \((a,b)\), then by the MVT there is \(c\in(a,b)\) such that \[f(b)-f(a)=f'(c)(b-a).\] Taking absolute values gives \[|f(b)-f(a)|=|f'(c)||b-a|\le M|b-a|.\]
+
+If \(f\) is differentiable on \((a,b)\) and continuous on \([a,b]\) with \(f(a)=f(b)\), what are you guaranteed to find?
+By Rolle's Theorem, there exists \(c\in(a,b)\) such that \[f'(c)=0.\]
+
+If \(f(0)=2\) and \(f(3)=11\), what slope does the Mean Value Theorem guarantee occurs somewhere in \((0,3)\)?
+The secant slope is \[\frac{f(3)-f(0)}{3-0}=\frac{11-2}{3}=3.\] So the MVT guarantees some \(c\in(0,3)\) with \(f'(c)=3\).
+
+How can you prove that a differentiable function is constant on an interval if it takes the same value at every pair of endpoints?
+Use Rolle's Theorem on any subinterval \([x,y]\). Since \(f(x)=f(y)\), there exists \(c\in(x,y)\) with \(f'(c)=0\). More directly, if you know \(f'(x)=0\) everywhere, then MVT implies \(f(y)-f(x)=0\) for all \(x,y\), so \(f\) is constant.
+
+If two differentiable functions \(f\) and \(g\) satisfy \(f'(x)=g'(x)\) on an interval, what can you conclude?
+\(f-g\) has derivative \(0\) everywhere on the interval, so by the Mean Value Theorem \(f-g\) is constant. Therefore \[f(x)=g(x)+C\] for some constant \(C\).
+
+Why does the function \(f(x)=|x|\) on \([-1,1]\) show that differentiability is necessary in Rolle's Theorem?
+\(f\) is continuous on \([-1,1]\) and satisfies \(f(-1)=f(1)\), but it is not differentiable at \(0\). There is no \(c\in(-1,1)\) with \(f'(c)=0\), since \(f'(x)=-1\) for \(x<0\) and \(f'(x)=1\) for \(x>0\).
+
+If \(f'(x)\le 0\) for all \(x\in(a,b)\), what does the Mean Value Theorem imply?
+\(f\) is nonincreasing on \((a,b)\). For \(x<y\), the MVT gives \[f(y)-f(x)=f'(c)(y-x)\] for some \(c\in(x,y)\). Since \(f'(c)\le 0\) and \(y-x>0\), we get \(f(y)\le f(x)\).
