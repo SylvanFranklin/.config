@@ -1,0 +1,18 @@
+#separator:Tab
+#html:true
+#notetype:Basic
+#deck:Real Analysis::Definitions
+#columns:Front	Back	Tags
+What is the definition of the derivative of \(f\) at \(a\)?	A function \(f\) is differentiable at \(a\) if the limit<br>\[f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}\]<br>exists as a finite real number.	real-analysis derivative definition
+What does it mean for \(f\) to be continuous at \(a\)?	A function \(f\) is continuous at \(a\) if<br>\[\lim_{x\to a} f(x)=f(a).\]<br>Equivalently: for every \(\varepsilon>0\), there exists \(\delta>0\) such that if \(|x-a|<\delta\), then \(|f(x)-f(a)|<\varepsilon\).	real-analysis continuity definition
+What is the \(\varepsilon\)-\(\delta\) definition of \(\lim_{x\to a} f(x)=L\)?	\[\lim_{x\to a} f(x)=L\]<br>means: for every \(\varepsilon>0\), there exists \(\delta>0\) such that if \(0<|x-a|<\delta\), then \(|f(x)-L|<\varepsilon\).	real-analysis limits epsilon-delta definition
+What is the definition of convergence of a sequence \((a_n)\) to \(L\)?	The sequence \((a_n)\) converges to \(L\) if for every \(\varepsilon>0\), there exists \(N\in\mathbb{N}\) such that for all \(n\ge N\),<br>\[|a_n-L|<\varepsilon.\]	real-analysis sequences definition
+What is the definition of uniform continuity of \(f\) on a set \(A\)?	A function \(f:A\to\mathbb{R}\) is uniformly continuous on \(A\) if for every \(\varepsilon>0\), there exists \(\delta>0\) such that for all \(x,y\in A\), if \(|x-y|<\delta\), then<br>\[|f(x)-f(y)|<\varepsilon.\]<br>The key point is that \(\delta\) depends only on \(\varepsilon\), not on the point.	real-analysis continuity uniform-continuity definition
+State the Intermediate Value Theorem (IVT).	If \(f\) is continuous on the closed interval \([a,b]\), and \(N\) is any number between \(f(a)\) and \(f(b)\), then there exists \(c\in[a,b]\) such that<br>\[f(c)=N.\]	real-analysis ivt theorem
+State the Extreme Value Theorem (EVT).	If \(f\) is continuous on the closed interval \([a,b]\), then \(f\) attains both an absolute maximum and an absolute minimum on \([a,b]\). That is, there exist \(x_{\min},x_{\max}\in[a,b]\) such that<br>\[f(x_{\min})\le f(x)\le f(x_{\max})\quad\text{for all }x\in[a,b].\]	real-analysis evt theorem
+State Rolle's Theorem.	If \(f\) is continuous on \([a,b]\), differentiable on \((a,b)\), and \(f(a)=f(b)\), then there exists \(c\in(a,b)\) such that<br>\[f'(c)=0.\]	real-analysis rolle theorem
+State the Mean Value Theorem (MVT).	If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then there exists \(c\in(a,b)\) such that<br>\[f'(c)=\frac{f(b)-f(a)}{b-a}.\]	real-analysis mvt theorem
+What does differentiable at \(a\) imply about continuity at \(a\)?	If \(f\) is differentiable at \(a\), then \(f\) is continuous at \(a\). Differentiability is strictly stronger than continuity.	real-analysis derivative continuity fact
+What is the definition of a Cauchy sequence?	A sequence \((a_n)\) is Cauchy if for every \(\varepsilon>0\), there exists \(N\in\mathbb{N}\) such that for all \(m,n\ge N\),<br>\[|a_n-a_m|<\varepsilon.\]	real-analysis sequences cauchy definition
+What is the completeness property of \(\mathbb{R}\)?	Every Cauchy sequence of real numbers converges to a real number. Equivalently, every nonempty subset of \(\mathbb{R}\) that is bounded above has a least upper bound (supremum).	real-analysis completeness definition
+What is the identity for \(\sin A-\sin B\)?	\[\sin A-\sin B = 2\cos\left(\frac{A+B}{2}\right)\sin\left(\frac{A-B}{2}\right).\]	real-analysis trigonometry identity

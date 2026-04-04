@@ -2,7 +2,6 @@
 
 DIRS=(
     "$HOME/documents/notes"
-    "$HOME/documents/work"
     "$HOME/documents/projects"
     "$HOME/downloads"
     "$HOME/documents/textbooks"

@@ -1,0 +1,3 @@
+- culture bot
+- go full vim user. Fuck vibe coding. 
+- Eroding your skills. 
