@@ -14,11 +14,18 @@
 #let r3 = $RR^3$
 #let cong = math.eq.triple
 #let en = $V_ep$
+#let problem = counter("problem")
+
 
 #let styling = it => {
   show regex("(?i)Proof"): it => [_Proof:_]
   show regex("qed"): it => align(right, $square.filled$)
-  show regex("Problem \d"): it => text(weight: "bold", [#it. ])
+  show regex("(?i)Problem"): it => {
+    problem.step()
+    context text(weight: "bold", [Problem #problem.display()])
+  }
   it
 }
+
+
 

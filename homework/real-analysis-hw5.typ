@@ -4,7 +4,7 @@ Sylvan Franklin | Real Analysis | Homework 5
 
 #line(length: 100%, stroke: 0.5pt)
 
-Problem 1
+Problem
 
 (a) $f(x) = sin(1/x)$
 
@@ -45,8 +45,8 @@ $
 qed
 
 
-Problem 2
+Problem
 
-
+Problem
 
 
