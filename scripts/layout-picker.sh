@@ -19,8 +19,7 @@ case $selected in
         aerospace layout tiles horizontal vertical
         ;;
     obs)
-        # Open OBS on its workspace
-        aerospace workspace o
-        open -a OBS
+        # Open OBS on its media workspace
+        /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair 7 com.obsproject.obs-studio app:OBS
         ;;
 esac
