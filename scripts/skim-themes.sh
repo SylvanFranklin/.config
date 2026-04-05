@@ -27,6 +27,18 @@ SKIM_THEME_SESSION=(
     --cycle
 )
 
+SKIM_THEME_LINKS=(
+    --margin=0
+    --layout=reverse-list
+    --height=100%
+    --prompt='links> '
+    --header='↗ Open link • ctrl-e edit • ctrl-y copy'
+    --info=inline
+    --delimiter='	'
+    --color='bg+:#111111,fg+:#f2f2f2,hl:#8bd3dd,hl+:#c3f0f5,border:#4f5d75,prompt:#ffb703,info:#a8dadc,pointer:#e63946,header:#ced4da'
+    --cycle
+)
+
 skim_theme_flags() {
     local theme="${1:-}"
     local upper_theme="${theme^^}"

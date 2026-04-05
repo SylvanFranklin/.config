@@ -24,3 +24,4 @@ keybind = super+t=text:\x00\x63
 keybind = super+w=text:\x00\x78
 keybind = super+f=text:\x00\x66
 keybind = super+o=text:\x00\x4f
+keybind = super+p=text:\x00\x70
