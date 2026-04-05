@@ -19,6 +19,7 @@ rows=$(tail -n +2 "$LINKS_FILE")
 selection=$(
     printf '%s\n' "$rows" \
         | sk "${SKIM_THEME_LINKS[@]}" \
+            --delimiter=$'\t' \
             --with-nth 1,2 \
             --nth 1,2 \
             --expect=ctrl-e,ctrl-y

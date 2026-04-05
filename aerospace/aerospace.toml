@@ -9,7 +9,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 0
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
-persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK']
+persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK', 'DAVINCI']
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [key-mapping]
@@ -66,6 +66,7 @@ alt-6 = 'workspace FIGMA'
 alt-7 = 'workspace KEEPASS'
 alt-8 = 'workspace ANKI'
 alt-9 = 'workspace SIOYEK'
+alt-0 = 'workspace DAVINCI'
 alt-tab = 'workspace-back-and-forth'
 
 # Send window to workspace
@@ -78,6 +79,7 @@ alt-shift-6 = 'move-node-to-workspace FIGMA'
 alt-shift-7 = 'move-node-to-workspace KEEPASS'
 alt-shift-8 = 'move-node-to-workspace ANKI'
 alt-shift-9 = 'move-node-to-workspace SIOYEK'
+alt-shift-0 = 'move-node-to-workspace DAVINCI'
 
 # Monitor flow
 alt-left = 'focus-monitor --wrap-around left'
@@ -88,14 +90,14 @@ alt-shift-m = 'move-workspace-to-monitor --wrap-around next'
 
 # App launchers: letters are always "open/focus app on its home workspace"
 # Workspace map:
-# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK
+# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI
 alt-a = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty app:Ghostty'
 alt-w = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh HELIUM net.imput.helium app:Helium'
 alt-d = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair VESKTOP dev.vencord.vesktop app:Vesktop'
 alt-g = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair MSG com.apple.MobileSMS app:Messages'
 alt-f = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair FIGMA com.figma.Desktop'
-alt-o = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair FIGMA com.obsproject.obs-studio app:"OBS"'
-alt-v = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair FIGMA com.blackmagic-design.DaVinciResolveLite app:"DaVinci Resolve"'
+alt-o = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair DAVINCI com.obsproject.obs-studio app:"OBS"'
+alt-v = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair DAVINCI com.blackmagic-design.DaVinciResolveLite app:"DaVinci Resolve"'
 alt-e = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair FINDER com.apple.finder app:Finder'
 alt-p = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair KEEPASS org.keepassxc.keepassxc app:KeePassXC'
 alt-n = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.launcher app:Anki'
@@ -135,11 +137,11 @@ run = 'move-node-to-workspace FIGMA'
 
 [[on-window-detected]]
 if.app-id = 'com.obsproject.obs-studio'
-run = 'move-node-to-workspace FIGMA'
+run = 'move-node-to-workspace DAVINCI'
 
 [[on-window-detected]]
 if.app-id = 'com.blackmagic-design.DaVinciResolveLite'
-run = 'move-node-to-workspace FIGMA'
+run = 'move-node-to-workspace DAVINCI'
 
 [[on-window-detected]]
 if.app-id = 'org.keepassxc.keepassxc'
