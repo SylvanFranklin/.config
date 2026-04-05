@@ -1,0 +1,33 @@
+:root {
+  --font-primary: "JetBrainsMono", monospace;
+}
+
+/* Hide server list (command k is your friend) */
+nav[class*="guilds"] {
+  display: none !important;
+}
+
+/* Hide help button */
+[class*="toolbar"] button[aria-label="Help"] {
+  display: none !important;
+}
+
+/* Hide the help button that links to support.discord.com */
+a[href="https://support.discord.com"] {
+  display: none !important;
+}
+
+/* Hide invite button in server header––this will probably break at some point */
+header span:nth-child(2) > div {
+  display: none !important;
+}
+
+/* Hide only the boost badge next to server name */
+[class*="guildBadgeAndName"] > div {
+  display: none !important;
+}
+
+/* Hide any button inside the gift form buttons container––this will also break at some point */
+.scrollableContainer__74017 .buttons__74017 > div.button__74017 {
+  display: none !important;
+}
