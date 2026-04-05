@@ -2,10 +2,7 @@
 
 DIRS=(
     "$HOME/documents/notes"
-    "$HOME/documents/projects"
-    "$HOME/downloads"
     "$HOME/documents/textbooks"
-    "$HOME"
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

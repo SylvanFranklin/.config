@@ -10,13 +10,12 @@ SKIM_THEME_PDF=(
 )
 
 SKIM_THEME_SESSION=(
-    --height=100%
-    --layout=reverse-list
+    --height=80%
     --min-height=20
+    --layout=reverse-list
+    --selector='▌'
 		--info=default
     --scheme=path
-		--cycle
-    --delimiter='	'
 )
 
 SKIM_THEME_LINKS=(
