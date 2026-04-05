@@ -9,7 +9,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 0
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
-persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK', 'DAVINCI']
+persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK', 'DAVINCI', 'RAYCASTAI', 'AGENTHARNESS']
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [key-mapping]
@@ -32,8 +32,10 @@ alt-backtick = 'flatten-workspace-tree'
 alt-equal = 'balance-sizes'
 alt-semicolon = 'mode service'
 
+# Agent harness
+alt-h = 'workspace AGENTHARNESS'
+
 # Vim-like focus
-alt-h = 'focus left'
 alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
@@ -87,10 +89,11 @@ alt-right = 'focus-monitor --wrap-around right'
 alt-shift-left = 'move-node-to-monitor --focus-follows-window --wrap-around left'
 alt-shift-right = 'move-node-to-monitor --focus-follows-window --wrap-around right'
 alt-shift-m = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-y = 'move-node-to-workspace RAYCASTAI'
 
 # App launchers: letters are always "open/focus app on its home workspace"
 # Workspace map:
-# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI
+# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS
 alt-a = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty app:Ghostty'
 alt-w = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh HELIUM net.imput.helium app:Helium'
 alt-d = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair VESKTOP dev.vencord.vesktop app:Vesktop'
@@ -102,6 +105,7 @@ alt-e = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh
 alt-p = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair KEEPASS org.keepassxc.keepassxc app:KeePassXC'
 alt-n = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.launcher app:Anki'
 alt-r = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair SIOYEK info.sioyek.sioyek'
+alt-y = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/raycast-ai.sh'
 
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
@@ -158,3 +162,16 @@ run = 'move-node-to-workspace ANKI'
 [[on-window-detected]]
 if.app-id = 'info.sioyek.sioyek'
 run = 'move-node-to-workspace SIOYEK'
+
+[[on-window-detected]]
+if.app-id = 'com.t3tools.t3code'
+run = 'move-node-to-workspace AGENTHARNESS'
+
+[[on-window-detected]]
+if.app-id = 'com.openai.codex'
+run = 'move-node-to-workspace AGENTHARNESS'
+
+[[on-window-detected]]
+if.app-id = 'com.raycast.macos'
+if.window-title-regex-substring = 'AI Chat'
+run = 'move-node-to-workspace RAYCASTAI'
