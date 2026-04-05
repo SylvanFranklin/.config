@@ -1,13 +1,19 @@
 # https://nikitabobko.github.io/AeroSpace/guide#config-samples
 
+config-version = 2
+
 start-at-login = true
+automatically-unhide-macos-hidden-apps = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 0
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
-key-mapping.preset = 'qwerty'
+persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK']
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+[key-mapping]
+preset = 'qwerty'
 
 [gaps]
 inner.horizontal = 0
@@ -18,76 +24,135 @@ outer.top = 0
 outer.right = 0
 
 [mode.main.binding]
+# Layout and recovery
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout tiles horizontal horizontal'
-alt-cmd-m = 'resize smart -50'
-alt-cmd-i = 'resize smart +50'
-alt-shift-h = 'move-mouse monitor-force-center'
+alt-space = 'layout floating tiling'
+alt-backtick = 'flatten-workspace-tree'
+alt-equal = 'balance-sizes'
+alt-semicolon = 'mode service'
 
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
+# Vim-like focus
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
 
-# alt-a = 'workspace 1' # Alacritty
-# alt-l = 'workspace 2' # Alacritty
-# alt-s = 'workspace S' # Spotify
-# alt-g = 'workspace G' # Messages
-# alt-f = 'workspace f' # Figma
-# alt-d = 'workspace D' # Dorion
-# alt-o = 'workspace o' # OBS
-alt-shift-f = 'workspace F' # Finder 
-alt-shift-k = 'workspace K' # Keepassxc
-# alt-v = 'workspace V' # Davinci 
+# Vim-like window moves
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
 
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
+# Quick side-by-side / stacking using join-with
+alt-ctrl-h = 'join-with left'
+alt-ctrl-j = 'join-with down'
+alt-ctrl-k = 'join-with up'
+alt-ctrl-l = 'join-with right'
+
+# Vim-like resizing
+alt-cmd-h = 'resize width -60'
+alt-cmd-j = 'resize height +60'
+alt-cmd-k = 'resize height -60'
+alt-cmd-l = 'resize width +60'
+
+# Workspace navigation: number keys go to named workspaces
+alt-1 = 'workspace GHOSTTY'
+alt-2 = 'workspace HELIUM'
+alt-3 = 'workspace FINDER'
+alt-4 = 'workspace VESKTOP'
+alt-5 = 'workspace MSG'
+alt-6 = 'workspace FIGMA'
+alt-7 = 'workspace KEEPASS'
+alt-8 = 'workspace ANKI'
+alt-9 = 'workspace SIOYEK'
+alt-tab = 'workspace-back-and-forth'
+
+# Send window to workspace
+alt-shift-1 = 'move-node-to-workspace GHOSTTY'
+alt-shift-2 = 'move-node-to-workspace HELIUM'
+alt-shift-3 = 'move-node-to-workspace FINDER'
+alt-shift-4 = 'move-node-to-workspace VESKTOP'
+alt-shift-5 = 'move-node-to-workspace MSG'
+alt-shift-6 = 'move-node-to-workspace FIGMA'
+alt-shift-7 = 'move-node-to-workspace KEEPASS'
+alt-shift-8 = 'move-node-to-workspace ANKI'
+alt-shift-9 = 'move-node-to-workspace SIOYEK'
+
+# Monitor flow
+alt-left = 'focus-monitor --wrap-around left'
+alt-right = 'focus-monitor --wrap-around right'
+alt-shift-left = 'move-node-to-monitor --focus-follows-window --wrap-around left'
+alt-shift-right = 'move-node-to-monitor --focus-follows-window --wrap-around right'
 alt-shift-m = 'move-workspace-to-monitor --wrap-around next'
 
-[[on-window-detected]]
-if.app-id = 'org.alacritty'
-run = 'move-node-to-workspace 1' 
+# App launchers: letters are always "open/focus app on its home workspace"
+# Workspace map:
+# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK
+alt-a = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty app:Ghostty'
+alt-w = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh HELIUM net.imput.helium app:Helium'
+alt-d = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair VESKTOP dev.vencord.vesktop app:Vesktop'
+alt-g = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair MSG com.apple.MobileSMS app:Messages'
+alt-f = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair FIGMA com.figma.Desktop'
+alt-o = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair FIGMA com.obsproject.obs-studio app:"OBS"'
+alt-v = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair FIGMA com.blackmagic-design.DaVinciResolveLite app:"DaVinci Resolve"'
+alt-e = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair FINDER com.apple.finder app:Finder'
+alt-p = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair KEEPASS org.keepassxc.keepassxc app:KeePassXC'
+alt-n = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.launcher app:Anki'
+alt-r = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair SIOYEK info.sioyek.sioyek'
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']
+b = ['balance-sizes', 'mode main']
+f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+h = ['focus-monitor --wrap-around left', 'mode main']
+l = ['focus-monitor --wrap-around right', 'mode main']
+shift-h = ['move-node-to-monitor --focus-follows-window --wrap-around left', 'mode main']
+shift-l = ['move-node-to-monitor --focus-follows-window --wrap-around right', 'mode main']
+m = ['move-workspace-to-monitor --wrap-around next', 'mode main']
 
 [[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
-run = 'move-node-to-workspace 2' 
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace GHOSTTY'
 
 [[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace S' 
+if.app-id = 'net.imput.helium'
+run = 'move-node-to-workspace HELIUM'
 
 [[on-window-detected]]
-if.app-id = 'org.keepassxc.keepassxc'
-run = 'move-node-to-workspace K'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = 'move-node-to-workspace F'
+if.app-id = 'dev.vencord.vesktop'
+run = 'move-node-to-workspace VESKTOP'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
-run = 'move-node-to-workspace G'
+run = 'move-node-to-workspace MSG'
 
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace f'
-
-[[on-window-detected]]
-if.app-id = 'com.spikehd.dorion'
-run = 'move-node-to-workspace D'
+run = 'move-node-to-workspace FIGMA'
 
 [[on-window-detected]]
 if.app-id = 'com.obsproject.obs-studio'
-run = 'move-node-to-workspace o'
+run = 'move-node-to-workspace FIGMA'
+
+[[on-window-detected]]
+if.app-id = 'com.blackmagic-design.DaVinciResolveLite'
+run = 'move-node-to-workspace FIGMA'
+
+[[on-window-detected]]
+if.app-id = 'org.keepassxc.keepassxc'
+run = 'move-node-to-workspace KEEPASS'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'move-node-to-workspace FINDER'
+
+[[on-window-detected]]
+if.app-id = 'net.ankiweb.launcher'
+run = 'move-node-to-workspace ANKI'
+
+[[on-window-detected]]
+if.app-id = 'info.sioyek.sioyek'
+run = 'move-node-to-workspace SIOYEK'
