@@ -9,7 +9,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 0
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
-persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK', 'DAVINCI', 'RAYCASTAI', 'AGENTHARNESS']
+persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK', 'DAVINCI', 'RAYCASTAI', 'AGENTHARNESS', 'OBSIDIAN']
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [key-mapping]
@@ -93,8 +93,9 @@ alt-shift-y = 'move-node-to-workspace RAYCASTAI'
 
 # App launchers: letters are always "open/focus app on its home workspace"
 # Workspace map:
-# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS
+# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS, b OBSIDIAN
 alt-a = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty app:Ghostty'
+alt-b = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair OBSIDIAN md.obsidian app:Obsidian'
 alt-w = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh HELIUM net.imput.helium app:Helium'
 alt-d = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair VESKTOP dev.vencord.vesktop app:Vesktop'
 alt-g = 'exec-and-forget /Users/sylvanfranklin/.config/scripts/aerospace-home.sh --repair MSG com.apple.MobileSMS app:Messages'
@@ -170,6 +171,10 @@ run = 'move-node-to-workspace AGENTHARNESS'
 [[on-window-detected]]
 if.app-id = 'com.openai.codex'
 run = 'move-node-to-workspace AGENTHARNESS'
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace OBSIDIAN'
 
 [[on-window-detected]]
 if.app-id = 'com.raycast.macos'

@@ -1,0 +1,38 @@
+{
+  "release": {
+    "channel": "stable",
+    "automaticUpdates": false
+  },
+  "sharedFolders": [
+    {
+      "guid": "66f82d85-268b-4c30-bd23-29ef5a52de97",
+      "path": "Labs",
+      "relay": "18ccb61d-3e32-4d9a-b068-c24dbbd96ead",
+      "sync": {
+        "images": true,
+        "audio": true,
+        "videos": true,
+        "pdfs": true,
+        "otherTypes": false
+      }
+    }
+  ],
+  "enableUpdateYDocFromDiskBuffer": false,
+  "enableDocumentStatus": false,
+  "enableNewLinkFormat": false,
+  "enableDeltaLogging": false,
+  "enableHTTPSync": false,
+  "enableSyncMenu": true,
+  "enableDocumentServer": false,
+  "enableDocumentHistory": false,
+  "enableEditorTweens": false,
+  "enableSyncModal": false,
+  "enableDesyncPill": false,
+  "enableAutomaticUpdatesOption": false,
+  "enableAttachmentSync": true,
+  "enableNetworkLogging": false,
+  "debugging": false,
+  "enableDownloadOnAddToVault": false,
+  "enableUploadOnShare": false,
+  "enableDebugFileTag": false
+}

@@ -40,6 +40,7 @@ autoload edit-command-line
 zmodload zsh/complist
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line
+eval "$(zoxide init zsh)"
 
 lazy_load_nvm() {
   unset -f node nvm
@@ -94,5 +95,4 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # gh repo create merch --public --source=. --remote=origin --push
 export PATH="/Users/sylvanfranklin/.bun/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin/:$PATH"
-
 

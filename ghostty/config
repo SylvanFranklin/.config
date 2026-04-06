@@ -26,5 +26,6 @@ keybind = super+f=text:\x00\x66
 keybind = super+o=text:\x00\x4f
 keybind = super+p=text:\x00\x70
 keybind = super+y=text:\x00\x79
+keybind = super+g=text:\x00\x47
 keybind = super+l=text:\x00\x4c
 keybind = super+d=text:\x00\x44
