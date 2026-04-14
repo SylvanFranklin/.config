@@ -1,0 +1,57 @@
+{
+	email admin@vimothee.online
+	acme_dns namecheap {
+		api_key {$NAMECHEAP_API_KEY}
+		user {$NAMECHEAP_API_USER}
+		api_endpoint https://api.namecheap.com/xml.response
+		client_ip {$NAMECHEAP_CLIENT_IP}
+	}
+}
+
+(compress) {
+	encode zstd gzip
+}
+
+(portainer_upstream) {
+	reverse_proxy https://host.docker.internal:9443 {
+		transport http {
+			tls_insecure_skip_verify
+		}
+	}
+}
+
+vimothee.online {
+	import compress
+	root * /srv/site
+	file_server
+}
+
+portainer.vimothee.online {
+	import compress
+	import portainer_upstream
+}
+
+budget.vimothee.online {
+	import compress
+	reverse_proxy host.docker.internal:5006
+}
+
+cal.vimothee.online {
+	import compress
+	reverse_proxy host.docker.internal:3000
+}
+
+notebook.vimothee.online {
+	import compress
+	reverse_proxy host.docker.internal:5055
+}
+
+headlamp.vimothee.online {
+	import compress
+	reverse_proxy host.docker.internal:8080
+}
+
+jellyfin.vimothee.online {
+	import compress
+	reverse_proxy host.docker.internal:8096
+}

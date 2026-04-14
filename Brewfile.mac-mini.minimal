@@ -1,0 +1,33 @@
+# Curated minimal mirror for the Mac mini.
+# This is intentionally smaller than the full-machine mirror.
+
+tap "nikitabobko/tap"
+
+brew "git"
+brew "tmux"
+brew "fd"
+brew "fzf"
+brew "ripgrep"
+brew "jq"
+brew "zoxide"
+brew "yazi"
+brew "uv"
+brew "python@3.12"
+brew "bob"
+brew "pyenv"
+brew "zsh-syntax-highlighting"
+brew "tailscale"
+
+cask "nikitabobko/tap/aerospace"
+cask "ghostty"
+cask "helium-browser"
+cask "firefox"
+cask "raycast"
+cask "keepassxc"
+cask "codex"
+cask "cursor"
+cask "obsidian"
+cask "font-0xproto-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-fontawesome"
+cask "font-iosevka"

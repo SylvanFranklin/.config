@@ -1,0 +1,24 @@
+services:
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: caddy-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      NAMECHEAP_API_KEY: "${NAMECHEAP_API_KEY:-}"
+      NAMECHEAP_API_USER: "${NAMECHEAP_API_USER:-}"
+      NAMECHEAP_CLIENT_IP: "${NAMECHEAP_CLIENT_IP:-}"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./site:/srv/site:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

@@ -2,10 +2,10 @@
   --font-primary: "JetBrainsMono", monospace;
 }
 
-/* Hide server list (command k is your friend) */
-nav[class*="guilds"] {
-  display: none !important;
-}
+/* /* Hide server list (command k is your friend) */ */
+/* nav[class*="guilds"] { */
+/*   display: none !important; */
+/* } */
 
 /* Hide help button */
 [class*="toolbar"] button[aria-label="Help"] {

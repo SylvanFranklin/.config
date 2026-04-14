@@ -1,0 +1,18 @@
+services:
+  actual-server:
+    build:
+      context: "${ACTUAL_SOURCE_DIR:-/Users/sylvan/Documents/projects/actual}"
+      dockerfile: sync-server.Dockerfile
+    image: actualbudget-local:latest
+    container_name: actualbudget
+    restart: unless-stopped
+    ports:
+      - "${ACTUAL_PORT:-5006}:5006"
+    volumes:
+      - ./data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "node build/src/scripts/health-check.js"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 20s

@@ -1,6 +1,6 @@
 vim.cmd([[set mouse=]])
 vim.cmd([[set noswapfile]])
-vim.cmd([[hi @lsp.type.number gui=italic]])
+vim.cmd([[hi @lsp.type.number gui=bold]])
 vim.opt.winborder = "rounded"
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -206,15 +206,15 @@ vim.cmd([[
 for i = 1, 8 do
 	map({ "n", "t" }, "<Leader>" .. i, "<Cmd>tabnext " .. i .. "<CR>")
 end
+
 local opts = { noremap = true, silent = true }
-map("n", "gh", "0", { desc = "Jump: Start of line" })
-vim.keymap.set("n", "yag", ":%y<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "vag", "ggVG", { noremap = true, silent = true })
+vim.keymap.set("n", "yag", ":%y<CR>", opts)
+vim.keymap.set("n", "vag", "ggVG", opts)
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
-vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<ESC>", ":nohlsearch<CR>", opts)
 map("n", "gl", "$", { desc = "Jump: End of line" })
 
 map({ "n", "v", "x" }, "<CR>", ":", { desc = "Self explanatory" })
@@ -261,7 +261,7 @@ map({ "n" }, "<leader>w", "<Cmd>update<CR>", { desc = "Write the current buffer.
 map({ "n" }, "<leader>q", "<Cmd>:quit<CR>", { desc = "Quit the current buffer." })
 map({ "n" }, "<leader>Q", "<Cmd>:wqa<CR>", { desc = "Quit all buffers and write." })
 map({ "n" }, "<C-f>", "<Cmd>Open .<CR>", { desc = "Open current directory in Finder." })
-map({ "n" }, "<leader>a", ":edit #<CR>", { desc = "Open current directory in Finder." })
+map({ "n" }, "<leader>a", ":edit #<CR>", { desc = "Switch to the alternate buffer" })
 map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Make terminal mode appear normal" })
 
 
@@ -278,8 +278,3 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end
 })
 vim.cmd('colorscheme ' .. default_color)
--- Custom statusbar highlight
---
---
---
---

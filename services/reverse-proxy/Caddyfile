@@ -1,0 +1,62 @@
+{
+	email admin@vimothee.online
+}
+
+(compress) {
+	encode zstd gzip
+}
+
+(tls_internal_site) {
+	tls internal
+}
+
+(portainer_upstream) {
+	reverse_proxy https://host.docker.internal:9443 {
+		transport http {
+			tls_insecure_skip_verify
+		}
+	}
+}
+
+vimothee.online {
+	import compress
+	import tls_internal_site
+	root * /srv/site
+	file_server
+}
+
+portainer.vimothee.online {
+	import compress
+	import tls_internal_site
+	import portainer_upstream
+}
+
+budget.vimothee.online {
+	import compress
+	import tls_internal_site
+	reverse_proxy host.docker.internal:5006
+}
+
+cal.vimothee.online {
+	import compress
+	import tls_internal_site
+	reverse_proxy host.docker.internal:3000
+}
+
+notebook.vimothee.online {
+	import compress
+	import tls_internal_site
+	reverse_proxy host.docker.internal:5055
+}
+
+headlamp.vimothee.online {
+	import compress
+	import tls_internal_site
+	reverse_proxy host.docker.internal:8080
+}
+
+jellyfin.vimothee.online {
+	import compress
+	import tls_internal_site
+	reverse_proxy host.docker.internal:8096
+}

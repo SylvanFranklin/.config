@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vimothee.online</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0c1117;
+        --panel: #121a24;
+        --border: #233041;
+        --text: #eef4fb;
+        --muted: #98a8bd;
+        --accent: #7dd3fc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(125, 211, 252, 0.18), transparent 30%),
+          linear-gradient(180deg, #0b1015 0%, var(--bg) 100%);
+        color: var(--text);
+      }
+
+      main {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 64px 20px;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        line-height: 1;
+      }
+
+      p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      ul {
+        list-style: none;
+        margin: 32px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 12px;
+      }
+
+      a {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px 18px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: rgba(18, 26, 36, 0.82);
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      a:hover {
+        border-color: var(--accent);
+      }
+
+      span {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>vimothee.online</h1>
+      <p>Private service index for the Mac mini.</p>
+      <p>These names are intended to resolve over Tailscale once DNS is in place.</p>
+      <ul>
+        <li><a href="https://portainer.vimothee.online">Portainer <span>portainer.vimothee.online</span></a></li>
+        <li><a href="https://budget.vimothee.online">Actual Budget <span>budget.vimothee.online</span></a></li>
+        <li><a href="https://cal.vimothee.online">Cal.com <span>cal.vimothee.online</span></a></li>
+        <li><a href="https://notebook.vimothee.online">Notebook <span>notebook.vimothee.online</span></a></li>
+        <li><a href="https://headlamp.vimothee.online">Headlamp <span>headlamp.vimothee.online</span></a></li>
+        <li><a href="https://jellyfin.vimothee.online">Jellyfin <span>jellyfin.vimothee.online</span></a></li>
+      </ul>
+    </main>
+  </body>
+</html>

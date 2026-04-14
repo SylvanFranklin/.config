@@ -1,0 +1,80 @@
+autoload -U colors && colors
+
+if [[ -o interactive ]]; then
+  bindkey -e
+fi
+
+PS1="%{$fg[magenta]%}%~%{$fg[red]%} %{$reset_color%}$%b "
+
+if [[ -o interactive ]] && command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
+
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+_comp_options+=(globdots)
+
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/bin:$PATH"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/rgrc"
+export EDITOR="nvim"
+export MANPAGER="nvim +Man!"
+export HISTIGNORE='exit:cd:ls:bg:fg:history:f:fd:vim'
+
+if [ -d "$HOME/.local/share/bob/nvim-bin" ]; then
+  export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+fi
+
+if [ -d "$HOME/.bun/bin" ]; then
+  export PATH="$HOME/.bun/bin:$PATH"
+fi
+
+if [[ -o interactive ]]; then
+  autoload -U compinit && compinit
+  autoload edit-command-line
+  zmodload zsh/complist
+  zle -N edit-command-line
+  bindkey '^Xe' edit-command-line
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+if command -v pyenv >/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+
+lazy_load_nvm() {
+  unset -f node nvm
+  export NVM_DIR="$HOME/.nvm"
+  if [ -s "$NVM_DIR/nvm.sh" ]; then
+    . "$NVM_DIR/nvm.sh"
+  fi
+}
+
+node() {
+  lazy_load_nvm
+  command node "$@"
+}
+
+nvm() {
+  lazy_load_nvm
+  command nvm "$@"
+}
+
+if [[ -o interactive ]] && [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+alias venv="source .venv/bin/activate"
+alias vim="nvim"
+alias vi="nvim"
+alias im="nvim"
+alias yt="lux"
+alias dl="lux"
+alias dl-audio='yt-dlp -x --audio-format="mp3"'
+alias src="source ~/.config/zsh/.zshrc"

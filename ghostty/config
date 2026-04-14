@@ -29,3 +29,4 @@ keybind = super+y=text:\x00\x79
 keybind = super+g=text:\x00\x47
 keybind = super+l=text:\x00\x4c
 keybind = super+d=text:\x00\x44
+keybind = super+m=text:\x00\x6d
