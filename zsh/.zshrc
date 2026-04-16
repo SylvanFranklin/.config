@@ -95,16 +95,12 @@ k9slogs() {
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
-
-if [ -f '/Users/sf/y/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/sf/y/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/completion.zsh.inc'; fi
+#
+# if [ -f '/Users/sf/y/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/path.zsh.inc'; fi
+# if [ -f '/Users/sf/y/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/completion.zsh.inc'; fi
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # gh repo create merch --public --source=. --remote=origin --push
 export PATH="/Users/sylvanfranklin/.bun/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin/:$PATH"
-
-# --- Gas Town Integration (managed by gt) ---
-[[ -f "/Users/sylvanfranklin/.config/gastown/shell-hook.sh" ]] && source "/Users/sylvanfranklin/.config/gastown/shell-hook.sh"
-# --- End Gas Town ---
