@@ -9,7 +9,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 0
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
-persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK', 'DAVINCI', 'MAIL', 'RAYCASTAI', 'AGENTHARNESS', 'OBSIDIAN']
+persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK', 'DAVINCI', 'MAIL', 'MUSIC', 'RAYCASTAI', 'AGENTHARNESS', 'OBSIDIAN']
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [key-mapping]
@@ -90,10 +90,11 @@ alt-shift-left = 'move-node-to-monitor --focus-follows-window --wrap-around left
 alt-shift-right = 'move-node-to-monitor --focus-follows-window --wrap-around right'
 alt-shift-m = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-y = 'move-node-to-workspace RAYCASTAI'
+alt-shift-s = 'move-node-to-workspace MUSIC'
 
 # App launchers: letters are always "open/focus app on its home workspace"
 # Workspace map:
-# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS, b OBSIDIAN
+# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS, b OBSIDIAN, s MUSIC
 alt-a = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty"'
 alt-b = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair OBSIDIAN md.obsidian"'
 alt-w = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh HELIUM net.imput.helium"'
@@ -106,6 +107,7 @@ alt-e = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh 
 alt-p = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair KEEPASS org.keepassxc.keepassxc"'
 alt-n = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.launcher"'
 alt-r = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair SIOYEK info.sioyek.sioyek"'
+alt-s = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/music-home.sh"'
 alt-y = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/raycast-ai.sh"'
 alt-m = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair MAIL com.apple.mail"'
 
@@ -152,6 +154,14 @@ run = 'move-node-to-workspace DAVINCI'
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
 run = 'move-node-to-workspace MAIL'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace MUSIC'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = 'move-node-to-workspace MUSIC'
 
 [[on-window-detected]]
 if.app-id = 'org.keepassxc.keepassxc'
