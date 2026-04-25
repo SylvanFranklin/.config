@@ -80,8 +80,6 @@ alias phpmd="${GG_API}/lib/vendor/bin/phpmd"
 alias cd-ew="cd ${GG_EW}" 
 alias cd-w="cd ${GG_WEB}" 
 alias cd-a="cd ${GG_API}"
-alias k9s-ovh="k9s --context ovh-k3s"
-alias k9s-discord="k9slogs discord-bots"
 
 k9slogs() {
   local namespace="${1:-discord-bots}"
