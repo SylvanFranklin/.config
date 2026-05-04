@@ -1,5 +1,6 @@
 macos-titlebar-style = hidden
 theme = Vague
+background = 000000
 font-size = 25
 
 keybind = super+1=text:\x00\x31
