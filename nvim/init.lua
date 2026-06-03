@@ -15,7 +15,7 @@ vim.opt.undofile = true
 vim.opt.number = true
 
 vim.pack.add({
-	{ src = "https://github.com/vague2k/vague.nvim" },
+	{ src = "https://github.com/ellisonleao/gruvbox.nvim" },
 	{ src = "https://github.com/chentoast/marks.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd('FileType', {
 require "mason".setup()
 
 local telescope = require("telescope")
-local default_color = "vague"
+local default_color = "gruvbox"
 telescope.setup({
 	defaults = {
 		preview = { treesitter = true },
@@ -143,7 +143,7 @@ require("oil").setup({
 	},
 })
 
-require "vague".setup({ transparent = true })
+require("gruvbox").setup({ transparent_mode = true })
 require("luasnip").setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
 
