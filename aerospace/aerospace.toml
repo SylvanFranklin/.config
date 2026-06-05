@@ -9,7 +9,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 0
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
-persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'KEEPASS', 'ANKI', 'SIOYEK', 'DAVINCI', 'MAIL', 'MUSIC', 'RAYCASTAI', 'AGENTHARNESS', 'OBSIDIAN']
+persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'PROTONPASS', 'ANKI', 'SIOYEK', 'DAVINCI', 'MAIL', 'MUSIC', 'RAYCASTAI', 'AGENTHARNESS', 'OBSIDIAN']
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [key-mapping]
@@ -65,7 +65,7 @@ alt-3 = 'workspace FINDER'
 alt-4 = 'workspace VESKTOP'
 alt-5 = 'workspace MSG'
 alt-6 = 'workspace FIGMA'
-alt-7 = 'workspace KEEPASS'
+alt-7 = 'workspace PROTONPASS'
 alt-8 = 'workspace ANKI'
 alt-9 = 'workspace SIOYEK'
 alt-0 = 'workspace DAVINCI'
@@ -78,7 +78,7 @@ alt-shift-3 = 'move-node-to-workspace FINDER'
 alt-shift-4 = 'move-node-to-workspace VESKTOP'
 alt-shift-5 = 'move-node-to-workspace MSG'
 alt-shift-6 = 'move-node-to-workspace FIGMA'
-alt-shift-7 = 'move-node-to-workspace KEEPASS'
+alt-shift-7 = 'move-node-to-workspace PROTONPASS'
 alt-shift-8 = 'move-node-to-workspace ANKI'
 alt-shift-9 = 'move-node-to-workspace SIOYEK'
 alt-shift-0 = 'move-node-to-workspace DAVINCI'
@@ -94,7 +94,7 @@ alt-shift-s = 'move-node-to-workspace MUSIC'
 
 # App launchers: letters are always "open/focus app on its home workspace"
 # Workspace map:
-# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 KEEPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS, b OBSIDIAN, s MUSIC
+# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 PROTONPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS, b OBSIDIAN, s MUSIC
 alt-a = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty"'
 alt-b = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair OBSIDIAN md.obsidian"'
 alt-w = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh HELIUM net.imput.helium"'
@@ -104,7 +104,7 @@ alt-f = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh 
 alt-o = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair DAVINCI com.obsproject.obs-studio"'
 alt-v = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair DAVINCI com.blackmagic-design.DaVinciResolveLite"'
 alt-e = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair FINDER com.apple.finder"'
-alt-p = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair KEEPASS org.keepassxc.keepassxc"'
+alt-p = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair PROTONPASS me.proton.pass.electron"'
 alt-n = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.launcher"'
 alt-r = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair SIOYEK info.sioyek.sioyek"'
 alt-s = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/music-home.sh"'
@@ -164,8 +164,8 @@ if.app-id = 'com.apple.Music'
 run = 'move-node-to-workspace MUSIC'
 
 [[on-window-detected]]
-if.app-id = 'org.keepassxc.keepassxc'
-run = 'move-node-to-workspace KEEPASS'
+if.app-id = 'me.proton.pass.electron'
+run = 'move-node-to-workspace PROTONPASS'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'

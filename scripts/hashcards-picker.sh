@@ -39,6 +39,9 @@ if [[ ! -d "$collection_dir" ]]; then
 fi
 
 window_name="hashcards:${deck_name}"
+hashcards_bin="$HOME/.local/bin/hashcards"
+[[ -x "$hashcards_bin" ]] || hashcards_bin="$(command -v hashcards)"
+
 printf '\033]2;%s\033\\' "$window_name"
 cd "$collection_dir"
-exec hashcards drill . --from-deck "$deck_name"
+exec "$hashcards_bin" drill . --from-deck "$deck_name"
