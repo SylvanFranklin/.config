@@ -37,6 +37,24 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-neotest/nvim-nio" }
 })
 
+
+require("typst-preview").setup {
+	extra_args = { "--input=theme-mode=print" },
+	get_root = function(path)
+		local stormy_seas_root = vim.fs.normalize("/Users/sylvanfranklin/Documents/projects/StormySeas")
+		local normalized_path = vim.fs.normalize(path)
+		if vim.startswith(normalized_path, stormy_seas_root .. "/") then
+			return stormy_seas_root
+		end
+
+		local root = os.getenv("TYPST_ROOT")
+		if root then
+			return root
+		end
+		return vim.fn.fnamemodify(path, ":p:h")
+	end,
+}
+
 require("dap-lldb").setup()
 local dap, dapui = require("dap"), require("dapui")
 
