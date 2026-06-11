@@ -62,7 +62,7 @@ vim.pack.add({
 
 
 require("typst-preview").setup {
-	extra_args = { "--input=theme-mode=print" },
+	extra_args = {},
 	get_root = function(path)
 		local stormy_seas_root = vim.fs.normalize("/Users/sylvanfranklin/Documents/projects/StormySeas")
 		local normalized_path = vim.fs.normalize(path)
