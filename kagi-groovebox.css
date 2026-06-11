@@ -21,6 +21,7 @@ body {
   border-radius: 0 !important;
   box-shadow: none !important;
   backdrop-filter: none !important;
+  transition: none !important;
 }
 
 ::selection {
@@ -48,6 +49,7 @@ textarea,
   border: 1px solid var(--border) !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+  outline: none !important;
 }
 
 button:hover,
@@ -55,7 +57,7 @@ input:hover,
 select:hover,
 textarea:hover,
 [role="button"]:hover {
-  border-color: #3a3a3a !important;
+  border-color: var(--border) !important;
 }
 
 header,
@@ -80,6 +82,21 @@ dialog,
   color: var(--fg) !important;
   border-color: var(--border) !important;
   border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+[class*="panel"]:hover,
+[class*="card"]:hover,
+[class*="search"]:hover,
+[class*="results"]:hover,
+[class*="result"]:hover,
+[class*="filter"]:hover,
+[class*="chip"]:hover,
+[class*="pill"]:hover,
+[class*="tab"]:hover {
+  background: #000 !important;
+  color: var(--fg) !important;
+  border-color: var(--border) !important;
   box-shadow: none !important;
 }
 

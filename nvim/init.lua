@@ -14,6 +14,29 @@ vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.number = true
 
+local function source_local_session()
+	if vim.g.local_session_loaded or vim.fn.argc() ~= 0 then
+		return
+	end
+
+	local cwd = vim.uv.cwd()
+	if not cwd then
+		return
+	end
+
+	local session = vim.fs.joinpath(cwd, "Session.vim")
+	if vim.fn.filereadable(session) == 1 then
+		vim.g.local_session_loaded = true
+		vim.cmd.source(vim.fn.fnameescape(session))
+	end
+end
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = vim.api.nvim_create_augroup("local_session_auto_source", { clear = true }),
+	once = true,
+	callback = source_local_session,
+})
+
 vim.pack.add({
 	{ src = "https://github.com/ellisonleao/gruvbox.nvim" },
 	{ src = "https://github.com/chentoast/marks.nvim" },
