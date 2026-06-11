@@ -231,6 +231,7 @@ map({ "i", "s" }, "<C-J>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<C-K>", function() ls.jump(-1) end, { silent = true })
 map({ "n", "t" }, "<Leader>t", "<Cmd>split<CR> <Cmd>term<CR>i")
 map({ "n", "t" }, "<Leader>x", "<Cmd>tabclose<CR>")
+map("n", "<C-c>", "<Cmd>qa!<CR>", { desc = "Quit Neovim" })
 
 vim.cmd([[
 	nnoremap g= g+| " g=g=g= is less awkward than g+g+g+
