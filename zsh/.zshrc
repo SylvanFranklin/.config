@@ -98,8 +98,8 @@ k9slogs() {
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv >/dev/null 2>&1 && [[ -w "$PYENV_ROOT/shims" ]]; then
-  eval "$(pyenv init --path)"
+if [[ -o interactive ]] && command -v pyenv >/dev/null 2>&1; then
+  eval "$(pyenv init - zsh --no-rehash)"
 fi
 #
 # if [ -f '/Users/sf/y/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/path.zsh.inc'; fi
