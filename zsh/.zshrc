@@ -1,7 +1,9 @@
 autoload -U colors && colors
-bindkey -e
+[[ -o interactive ]] && bindkey -e
 PS1="%{$fg[magenta]%}%~%{$fg[red]%} %{$reset_color%}$%b "
-source <(fzf --zsh)
+if [[ -o interactive ]] && command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh) 2>/dev/null
+fi
 finder() {
     open .
 }
@@ -34,13 +36,17 @@ export NODE_ENV=development
 export PATH=${GG_API}/ops/bin:$PATH
 export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH" 
 
-autoload -U compinit && compinit
-autoload -U colors && colors
-autoload edit-command-line
-zmodload zsh/complist
-zle -N edit-command-line
-bindkey '^Xe' edit-command-line
-eval "$(zoxide init zsh)"
+if [[ -o interactive ]]; then
+  autoload -U compinit && compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump"
+  autoload edit-command-line
+  zmodload zsh/complist
+  zle -N edit-command-line
+  bindkey '^Xe' edit-command-line
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 lazy_load_nvm() {
   unset -f node nvm
@@ -55,7 +61,7 @@ node() {
 
 nvm() {
   lazy_load_nvm
-  node $@
+  nvm "$@"
 }
 
 if [ -f '/Users/$USER/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/$USER/google-cloud-sdk/path.zsh.inc'; fi
@@ -92,13 +98,13 @@ k9slogs() {
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+if command -v pyenv >/dev/null 2>&1 && [[ -w "$PYENV_ROOT/shims" ]]; then
+  eval "$(pyenv init --path)"
+fi
 #
 # if [ -f '/Users/sf/y/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/path.zsh.inc'; fi
 # if [ -f '/Users/sf/y/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sf/y/google-cloud-sdk/completion.zsh.inc'; fi
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# gh repo create merch --public --source=. --remote=origin --push
-export PATH="/Users/sylvanfranklin/.bun/bin:$PATH"
-export PATH="$HOME/.config/emacs/bin/:$PATH"
+if [[ -o interactive ]] && [ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
