@@ -1,6 +1,100 @@
 
 :root {
   --font-primary: "JetBrainsMono", monospace;
+  --everforest-bg0: #232a2e;
+  --everforest-bg1: #2d353b;
+  --everforest-bg2: #343f44;
+  --everforest-bg3: #3d484d;
+  --everforest-bg4: #475258;
+  --everforest-bg5: #4f585e;
+  --everforest-bg-visual-yellow: #4d4c43;
+  --everforest-fg: #d3c6aa;
+  --everforest-grey0: #7a8478;
+  --everforest-grey1: #859289;
+  --everforest-grey2: #9da9a0;
+  --everforest-red: #e67e80;
+  --everforest-orange: #e69875;
+  --everforest-yellow: #dbbc7f;
+  --everforest-green: #a7c080;
+  --everforest-aqua: #83c092;
+  --everforest-blue: #7fbbb3;
+  --everforest-purple: #d699b6;
+
+  --background-primary: rgba(35, 42, 46, 0.72) !important;
+  --background-secondary: rgba(45, 53, 59, 0.62) !important;
+  --background-secondary-alt: rgba(52, 63, 68, 0.58) !important;
+  --background-tertiary: rgba(35, 42, 46, 0.78) !important;
+  --background-floating: rgba(45, 53, 59, 0.86) !important;
+  --background-base-lowest: rgba(35, 42, 46, 0.72) !important;
+  --background-base-low: rgba(45, 53, 59, 0.64) !important;
+  --background-base-lower: rgba(45, 53, 59, 0.68) !important;
+  --background-base-medium: rgba(52, 63, 68, 0.72) !important;
+  --background-base-high: rgba(61, 72, 77, 0.80) !important;
+  --background-surface-high: rgba(61, 72, 77, 0.80) !important;
+  --background-surface-higher: rgba(71, 82, 88, 0.84) !important;
+  --bg-base-primary: rgba(35, 42, 46, 0.72) !important;
+  --bg-base-secondary: rgba(45, 53, 59, 0.64) !important;
+  --bg-base-tertiary: rgba(35, 42, 46, 0.78) !important;
+  --bg-surface-overlay: rgba(45, 53, 59, 0.86) !important;
+  --text-normal: var(--everforest-fg) !important;
+  --text-muted: var(--everforest-grey1) !important;
+  --text-link: var(--everforest-blue) !important;
+  --interactive-normal: var(--everforest-grey2) !important;
+  --interactive-hover: var(--everforest-fg) !important;
+  --interactive-active: var(--everforest-green) !important;
+  --brand-500: var(--everforest-green) !important;
+  --brand-560: var(--everforest-aqua) !important;
+  --status-danger: var(--everforest-red) !important;
+  --status-warning: var(--everforest-yellow) !important;
+  --status-positive: var(--everforest-green) !important;
+}
+
+body,
+#app-mount,
+[class*="appMount"],
+[class*="app_"],
+[class*="bg_"] {
+  background: transparent !important;
+}
+
+[class*="layer_"],
+[class*="base_"],
+[class*="content_"],
+[class*="chat_"],
+[class*="container_"],
+[class*="sidebar_"],
+[class*="panels_"],
+[class*="members_"],
+[class*="member_"],
+[class*="channelTextArea_"],
+[class*="scrollableContainer_"],
+[class*="themed_"] {
+  background-color: transparent !important;
+}
+
+[class*="message_"]:hover,
+[class*="selected_"],
+[class*="modeSelected_"],
+[class*="interactiveSelected_"] {
+  background-color: rgba(77, 76, 67, 0.38) !important;
+}
+
+[class*="mentioned_"] {
+  background-color: rgba(219, 188, 127, 0.12) !important;
+}
+
+[class*="replying_"] {
+  background-color: rgba(167, 192, 128, 0.12) !important;
+}
+
+[class*="markup_"] a {
+  color: var(--everforest-blue) !important;
+}
+
+[class*="botTag_"],
+[class*="numberBadge_"] {
+  background-color: var(--everforest-green) !important;
+  color: var(--everforest-bg0) !important;
 }
 
 /* /* Hide server list (command k is your friend) */ */

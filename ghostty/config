@@ -1,26 +1,27 @@
 macos-titlebar-style = hidden
-theme = Gruvbox Dark
-background = #32302f
-foreground = #ebdbb2
-cursor-color = #ebdbb2
-selection-background = #504945
-selection-foreground = #ebdbb2
-palette = 0=#282828
-palette = 1=#cc241d
-palette = 2=#98971a
-palette = 3=#d79921
-palette = 4=#458588
-palette = 5=#b16286
-palette = 6=#689d6a
-palette = 7=#a89984
-palette = 8=#928374
-palette = 9=#fb4934
-palette = 10=#b8bb26
-palette = 11=#fabd2f
-palette = 12=#83a598
-palette = 13=#d3869b
-palette = 14=#8ec07c
-palette = 15=#ebdbb2
+# Everforest dark medium, based on https://github.com/sainnhe/everforest.
+background = #232a2e
+foreground = #d3c6aa
+cursor-color = #d3c6aa
+selection-background = #4d4c43
+selection-foreground = #d3c6aa
+background-opacity = 0.86
+palette = 0=#343f44
+palette = 1=#e67e80
+palette = 2=#a7c080
+palette = 3=#dbbc7f
+palette = 4=#7fbbb3
+palette = 5=#d699b6
+palette = 6=#83c092
+palette = 7=#d3c6aa
+palette = 8=#859289
+palette = 9=#e67e80
+palette = 10=#a7c080
+palette = 11=#dbbc7f
+palette = 12=#7fbbb3
+palette = 13=#d699b6
+palette = 14=#83c092
+palette = 15=#d3c6aa
 font-family = Geist Mono
 font-size = 25
 

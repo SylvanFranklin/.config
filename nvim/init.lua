@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.pack.add({
-	{ src = "https://github.com/ellisonleao/gruvbox.nvim" },
+	{ src = "https://github.com/sainnhe/everforest" },
 	{ src = "https://github.com/chentoast/marks.nvim" },
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd('FileType', {
 require "mason".setup()
 
 local telescope = require("telescope")
-local default_color = "gruvbox"
+local default_color = "everforest"
 telescope.setup({
 	defaults = {
 		preview = { treesitter = true },
@@ -184,7 +184,12 @@ require("oil").setup({
 	},
 })
 
-require("gruvbox").setup({ transparent_mode = true })
+vim.o.background = "dark"
+vim.g.everforest_background = "medium"
+vim.g.everforest_transparent_background = 2
+vim.g.everforest_better_performance = 1
+vim.g.everforest_enable_italic = 1
+vim.cmd.colorscheme(default_color)
 require("luasnip").setup({ enable_autosnippets = true })
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
 
