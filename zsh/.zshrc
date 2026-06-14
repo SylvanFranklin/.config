@@ -18,7 +18,6 @@ normalize() {
 }
 _comp_options+=(globdots)
 
-export PATH="/Users/$USER/.local/share/bob/nvim-bin/:$PATH"
 export PATH="/Users/$USER/Library/Python/3.9/bin/:$PATH"
 export PATH="/Users/$USER/.local/bin:$PATH"
 export RIPGREP_CONFIG_PATH="/Users/$USER/.config/ripgrep/rgrc"
@@ -35,6 +34,11 @@ export GG_GCP_USERNAME="sylvan"
 export NODE_ENV=development 
 export PATH=${GG_API}/ops/bin:$PATH
 export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH" 
+path=("${(@)path:#$HOME/.local/share/bob/nvim-bin}")
+path=("${(@)path:#$HOME/.local/share/bob/nvim-bin/}")
+path=("${(@)path:#/opt/homebrew/bin}")
+path=("${(@)path:#/opt/homebrew/sbin}")
+path=(/opt/homebrew/bin /opt/homebrew/sbin $path)
 
 if [[ -o interactive ]]; then
   autoload -U compinit && compinit -C -d "${ZDOTDIR:-$HOME}/.zcompdump"
