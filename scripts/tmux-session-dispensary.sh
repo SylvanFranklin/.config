@@ -4,6 +4,7 @@ DIRS=(
     "$HOME"
     "$HOME/documents/projects"
     "$HOME/documents"
+    "$HOME/documents/notes"
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -25,7 +26,6 @@ selected_name=$(basename "$selected" | tr . _)
 
 if ! tmux has-session -t "$selected_name"; then
     tmux new-session -ds "$selected_name" -n "zsh" -c "$selected" "zsh"
-    tmux new-window -t "$selected_name:2" -n "vim" -c "$selected" "nvim"
     tmux select-window -t "$selected_name:1"
 fi
 
