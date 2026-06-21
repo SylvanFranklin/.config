@@ -22,7 +22,7 @@ else
         NF >= 3 && $1 !~ /^#/ && $1 != "" {
             printf "%s\t%s\t%s\n", $1, $2, $3
         }
-    ' "$DECKS_FILE" | sk "${SKIM_THEME_SESSION[@]}" --prompt='hashcards > ')
+    ' "$DECKS_FILE" | sk "${SKIM_THEME_SESSION[@]}" --prompt='hashcards> ')
 
     [[ -n "${selected:-}" ]] || exit 0
 

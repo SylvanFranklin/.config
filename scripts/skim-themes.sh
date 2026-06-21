@@ -4,10 +4,11 @@ set -euo pipefail
 # Shared skim layout for all pickers.
 SKIM_THEME_BASE=(
     --color=bw
-    --height=70%
-    --margin=10%,20%,20%,20%
+    --height=100%
+    --margin=0,0,0,0
     --layout=reverse
     --info=hidden
+    --no-hscroll
 )
 
 SKIM_THEME_PDF=("${SKIM_THEME_BASE[@]}")

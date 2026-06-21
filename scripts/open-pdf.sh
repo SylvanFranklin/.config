@@ -34,6 +34,21 @@ run_in_runner_session() {
     tmux new-window -d -t "$session:" -c "$HOME" -n "$window_name" "$command"
 }
 
+list_documents() {
+    fd . "${DIRS[@]}" \
+        --max-depth=2 \
+        --extension="djvu" \
+        --extension="epub" \
+        --extension="pdf" \
+        --full-path \
+        --base-directory "$HOME" \
+        | sort -uf \
+        | while IFS= read -r path; do
+            [[ -n "$path" ]] || continue
+            printf '%s\t%s\n' "$(basename "$path")" "$HOME/$path"
+        done
+}
+
 focus_sioyek() {
     local bundle_id="info.sioyek.sioyek"
     local workspace="SIOYEK"
@@ -62,12 +77,16 @@ focus_sioyek() {
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . "${DIRS[@]}" --max-depth=2 --extension="djvu" --extension="epub" --extension="pdf" --full-path --base-directory "$HOME" \
-        | sed "s|^$HOME/||" \
-        | sort -uf \
-        | sk "${SKIM_THEME_PDF[@]}")
+    selected_row="$(
+        list_documents \
+            | sk "${SKIM_THEME_PDF[@]}" \
+                --delimiter=$'\t' \
+                --with-nth 1 \
+                --nth 1
+    )"
 
-    [[ $selected ]] && selected="$HOME/$selected"
+    [[ -n "$selected_row" ]] || exit 0
+    IFS=$'\t' read -r _display_name selected <<< "$selected_row"
 fi
 
 [[ -n "$selected" ]] || exit 0
