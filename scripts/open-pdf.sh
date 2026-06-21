@@ -34,6 +34,31 @@ run_in_runner_session() {
     tmux new-window -d -t "$session:" -c "$HOME" -n "$window_name" "$command"
 }
 
+focus_sioyek() {
+    local bundle_id="info.sioyek.sioyek"
+    local workspace="SIOYEK"
+    local window_id=""
+
+    command -v aerospace >/dev/null 2>&1 || return 0
+
+    for _ in {1..20}; do
+        window_id="$(
+            aerospace list-windows --monitor all \
+                --app-bundle-id "$bundle_id" \
+                --format '%{window-id}' 2>/dev/null \
+                | tail -n 1
+        )"
+
+        if [[ -n "$window_id" ]]; then
+            aerospace workspace "$workspace" >/dev/null 2>&1 || true
+            aerospace focus --window-id "$window_id" >/dev/null 2>&1 || true
+            return 0
+        fi
+
+        sleep 0.15
+    done
+}
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
@@ -50,8 +75,11 @@ fi
 if [[ -n "${TMUX:-}" ]]; then
     runner_session="${TMUX_RUNNER_SESSION:-background}"
     run_in_runner_session "$runner_session" "pdf" "exec $(shell_join sioyek "$selected")"
+    focus_sioyek
     tmux display-message "Opened PDF in tmux session: $runner_session"
     exit 0
 fi
 
-exec sioyek "$selected"
+sioyek "$selected" &
+focus_sioyek
+wait "$!"
