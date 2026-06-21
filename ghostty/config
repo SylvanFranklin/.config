@@ -52,7 +52,9 @@ keybind = super+p=text:\x00\x70
 keybind = super+y=text:\x00\x79
 keybind = super+g=text:\x00\x47
 keybind = super+k=unbind
-keybind = super+k=text:\x00\x70
+keybind = super+k=text:\x00\x6b
+keybind = super+s=unbind
+keybind = super+s=text:\x00\x73
 keybind = super+l=text:\x00\x4c
 keybind = super+d=text:\x00\x44
 keybind = super+m=text:\x00\x6d

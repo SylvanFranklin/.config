@@ -142,6 +142,10 @@ if [[ -n "${TMUX:-}" ]]; then
 
     run_in_runner_session "$runner_session" "typst" "$runner_command"
     tmux display-message "Started Typst preview in tmux session: $runner_session"
+    printf 'Started Typst preview in tmux session: %s\n' "$runner_session"
+    printf 'Preview URL: %s\n\n' "$preview_url"
+    printf 'Press enter to close this picker... '
+    read -r _
     exit 0
 fi
 
