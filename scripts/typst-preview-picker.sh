@@ -49,6 +49,41 @@ list_typst_files() {
     find_typst_files | sort -uf
 }
 
+shell_join() {
+    local arg
+    for arg in "$@"; do
+        printf '%q ' "$arg"
+    done
+}
+
+free_port() {
+    if command -v python3 >/dev/null 2>&1; then
+        python3 -c 'import socket; s = socket.socket(); s.bind(("127.0.0.1", 0)); print(s.getsockname()[1]); s.close()'
+        return 0
+    fi
+
+    printf '%s\n' "$((30000 + RANDOM % 20000))"
+}
+
+ensure_runner_session() {
+    local session="$1"
+
+    if tmux has-session -t "$session" 2>/dev/null; then
+        return 0
+    fi
+
+    tmux new-session -d -s "$session" -c "$HOME" -n home "zsh"
+}
+
+run_in_runner_session() {
+    local session="$1"
+    local window_name="$2"
+    local command="$3"
+
+    ensure_runner_session "$session"
+    tmux new-window -d -t "$session:" -c "$HOME" -n "$window_name" "$command"
+}
+
 if [[ "${TYPST_PREVIEW_LIST_ONLY:-}" == "1" ]]; then
     list_typst_files
     exit 0
@@ -73,6 +108,12 @@ if [[ -z "$tinymist_bin" ]]; then
 fi
 
 root="${TYPST_PREVIEW_ROOT:-${TYPST_ROOT:-$target_dir}}"
+data_port="$(free_port)"
+control_port="$(free_port)"
+while [[ "$control_port" == "$data_port" ]]; do
+    control_port="$(free_port)"
+done
+preview_url="http://127.0.0.1:${data_port}"
 
 printf '\033]2;%s\033\\' "typst:${selected}"
 printf 'Previewing %s\n' "$selected"
@@ -81,14 +122,40 @@ printf 'Root: %s\n\n' "$root"
 cmd=(
     "$tinymist_bin"
     preview
-    --open
+    --no-open
     --partial-rendering=true
+    --data-plane-host "127.0.0.1:${data_port}"
+    --control-plane-host "127.0.0.1:${control_port}"
     --root "$root"
     "$selected"
 )
 
-if command -v direnv >/dev/null 2>&1 && [[ -f "$target_dir/.envrc" ]]; then
-    exec direnv exec "$target_dir" "${cmd[@]}"
+if [[ -n "${TMUX:-}" ]]; then
+    runner_session="${TMUX_RUNNER_SESSION:-background}"
+
+    preview_command="$(shell_join "${cmd[@]}")"
+    if command -v direnv >/dev/null 2>&1 && [[ -f "$target_dir/.envrc" ]]; then
+        preview_command="direnv exec $(printf '%q' "$target_dir") $preview_command"
+    fi
+
+    runner_command="cd $(printf '%q' "$target_dir") && { $preview_command & preview_pid=\$!; sleep 0.8; open $(printf '%q' "$preview_url") >/dev/null 2>&1 || true; wait \"\$preview_pid\"; }"
+
+    run_in_runner_session "$runner_session" "typst" "$runner_command"
+    tmux display-message "Started Typst preview in tmux session: $runner_session"
+    exit 0
 fi
 
-exec "${cmd[@]}"
+if command -v direnv >/dev/null 2>&1 && [[ -f "$target_dir/.envrc" ]]; then
+    direnv exec "$target_dir" "${cmd[@]}" &
+    preview_pid=$!
+    sleep 0.8
+    open "$preview_url" >/dev/null 2>&1 || true
+    wait "$preview_pid"
+    exit $?
+fi
+
+"${cmd[@]}" &
+preview_pid=$!
+sleep 0.8
+open "$preview_url" >/dev/null 2>&1 || true
+wait "$preview_pid"
