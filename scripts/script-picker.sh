@@ -57,11 +57,11 @@ rows="$(
         kind="$(classify_script "$path" || true)"
         [[ -n "$kind" ]] || continue
         printf '%s\t%s\t%s\n' "${path#./}" "$kind" "$path"
-    done < <(find . -maxdepth 1 -type f -print0 | sort -z)
+    done < <(find . -type f -print0 | sort -z)
 )"
 
 if [[ -z "$rows" ]]; then
-    echo "No bash, Python, or executable scripts found in $target_dir"
+    echo "No bash, Python, or executable files found under $target_dir"
     printf "\nPress enter to close... "
     read -r _
     exit 0
