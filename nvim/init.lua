@@ -286,6 +286,27 @@ local function preview_current_file()
 	end
 end
 
+local function typst_preview_picker()
+	local cwd = vim.uv.cwd() or vim.fn.getcwd()
+	local script = vim.fn.expand("~/.config/scripts/typst-preview-picker.sh")
+
+	if vim.env.TMUX then
+		local result = vim.system({ "tmux", "neww", "-c", cwd, "-n", "typst", "bash", script, cwd }, { text = true }):wait()
+		if result.code ~= 0 then
+			local output = result.stderr ~= "" and result.stderr or result.stdout
+			if output == "" then
+				output = "Failed to launch Typst preview picker"
+			end
+			vim.notify(output, vim.log.levels.ERROR)
+		end
+		return
+	end
+
+	vim.cmd("botright split")
+	vim.fn.termopen({ "bash", script, cwd })
+	vim.cmd.startinsert()
+end
+
 map({ "n", "x" }, "<leader>y", '"+y')
 -- map({ "n", "x" }, "<leader>d", '"+d')
 map({ "i", "s" }, "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
@@ -334,6 +355,7 @@ map({ "n", "v", "x" }, "<leader>i", [[<Cmd>tabedit .gitignore<CR>]], { desc = "E
 map({ "n", "v", "x" }, "<leader>lf", vim.lsp.buf.format, { desc = "Format current buffer" })
 map({ "v", "x", "n" }, "<C-y>", '"+y', { desc = "System clipboard yank." })
 map({ "n" }, "<leader>p", preview_current_file, { desc = "Preview current file" })
+map({ "n" }, "<leader>P", typst_preview_picker, { desc = "Pick Typst file to preview" })
 map({ "n" }, "<leader>f", builtin.find_files, { desc = "Telescope live grep" })
 
 function git_files() builtin.find_files({ no_ignore = true }) end
