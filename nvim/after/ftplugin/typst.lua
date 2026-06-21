@@ -38,7 +38,6 @@ local function reveal_pdf_in_finder(pdf_path)
 	end
 end
 
-vim.keymap.set("n", "<leader>p", ":TypstPreview<CR>", { buffer = 0 })
 vim.api.nvim_buf_create_user_command(0, "Share", function()
 	local pdf_path = compile_typst_pdf(0)
 	if not pdf_path then

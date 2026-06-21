@@ -20,6 +20,10 @@
       "rev": "85a86eb62409e3ec88713bff3d1b9d7374e112e4",
       "src": "https://github.com/sainnhe/everforest"
     },
+    "fyler.nvim": {
+      "rev": "6aebb86d2eb546ecae33b3e73f02a77b5421aaf3",
+      "src": "https://github.com/FylerOrg/fyler.nvim"
+    },
     "gruvbox.nvim": {
       "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
       "src": "https://github.com/ellisonleao/gruvbox.nvim"

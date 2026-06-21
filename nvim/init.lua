@@ -49,6 +49,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
+	{ src = "https://github.com/hat0uma/csvview.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/L3MON4D3/LuaSnip" },
@@ -77,6 +78,32 @@ require("typst-preview").setup {
 		return vim.fn.fnamemodify(path, ":p:h")
 	end,
 }
+
+require("csvview").setup({
+	parser = {
+		comments = { "#", "//" },
+	},
+	keymaps = {
+		textobject_field_inner = { "if", mode = { "o", "x" } },
+		textobject_field_outer = { "af", mode = { "o", "x" } },
+		jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+		jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+		jump_next_row = { "<Enter>", mode = { "n", "v" } },
+		jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+	},
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "csv", "tsv" },
+	group = vim.api.nvim_create_augroup("csvview_auto_enable", { clear = true }),
+	callback = function(args)
+		vim.schedule(function()
+			if vim.api.nvim_buf_is_valid(args.buf) then
+				vim.cmd.CsvViewEnable()
+			end
+		end)
+	end,
+})
 
 require("dap-lldb").setup()
 local dap, dapui = require("dap"), require("dapui")
@@ -229,6 +256,36 @@ local current = 1
 
 vim.g.mapleader = " "
 
+local function open_current_html()
+	local path = vim.api.nvim_buf_get_name(0)
+	if path == "" then
+		vim.notify("Preview requires a saved HTML file", vim.log.levels.ERROR)
+		return
+	end
+
+	vim.cmd.update()
+
+	local result = vim.system({ "open", path }, { text = true }):wait()
+	if result.code ~= 0 then
+		local output = result.stderr ~= "" and result.stderr or result.stdout
+		if output == "" then
+			output = "Failed to open " .. path
+		end
+		vim.notify(output, vim.log.levels.ERROR)
+	end
+end
+
+local function preview_current_file()
+	local filetype = vim.bo.filetype
+	if filetype == "typst" then
+		vim.cmd.TypstPreview()
+	elseif filetype == "html" then
+		open_current_html()
+	else
+		vim.notify("No preview action configured for filetype: " .. filetype, vim.log.levels.WARN)
+	end
+end
+
 map({ "n", "x" }, "<leader>y", '"+y')
 -- map({ "n", "x" }, "<leader>d", '"+d')
 map({ "i", "s" }, "<C-e>", function() ls.expand_or_jump(1) end, { silent = true })
@@ -276,6 +333,7 @@ map({ "n", "v", "x" }, "<C-s>", [[:s/\V]], { desc = "Enter substitue mode in sel
 map({ "n", "v", "x" }, "<leader>i", [[<Cmd>tabedit .gitignore<CR>]], { desc = "Enter substitue mode in selection" })
 map({ "n", "v", "x" }, "<leader>lf", vim.lsp.buf.format, { desc = "Format current buffer" })
 map({ "v", "x", "n" }, "<C-y>", '"+y', { desc = "System clipboard yank." })
+map({ "n" }, "<leader>p", preview_current_file, { desc = "Preview current file" })
 map({ "n" }, "<leader>f", builtin.find_files, { desc = "Telescope live grep" })
 
 function git_files() builtin.find_files({ no_ignore = true }) end
