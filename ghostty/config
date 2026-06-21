@@ -49,10 +49,10 @@ keybind = super+w=text:\x00\x78
 keybind = super+f=text:\x00\x66
 keybind = super+o=text:\x00\x4f
 keybind = super+p=text:\x00\x70
-keybind = super+shift+t=text:\x00\x50
 keybind = super+y=text:\x00\x79
 keybind = super+g=text:\x00\x47
-keybind = super+k=text:\x00\x6b
+keybind = super+k=unbind
+keybind = super+k=text:\x00\x50
 keybind = super+l=text:\x00\x4c
 keybind = super+d=text:\x00\x44
 keybind = super+m=text:\x00\x6d
