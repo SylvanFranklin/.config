@@ -131,7 +131,8 @@ cmd=(
 )
 
 if [[ -n "${TMUX:-}" ]]; then
-    runner_session="${TMUX_RUNNER_SESSION:-background}"
+    runner_session="${TYPST_PREVIEW_SESSION:-typst-previews}"
+    window_name="typst:${selected##*/}"
 
     preview_command="$(shell_join "${cmd[@]}")"
     if command -v direnv >/dev/null 2>&1 && [[ -f "$target_dir/.envrc" ]]; then
@@ -140,12 +141,8 @@ if [[ -n "${TMUX:-}" ]]; then
 
     runner_command="cd $(printf '%q' "$target_dir") && { $preview_command & preview_pid=\$!; sleep 0.8; open $(printf '%q' "$preview_url") >/dev/null 2>&1 || true; wait \"\$preview_pid\"; }"
 
-    run_in_runner_session "$runner_session" "typst" "$runner_command"
+    run_in_runner_session "$runner_session" "$window_name" "$runner_command"
     tmux display-message "Started Typst preview in tmux session: $runner_session"
-    printf 'Started Typst preview in tmux session: %s\n' "$runner_session"
-    printf 'Preview URL: %s\n\n' "$preview_url"
-    printf 'Press enter to close this picker... '
-    read -r _
     exit 0
 fi
 

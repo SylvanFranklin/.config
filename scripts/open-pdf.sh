@@ -45,7 +45,7 @@ list_documents() {
         | sort -uf \
         | while IFS= read -r path; do
             [[ -n "$path" ]] || continue
-            printf '%s\t%s\n' "$(basename "$path")" "$HOME/$path"
+            printf '%s\t%s\n' "${path##*/}" "$path"
         done
 }
 
