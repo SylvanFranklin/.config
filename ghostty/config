@@ -5,7 +5,7 @@ foreground = #d3c6aa
 cursor-color = #d3c6aa
 selection-background = #4d4c43
 selection-foreground = #d3c6aa
-background-opacity = 0.86
+background-opacity = 0.8
 palette = 0=#343f44
 palette = 1=#e67e80
 palette = 2=#a7c080
