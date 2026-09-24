@@ -45,7 +45,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter",            version = "main" },
 	{ src = "https://github.com/aznhe21/actions-preview.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
-	{ src = "https://github.com/nvim-telescope/telescope.nvim",              version = "0.1.8" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
@@ -62,22 +62,7 @@ vim.pack.add({
 })
 
 
-require("typst-preview").setup {
-	extra_args = {},
-	get_root = function(path)
-		local stormy_seas_root = vim.fs.normalize("/Users/sylvanfranklin/Documents/projects/StormySeas")
-		local normalized_path = vim.fs.normalize(path)
-		if vim.startswith(normalized_path, stormy_seas_root .. "/") then
-			return stormy_seas_root
-		end
-
-		local root = os.getenv("TYPST_ROOT")
-		if root then
-			return root
-		end
-		return vim.fn.fnamemodify(path, ":p:h")
-	end,
-}
+require("typst-preview").setup()
 
 require("csvview").setup({
 	parser = {
@@ -118,19 +103,27 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close()
 end
 
-vim.keymap.set({ 'n' }, '<Leader>d', ':DapNew<CR>')
-vim.keymap.set({ 'n', 'i' }, '<C-b>', ':DapToggleBreakpoint<CR>')
 require "marks".setup {
 	builtin_marks = { "<", ">", "^" },
 }
 
 vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'svelte', 'markdown', 'lua', 'rust', 'typst', 'typescript', 'javascript', 'c', 'cpp', 'glsl', 'zig', 'python', "typescriptreact", "react", },
-	callback = function() vim.treesitter.start() end,
+	pattern = { 'svelte', 'markdown', 'lua', 'odin', 'rust', 'typst',
+		'typescript', 'javascript', 'c', 'cpp', 'glsl', 'zig', 'python',
+		"typescriptreact", "react", },
+	callback = function(args)
+		if vim.bo[args.buf].buftype ~= "" or not vim.bo[args.buf].buflisted then
+			return
+		end
+
+		pcall(vim.treesitter.start, args.buf)
+	end,
 })
 
 
 require "mason".setup()
+vim.lsp.config("ols", dofile(vim.fs.joinpath(vim.fn.stdpath("config"), "lsp", "ols.lua")))
+vim.lsp.config("ocamllsp", { cmd = { "opam", "exec", "--", "ocamllsp" } })
 
 local telescope = require("telescope")
 local default_color = "everforest"
@@ -177,19 +170,43 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(args)
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 		if client:supports_method('textDocument/completion') then
-			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
-			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-			client.server_capabilities.completionProvider.triggerCharacters = chars
+			if client.name == "ols" then
+				local chars = client.server_capabilities.completionProvider.triggerCharacters or {}
+				local seen = {}
+
+				for _, char in ipairs(chars) do
+					seen[char] = true
+				end
+
+				for char in ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"):gmatch(".") do
+					if not seen[char] then
+						table.insert(chars, char)
+						seen[char] = true
+					end
+				end
+
+				client.server_capabilities.completionProvider.triggerCharacters = chars
+			end
+
 			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 		end
 	end,
 })
 
-vim.cmd [[set completeopt+=menuone,noselect,popup]]
+vim.opt.autocomplete = true
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
+vim.keymap.set("i", "<C-Space>", function()
+	vim.lsp.completion.get()
+end, { desc = "Trigger LSP completion" })
+vim.keymap.set("i", "<CR>", function()
+	return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
+end, { expr = true, desc = "Accept completion or insert newline" })
 
 vim.lsp.enable({
 	"lua_ls", "cssls", "svelte", "tinymist",
+	"tclint",
 	"rust_analyzer", "clangd", "ruff",
+	"ols", "ocamllsp",
 	"glsl_analyzer", "haskell-language-server", "hlint",
 	"intelephense", "tailwindcss", "ts_ls",
 	"emmet_language_server", "emmet_ls", "solargraph", "zls", "pyright"
@@ -278,7 +295,7 @@ end
 local function preview_current_file()
 	local filetype = vim.bo.filetype
 	if filetype == "typst" then
-		vim.cmd.TypstPreview()
+		vim.cmd.TypstPreviewToggle()
 	elseif filetype == "html" then
 		open_current_html()
 	else
@@ -314,6 +331,7 @@ end
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "yag", ":%y<CR>", opts)
 vim.keymap.set("n", "vag", "ggVG", opts)
+vim.keymap.set("n", "<leader>m", "<Cmd>make<CR>", opts)
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("v", "<", "<gv", opts)

@@ -1,6 +1,6 @@
 macos-titlebar-style = hidden
 # Everforest dark medium, based on https://github.com/sainnhe/everforest.
-background = #232a2e
+background = #000000
 foreground = #d3c6aa
 cursor-color = #d3c6aa
 selection-background = #4d4c43
@@ -58,3 +58,4 @@ keybind = super+s=text:\x00\x73
 keybind = super+l=text:\x00\x4c
 keybind = super+d=text:\x00\x44
 keybind = super+m=text:\x00\x6d
+keybind = super+e=text:\x00\x65

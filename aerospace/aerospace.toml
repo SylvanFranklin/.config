@@ -32,13 +32,9 @@ alt-backtick = 'flatten-workspace-tree'
 alt-equal = 'balance-sizes'
 alt-semicolon = 'mode service'
 
-# Agent harness
-alt-h = 'workspace AGENTHARNESS'
-
 # Vim-like focus
 alt-j = 'focus down'
 alt-k = 'focus up'
-alt-l = 'focus right'
 
 # Vim-like window moves
 alt-shift-h = 'move left'
