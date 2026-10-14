@@ -1,3 +1,5 @@
+-- Load trusted project-local Neovim configuration.
+vim.opt.exrc = true
 vim.cmd([[set mouse=]])
 vim.cmd([[set noswapfile]])
 vim.cmd([[hi @lsp.type.number gui=bold]])
@@ -13,6 +15,9 @@ vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.opt.undofile = true
 vim.opt.number = true
+
+-- Raylib .vs and .fs files contain GLSL shaders.
+vim.filetype.add({ extension = { vs = "glsl", fs = "glsl" } })
 
 local function source_local_session()
 	if vim.g.local_session_loaded or vim.fn.argc() ~= 0 then
@@ -60,6 +65,10 @@ vim.pack.add({
 	{ src = "https://github.com/julianolf/nvim-dap-lldb" },
 	{ src = "https://github.com/nvim-neotest/nvim-nio" }
 })
+
+
+-- Install the GLSL parser, its C dependency, and their highlight queries.
+require("nvim-treesitter").install({ "c", "glsl" })
 
 
 require("typst-preview").setup()
@@ -127,7 +136,25 @@ vim.lsp.config("ocamllsp", { cmd = { "opam", "exec", "--", "ocamllsp" } })
 
 local telescope = require("telescope")
 local default_color = "everforest"
+-- Keep binary assets out of the file picker, including uppercase extensions.
+local binary_file_patterns = {}
+for _, extension in ipairs({
+	"pdf", "png", "jpg", "jpeg", "gif", "webp", "avif", "bmp", "ico", "tif", "tiff", "heic",
+	"mp3", "wav", "flac", "ogg", "m4a", "mp4", "mov", "mkv", "avi", "webm",
+	"zip", "gz", "bz2", "xz", "7z", "rar", "tar",
+	"woff", "woff2", "ttf", "otf",
+	"exe", "dll", "so", "dylib", "o", "a", "class", "pyc",
+	"sqlite", "sqlite3", "db", "doc", "docx", "xls", "xlsx", "ppt", "pptx",
+}) do
+	local pattern = extension:gsub("%a", function(char)
+		return "[" .. char:lower() .. char:upper() .. "]"
+	end)
+	table.insert(binary_file_patterns, "%." .. pattern .. "$")
+end
 telescope.setup({
+	pickers = {
+		find_files = { file_ignore_patterns = binary_file_patterns },
+	},
 	defaults = {
 		preview = { treesitter = true },
 		color_devicons = true,
@@ -352,7 +379,7 @@ map({ "n", "v", "x" }, "<leader>i", [[<Cmd>tabedit .gitignore<CR>]], { desc = "E
 map({ "n", "v", "x" }, "<leader>lf", vim.lsp.buf.format, { desc = "Format current buffer" })
 map({ "v", "x", "n" }, "<C-y>", '"+y', { desc = "System clipboard yank." })
 map({ "n" }, "<leader>p", preview_current_file, { desc = "Preview current file" })
-map({ "n" }, "<leader>f", builtin.find_files, { desc = "Telescope live grep" })
+map({ "n" }, "<leader>f", builtin.find_files, { desc = "Find editable files" })
 
 function git_files() builtin.find_files({ no_ignore = true }) end
 
@@ -402,3 +429,27 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end
 })
 vim.cmd('colorscheme ' .. default_color)
+
+local function style_completion_menu()
+    vim.opt.pumblend = 0
+    local hl = vim.api.nvim_set_hl
+    local black = "#000000"
+    local selected = "#252525"
+    hl(0, "Pmenu", { fg = "#d3c6aa", bg = black })
+    hl(0, "PmenuSel", { fg = "#ffffff", bg = selected, bold = true })
+    hl(0, "PmenuKind", { fg = "#a7c080", bg = black })
+    hl(0, "PmenuKindSel", { fg = "#a7c080", bg = selected })
+    hl(0, "PmenuExtra", { fg = "#859289", bg = black })
+    hl(0, "PmenuExtraSel", { fg = "#a7b0a3", bg = selected })
+    hl(0, "PmenuMatch", { fg = "#e69875", bg = black, bold = true })
+    hl(0, "PmenuMatchSel", { fg = "#e69875", bg = selected, bold = true })
+    hl(0, "PmenuSbar", { bg = black })
+    hl(0, "PmenuThumb", { bg = "#555555" })
+    hl(0, "PmenuBorder", { fg = "#555555", bg = black })
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = vim.api.nvim_create_augroup("completion_menu_colors", { clear = true }),
+    callback = style_completion_menu,
+})
+style_completion_menu()

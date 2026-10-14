@@ -1,0 +1,96 @@
+##############################################
+#                                            #
+#           Superfile Configuration          #
+#                                            #
+##############################################
+
+# This contains the hotkey config file for superfile! More details can be found at
+# https://superfile.dev/configure/custom-hotkeys/.
+
+###############################################################################
+#                                Global hotkeys                               #
+###############################################################################
+
+# Note: These hotkeys should be unique.
+
+#-- Basic Actions
+confirm = ['enter', 'right', 'l']
+cd_quit = ['Q', '']
+quit = ['ctrl+c', '']
+
+#-- Navigation
+list_down = ['down', 'j']
+list_up = ['up', 'k']
+page_down = ['pgdown','']
+page_up = ['pgup','']
+
+#-- File Panel Controls
+close_file_panel = ['q', '']
+create_new_file_panel = ['n', '']
+next_file_panel = ['tab', 'L']
+open_sort_options_menu = ['o', '']
+pinned_directory = ['P', '']
+previous_file_panel = ['shift+tab', 'H']
+split_file_panel = ['N', '']
+toggle_file_preview_panel = ['f', '']
+toggle_reverse_sort = ['R', '']
+
+#-- Focus Manipulation
+focus_on_metadata = ['ctrl+d', '']
+focus_on_process_bar = ['ctrl+p', '']
+focus_on_sidebar = ['ctrl+s', '']
+
+#-- File/Dir Creation/Renaming
+file_panel_item_create = ['a', '']
+file_panel_item_rename = ['r', '']
+
+#-- Main File Operations
+copy_items = ['y', '']
+cut_items = ['x', '']
+delete_items = ['d', 'delete']
+paste_items = ['p', '']
+permanently_delete_items = ['D', '']
+
+#-- Archive Manipulation
+compress_file = ['ctrl+a', '']
+extract_file = ['ctrl+e', '']
+
+#-- Editor Actions
+open_current_directory_with_editor = ['E', '']
+open_file_with_editor = ['e', '']
+
+#-- Other Actions
+change_panel_mode = ['v', '']
+copy_path = ['Y', '']
+copy_present_working_directory = ['c', '']
+open_command_line = [':', '']
+open_help_menu = ['?', '']
+open_spf_prompt = ['>', '']
+open_zoxide = ['z', '']
+toggle_dot_file = ['.', '']
+toggle_footer = ['ctrl+f', '']
+
+###############################################################################
+#                                Typing hotkeys                               #
+###############################################################################
+
+# Note: These hotkeys can override all hotkeys.
+
+confirm_typing = ['enter', '']
+cancel_typing = ['esc', '']
+
+###############################################################################
+#                            Mode-Specific Hotkeys                            #
+###############################################################################
+
+# Note: These hotkeys can conflict with other modes, but not with global
+# hotkeys.
+
+#-- Normal Mode Actions
+parent_directory = ['h', 'left', 'backspace']
+search_bar = ['/', '']
+
+#-- Selection Mode Actions
+file_panel_select_mode_items_select_down = ['shift+down', 'J']
+file_panel_select_mode_items_select_up = ['shift+up', 'K']
+file_panel_select_all_items = ['A', '']

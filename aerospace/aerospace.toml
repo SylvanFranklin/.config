@@ -34,7 +34,8 @@ alt-semicolon = 'mode service'
 
 # Vim-like focus
 alt-j = 'focus down'
-alt-k = 'focus up'
+alt-k = 'workspace ANKI'
+alt-up = 'focus up'
 
 # Vim-like window moves
 alt-shift-h = 'move left'
@@ -78,6 +79,7 @@ alt-shift-7 = 'move-node-to-workspace PROTONPASS'
 alt-shift-8 = 'move-node-to-workspace ANKI'
 alt-shift-9 = 'move-node-to-workspace SIOYEK'
 alt-shift-0 = 'move-node-to-workspace DAVINCI'
+alt-shift-c = 'move-node-to-workspace AGENTHARNESS'
 
 # Monitor flow
 alt-left = 'focus-monitor --wrap-around left'
@@ -90,9 +92,10 @@ alt-shift-s = 'move-node-to-workspace MUSIC'
 
 # App launchers: letters are always "open/focus app on its home workspace"
 # Workspace map:
-# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 PROTONPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS, b OBSIDIAN, s MUSIC
+# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 PROTONPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS (Codex), b OBSIDIAN, s MUSIC
 alt-a = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty"'
 alt-b = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair OBSIDIAN md.obsidian"'
+alt-h = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair AGENTHARNESS com.openai.codex"'
 alt-w = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh HELIUM net.imput.helium"'
 alt-d = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair VESKTOP dev.vencord.vesktop"'
 alt-g = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair MSG com.apple.MobileSMS"'
@@ -101,7 +104,7 @@ alt-o = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh 
 alt-v = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair DAVINCI com.blackmagic-design.DaVinciResolveLite"'
 alt-e = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair FINDER com.apple.finder"'
 alt-p = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair PROTONPASS me.proton.pass.electron"'
-alt-n = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.launcher"'
+alt-n = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.anki"'
 alt-r = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair SIOYEK info.sioyek.sioyek"'
 alt-s = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/music-home.sh"'
 alt-y = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/raycast-ai.sh"'
@@ -166,6 +169,10 @@ run = 'move-node-to-workspace PROTONPASS'
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = 'move-node-to-workspace FINDER'
+
+[[on-window-detected]]
+if.app-id = 'net.ankiweb.anki'
+run = 'move-node-to-workspace ANKI'
 
 [[on-window-detected]]
 if.app-id = 'net.ankiweb.launcher'

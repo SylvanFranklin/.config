@@ -1,0 +1,181 @@
+##############################################
+#                                            #
+#           Superfile Configuration          #
+#                                            #
+##############################################
+
+# This contains the root config file for superfile! More details can be found at
+# https://superfile.dev/configure/superfile-config/.
+
+###############################################################################
+#                                   Defaults                                  #
+###############################################################################
+
+#-- File Editor
+# Default: $EDITOR
+editor = "nvim"
+
+#-- Directory Editor
+# 
+dir_editor = "nvim"
+
+#-- Auto check for update
+auto_check_update = false
+
+#-- cd on quit
+# Should we cd the shell to the last directory open in superfile when the
+# program exits? 
+cd_on_quit = false
+
+#-- File Preview
+# Should we open a file preview by default whenever selection-hovering over a
+# file?
+default_open_file_preview = true
+
+#-- Image Preview
+# Should we open an image preview by default whenever selection-hovering over an
+# image?
+show_image_preview = true
+
+#-- File Info Footer
+# Should we display a footer in the file panel that provides more file information?
+show_panel_footer_info = true
+
+#-- Default Directory
+# The initial path that the file panel should navigate to when superfile is
+# opened. This setting understands relative paths such as ".", "..", etc.
+default_directory = "."
+
+#-- File Size Units
+# true: SI decimal units of 1000 (kB, MB, GB).
+# false: IEC binary units of 1024 (KiB, MiB, GiB).
+file_size_use_si = false
+
+#-- Default File Sort Type
+# (0: Name, 1: Size, 2: Date Modified, 3: Type, 4: Natural).
+# Natural sort treats numeric sequences as numbers (e.g., file2 before file10).
+default_sort_type = 0
+
+#-- Sort Order Reversing
+# true: Descending.
+# false: Ascending.
+sort_order_reversed = false
+
+#-- Case-Sensitive Sorting
+# An uppercase "B" comes before a lowercase "a" if true.
+case_sensitive_sort = false
+
+#-- Exit Shell on Success
+# Whether to exit the shell on successful command execution.
+shell_close_on_success = false
+
+#-- Page Scroll Size
+# Number of lines to scroll for PgUp/PgDown keys (0: full page, default behavior).
+page_scroll_size = 0
+
+#-- Debug Mode
+debug = false
+
+#-- Ignore Missing Config Fields
+# Whether to silence any warnings about missing config fields.
+ignore_missing_fields = false
+
+#-- File Panel Extra Columns Count
+# Count of extra columns in file panel in addition to file name. When option equal 0 then feature is disabled.
+file_panel_extra_columns = 0
+
+#-- File name width in File Panel
+# Percentage of file panel width allocated to file names (25-100). Higher values give more space to names, less to extra columns.
+file_panel_name_percent = 50
+
+
+###############################################################################
+#                                   Styling                                   #
+###############################################################################
+
+#-- Theme
+# Put your theme's name here!
+theme = "everforest-dark-medium"
+
+#-- Code Previewer
+# Whether to use the builtin syntax highlighting with chroma or use bat. Values: "" for builtin chroma, "bat" for bat
+code_previewer = ""
+
+#-- Nerd Fonts Support
+# Whether to enable support for Nerd Fonts symbols.
+# Requires:  Font patched with the Nerd Fonts patch.
+nerdfont = false
+
+#-- Show checkbox icons in select mode
+# Requires: nerdfont = true
+show_select_icons = false
+
+#-- Transparent Background Support
+# Set to true to enable background transparency.
+# Requires: terminal support for colour transparency
+transparent_background = true
+
+#-- File Preview Panel Width
+# Width of the file preview panel will be 1/n of the total width.
+# Values recommended to be in 2–10.
+# Default (0): Use the same width as file picker panel.
+file_preview_width = 0
+
+#-- File Preview Border
+# Enable border around the file preview panel for better visual separation.
+# Default: false (no border)
+enable_file_preview_border = false
+
+#-- Sidebar Width
+# If you don't want to display the sidebar, you can input 0 directly.
+# Values recommended to be in 5–20.
+sidebar_width = 20
+
+#-- Sidebar Section Order
+# Order of sidebar sections (valid values: "home", "pinned", "disks")
+# Only enabled sections will be displayed
+sidebar_sections = ["home", "pinned", "disks"]
+
+#-- Border
+# Make sure to add strings that are exactly one character wide!
+# Use ' ' for borderless.
+border_top = '─'
+border_bottom = '─'
+border_left = '│'
+border_right = '│'
+border_top_left = '╭'
+border_top_right = '╮'
+border_bottom_left = '╰'
+border_bottom_right = '╯'
+border_middle_left = '├'
+border_middle_right = '┤'
+
+###############################################################################
+#                                   Plugins                                   #
+###############################################################################
+
+# This section is for using plugins with superfile, external addons that extend
+# the default capabilities of the program! More info can be found at
+# https://superfile.dev/list/plugin-list/.
+
+#-- Detailed Metadata
+# Requires: exiftool
+metadata = false
+
+#-- MD5 Checksum Generation
+# Requires: md5sum
+enable_md5_checksum = false
+#
+#-- Zoxide Support - Smart directory navigation!
+# Requires: zoxide
+zoxide_support = true
+
+#-- File opening rules
+# Map file extensions to commands used to open them.
+# The file path will be appended as the last argument.
+# MUST BE IN THE VERY END OF THE FILE BECAUSE TOML CANNOT CLOSE TABLES
+# Example:
+#   png = "feh"
+#   pdf = "zathura"
+#   conf = "nvim"
+[open_with]

@@ -4,6 +4,7 @@ DIRS=(
     "$HOME"
     "$HOME/documents/projects"
     "$HOME/documents"
+    "$HOME/Movies"
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

@@ -1,0 +1,5 @@
+[gateway]
+always_on_discovery = true
+suppress_nested_agent_push = false
+suppress_push_while_unlocked = false
+usage_collection = true
