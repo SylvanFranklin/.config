@@ -36,14 +36,22 @@ run_in_runner_session() {
 }
 
 list_documents() {
-    fd . "${DIRS[@]}" \
-        --max-depth=2 \
-        --extension="djvu" \
-        --extension="epub" \
-        --extension="pdf" \
-        --full-path \
-        --base-directory "$HOME" \
-        | sort -uf \
+    {
+        fd . "${DIRS[@]}" \
+            --max-depth=2 \
+            --extension="djvu" \
+            --extension="epub" \
+            --extension="pdf" \
+            --full-path \
+            --base-directory "$HOME"
+
+        fd . "$PWD" \
+            --type=file \
+            --extension="pdf" \
+            --hidden \
+            --no-ignore \
+            --absolute-path
+    } | sort -uf \
         | while IFS= read -r path; do
             [[ -n "$path" ]] || continue
             printf '%s\t%s\n' "${path##*/}" "$path"
