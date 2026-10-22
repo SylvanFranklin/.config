@@ -32,19 +32,6 @@
     border: 0;
     background-image: none !important;
     background-color: #ffffff !important;
-    border-radius: 50%;
-    box-sizing: border-box;
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    max-width: 28px;
-    min-height: 28px;
-    max-height: 28px;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    text-align: center;
+    border-radius: 2px;
     color: #000000;
 }

@@ -1,0 +1,22 @@
+/* Compact top tabs, adapted from mac-window-no-buttons' tab-spacing CSS.
+ * Keep the native window-button space while the macOS buttons are visible.
+ */
+
+/* Remove the gap above top tabs, including in compact density. */
+#browser.mac.tabs-top #tabs-tabbar-container.top {
+  padding-top: 0 !important;
+}
+
+/* Remove only empty leading toolbar space. */
+#browser.mac.tabs-top #tabs-tabbar-container .toolbar-tabbar-before:empty {
+  min-width: 0 !important;
+}
+
+/* Remove excess trailing space. */
+#browser.mac.tabs-top #tabs-tabbar-container .toolbar-tabbar-after {
+  padding-right: 0 !important;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .toolbar-tabbar-after .toolbar-spacer-flexible {
+  display: none;
+}

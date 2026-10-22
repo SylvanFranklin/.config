@@ -1,0 +1,174 @@
+/* Compact top tabs, adapted from mac-window-no-buttons' tab-spacing CSS.
+ * Keep the native window-button space while the macOS buttons are visible.
+ */
+
+/* Restore the inset that vertically aligns tabs with native macOS buttons. */
+#browser.mac.tabs-top #tabs-tabbar-container.top {
+  padding-top: 6px !important;
+}
+
+/* Remove only empty leading toolbar space. */
+#browser.mac.tabs-top #tabs-tabbar-container .toolbar-tabbar-before:empty {
+  min-width: 0 !important;
+}
+
+/* Remove excess trailing space. */
+#browser.mac.tabs-top #tabs-tabbar-container .toolbar-tabbar-after {
+  padding-right: 0 !important;
+}
+
+/* Empty toolbar wrappers must not absorb half the row after their flexible
+ * spacer is hidden; only actual toolbar buttons should consume width.
+ */
+#browser.mac.tabs-top #tabs-tabbar-container .toolbar-tabbar-before:not(:has(button)),
+#browser.mac.tabs-top #tabs-tabbar-container .toolbar-tabbar-after:not(:has(button)) {
+  flex: 0 0 0 !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .toolbar-tabbar-after .toolbar-spacer-flexible {
+  display: none;
+}
+
+/* tmux / Ghostty: plain numbered labels, Geist Mono, warm terminal text.
+ * Ghostty foreground: #d3c6aa. tmux active foreground: colour255 (#eeeeee).
+ * Keep pinned icons and audio controls.
+ */
+#browser.mac.tabs-top #tabs-tabbar-container {
+  --tmux-bg: #000000;
+  --tmux-fg: #d3c6aa;
+  --tmux-active: #eeeeee;
+  background: var(--tmux-bg) !important;
+  color: var(--tmux-fg) !important;
+  font-family: "Geist Mono", monospace;
+  font-size: 13px;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab-strip {
+  counter-reset: tmux-tab;
+}
+
+/* Center the labels as a group, rather than inside large tab slots.
+ * Stacked tabs retain Vivaldi's own layout. Overflow remains scrollable.
+ */
+#browser.mac.tabs-top #tabs-container .tab-strip:not(:has(.tab-group-indicator, .tab-accordion)) {
+  display: flex;
+  align-items: center;
+  justify-content: safe center;
+  gap: 4px;
+  flex: 1 1 0 !important;
+  width: 0;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+#browser.mac.tabs-top #tabs-container .tab-strip:not(:has(.tab-group-indicator, .tab-accordion)) .tab-position:has(.tab) {
+  position: relative;
+  transform: none !important;
+  flex: 0 1 190px;
+  width: 190px !important;
+  min-width: 96px;
+  max-width: 190px;
+}
+
+#browser.mac.tabs-top #tabs-container .tab-strip:not(:has(.tab-group-indicator, .tab-accordion)) .tab-position.is-pinned {
+  flex: 0 0 36px;
+  min-width: 36px;
+}
+
+/* Balance the native button gutter so the group centers on the window. */
+#browser.mac.tabs-top:not(.fullscreen) #tabs-container .resize::after {
+  content: "";
+  flex: 0 0 calc(67px / var(--uiZoomLevel));
+  pointer-events: none;
+}
+
+#browser.mac.macos26.tabs-top:not(.fullscreen) #tabs-container .resize::after {
+  flex-basis: calc(78px / var(--uiZoomLevel));
+}
+
+#browser.mac.tabs-top #tabs-container .resize {
+  flex: 1 1 0 !important;
+  max-width: none !important;
+  min-width: 0;
+  margin-right: 0;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab-position:has(.tab) {
+  counter-increment: tmux-tab;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab {
+  background: transparent !important;
+  color: var(--tmux-fg) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: normal !important;
+  font-weight: 400;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab.active {
+  color: var(--tmux-active) !important;
+  font-weight: 700;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab:hover:not(.active) {
+  color: #e4dac6 !important;
+}
+
+/* Remove the decorative curved shoulders and separators. */
+#browser.mac.tabs-top #tabs-tabbar-container .tab::before,
+#browser.mac.tabs-top #tabs-tabbar-container .tab::after {
+  display: none !important;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab-header {
+  min-width: 0;
+  padding-inline: 16px;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab-position:not(.is-pinned) .tab .favicon {
+  display: none !important;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab .title {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  mask-image: none !important;
+  font-style: normal !important;
+  padding-inline: 0;
+  margin-inline: 0;
+  line-height: 1.4;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab-position:not(.is-pinned) .tab .title:not(.editing)::before {
+  content: counter(tmux-tab) ":";
+  display: inline;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab-position:not(.is-pinned) .tab.active .title:not(.editing)::after {
+  content: "*";
+  display: inline;
+}
+
+/* Keyboard focus and multiple selection remain visible without tab pills. */
+#browser.mac.tabs-top #tabs-tabbar-container .tab:focus-visible {
+  outline: 1px solid var(--tmux-fg) !important;
+  outline-offset: -3px;
+}
+
+#browser.mac.tabs-top #tabs-tabbar-container .tab.marked:not(.active) {
+  background: #24231f !important;
+}
