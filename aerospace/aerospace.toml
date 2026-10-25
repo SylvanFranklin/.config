@@ -92,18 +92,15 @@ alt-shift-s = 'move-node-to-workspace MUSIC'
 
 # App launchers: letters are always "open/focus app on its home workspace"
 # Workspace map:
-# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 PROTONPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, h AGENTHARNESS (Codex), b OBSIDIAN, s MUSIC
+# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 PROTONPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, b OBSIDIAN, s MUSIC
 alt-a = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty"'
 alt-b = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair OBSIDIAN md.obsidian"'
-alt-h = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair AGENTHARNESS com.openai.codex"'
 alt-w = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh HELIUM net.imput.helium"'
 alt-d = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair VESKTOP dev.vencord.vesktop"'
 alt-g = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair MSG com.apple.MobileSMS"'
 alt-f = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair FIGMA com.figma.Desktop"'
 alt-o = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair DAVINCI com.obsproject.obs-studio"'
-alt-v = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair DAVINCI com.blackmagic-design.DaVinciResolveLite"'
 alt-e = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair FINDER com.apple.finder"'
-alt-p = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair PROTONPASS me.proton.pass.electron"'
 alt-n = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.anki"'
 alt-r = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair SIOYEK info.sioyek.sioyek"'
 alt-s = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/music-home.sh"'
