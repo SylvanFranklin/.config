@@ -73,6 +73,7 @@ if [ -f '/Users/$USER/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/$US
 
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+alias codex="codex --no-alt-screen"
 alias venv="source .venv/bin/activate"
 alias vim="nvim"
 alias vi="nvim"
