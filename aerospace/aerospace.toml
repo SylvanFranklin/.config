@@ -2,6 +2,7 @@
 
 config-version = 2
 
+# Startup and layout
 start-at-login = true
 automatically-unhide-macos-hidden-apps = true
 enable-normalization-flatten-containers = true
@@ -9,7 +10,11 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 0
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
-persistent-workspaces = ['GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG', 'FIGMA', 'PROTONPASS', 'ANKI', 'SIOYEK', 'DAVINCI', 'MAIL', 'MUSIC', 'RAYCASTAI', 'AGENTHARNESS', 'OBSIDIAN']
+persistent-workspaces = [
+    'GHOSTTY', 'HELIUM', 'FINDER', 'VESKTOP', 'MSG',
+    'FIGMA', 'PROTONPASS', 'ANKI', 'SIOYEK', 'DAVINCI',
+    'MAIL', 'MUSIC', 'RAYCASTAI', 'AGENTHARNESS', 'OBSIDIAN',
+]
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 [key-mapping]
@@ -32,9 +37,8 @@ alt-backtick = 'flatten-workspace-tree'
 alt-equal = 'balance-sizes'
 alt-semicolon = 'mode service'
 
-# Vim-like focus
+# Window focus
 alt-j = 'focus down'
-alt-k = 'workspace ANKI'
 alt-up = 'focus up'
 
 # Vim-like window moves
@@ -67,6 +71,7 @@ alt-8 = 'workspace ANKI'
 alt-9 = 'workspace SIOYEK'
 alt-0 = 'workspace DAVINCI'
 alt-tab = 'workspace-back-and-forth'
+alt-k = 'workspace ANKI'
 
 # Send window to workspace
 alt-shift-1 = 'move-node-to-workspace GHOSTTY'
@@ -80,6 +85,8 @@ alt-shift-8 = 'move-node-to-workspace ANKI'
 alt-shift-9 = 'move-node-to-workspace SIOYEK'
 alt-shift-0 = 'move-node-to-workspace DAVINCI'
 alt-shift-c = 'move-node-to-workspace AGENTHARNESS'
+alt-shift-s = 'move-node-to-workspace MUSIC'
+alt-shift-y = 'move-node-to-workspace RAYCASTAI'
 
 # Monitor flow
 alt-left = 'focus-monitor --wrap-around left'
@@ -87,12 +94,9 @@ alt-right = 'focus-monitor --wrap-around right'
 alt-shift-left = 'move-node-to-monitor --focus-follows-window --wrap-around left'
 alt-shift-right = 'move-node-to-monitor --focus-follows-window --wrap-around right'
 alt-shift-m = 'move-workspace-to-monitor --wrap-around next'
-alt-shift-y = 'move-node-to-workspace RAYCASTAI'
-alt-shift-s = 'move-node-to-workspace MUSIC'
 
-# App launchers: letters are always "open/focus app on its home workspace"
-# Workspace map:
-# 1 GHOSTTY, 2 HELIUM, 3 FINDER, 4 VESKTOP, 5 MSG, 6 FIGMA, 7 PROTONPASS, 8 ANKI, 9 SIOYEK, 0 DAVINCI, b OBSIDIAN, s MUSIC
+# App launchers: open/focus apps on their home workspaces.
+# --repair also returns existing app windows to their home workspace.
 alt-a = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh GHOSTTY com.mitchellh.ghostty"'
 alt-b = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair OBSIDIAN md.obsidian"'
 alt-w = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh HELIUM net.imput.helium"'
@@ -104,9 +108,11 @@ alt-e = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh 
 alt-n = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.anki"'
 alt-r = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair SIOYEK info.sioyek.sioyek"'
 alt-s = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/music-home.sh"'
+alt-t = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair AGENTHARNESS com.openai.codex"'
 alt-y = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/raycast-ai.sh"'
 alt-m = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair MAIL com.apple.mail"'
 
+# Recovery mode (Option+semicolon)
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main']
@@ -119,6 +125,7 @@ shift-h = ['move-node-to-monitor --focus-follows-window --wrap-around left', 'mo
 shift-l = ['move-node-to-monitor --focus-follows-window --wrap-around right', 'mode main']
 m = ['move-workspace-to-monitor --wrap-around next', 'mode main']
 
+# App workspace assignments
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace GHOSTTY'
