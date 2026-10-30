@@ -67,9 +67,6 @@ vim.pack.add({
 })
 
 
--- Install the GLSL parser, its C dependency, and their highlight queries.
-require("nvim-treesitter").install({ "c", "glsl" })
-
 
 require("typst-preview").setup()
 
@@ -116,23 +113,68 @@ require "marks".setup {
 	builtin_marks = { "<", ">", "^" },
 }
 
-vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'svelte', 'markdown', 'lua', 'odin', 'rust', 'typst',
-		'typescript', 'javascript', 'c', 'cpp', 'glsl', 'zig', 'python',
-		"typescriptreact", "react", },
-	callback = function(args)
-		if vim.bo[args.buf].buftype ~= "" or not vim.bo[args.buf].buflisted then
-			return
-		end
+-- Install supported parsers only when a file needs them. Keep failed installs
+-- from retrying repeatedly during the same session.
+local treesitter = require("nvim-treesitter")
+local available_parsers = nil
+local parser_attempts = {}
+local max_highlight_bytes = 1024 * 1024
 
-		pcall(vim.treesitter.start, args.buf)
+local function start_highlighting(buf)
+	if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_is_loaded(buf) then return end
+	local ok = pcall(vim.treesitter.start, buf)
+	return ok
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("treesitter_auto", { clear = true }),
+	callback = function(args)
+		if vim.bo[args.buf].buftype ~= "" or not vim.bo[args.buf].buflisted then return end
+		local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(args.buf))
+		if stat and stat.size > max_highlight_bytes then return end
+		local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+		if not lang then return end
+		local query_ok, query = pcall(vim.treesitter.query.get, lang, "highlights")
+		if query_ok and query and start_highlighting(args.buf) then return end
+		if parser_attempts[lang] then return end
+		if not available_parsers then
+			available_parsers = {}
+			for _, parser in ipairs(treesitter.get_available()) do available_parsers[parser] = true end
+		end
+		if not available_parsers[lang] then return end
+		parser_attempts[lang] = true
+		treesitter.install({ lang }):await(function()
+			vim.schedule(function()
+				for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+					if vim.api.nvim_buf_is_loaded(buf)
+						and vim.treesitter.language.get_lang(vim.bo[buf].filetype) == lang then
+						local file = vim.uv.fs_stat(vim.api.nvim_buf_get_name(buf))
+						if not file or file.size <= max_highlight_bytes then start_highlighting(buf) end
+					end
+				end
+			end)
+		end)
 	end,
 })
-
 
 require "mason".setup()
 vim.lsp.config("ols", dofile(vim.fs.joinpath(vim.fn.stdpath("config"), "lsp", "ols.lua")))
 vim.lsp.config("ocamllsp", { cmd = { "opam", "exec", "--", "ocamllsp" } })
+
+-- Avoid making the umbrella projects repository the workspace for unrelated
+-- Python files; use a Python project marker or the file's directory instead.
+local function python_root(bufnr, on_dir)
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	local root = vim.fs.root(bufnr, {
+		"pyrightconfig.json", "pyproject.toml", "setup.py", "setup.cfg",
+		"requirements.txt", "Pipfile", "ruff.toml", ".ruff.toml",
+	}) or vim.fs.root(bufnr, ".git")
+	local projects = vim.fs.normalize(vim.fn.expand("~/Documents/projects"))
+	if not root or vim.fs.normalize(root) == projects then root = vim.fs.dirname(name) end
+	if root and root ~= "" then on_dir(root) end
+end
+vim.lsp.config("pyright", { root_dir = python_root })
+vim.lsp.config("ruff", { root_dir = python_root })
 
 local telescope = require("telescope")
 local default_color = "everforest"
