@@ -1,0 +1,49 @@
+{
+  "id": "root",
+  "type": "column",
+  "titlebar": "none",
+  "traffic_lights": [16, 18],
+  "theme": "graphite",
+  "font_size": 15,
+  "colors": {
+    "background": "#131619",
+    "surface": "#17191c",
+    "raised": "#202225",
+    "hover": "#ffffff0d",
+    "border": "#25282c",
+    "accent": "#3b82f6",
+    "foreground": "#e8e9eb",
+    "terminal_foreground": "#e6e7e9",
+    "muted": "#a9adb3",
+    "dim": "#8b8f95",
+    "selection": "#264f78"
+  },
+  "background": "#131619",
+  "padding": [6, 6],
+  "gap": 8,
+  "children": [
+    {
+      "id": "tabs",
+      "type": "block",
+      "size": { "px": 38 },
+      "window_drag": true,
+      "content": { "mod": "terminals-bar" }
+    },
+    {
+      "id": "main",
+      "type": "block",
+      "content": {
+        "tab": "active",
+        "pane": {
+          "header": { "content": { "mod": "terminals-pane" }, "height": 38 },
+          "background": "#17191c",
+          "border": { "width": 1, "color": "#24272b" },
+          "focus": { "width": 1, "color": "#33363b" },
+          "radius": 12,
+          "gap": 8,
+          "lone": true
+        }
+      }
+    }
+  ]
+}

@@ -22,7 +22,8 @@ palette = 12=#7fbbb3
 palette = 13=#d699b6
 palette = 14=#83c092
 palette = 15=#d3c6aa
-font-family = Geist Mono
+font-family = Menlo
+font-style = Regular
 font-size = 25
 
 keybind = super+1=text:\x00\x31

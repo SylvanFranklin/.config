@@ -1,0 +1,193 @@
+{
+  "nodes": {
+    "panel": {
+      "hidden": false
+    },
+    "panel-body": {
+      "active": "changes"
+    }
+  },
+  "file": {
+    "id": "root",
+    "type": "row",
+    "children": [
+      {
+        "id": "sidebar",
+        "type": "column",
+        "children": [
+          {
+            "id": "brand",
+            "type": "block",
+            "content": {
+              "mod": "workspace-chrome"
+            },
+            "size": {
+              "px": 46.0
+            },
+            "window_drag": true
+          },
+          {
+            "id": "sidebar-lists",
+            "type": "column",
+            "children": [
+              {
+                "id": "spaces",
+                "type": "block",
+                "content": {
+                  "mod": "spaces"
+                },
+                "size": {
+                  "weight": 1.0
+                },
+                "min": 90.0
+              },
+              {
+                "id": "agents",
+                "type": "block",
+                "content": {
+                  "mod": "agents"
+                },
+                "size": {
+                  "weight": 1.0
+                },
+                "min": 90.0
+              }
+            ]
+          },
+          {
+            "id": "sidebar-footer",
+            "type": "block",
+            "content": {
+              "mod": "workspace-chrome",
+              "props": {
+                "footer": true
+              }
+            },
+            "size": {
+              "px": 69.0
+            }
+          }
+        ],
+        "size": {
+          "px": 268.0
+        },
+        "min": 44.0,
+        "max": 480.0,
+        "background": "chrome",
+        "resizable": false
+      },
+      {
+        "id": "work",
+        "type": "column",
+        "children": [
+          {
+            "id": "tabs",
+            "type": "block",
+            "content": {
+              "mod": "tabs"
+            },
+            "size": {
+              "px": 42.0
+            },
+            "window_drag": true
+          },
+          {
+            "id": "work-body",
+            "type": "row",
+            "children": [
+              {
+                "id": "main",
+                "type": "block",
+                "content": {
+                  "tab": "active",
+                  "pane": {
+                    "header": {
+                      "content": {
+                        "mod": "pane"
+                      },
+                      "reveal": "always",
+                      "height": 30.0,
+                      "position": "top"
+                    },
+                    "background": "background",
+                    "border": {
+                      "width": 1.0,
+                      "color": "border"
+                    },
+                    "focus": {
+                      "width": 1.0,
+                      "color": "accent"
+                    },
+                    "radius": 10.0,
+                    "gap": 8.0,
+                    "lone": true
+                  }
+                }
+              },
+              {
+                "id": "panel",
+                "type": "column",
+                "children": [
+                  {
+                    "id": "panel-body",
+                    "type": "stack",
+                    "children": [
+                      {
+                        "id": "files",
+                        "type": "block",
+                        "content": {
+                          "mod": "files"
+                        }
+                      },
+                      {
+                        "id": "changes",
+                        "type": "block",
+                        "content": {
+                          "mod": "changes"
+                        }
+                      }
+                    ],
+                    "active": "files"
+                  }
+                ],
+                "size": {
+                  "px": 368.0
+                },
+                "min": 280.0,
+                "max": 900.0,
+                "hidden": true
+              }
+            ],
+            "padding": 8.0,
+            "gap": 8.0
+          },
+          {
+            "id": "status",
+            "type": "block",
+            "content": {
+              "mod": "workspace-status"
+            },
+            "size": {
+              "px": 28.0
+            }
+          }
+        ],
+        "resizable": false
+      }
+    ],
+    "background": "canvas",
+    "terminal_padding": [
+      14.0,
+      12.0
+    ],
+    "divider": {
+      "width": 1.0,
+      "color": "border"
+    },
+    "titlebar": "none",
+    "traffic_lights": [
+      12.0,
+      16.0
+    ]
+  }
+}

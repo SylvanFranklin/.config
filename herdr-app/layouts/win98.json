@@ -1,0 +1,106 @@
+{
+  "id": "root",
+  "type": "column",
+  "children": [
+    {
+      "id": "screen",
+      "type": "row",
+      "children": [
+        {
+          "id": "desktop",
+          "type": "block",
+          "content": {
+            "mod": "win98",
+            "props": {
+              "role": "desktop"
+            }
+          },
+          "size": {
+            "px": 120.0
+          },
+          "window_drag": true
+        },
+        {
+          "id": "main",
+          "type": "block",
+          "content": {
+            "tab": "active",
+            "pane": {
+              "header": {
+                "content": {
+                  "mod": "win98",
+                  "props": {
+                    "role": "window"
+                  }
+                },
+                "reveal": "always",
+                "height": 25.714,
+                "position": "top"
+              },
+              "background": "#000000",
+              "border": {
+                "width": 4.286,
+                "color": "#c0c0c0"
+              },
+              "focus": {
+                "width": 4.286,
+                "color": "#c0c0c0"
+              },
+              "radius": 0.0,
+              "gap": 8.0,
+              "lone": true
+            }
+          },
+          "padding": [
+            10.0,
+            10.0
+          ]
+        }
+      ],
+      "resizable": false,
+      "floating": [
+        {
+          "id": "clippy",
+          "content": {
+            "mod": "win98",
+            "props": {
+              "role": "clippy"
+            }
+          },
+          "edge": "left",
+          "align": "end"
+        }
+      ]
+    },
+    {
+      "id": "taskbar",
+      "type": "block",
+      "content": {
+        "mod": "win98",
+        "props": {
+          "role": "taskbar"
+        }
+      },
+      "size": {
+        "px": 40.0
+      },
+      "window_drag": true
+    }
+  ],
+  "background": "#008080",
+  "theme": "win98",
+  "font": "PxPlus IBM VGA 8x16",
+  "font_size": 22.857,
+  "ui_font": "Pixelated MS Sans Serif",
+  "terminal_padding": [
+    4.0,
+    2.0
+  ],
+  "terminal_opacity": 0.0,
+  "titlebar": "none",
+  "traffic_lights": [
+    14.0,
+    14.0
+  ],
+  "preview": "layouts/win98.svg"
+}

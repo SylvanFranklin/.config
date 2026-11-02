@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" shape-rendering="crispEdges">
+  <rect width="320" height="200" fill="#008080"/>
+  <!-- desktop icons -->
+  <g fill="#ffffff">
+    <rect x="10" y="10" width="14" height="11" fill="#c0c0c0"/><rect x="12" y="12" width="10" height="7" fill="#000080"/>
+    <rect x="8" y="24" width="18" height="2"/>
+    <rect x="11" y="34" width="12" height="9" fill="#ffff00"/><rect x="11" y="32" width="6" height="3" fill="#ffff00"/>
+    <rect x="8" y="46" width="18" height="2"/>
+    <rect x="11" y="56" width="12" height="9" fill="#ffff00"/><rect x="11" y="54" width="6" height="3" fill="#ffff00"/>
+    <rect x="8" y="68" width="18" height="2"/>
+    <circle cx="17" cy="83" r="5" fill="#000000"/>
+    <rect x="8" y="91" width="18" height="2"/>
+  </g>
+  <!-- window -->
+  <rect x="38" y="8" width="274" height="168" fill="#c0c0c0"/>
+  <rect x="38" y="8" width="274" height="1" fill="#ffffff"/><rect x="38" y="8" width="1" height="168" fill="#ffffff"/>
+  <rect x="38" y="175" width="274" height="1" fill="#000000"/><rect x="311" y="8" width="1" height="168" fill="#000000"/>
+  <defs><linearGradient id="t"><stop offset="0" stop-color="#000080"/><stop offset="1" stop-color="#1084d0"/></linearGradient></defs>
+  <rect x="41" y="11" width="268" height="10" fill="url(#t)"/>
+  <rect x="44" y="14" width="60" height="4" fill="#ffffff"/>
+  <rect x="283" y="13" width="7" height="6" fill="#c0c0c0"/><rect x="291" y="13" width="7" height="6" fill="#c0c0c0"/><rect x="300" y="13" width="7" height="6" fill="#c0c0c0"/>
+  <rect x="41" y="23" width="268" height="150" fill="#000000"/>
+  <rect x="45" y="28" width="70" height="3" fill="#5555ff"/>
+  <rect x="45" y="34" width="110" height="3" fill="#aaaaaa"/>
+  <rect x="45" y="40" width="90" height="3" fill="#aaaaaa"/>
+  <rect x="45" y="46" width="6" height="4" fill="#c0c0c0"/>
+  <!-- minesweeper -->
+  <rect x="226" y="40" width="74" height="84" fill="#c0c0c0"/>
+  <rect x="228" y="42" width="70" height="8" fill="url(#t)"/>
+  <rect x="231" y="53" width="64" height="12" fill="#808080"/><rect x="258" y="55" width="10" height="8" fill="#ffff00"/>
+  <rect x="233" y="56" width="14" height="6" fill="#000000"/><rect x="279" y="56" width="14" height="6" fill="#000000"/>
+  <rect x="231" y="68" width="64" height="52" fill="#808080"/>
+  <rect x="233" y="70" width="60" height="48" fill="#c0c0c0"/>
+  <path d="M233 76h60M233 82h60M233 88h60M233 94h60M233 100h60M233 106h60M233 112h60M239 70v48M245 70v48M251 70v48M257 70v48M263 70v48M269 70v48M275 70v48M281 70v48M287 70v48" stroke="#ffffff" stroke-width="1"/>
+  <!-- taskbar -->
+  <rect x="0" y="184" width="320" height="16" fill="#c0c0c0"/>
+  <rect x="0" y="184" width="320" height="1" fill="#ffffff"/>
+  <rect x="2" y="187" width="30" height="11" fill="#c0c0c0" stroke="#000000" stroke-width="0.5"/>
+  <rect x="5" y="189" width="3" height="3" fill="#ff0000"/><rect x="8" y="189" width="3" height="3" fill="#00ff00"/>
+  <rect x="5" y="192" width="3" height="3" fill="#0000ff"/><rect x="8" y="192" width="3" height="3" fill="#ffff00"/>
+  <rect x="13" y="191" width="16" height="3" fill="#000000"/>
+  <rect x="38" y="187" width="70" height="11" fill="#dfdfdf" stroke="#808080" stroke-width="0.5"/>
+  <rect x="112" y="187" width="70" height="11" fill="#c0c0c0" stroke="#000000" stroke-width="0.5"/>
+  <rect x="270" y="187" width="48" height="11" fill="#c0c0c0" stroke="#808080" stroke-width="0.5"/>
+  <rect x="290" y="191" width="22" height="3" fill="#000000"/>
+</svg>

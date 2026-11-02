@@ -1,0 +1,11 @@
+Pixelated MS Sans Serif (Regular and Bold)
+
+Copyright lou 2017. Built with FontStruct:
+  Regular: http://fontstruct.com/fontstructions/show/1384746/ms-sans-serif
+  Bold:    http://fontstruct.com/fontstructions/show/1384862/ms-sans-serif-bold
+
+Licensed under Creative Commons Attribution-ShareAlike 3.0:
+  http://creativecommons.org/licenses/by-sa/3.0/
+
+Shipped unchanged (the webfont conversion used by 98.css).
+FontStruct is a trademark of FSI FontShop International GmbH.

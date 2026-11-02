@@ -108,7 +108,7 @@ alt-e = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh 
 alt-n = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair ANKI net.ankiweb.anki"'
 alt-r = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair SIOYEK info.sioyek.sioyek"'
 alt-s = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/music-home.sh"'
-alt-t = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair AGENTHARNESS com.openai.codex"'
+alt-t = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair AGENTHARNESS dev.herdr.app"'
 alt-y = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/raycast-ai.sh"'
 alt-m = 'exec-and-forget /bin/bash -lc "$HOME/.config/scripts/aerospace-home.sh --repair MAIL com.apple.mail"'
 
@@ -192,6 +192,10 @@ run = 'move-node-to-workspace AGENTHARNESS'
 
 [[on-window-detected]]
 if.app-id = 'com.openai.codex'
+run = 'move-node-to-workspace AGENTHARNESS'
+
+[[on-window-detected]]
+if.app-id = 'dev.herdr.app'
 run = 'move-node-to-workspace AGENTHARNESS'
 
 [[on-window-detected]]
