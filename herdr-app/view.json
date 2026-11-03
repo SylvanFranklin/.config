@@ -1,21 +1,101 @@
 {
-  "active": "sp3443c5aad18c2435a7d86ccf1c2981b3",
+  "active": "sp76f64e97eff0e7bd16a81776f793a823",
   "spaces": {
-    "sp3443c5aad18c2435a7d86ccf1c2981b3": "tb65d42efbf5fdebf20aa7e83b09ab6f29"
+    "sp76f64e97eff0e7bd16a81776f793a823": "tb2f5531bf9d2cb2a47a2379c183cb5e59",
+    "spb588a5b6b0eea1169bcf1b8c312a9138": "tbbb5e52e9bc74c3d78c2454c0405ee3b9"
   },
   "tabs": {
-    "tb65d42efbf5fdebf20aa7e83b09ab6f29": {
-      "focused": "pca519648667303bbb4696488e5d852c6",
+    "tb2f5531bf9d2cb2a47a2379c183cb5e59": {
+      "focused": "p43f928197c488a80fb6f9165095411ce",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
+    "tb84edfdf71410a4e75adfd74f316db47d": {
+      "focused": "p47c20108f57466695c466b9e753dd105",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
+    "tbbb5e52e9bc74c3d78c2454c0405ee3b9": {
+      "focused": "pbda0313e5f2ce6ff86a24a2ebbd073b9",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
+    "tbdc3dd785a437f17ecee33e6665f828ed": {
+      "focused": "p3e1cea4eb0fac791b3e724135a5ae325",
       "before": [],
       "zoomed": null,
       "settled": null
     }
   },
-  "recent": [],
+  "recent": [
+    {
+      "name": "",
+      "folder": "/Users/sylvanfranklin"
+    }
+  ],
   "attention": {
     "t1": {
+      "word": "working",
+      "seen": true
+    },
+    "t10": {
+      "word": null,
+      "seen": true
+    },
+    "t11": {
+      "word": "idle",
+      "seen": true
+    },
+    "t12": {
+      "word": "done",
+      "seen": true
+    },
+    "t13": {
+      "word": "idle",
+      "seen": true
+    },
+    "t14": {
+      "word": null,
+      "seen": true
+    },
+    "t15": {
       "word": "done",
       "seen": false
+    },
+    "t2": {
+      "word": null,
+      "seen": true
+    },
+    "t3": {
+      "word": null,
+      "seen": true
+    },
+    "t4": {
+      "word": null,
+      "seen": true
+    },
+    "t5": {
+      "word": "idle",
+      "seen": true
+    },
+    "t6": {
+      "word": null,
+      "seen": true
+    },
+    "t7": {
+      "word": null,
+      "seen": true
+    },
+    "t8": {
+      "word": null,
+      "seen": true
+    },
+    "t9": {
+      "word": null,
+      "seen": true
     }
   }
 }

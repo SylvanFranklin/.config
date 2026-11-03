@@ -1,0 +1,186 @@
+{
+  "nodes": {
+    "sidebar": {
+      "size": {
+        "px": 318.0
+      }
+    }
+  },
+  "file": {
+    "id": "root",
+    "type": "row",
+    "children": [
+      {
+        "id": "sidebar",
+        "type": "column",
+        "children": [
+          {
+            "id": "brand",
+            "type": "block",
+            "content": {
+              "mod": "workspace-chrome"
+            },
+            "size": {
+              "px": 46.0
+            },
+            "window_drag": true
+          },
+          {
+            "id": "workflow",
+            "type": "block",
+            "content": {
+              "mod": "workflow"
+            },
+            "size": {
+              "px": 1.0
+            }
+          },
+          {
+            "id": "sidebar-lists",
+            "type": "column",
+            "children": [
+              {
+                "id": "spaces",
+                "type": "block",
+                "content": {
+                  "mod": "spaces"
+                },
+                "size": {
+                  "weight": 1.0
+                },
+                "min": 90.0
+              },
+              {
+                "id": "agents",
+                "type": "block",
+                "content": {
+                  "mod": "agents"
+                },
+                "size": {
+                  "weight": 1.0
+                },
+                "min": 90.0
+              }
+            ]
+          },
+          {
+            "id": "sidebar-footer",
+            "type": "block",
+            "content": {
+              "mod": "workspace-chrome",
+              "props": {
+                "footer": true
+              }
+            },
+            "size": {
+              "px": 69.0
+            }
+          }
+        ],
+        "size": {
+          "px": 268.0
+        },
+        "min": 44.0,
+        "max": 480.0,
+        "background": "chrome",
+        "resizable": false
+      },
+      {
+        "id": "work",
+        "type": "column",
+        "children": [
+          {
+            "id": "tabs",
+            "type": "block",
+            "content": {
+              "mod": "tabs"
+            },
+            "size": {
+              "px": 42.0
+            },
+            "window_drag": true
+          },
+          {
+            "id": "work-body",
+            "type": "row",
+            "children": [
+              {
+                "id": "main",
+                "type": "block",
+                "content": {
+                  "tab": "active",
+                  "pane": {
+                    "background": "background",
+                    "border": {
+                      "width": 1.0,
+                      "color": "border"
+                    },
+                    "focus": {
+                      "width": 1.0,
+                      "color": "accent"
+                    },
+                    "radius": 0.0,
+                    "gap": 1.0
+                  }
+                }
+              },
+              {
+                "id": "panel",
+                "type": "column",
+                "children": [
+                  {
+                    "id": "panel-body",
+                    "type": "stack",
+                    "children": [
+                      {
+                        "id": "files",
+                        "type": "block",
+                        "content": {
+                          "mod": "files"
+                        }
+                      },
+                      {
+                        "id": "changes",
+                        "type": "block",
+                        "content": {
+                          "mod": "changes"
+                        }
+                      }
+                    ],
+                    "active": "files"
+                  }
+                ],
+                "size": {
+                  "px": 368.0
+                },
+                "min": 280.0,
+                "max": 900.0,
+                "hidden": true
+              }
+            ],
+            "padding": 0.0,
+            "gap": 0.0
+          }
+        ],
+        "resizable": false
+      }
+    ],
+    "background": "canvas",
+    "theme": "ghostty-everforest",
+    "font": "Menlo",
+    "font_size": 25.0,
+    "terminal_padding": [
+      4.0,
+      6.0
+    ],
+    "divider": {
+      "width": 1.0,
+      "color": "border"
+    },
+    "titlebar": "none",
+    "traffic_lights": [
+      12.0,
+      16.0
+    ]
+  }
+}
