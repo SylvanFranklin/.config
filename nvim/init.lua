@@ -68,7 +68,12 @@ vim.pack.add({
 
 
 
-require("typst-preview").setup()
+local custom_tinymist = vim.fn.expand("~/Documents/projects/tinymist-preview-custom/target/release/tinymist")
+require("typst-preview").setup({
+	dependencies_bin = {
+		tinymist = vim.fn.executable(custom_tinymist) == 1 and custom_tinymist or nil,
+	},
+})
 
 require("csvview").setup({
 	parser = {
