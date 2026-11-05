@@ -2,17 +2,35 @@
   "active": "spab08e24eae5b5db4dd4f9b6134e95f30",
   "spaces": {
     "sp8a35521f2c69fc1e046307a880967283": "tbde5cc7f4b408d8270b24eac537d95c55",
-    "spab08e24eae5b5db4dd4f9b6134e95f30": "tbd171c86283907878e32e9394f9412748"
+    "spab08e24eae5b5db4dd4f9b6134e95f30": "tbb82eff3782846ed980f6b89a07837969"
   },
   "tabs": {
+    "tb851efc951cbe7943466ddf91b3fd8f06": {
+      "focused": "p193467db0d8fbad02152f7c372bab45f",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
     "tba6145cc11a2b12358349596dd4841ac3": {
       "focused": "peb4305dc3840c143d8e2ac86b48f59c5",
       "before": [],
       "zoomed": null,
       "settled": null
     },
-    "tbd171c86283907878e32e9394f9412748": {
-      "focused": "p42dfb5166b0ce37469618f0a75b70dbc",
+    "tbb82eff3782846ed980f6b89a07837969": {
+      "focused": "p9bdb58f57d465436802d33076e4ebc64",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
+    "tbbb550e6d7fe585f906c8ad08110a0d60": {
+      "focused": "p44b678f61ac8493785afd1ab309f759e",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
+    "tbd4f65d16ba4c7ca22c831d497f79eb48": {
+      "focused": "pe872519f55871f2c64be6ccefc4be0f0",
       "before": [],
       "zoomed": null,
       "settled": null
@@ -247,9 +265,37 @@
       "word": null,
       "seen": true
     },
+    "t2t": {
+      "word": null,
+      "seen": true
+    },
+    "t2v": {
+      "word": "idle",
+      "seen": true
+    },
+    "t2w": {
+      "word": "done",
+      "seen": true
+    },
+    "t2x": {
+      "word": "done",
+      "seen": true
+    },
+    "t2y": {
+      "word": null,
+      "seen": true
+    },
+    "t2z": {
+      "word": "idle",
+      "seen": true
+    },
     "t3": {
       "word": null,
       "seen": true
+    },
+    "t30": {
+      "word": "done",
+      "seen": false
     },
     "t4": {
       "word": null,
