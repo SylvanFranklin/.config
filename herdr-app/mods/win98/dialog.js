@@ -194,7 +194,7 @@ export default class Dialog {
         const name = this.text.trim();
         if (!name) return;
         this.close();
-        run(p.command.name, { ...(p.command.args ?? {}), name, ...(this.machine ? { machine: this.machine } : {}) });
+        run(p.command.name, { ...(p.command.args ?? {}), name, ...(p.machines ? { machine: this.machine ?? "" } : {}) });
         return;
       }
       case "run":
@@ -765,7 +765,7 @@ export default class Dialog {
   renderNetwork(u) {
     const items = [
       { label: "Entire Network", icon: "network", act: null },
-      { label: "This computer", icon: "computer", act: { dialog: { kind: "prompt", title: "New Space", text: "Type a name for the new space:", icon: "folder", command: { name: "space.new", args: {} } } } },
+      { label: "This computer", icon: "computer", act: { dialog: { kind: "prompt", title: "New Space", text: "Type a name for the new space:", icon: "folder", command: { name: "space.new", args: { machine: "" } } } } },
       ...this.machines.map((m) => ({
         label: m.name,
         icon: "computer",

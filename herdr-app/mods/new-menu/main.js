@@ -1,6 +1,9 @@
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex, v_flex } from "gpui-base";
-import { theme, spaces, panes, knownAgents, run, openOverlay, closeOverlay, props, window, keys } from "herdr";
+import { theme, spaces, panes, knownAgents, run, openOverlay, closeOverlay, props, window, keys, shared, setShared } from "herdr";
+
+// The last agents each machine reported, shown at once while knownAgents() checks again.
+const KNOWN = "new-menu.agents";
 
 function shortcut(name) {
   const k = keys().find(b => b.section === "global" && b.action === name);
@@ -21,11 +24,16 @@ function shortcut(name) {
 
 export default class NewMenu extends View {
   init(_props, cx) {
-    this.agents = [];
+    const machine = spaces().find(s => s.active)?.machine;
+    const where = machine ?? "";
+    this.agents = shared(KNOWN)?.[where] ?? [];
     this.handle = cx.focus_handle();
     this.handle.focus();
     cx.spawn(async cx => {
-      try { this.agents = await knownAgents({ on: spaces().find(s => s.active)?.machine }); }
+      try {
+        this.agents = await knownAgents({ on: machine });
+        setShared(KNOWN, { ...shared(KNOWN), [where]: this.agents });
+      }
       catch { this.failed = true; }
       cx.notify();
     });

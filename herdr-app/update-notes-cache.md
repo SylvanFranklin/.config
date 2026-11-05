@@ -1,5 +1,43 @@
 # Herdr changelog
 
+## [0.1.13] - 2026-11-04
+<!-- spotlight macos -->
+
+### New
+- **On macOS, programs in your terminals can reach your local network and use the microphone.** Herdr's core is now its own app, Herdr Core: macOS asks once for each (the network prompt may say herdr-core), click Allow. Terminals opened before this update need to be reopened once. Node, Copilot or a model server on another machine connect; voice input works. (herdr-core#100)
+- **Find in a terminal.** Cmd+F on macOS, Ctrl+Shift+F on Linux and Windows searches the screen and its history. If you've edited your keys.json, add "cmd-f": "terminal.search" (or "ctrl-shift-f") to its terminal section yourself. (#436, thanks @SOUMITRO-SAHA)
+- Terminal panes show a scroll thumb you can drag. (#428, thanks @msly)
+- Programming ligatures, off by default: set font_ligatures to true in settings. (#244, thanks @ruilopesm)
+- Mods and agents can scroll a terminal's history with terminal.scroll, and keys.json can bind a command with arguments. (#455, thanks @sQVe)
+- dsh-tui agents have their own icon and start from the new agent menu. (#335, thanks @tsonglew)
+
+### Fixed
+- Programs start at the size of their pane, so the first screen of an agent isn't drawn at the wrong width.
+- On Windows, Nerd Font icons show again.
+- On Windows, links with an = in them open in the browser.
+- On Windows, agents and the Files panel work on remote Windows machines.
+- On Windows without a GPU, Herdr uses far less CPU. (#424, thanks @kiote)
+- On Windows, OneDrive folders and paths with curly quotes open in Files. (#354, thanks @chanyang721)
+- Ctrl+[, Ctrl+I, Ctrl+M, Ctrl+_ and Ctrl+- reach programs as they do in other terminals.
+- Cmd+C reaches the program when nothing is selected. (#319, thanks @sllrs)
+- The agents list no longer breaks with "This view could not be re-rendered" on busy setups. (#485, thanks @mike-north)
+- Open worktree no longer breaks in repos with many worktrees. (#486, thanks @martin-ro)
+- Switching back to the tab from a home page gives the terminal the keyboard again. (#484, thanks @ngotchac)
+- Cmd+1 to 9 follow the order of spaces in the sidebar.
+- The pane focus ring shows only where the keyboard really is.
+- Shortcut keys work right after start, even with no space open.
+- The shortcuts overlay closes with the same key, and Ctrl+? opens it on Linux.
+- Wide fallback symbols like 🕹 fit their cell instead of covering the next one. (#468)
+- Braille dots are spaced evenly. (#351, thanks @leoscricca)
+- On Linux, no light flash when Herdr starts on a dark desktop. (#225, thanks @claytonfaria)
+- On Wayland with several seats, the mouse and keyboard work. (#123)
+- Tabs you're not looking at resize with the window. (#340, thanks @imakil195)
+- Mods see when the window loses and gets focus. (#350, thanks @ngotchac)
+- The font picker no longer crashes on some fonts. (#316, thanks @ruilopesm)
+- The command palette scrolls smoothly. (#348, thanks @patrick-xin)
+- Add machine lists hosts from Include files in ~/.ssh/config. (#328, thanks @ashrodan)
+- Selected text in mod text views stays readable.
+
 ## [0.1.12] - 2026-11-02
 <!-- spotlight macos -->
 

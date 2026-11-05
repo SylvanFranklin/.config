@@ -62,6 +62,8 @@ export default class Spaces extends View {
     this.pressed = null;
     this.over = null;
     this.machines = [];
+    this.reconnecting = JSON.parse(localStorage.getItem("machines.reconnecting") ?? "{}");
+    for (const state of Object.values(this.reconnecting)) state.busy = false;
     this.folded = new Set(JSON.parse(localStorage.getItem("machines.folded") ?? "[]"));
     this.refreshMachines(cx);
     cx.timer.every(15000, cx => this.refreshMachines(cx));
@@ -122,6 +124,53 @@ export default class Spaces extends View {
   refreshMachines(cx) {
     cx.spawn(async cx => {
       try { const r = await hc(["machine", "ls", "--json"]); if (r.code === 0) this.machines = (JSON.parse(r.stdout).machines ?? []).filter((m) => !m.temporary); } catch {}
+      cx.notify();
+    });
+  }
+
+  rebuilt(machine) {
+    return machine?.state === "unreachable" && /^a different core answers there \("[^"]+"\)$/.test(machine.why ?? "");
+  }
+
+  reconnect(machine, cx) {
+    const name = machine.name;
+    if (this.reconnecting[name]?.busy) return;
+    const state = this.reconnecting[name] ??= { machine, removed: false };
+    state.busy = true;
+    state.error = null;
+    localStorage.setItem("machines.reconnecting", JSON.stringify(this.reconnecting));
+    cx.notify();
+    cx.spawn(async cx => {
+      try {
+        const ask = async args => {
+          const r = await hc([...args, "--json"]);
+          if (r.code !== 0) {
+            let error;
+            try { error = JSON.parse(r.stdout || r.stderr).error?.message; } catch {}
+            throw new Error(error || r.stderr || r.stdout || "Couldn't connect.");
+          }
+        };
+        if (!state.removed) {
+          await ask(["machine", "rm", name]);
+          state.removed = true;
+          localStorage.setItem("machines.reconnecting", JSON.stringify(this.reconnecting));
+        }
+        const args = ["machine", "add"];
+        if (machine.via) args.push("--via", machine.target);
+        else args.push(machine.target);
+        args.push("--name", name);
+        if (machine.session) args.push("--session", machine.session);
+        if (machine.temporary) args.push("--temp");
+        await ask(args);
+        this.folded.delete(name);
+        localStorage.setItem("machines.folded", JSON.stringify([...this.folded]));
+        delete this.reconnecting[name];
+      } catch (e) {
+        state.error = String(e.message ?? e);
+        state.busy = false;
+      }
+      localStorage.setItem("machines.reconnecting", JSON.stringify(this.reconnecting));
+      this.refreshMachines(cx);
       cx.notify();
     });
   }
@@ -226,7 +275,7 @@ export default class Spaces extends View {
   grouped(t, collapsed) {
     const rows = this.ordered();
     const draw = (r) => (collapsed ? this.compact(r, t) : this.row(r, t));
-    const remote = [...new Set([...rows.map(r => r.w.machine).filter(Boolean), ...this.machines.map(m => m.name)])].sort();
+    const remote = [...new Set([...rows.map(r => r.w.machine).filter(Boolean), ...this.machines.map(m => m.name), ...Object.keys(this.reconnecting)])].sort();
     const loading = m => {
       const layout = machines().find(k => k.name === m)?.layout;
       return layout === "loading" || (!layout && this.machines.some(k => k.name === m && k.state === "connected"))
@@ -237,8 +286,10 @@ export default class Spaces extends View {
     const machineNames = [null, ...remote];
     return machineNames.flatMap((m) => {
       const mine = rows.filter((r) => (r.w.machine ?? null) === m);
-      const machine = this.machines.find(k => k.name === m);
+      const repair = this.reconnecting[m];
+      const machine = this.machines.find(k => k.name === m) ?? repair?.machine;
       const connected = !m || machine?.state === "connected";
+      const rebuilt = this.rebuilt(machine) || !!repair;
       const folded = this.folded.has(m);
       const head = h_flex().id(`machine-${m ?? "local"}`).h(26).flex_none().px(collapsed ? 2 : 8).gap(7).items_center().text_size(11).text_color(t.dim)
         .cursor_pointer().hover(s => s.bg(t.hover))
@@ -249,15 +300,23 @@ export default class Spaces extends View {
         })
         .child(svg(`mods/workspace-chrome/${m ? "server" : "monitor"}.svg`).size(13).flex_none())
         .when(!collapsed, el => el.child(div().flex_1().truncate().child(m ?? "This computer"))
-          .when(!connected, el => el.child(div().flex_none().child((machine?.state ?? "asleep").replace(/_/g, " "))))
+          .when(!connected && !rebuilt, el => el.child(div().flex_none().child((machine?.state ?? "asleep").replace(/_/g, " "))))
+          .when(rebuilt, el => el.child(h_flex().flex_none().gap(3).items_center()
+            .child(div().max_w(140).truncate().child(repair?.error || "rebuilt ·"))
+            .child(div().id(`machine-connect-${m}`).text_color(repair?.error ? t.blocked : t.muted)
+              .hover(s => s.text_color(t.foreground))
+              .tooltip(repair?.error || "This machine was rebuilt or replaced. Click to connect to the new one.")
+              .on_click((_e, cx) => { cx.stop_propagation(); this.reconnect(machine, cx); })
+              .child(repair?.busy ? "Connecting…" : "Connect"))))
           .when(connected, el => el.child(div().id(`machine-add-${m ?? "local"}`).flex_none().px(4).rounded(4).hover(s => s.bg(t.hover).text_color(t.foreground))
-            .on_click((_e, cx) => { cx.stop_propagation(); run("space.new", m ? { machine: m } : {}); }).child("+")))
+            .on_click((_e, cx) => { cx.stop_propagation(); run("space.new", { machine: m ?? "" }); }).child("+")))
           .child(div().size(6).rounded(3).flex_none().bg(connected ? t.ansi2 : t.dim))
           .child(svg(`mods/workspace-chrome/chevron-${folded ? "right" : "down"}.svg`).size(11).flex_none()));
       const empty = h_flex().id(`machine-new-${m ?? "local"}`).h(28).flex_none().px(8).gap(7).items_center().rounded(7)
         .text_size(12).text_color(t.dim).hover(s => s.bg(t.hover).text_color(t.foreground))
-        .on_click(() => run("space.new", m ? { machine: m } : {}))
+        .on_click(() => run("space.new", { machine: m ?? "" }))
         .child(svg("mods/workspace-chrome/plus.svg").size(12)).when(!collapsed, el => el.child("New space there"));
+      if (!collapsed && rebuilt) return [head];
       return [head, ...(folded ? [] : mine.length ? mine.map(draw) : [loading(m) ? loadingRow(m) : empty])];
     });
   }

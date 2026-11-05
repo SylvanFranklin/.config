@@ -1,6 +1,6 @@
 {
   "agents": {
-    "main.js": "84a79bd99454ded3",
+    "main.js": "2a835dd6c3ed356f",
     "mod.json": "c1d087260ba7b076"
   },
   "changes": {
@@ -17,7 +17,7 @@
     "chevron-right.svg": "7867764fc431794c",
     "file.svg": "316c5ba4beaebfe1",
     "folder.svg": "64e7b5165472b129",
-    "main.js": "36957bf59eea6a26",
+    "main.js": "00328fa91b49111d",
     "mod.json": "433fbf9dfa3e359a"
   },
   "help": {
@@ -42,7 +42,7 @@
     "mod.json": "433fbf9dfa3e359a"
   },
   "new-menu": {
-    "main.js": "0e180528238541b9",
+    "main.js": "163ca2db28639df5",
     "mod.json": "433fbf9dfa3e359a"
   },
   "pane": {
@@ -59,7 +59,7 @@
     "mod.json": "4f60f6ff15f11c9b"
   },
   "picker": {
-    "main.js": "1f40d82fe24387e8",
+    "main.js": "bbae52d90ac9e130",
     "mod.json": "e83a267b6fca8488"
   },
   "prompt": {
@@ -67,7 +67,7 @@
     "mod.json": "433fbf9dfa3e359a"
   },
   "spaces": {
-    "main.js": "9b8249038d8a6a9c",
+    "main.js": "ab767ba06ac5f0d7",
     "mod.json": "4a42ed2202338077"
   },
   "tabs": {
@@ -105,7 +105,7 @@
     "art/sounds.ts": "e77010496110c14c",
     "clippy.js": "286a80c4120638f8",
     "desktop.js": "0ebcff86d2e835fe",
-    "dialog.js": "3a655063eb011252",
+    "dialog.js": "d418c45398a005f2",
     "fonts/LICENSE-MSSansSerif.txt": "98ed307c3f61afbe",
     "fonts/LICENSE-PxPlus.txt": "0f81b235cae14003",
     "fonts/PixelatedMSSansSerif-Bold.ttf": "b1918b7ae2710380",
@@ -356,7 +356,7 @@
     "git-branch.svg": "4755be35a17a666b",
     "git-compare.svg": "695c80dd79512403",
     "layers.svg": "10b2f6a8868f3320",
-    "main.js": "c3f55145bbe6c017",
+    "main.js": "411dacc4a3d5d26f",
     "minus.svg": "9f34bc47ac7d5194",
     "mod.json": "433fbf9dfa3e359a",
     "monitor.svg": "dfa84aaf3437b005",

@@ -29,7 +29,8 @@ export function writeTextFile(path: string, text: string, expected: string | nul
 
 /** The agents people can start from a menu (entries with `run` in programs.json), most picked
  *  first, and whether each is installed: asked of the shell agents start in (on another machine,
- *  `on`, its `sh`), at most once a minute per machine. Start one with its `run` as `argv`. */
+ *  `on`, its login/interactive shell when supported), at most once a minute per machine.
+ *  Start one with its `run` as `argv`. */
 export function knownAgents(options?: { on?: string | null }): Promise<(Program & { run: string[]; installed: boolean })[]>;
 
 /** Opens the system's folder picker (this machine). Resolves with the chosen folder, or null
@@ -160,7 +161,8 @@ export interface AgentInfo {
   tab: string;
   tab_index: number;
   tab_name: string;
-  /** "done" means it finished while you weren't looking; it becomes "idle" once you look. */
+  /** "done" means it finished while you weren't looking; it becomes "idle" once you look
+   *  (here or on another Herdr client). */
   status: Status;
   /** What the agent reported (OSC 7501 `app`), e.g. "claude-code", "pi", "codex". */
   app: string | null;
@@ -169,6 +171,8 @@ export interface AgentInfo {
   title: string;
   /** Higher = changed more recently. */
   seq: number;
+  /** Pinned with `terminal.pin`, on any Herdr client. */
+  pinned: boolean;
   focused: boolean;
 }
 
@@ -389,14 +393,20 @@ export function setShared(key: string, value: unknown): null;
 
 /**
  * Waits for the next key command for this mod ("alt-s": "<mod>:<command>" in keys.json).
+ * With "focusable": true in mod.json, pane.go can move onto this copy and send "focus".
+ * Focus your own handle then (this.handle.focus()) and handle keys with on_key_down.
+ * The copy gets "focus" again when a popup over it closes. Leave with pane.go.
  *   cx.spawn(async (cx) => { for (;;) { const c = await nextCommand(); ...; cx.notify(); } });
  */
 export function nextCommand(): Promise<string>;
 
 /**
- * Waits for the next changes under a folder (recursive) and returns the changed paths
- * (absolute). Changes that came since the last call return at once, so none are missed;
- * a save's events come as one batch. One OS watcher per folder, shared by every mod.
+ * Waits for changes under a folder and returns absolute paths in batches.
+ * On Linux, Git-ignored directories and Git's object database are skipped; trees
+ * above 4096 non-ignored directories reject the watch, so use a timer fallback.
+ * macOS and Windows watch recursively, including ignored directories.
+ * Pending paths are bounded: a batch containing the root means refresh everything.
+ * Shared by every mod. Files also refreshes on its 10-second timer.
  *   cx.spawn(async (cx) => { for (;;) { await watchFolder(dir); this.reload(); cx.notify(); } });
  * Watch what you show, not a whole home folder (node_modules is a lot of events).
  */

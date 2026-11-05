@@ -1,30 +1,24 @@
 {
-  "active": "sp76f64e97eff0e7bd16a81776f793a823",
+  "active": "spab08e24eae5b5db4dd4f9b6134e95f30",
   "spaces": {
-    "sp76f64e97eff0e7bd16a81776f793a823": "tb2f5531bf9d2cb2a47a2379c183cb5e59",
-    "spb588a5b6b0eea1169bcf1b8c312a9138": "tbbb5e52e9bc74c3d78c2454c0405ee3b9"
+    "sp8a35521f2c69fc1e046307a880967283": "tbde5cc7f4b408d8270b24eac537d95c55",
+    "spab08e24eae5b5db4dd4f9b6134e95f30": "tbd171c86283907878e32e9394f9412748"
   },
   "tabs": {
-    "tb2f5531bf9d2cb2a47a2379c183cb5e59": {
-      "focused": "p43f928197c488a80fb6f9165095411ce",
+    "tba6145cc11a2b12358349596dd4841ac3": {
+      "focused": "peb4305dc3840c143d8e2ac86b48f59c5",
       "before": [],
       "zoomed": null,
       "settled": null
     },
-    "tb84edfdf71410a4e75adfd74f316db47d": {
-      "focused": "p47c20108f57466695c466b9e753dd105",
+    "tbd171c86283907878e32e9394f9412748": {
+      "focused": "p42dfb5166b0ce37469618f0a75b70dbc",
       "before": [],
       "zoomed": null,
       "settled": null
     },
-    "tbbb5e52e9bc74c3d78c2454c0405ee3b9": {
-      "focused": "pbda0313e5f2ce6ff86a24a2ebbd073b9",
-      "before": [],
-      "zoomed": null,
-      "settled": null
-    },
-    "tbdc3dd785a437f17ecee33e6665f828ed": {
-      "focused": "p3e1cea4eb0fac791b3e724135a5ae325",
+    "tbde5cc7f4b408d8270b24eac537d95c55": {
+      "focused": "p9d1118b15c4a51ecf2c267491cf8ed9a",
       "before": [],
       "zoomed": null,
       "settled": null
@@ -33,7 +27,7 @@
   "recent": [
     {
       "name": "",
-      "folder": "/Users/sylvanfranklin"
+      "folder": "/Users/sylvanfranklin/.config"
     }
   ],
   "attention": {
@@ -63,9 +57,193 @@
     },
     "t15": {
       "word": "done",
-      "seen": false
+      "seen": true
+    },
+    "t16": {
+      "word": null,
+      "seen": true
+    },
+    "t17": {
+      "word": null,
+      "seen": true
+    },
+    "t18": {
+      "word": null,
+      "seen": true
+    },
+    "t19": {
+      "word": null,
+      "seen": true
+    },
+    "t1b": {
+      "word": null,
+      "seen": true
+    },
+    "t1c": {
+      "word": null,
+      "seen": true
+    },
+    "t1d": {
+      "word": null,
+      "seen": true
+    },
+    "t1f": {
+      "word": null,
+      "seen": true
+    },
+    "t1g": {
+      "word": "working",
+      "seen": true
+    },
+    "t1h": {
+      "word": null,
+      "seen": true
+    },
+    "t1j": {
+      "word": "done",
+      "seen": true
+    },
+    "t1k": {
+      "word": null,
+      "seen": true
+    },
+    "t1m": {
+      "word": null,
+      "seen": true
+    },
+    "t1n": {
+      "word": null,
+      "seen": true
+    },
+    "t1p": {
+      "word": null,
+      "seen": true
+    },
+    "t1q": {
+      "word": null,
+      "seen": true
+    },
+    "t1r": {
+      "word": null,
+      "seen": true
+    },
+    "t1s": {
+      "word": null,
+      "seen": true
+    },
+    "t1t": {
+      "word": null,
+      "seen": true
+    },
+    "t1v": {
+      "word": null,
+      "seen": true
+    },
+    "t1x": {
+      "word": null,
+      "seen": true
+    },
+    "t1y": {
+      "word": null,
+      "seen": true
+    },
+    "t1z": {
+      "word": "idle",
+      "seen": true
     },
     "t2": {
+      "word": null,
+      "seen": true
+    },
+    "t20": {
+      "word": "idle",
+      "seen": true
+    },
+    "t21": {
+      "word": null,
+      "seen": true
+    },
+    "t22": {
+      "word": null,
+      "seen": true
+    },
+    "t23": {
+      "word": null,
+      "seen": true
+    },
+    "t24": {
+      "word": null,
+      "seen": true
+    },
+    "t25": {
+      "word": "idle",
+      "seen": true
+    },
+    "t26": {
+      "word": "idle",
+      "seen": true
+    },
+    "t27": {
+      "word": null,
+      "seen": true
+    },
+    "t28": {
+      "word": null,
+      "seen": true
+    },
+    "t29": {
+      "word": null,
+      "seen": true
+    },
+    "t2b": {
+      "word": null,
+      "seen": true
+    },
+    "t2c": {
+      "word": null,
+      "seen": true
+    },
+    "t2d": {
+      "word": null,
+      "seen": true
+    },
+    "t2f": {
+      "word": null,
+      "seen": true
+    },
+    "t2g": {
+      "word": null,
+      "seen": true
+    },
+    "t2h": {
+      "word": "done",
+      "seen": true
+    },
+    "t2j": {
+      "word": null,
+      "seen": true
+    },
+    "t2k": {
+      "word": null,
+      "seen": true
+    },
+    "t2n": {
+      "word": null,
+      "seen": true
+    },
+    "t2p": {
+      "word": null,
+      "seen": true
+    },
+    "t2q": {
+      "word": null,
+      "seen": true
+    },
+    "t2r": {
+      "word": null,
+      "seen": true
+    },
+    "t2s": {
       "word": null,
       "seen": true
     },

@@ -1,0 +1,142 @@
+{
+  "id": "root",
+  "cloned_from": {
+    "name": "main",
+    "version": "0.1.12"
+  },
+  "type": "row",
+  "children": [
+    {
+      "id": "sidebar",
+      "type": "column",
+      "children": [
+        {
+          "id": "sidebar-lists",
+          "type": "column",
+          "children": [
+            {
+              "id": "agents",
+              "type": "block",
+              "content": {
+                "mod": "minimal-agents"
+              },
+              "size": {
+                "weight": 1
+              },
+              "min": 90
+            }
+          ]
+        }
+      ],
+      "size": {
+        "px": 268
+      },
+      "min": 44,
+      "max": 480,
+      "background": "chrome",
+      "resizable": false
+    },
+    {
+      "id": "work",
+      "type": "column",
+      "children": [
+        {
+          "id": "tabs",
+          "type": "block",
+          "content": {
+            "mod": "minimal-tabs"
+          },
+          "size": {
+            "px": 46
+          },
+          "window_drag": true
+        },
+        {
+          "id": "work-body",
+          "type": "row",
+          "children": [
+            {
+              "id": "main",
+              "type": "block",
+              "content": {
+                "tab": "active",
+                "pane": {
+                  "background": "background",
+                  "radius": 0,
+                  "gap": 0,
+                  "lone": true
+                }
+              }
+            },
+            {
+              "id": "panel",
+              "type": "column",
+              "children": [
+                {
+                  "id": "panel-body",
+                  "type": "stack",
+                  "children": [
+                    {
+                      "id": "files",
+                      "type": "block",
+                      "content": {
+                        "mod": "files"
+                      }
+                    },
+                    {
+                      "id": "changes",
+                      "type": "block",
+                      "content": {
+                        "mod": "changes"
+                      }
+                    }
+                  ],
+                  "active": "files"
+                }
+              ],
+              "size": {
+                "px": 368
+              },
+              "min": 280,
+              "max": 900,
+              "hidden": true
+            }
+          ],
+          "padding": 0,
+          "gap": 0
+        },
+        {
+          "id": "workflow-commands",
+          "type": "block",
+          "size": {
+            "px": 1
+          },
+          "content": {
+            "mod": "workflow"
+          }
+        }
+      ],
+      "resizable": false
+    }
+  ],
+  "background": "canvas",
+  "terminal_padding": [
+    0,
+    0
+  ],
+  "titlebar": "none",
+  "traffic_lights": [
+    -100,
+    -100
+  ],
+  "theme": "ghostty-black",
+  "font": "Menlo",
+  "font_size": 25,
+  "ui_font": "Menlo",
+  "terminal_opacity": 1,
+  "divider": {
+    "width": 1,
+    "color": "#ffffff"
+  },
+  "gap": 12
+}
