@@ -2,9 +2,15 @@
   "active": "spab08e24eae5b5db4dd4f9b6134e95f30",
   "spaces": {
     "sp8a35521f2c69fc1e046307a880967283": "tbde5cc7f4b408d8270b24eac537d95c55",
-    "spab08e24eae5b5db4dd4f9b6134e95f30": "tbb82eff3782846ed980f6b89a07837969"
+    "spab08e24eae5b5db4dd4f9b6134e95f30": "tb5c2cb40b4438827e8844e1287d0a7e26"
   },
   "tabs": {
+    "tb5c2cb40b4438827e8844e1287d0a7e26": {
+      "focused": "p6dfe837cfbb38ed30142616edf69b939",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
     "tb851efc951cbe7943466ddf91b3fd8f06": {
       "focused": "p193467db0d8fbad02152f7c372bab45f",
       "before": [],
@@ -17,26 +23,14 @@
       "zoomed": null,
       "settled": null
     },
-    "tbb82eff3782846ed980f6b89a07837969": {
-      "focused": "p9bdb58f57d465436802d33076e4ebc64",
-      "before": [],
-      "zoomed": null,
-      "settled": null
-    },
-    "tbbb550e6d7fe585f906c8ad08110a0d60": {
-      "focused": "p44b678f61ac8493785afd1ab309f759e",
-      "before": [],
-      "zoomed": null,
-      "settled": null
-    },
-    "tbd4f65d16ba4c7ca22c831d497f79eb48": {
-      "focused": "pe872519f55871f2c64be6ccefc4be0f0",
-      "before": [],
-      "zoomed": null,
-      "settled": null
-    },
     "tbde5cc7f4b408d8270b24eac537d95c55": {
       "focused": "p9d1118b15c4a51ecf2c267491cf8ed9a",
+      "before": [],
+      "zoomed": null,
+      "settled": null
+    },
+    "tbe73c0b0bf91ba795fb0fe35fe23726d1": {
+      "focused": "p08f0fcd1b6e9b6f7508f4c5b862dff4e",
       "before": [],
       "zoomed": null,
       "settled": null
@@ -270,7 +264,7 @@
       "seen": true
     },
     "t2v": {
-      "word": "idle",
+      "word": "done",
       "seen": true
     },
     "t2w": {
@@ -294,8 +288,24 @@
       "seen": true
     },
     "t30": {
+      "word": "idle",
+      "seen": true
+    },
+    "t31": {
+      "word": null,
+      "seen": true
+    },
+    "t32": {
       "word": "done",
       "seen": false
+    },
+    "t33": {
+      "word": null,
+      "seen": true
+    },
+    "t34": {
+      "word": "working",
+      "seen": true
     },
     "t4": {
       "word": null,
