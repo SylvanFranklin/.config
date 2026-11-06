@@ -10,6 +10,7 @@ export default class Workflow extends View {
       else if (c === "yazi") run("tab.new", { name: "yazi", argv: ["yazi"] });
       else if (c === "git") run("tab.new", { name: "git", argv: ["lazygit"] });
       else if (c === "codex") run("tab.new", { argv: ["codex", "--no-alt-screen"] });
+      else if (c === "claude") run("tab.new", { argv: ["claude"] });
       else if (c === "scripts") run("tab.new", { name: "scripts", argv: ["bash", home() + "/.config/scripts/script-picker.sh", focused()?.cwd || home()] });
       else if (c === "typst") run("tab.new", { name: "typst", argv: ["bash", home() + "/.config/scripts/typst-preview-picker.sh", focused()?.cwd || home()] });
       else if (c === "links") run("tab.new", { argv: ["bash", home() + "/.config/scripts/links-picker.sh"] });

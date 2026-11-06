@@ -33,7 +33,7 @@
     "cmd-n": "space.new",
     "cmd-p": "mod.open:picker",
     "cmd-shift-p": "app.palette",
-    "cmd-d": "pane.split:right",
+    "cmd-d": "workflow.claude",
     "cmd-shift-d": "pane.split:down",
     "cmd-shift-w": "pane.close",
     "cmd-shift-enter": "pane.zoom",

@@ -6,7 +6,8 @@
     "sidebar": {
       "size": {
         "px": 480.0
-      }
+      },
+      "hidden": true
     }
   },
   "file": {
