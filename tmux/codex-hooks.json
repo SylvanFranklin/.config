@@ -1,0 +1,49 @@
+{
+  "description": "Persistent tmux tab colors for Codex: white at start, yellow while working, green when done, red when interrupted.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/bash \"$HOME/.config/scripts/codex-tmux-status.sh\" start",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/bash \"$HOME/.config/scripts/codex-tmux-status.sh\" running",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/bash \"$HOME/.config/scripts/codex-tmux-status.sh\" done",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "Interrupt": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/bash \"$HOME/.config/scripts/codex-tmux-status.sh\" interrupted",
+            "timeout": 3
+          }
+        ]
+      }
+    ]
+  }
+}
