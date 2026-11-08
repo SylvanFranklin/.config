@@ -1,0 +1,31 @@
+;; Colemak Mod-DH Standard (ANSI), migrated from the selected Karabiner profile.
+;; Only the currently identified physical keyboards are grabbed. Run `kanata -l`
+;; and review this allowlist when adding a keyboard; never add the virtual HID.
+(defcfg
+  process-unmapped-keys yes
+  macos-dev-names-include (
+    "Apple Internal Keyboard / Trackpad"
+    "0x34DD73D534793DFE"
+  )
+)
+
+(defsrc
+  caps lctl [
+  q w e r t y u i o p
+  a s d f g h j k l ;
+  z x c v b n m
+)
+
+(defalias cap (tap-hold-press 200 200 esc lctl))
+
+(deflayer colemak-dh
+  @cap lctl [
+  q w f p b j l u y ;
+  a r s t g m n e i o
+  x c d v z k h
+)
+
+;; Match Karabiner's left Control + [ rule, including the Caps-as-Control hold.
+(defoverridesv2
+  (lctl [) (esc) (lsft rsft rctl lalt ralt lmet rmet) ()
+)
