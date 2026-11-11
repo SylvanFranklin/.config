@@ -1,41 +1,30 @@
 {
-  "active": "spab08e24eae5b5db4dd4f9b6134e95f30",
+  "active": "spdff3e9c568a863a27f53d6b46d967ce7",
   "spaces": {
-    "sp8a35521f2c69fc1e046307a880967283": "tbde5cc7f4b408d8270b24eac537d95c55",
-    "spab08e24eae5b5db4dd4f9b6134e95f30": "tb5e5ad6c9bd4cfea267991fc1314f1af2"
+    "sp8a35521f2c69fc1e046307a880967283": "tb317ab141fd856ab925dc61d971c0cc93",
+    "spdff3e9c568a863a27f53d6b46d967ce7": "tbefd99f7b50e7d08de491192c5a164116"
   },
   "tabs": {
-    "tb53a1b0ee4eb46d61af8aa8b20d4185f8": {
-      "focused": "p3c7b0d9f27089647bdb584f3dd926dc3",
+    "tb317ab141fd856ab925dc61d971c0cc93": {
+      "focused": "p663a00303ac681d464114a88ff670a11",
       "before": [],
       "zoomed": null,
       "settled": null
     },
-    "tb5e5ad6c9bd4cfea267991fc1314f1af2": {
-      "focused": "p22a801b3c3675c5272b768730933d8f8",
+    "tbd23b4efd9f59904db41f113bee44d327": {
+      "focused": "p9a0528241577d0dc0694ea07ffb92f86",
       "before": [],
       "zoomed": null,
       "settled": null
     },
-    "tba6145cc11a2b12358349596dd4841ac3": {
-      "focused": "peb4305dc3840c143d8e2ac86b48f59c5",
-      "before": [],
-      "zoomed": null,
-      "settled": null
-    },
-    "tbde5cc7f4b408d8270b24eac537d95c55": {
-      "focused": "p9d1118b15c4a51ecf2c267491cf8ed9a",
+    "tbefd99f7b50e7d08de491192c5a164116": {
+      "focused": "p5040fb6d89dcd372e9dedc7e35977b46",
       "before": [],
       "zoomed": null,
       "settled": null
     }
   },
-  "recent": [
-    {
-      "name": "",
-      "folder": "/Users/sylvanfranklin/.config"
-    }
-  ],
+  "recent": [],
   "attention": {
     "t1": {
       "word": "working",
@@ -422,19 +411,475 @@
       "seen": true
     },
     "t44": {
+      "word": "done",
+      "seen": true
+    },
+    "t45": {
+      "word": null,
+      "seen": true
+    },
+    "t46": {
       "word": "idle",
+      "seen": true
+    },
+    "t47": {
+      "word": "idle",
+      "seen": true
+    },
+    "t48": {
+      "word": "idle",
+      "seen": true
+    },
+    "t49": {
+      "word": "done",
+      "seen": true
+    },
+    "t4b": {
+      "word": "done",
+      "seen": true
+    },
+    "t4c": {
+      "word": "done",
+      "seen": true
+    },
+    "t4d": {
+      "word": "idle",
+      "seen": true
+    },
+    "t4f": {
+      "word": null,
+      "seen": true
+    },
+    "t4g": {
+      "word": "idle",
+      "seen": true
+    },
+    "t4h": {
+      "word": "done",
+      "seen": true
+    },
+    "t4j": {
+      "word": null,
+      "seen": true
+    },
+    "t4k": {
+      "word": "idle",
+      "seen": true
+    },
+    "t4m": {
+      "word": null,
+      "seen": true
+    },
+    "t4n": {
+      "word": null,
+      "seen": true
+    },
+    "t4p": {
+      "word": null,
+      "seen": true
+    },
+    "t4q": {
+      "word": "done",
+      "seen": true
+    },
+    "t4r": {
+      "word": "done",
+      "seen": true
+    },
+    "t4s": {
+      "word": null,
+      "seen": true
+    },
+    "t4t": {
+      "word": "done",
+      "seen": true
+    },
+    "t4v": {
+      "word": null,
+      "seen": true
+    },
+    "t4w": {
+      "word": "done",
+      "seen": true
+    },
+    "t4x": {
+      "word": null,
+      "seen": true
+    },
+    "t4y": {
+      "word": "idle",
+      "seen": true
+    },
+    "t4z": {
+      "word": "done",
       "seen": true
     },
     "t5": {
       "word": "idle",
       "seen": true
     },
+    "t50": {
+      "word": "done",
+      "seen": true
+    },
+    "t51": {
+      "word": "idle",
+      "seen": true
+    },
+    "t52": {
+      "word": "done",
+      "seen": true
+    },
+    "t53": {
+      "word": null,
+      "seen": true
+    },
+    "t54": {
+      "word": "done",
+      "seen": true
+    },
+    "t55": {
+      "word": null,
+      "seen": true
+    },
+    "t56": {
+      "word": "idle",
+      "seen": true
+    },
+    "t57": {
+      "word": null,
+      "seen": true
+    },
+    "t58": {
+      "word": "done",
+      "seen": true
+    },
+    "t59": {
+      "word": "idle",
+      "seen": true
+    },
+    "t5b": {
+      "word": "idle",
+      "seen": true
+    },
+    "t5c": {
+      "word": null,
+      "seen": true
+    },
+    "t5d": {
+      "word": "idle",
+      "seen": true
+    },
+    "t5f": {
+      "word": "idle",
+      "seen": true
+    },
+    "t5g": {
+      "word": null,
+      "seen": true
+    },
+    "t5h": {
+      "word": "idle",
+      "seen": true
+    },
+    "t5j": {
+      "word": null,
+      "seen": true
+    },
+    "t5k": {
+      "word": null,
+      "seen": true
+    },
+    "t5m": {
+      "word": null,
+      "seen": true
+    },
+    "t5n": {
+      "word": null,
+      "seen": true
+    },
+    "t5p": {
+      "word": null,
+      "seen": true
+    },
+    "t5q": {
+      "word": "done",
+      "seen": true
+    },
+    "t5r": {
+      "word": "done",
+      "seen": true
+    },
+    "t5s": {
+      "word": null,
+      "seen": true
+    },
+    "t5t": {
+      "word": "done",
+      "seen": true
+    },
+    "t5v": {
+      "word": "idle",
+      "seen": true
+    },
+    "t5w": {
+      "word": "done",
+      "seen": true
+    },
+    "t5x": {
+      "word": null,
+      "seen": true
+    },
+    "t5y": {
+      "word": "done",
+      "seen": true
+    },
+    "t5z": {
+      "word": null,
+      "seen": true
+    },
     "t6": {
       "word": null,
       "seen": true
     },
+    "t60": {
+      "word": null,
+      "seen": true
+    },
+    "t61": {
+      "word": null,
+      "seen": true
+    },
+    "t62": {
+      "word": "idle",
+      "seen": true
+    },
+    "t63": {
+      "word": null,
+      "seen": true
+    },
+    "t64": {
+      "word": null,
+      "seen": true
+    },
+    "t65": {
+      "word": null,
+      "seen": true
+    },
+    "t66": {
+      "word": "working",
+      "seen": true
+    },
+    "t67": {
+      "word": null,
+      "seen": false
+    },
+    "t68": {
+      "word": null,
+      "seen": true
+    },
+    "t69": {
+      "word": "done",
+      "seen": true
+    },
+    "t6b": {
+      "word": "done",
+      "seen": true
+    },
+    "t6c": {
+      "word": "idle",
+      "seen": true
+    },
+    "t6d": {
+      "word": "done",
+      "seen": true
+    },
+    "t6f": {
+      "word": "done",
+      "seen": true
+    },
+    "t6g": {
+      "word": null,
+      "seen": true
+    },
+    "t6h": {
+      "word": "done",
+      "seen": true
+    },
+    "t6j": {
+      "word": "idle",
+      "seen": true
+    },
+    "t6k": {
+      "word": null,
+      "seen": true
+    },
+    "t6m": {
+      "word": null,
+      "seen": true
+    },
+    "t6n": {
+      "word": null,
+      "seen": true
+    },
+    "t6p": {
+      "word": "idle",
+      "seen": true
+    },
+    "t6q": {
+      "word": "done",
+      "seen": true
+    },
+    "t6r": {
+      "word": "done",
+      "seen": true
+    },
+    "t6s": {
+      "word": null,
+      "seen": true
+    },
+    "t6t": {
+      "word": "idle",
+      "seen": true
+    },
+    "t6v": {
+      "word": "idle",
+      "seen": true
+    },
+    "t6w": {
+      "word": "idle",
+      "seen": true
+    },
+    "t6x": {
+      "word": "done",
+      "seen": true
+    },
+    "t6y": {
+      "word": "idle",
+      "seen": true
+    },
+    "t6z": {
+      "word": "idle",
+      "seen": true
+    },
     "t7": {
       "word": null,
+      "seen": true
+    },
+    "t70": {
+      "word": null,
+      "seen": true
+    },
+    "t71": {
+      "word": null,
+      "seen": true
+    },
+    "t72": {
+      "word": "idle",
+      "seen": true
+    },
+    "t73": {
+      "word": null,
+      "seen": true
+    },
+    "t74": {
+      "word": "idle",
+      "seen": true
+    },
+    "t75": {
+      "word": "idle",
+      "seen": true
+    },
+    "t76": {
+      "word": null,
+      "seen": true
+    },
+    "t77": {
+      "word": null,
+      "seen": true
+    },
+    "t78": {
+      "word": "idle",
+      "seen": true
+    },
+    "t79": {
+      "word": "idle",
+      "seen": true
+    },
+    "t7b": {
+      "word": "done",
+      "seen": true
+    },
+    "t7c": {
+      "word": "idle",
+      "seen": true
+    },
+    "t7d": {
+      "word": null,
+      "seen": true
+    },
+    "t7f": {
+      "word": "idle",
+      "seen": true
+    },
+    "t7g": {
+      "word": "idle",
+      "seen": true
+    },
+    "t7h": {
+      "word": "idle",
+      "seen": true
+    },
+    "t7j": {
+      "word": "done",
+      "seen": true
+    },
+    "t7k": {
+      "word": null,
+      "seen": true
+    },
+    "t7m": {
+      "word": null,
+      "seen": true
+    },
+    "t7n": {
+      "word": "done",
+      "seen": true
+    },
+    "t7p": {
+      "word": null,
+      "seen": true
+    },
+    "t7q": {
+      "word": "done",
+      "seen": true
+    },
+    "t7r": {
+      "word": null,
+      "seen": true
+    },
+    "t7s": {
+      "word": null,
+      "seen": true
+    },
+    "t7t": {
+      "word": "idle",
+      "seen": true
+    },
+    "t7v": {
+      "word": "done",
+      "seen": true
+    },
+    "t7w": {
+      "word": null,
+      "seen": true
+    },
+    "t7x": {
+      "word": null,
+      "seen": true
+    },
+    "t7y": {
+      "word": "working",
       "seen": true
     },
     "t8": {

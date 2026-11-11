@@ -1024,7 +1024,8 @@ declare module "gpui-kit" {
      */
     track_focus<Self extends Element>(this: Self, handle: FocusHandle): Self;
     /**
-     * Gives a virtual list the scroll position held by a
+     * Gives a plain overflow scroll area the position held by a `ScrollHandle`,
+     * or gives a virtual list the scroll position held by a
      * `VirtualListScrollHandle`, so the script can drive it with
      * `scroll_to_item` and `scroll_to_bottom`.
      *
@@ -1032,7 +1033,7 @@ declare module "gpui-kit" {
      * the id it was built with — which is the same place a `Scrollbar` named
      * after that id looks, so the bar works either way.
      */
-    track_scroll<Self extends Element>(this: Self, handle: import("gpui-base").VirtualListScrollHandle): Self;
+    track_scroll<Self extends Element>(this: Self, handle: import("gpui-base").VirtualListScrollHandle | import("gpui-base").ScrollHandle): Self;
     /**
      * Which item a virtual list measures to infer its size across the axis it
      * scrolls: a vertical list takes its width from this item, a horizontal
@@ -21289,6 +21290,20 @@ declare module "gpui-base" {
     get_key: (index: number) => string,
     render: (range: ItemRange, cx: Context) => Element[],
   ): NativeElement;
+
+  /** A plain scroll area's position. Create in init() and attach with track_scroll. */
+  export interface ScrollHandle {
+    /** Reveal the zero-based direct child with the smallest scroll needed.
+     * Works on plain overflow_*_scroll and overflow_*_scrollbar elements.
+     * Requests are consumed once, after layout; already visible children stay put.
+     */
+    scroll_to_item(index: number): void;
+    /** Releases the handle. Using it afterwards throws. */
+    release(): boolean;
+  }
+
+  /** Create in init() and attach with track_scroll(handle). */
+  export const ScrollHandle: { new: () => ScrollHandle };
 
   /**
    * A virtual list's scroll position, kept across frames so the script can move

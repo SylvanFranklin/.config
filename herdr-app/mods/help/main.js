@@ -58,7 +58,7 @@ export default class Help extends View {
           .items_center()
           .justify_between()
           .child(div().text_size(15).font_semibold().text_color(t.foreground).child("Keybinds"))
-          .child(div().text_size(11).text_color(t.dim).child("Esc")),
+          .child(div().id("help-esc").px(6).py(2).rounded(5).text_size(11).text_color(t.dim).cursor_pointer().hover((s) => s.bg(t.hover).text_color(t.foreground)).on_click(() => closeOverlay(props().overlay)).child("Esc")),
       )
       .child(Input.new(this.input).h(36).flex_none().px(10).rounded(9).border_1().border_color(t.accent).bg(t.background).text_size(12.8).text_color(t.foreground))
       .child(

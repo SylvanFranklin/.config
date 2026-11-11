@@ -1,29 +1,55 @@
 // Add a machine: the hosts in ~/.ssh/config to pick from (or type one),
 // each added with one click (`hc machine add`). When the machine needs
 // something first (herdr-core installed there, a password, a new host
-// key), the same command opens in a small terminal window where you answer
-// it; the list sees the machine once it's added. Opened as a dialog
+// key), the picker explains what to run in a terminal. Machines that need
+// no answers are added quietly. Opened as a dialog
 // (`mod.open machine-add`); the sidebars' Add machine and the welcome
 // open it.
 
 import { View, div, svg } from "gpui-kit";
-import { v_flex, h_flex, InputState, Input } from "gpui-base";
-import { hc, exec, home, readTextFile, theme, props, closeOverlay, openOverlay } from "herdr";
+import { v_flex, h_flex, InputState, Input, TextView } from "gpui-base";
+import { hc, exec, home, readTextFile, theme, props, closeOverlay } from "herdr";
 
 const I = (name) => `mods/workspace-chrome/${name}.svg`;
+const shellArg = (target) => /^[a-z0-9_@%+=:,./-]+$/i.test(target) ? target : "'" + target.replace(/'/g, "'\\''") + "'";
 
-// Host entries people can pick: named ones, not patterns.
-function parseConfig(text) {
-  const hosts = [];
+// An Include's files, as ssh finds them: ~ is home, a relative path is
+// under ~/.ssh, and a pattern matches files (through sh; none where there's no sh).
+async function includeFiles(value) {
+  const paths = (value.match(/"[^"]*"|\S+/g) ?? [])
+    .map((p) => p.replace(/^"|"$/g, ""))
+    .map((p) => (p.startsWith("~/") ? `${home()}/${p.slice(2)}` : p.startsWith("/") || /^[a-z]:[\\/]/i.test(p) ? p : `${home()}/.ssh/${p}`));
+  const files = [];
+  for (const p of paths) {
+    if (!/[*?[]/.test(p)) {
+      files.push(p);
+      continue;
+    }
+    // From a Windows program, Git's sh gets the pattern already expanded, one
+    // argument per file, unless a space made it quoted: then sh expands it, and
+    // takes a backslash as an escape. So read every argument, never split one
+    // at its spaces, and give sh slashes.
+    const glob = /^[a-z]:/i.test(p) ? p.replace(/\\/g, "/") : p;
+    const r = await exec("sh", ["-c", 'IFS=; for p in "$@"; do for f in $p; do [ -f "$f" ] && printf "%s\\n" "$f"; done; done', "sh", glob]).catch(() => null);
+    files.push(...(r?.stdout ?? "").split("\n").filter(Boolean));
+  }
+  return files;
+}
+
+// Host entries people can pick: named ones, not patterns, from the file
+// and the files it includes (ssh stops 16 deep).
+async function parseConfig(text, hosts = [], depth = 0) {
   let cur = null;
   for (const raw of (text ?? "").split("\n")) {
     const m = raw.trim().match(/^([^\s#=]+)\s*=?\s*(.*)$/);
     if (!m) continue;
     const [key, value] = [m[1].toLowerCase(), m[2].trim()];
     if (key === "host" || key === "match") {
-      const names = key === "host" ? value.split(/\s+/).filter((h) => h && !/[*?!]/.test(h)) : [];
+      const names = key === "host" ? value.split(/\s+/).filter((h) => h && !/[*?!]/.test(h) && !hosts.some((x) => x.alias === h || x.aliases.includes(h))) : [];
       cur = names.length ? { alias: names[0], aliases: names.slice(1), hostname: null, user: null } : null;
       if (cur) hosts.push(cur);
+    } else if (key === "include" && depth < 16) {
+      for (const f of await includeFiles(value)) await parseConfig(await readTextFile(f).catch(() => null), hosts, depth + 1);
     } else if (cur && key === "hostname") cur.hostname = value;
     else if (cur && key === "user") cur.user = value;
   }
@@ -34,7 +60,9 @@ export default class MachineAdd extends View {
   init(_props, cx) {
     this.hosts = null;
     this.added = [];
-    this.state = {}; // target -> "adding" | "terminal" | error text
+    this.state = {}; // target -> "adding" | error text
+    this.pending = new Set();
+    this.refreshing = false;
     this.typed = "";
     this.input = InputState.new({ placeholder: "user@host" });
     this.input.on("change", (_e, cx) => { this.typed = this.input.value(); cx.notify(); });
@@ -42,24 +70,26 @@ export default class MachineAdd extends View {
     this.inputFocused = true;
     this.input.on("focus", (_e, cx) => { this.inputFocused = true; cx.notify(); });
     this.input.on("blur", (_e, cx) => { this.inputFocused = false; cx.notify(); });
-    if (props()?.part !== "bar") {
-      this.input.focus();
-      cx.timer.after(600, () => this.input.focus());
-    }
+    this.input.focus();
+    cx.timer.after(600, () => this.input.focus());
     this.macs = {}; // target -> { name, core } for an added Mac
     this.opened = {};
     this.handle = cx.focus_handle();
     cx.spawn(async (cx) => {
-      this.hosts = parseConfig(await readTextFile(`${home()}/.ssh/config`).catch(() => null));
+      this.hosts = await parseConfig(await readTextFile(`${home()}/.ssh/config`).catch(() => null));
       await this.refresh();
       cx.notify();
     });
-    // While a terminal finishes an add, the list catches up.
     cx.timer.every(3000, (cx) => {
-      if (!Object.values(this.state).includes("terminal")) return;
+      if (!this.pending.size || this.refreshing) return;
+      this.refreshing = true;
       cx.spawn(async (cx) => {
-        await this.refresh();
-        cx.notify();
+        try {
+          await this.refresh();
+          cx.notify();
+        } finally {
+          this.refreshing = false;
+        }
       });
     });
   }
@@ -71,10 +101,15 @@ export default class MachineAdd extends View {
     } catch {
       this.added = [];
     }
-    for (const m of this.added) {
-      if (this.state[m.target] !== "terminal") continue;
-      delete this.state[m.target];
-      await this.checkMac(m.target);
+    for (const target of this.pending) {
+      if (!this.isAdded(target)) continue;
+      this.pending.delete(target);
+      delete this.state[target];
+      if (this.typed.trim() === target) {
+        this.input.set_value("");
+        this.typed = "";
+      }
+      await this.checkMac(target);
     }
   }
 
@@ -85,6 +120,7 @@ export default class MachineAdd extends View {
   add(target, cx) {
     target = target.trim();
     if (!target || this.state[target] === "adding") return;
+    this.pending.delete(target);
     this.state[target] = "adding";
     cx.notify();
     cx.spawn(async (cx) => {
@@ -102,8 +138,9 @@ export default class MachineAdd extends View {
         await this.refresh();
         await this.checkMac(target);
       } else if (["hc_missing", "incompatible", "login_needed", "auth_failed", "host_key"].includes(why.kind) || /password|passphrase|host key|permission denied|login/i.test(why.message ?? "")) {
-        this.state[target] = "terminal";
-        await this.inTerminal(target);
+        const quoted = shellArg(target);
+        this.pending.add(target);
+        this.state[target] = `Couldn't add ${target} here: it needs you to answer something (a password, a new host key, or installing herdr-core there). Run \`hc machine add ${quoted}\` in a terminal. \`hc machine --help\` shows the options.`;
       } else this.state[target] = why.message || "it didn't work";
       await this.refresh();
       cx.notify();
@@ -170,32 +207,6 @@ export default class MachineAdd extends View {
       );
   }
 
-  // The same add in a terminal, for what only the person can answer.
-  async inTerminal(target) {
-    const r = await hc(["run", "--bg", "--json", "--no-parent", "--name", `add-${target.replace(/[^a-z0-9_-]/gi, "-").toLowerCase()}`.slice(0, 32), "--", "hc", "machine", "add", target]).catch(() => null);
-    let address = null;
-    try {
-      address = r?.code === 0 ? JSON.parse(r.stdout).address : null;
-    } catch {}
-    if (!address) {
-      this.state[target] = "Couldn't open a terminal for it. Run `hc machine add " + target + "` in one.";
-      return;
-    }
-    openOverlay({
-      kind: "dialog",
-      key: `machine-add-${target}`,
-      width: 640,
-      height: 300,
-      layout: {
-        type: "column",
-        children: [
-          { type: "block", size: { px: 30 }, content: { mod: "machine-add", props: { part: "bar", target } } },
-          { type: "block", content: { terminal: address } },
-        ],
-      },
-    });
-  }
-
   close() {
     closeOverlay(props().overlay);
   }
@@ -204,35 +215,16 @@ export default class MachineAdd extends View {
     if (e.key === "escape") { this.close(); cx.stop_propagation(); }
   }
 
-  // The terminal window's title bar.
-  bar(t) {
-    return h_flex()
-      .size_full()
-      .px(12)
-      .gap(8)
-      .items_center()
-      .bg(t.chrome)
-      .border_b(1)
-      .border_color(t.border)
-      .text_size(12.5)
-      .text_color(t.muted)
-      .child(svg(I("server")).size(14))
-      .child(div().flex_1().child(`Adding ${props().target}: answer it here`))
-      .child(
-        div()
-          .id("ma-bar-close")
-          .w(22)
-          .h(22)
-          .rounded(6)
-          .flex()
-          .items_center()
-          .justify_center()
-          .cursor_pointer()
-          .hover((s) => s.bg(t.hover))
-          .on_mouse_down("left", (_e, cx) => cx.stop_propagation())
-          .on_click(() => closeOverlay(props().overlay))
-          .child(svg(I("x")).size(12)),
-      );
+  message(t, target) {
+    const text = String(this.state[target]).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const command = `hc machine add ${shellArg(target)}`;
+    return v_flex().gap(5)
+      .child(div().text_size(12).text_color(t.blocked).child(TextView.html(`ma-message-${target}`, `<span>${text}</span>`).selectable(true)))
+      .when(this.pending.has(target), (el) => el.child(h_flex().child(div()
+        .id(`ma-copy-${target}`).px(10).py(4).rounded(6).bg(t.raised).text_color(t.foreground)
+        .text_size(12).cursor_pointer().hover(s => s.bg(t.hover))
+        .on_click((_e, cx) => { cx.write_to_clipboard(command); this.copiedCommand = command; cx.notify(); })
+        .child(this.copiedCommand === command ? "Copied" : "Copy"))));
   }
 
   row(t, target, label, sub) {
@@ -242,9 +234,7 @@ export default class MachineAdd extends View {
       ? h_flex().gap(5).items_center().text_size(12).text_color(t.ansi2).child(svg(I("circle-check")).size(13)).child("Added")
       : st === "adding"
         ? h_flex().gap(6).items_center().text_size(12).text_color(t.muted).child(svg(I("spinner")).size(12).text_color(t.working).spin(900)).child("Connecting")
-        : st === "terminal"
-          ? div().text_size(12).text_color(t.blocked).child("Waiting in its terminal")
-          : div()
+        : div()
               .id(`ma-add-${target}`)
               .px(10)
               .h(26)
@@ -278,13 +268,12 @@ export default class MachineAdd extends View {
           .child(div().flex_1().min_w(0).truncate().text_size(12).text_color(t.dim).child(sub ?? ""))
           .child(right),
       )
-      .when(typeof st === "string" && !["adding", "terminal"].includes(st), (el) => el.child(div().px(35).pb(6).text_size(12).text_color(t.blocked).child(st)))
+      .when(typeof st === "string" && st !== "adding", (el) => el.child(div().px(35).pb(6).child(this.message(t, target))))
       .when(Boolean(this.macs[target]), (el) => el.child(this.macCard(t, target)));
   }
 
   render() {
     const t = theme();
-    if (props()?.part === "bar") return this.bar(t);
     const hosts = this.hosts ?? [];
     return v_flex()
       .id("machine-add")
@@ -295,7 +284,7 @@ export default class MachineAdd extends View {
       .p(18)
       .bg(t.popover)
       .text_color(t.foreground)
-      .child(h_flex().items_center().child(div().flex_1().text_size(15).font_semibold().child("Add a machine")).child(div().text_size(11).text_color(t.dim).child("Esc")))
+      .child(h_flex().items_center().child(div().flex_1().text_size(15).font_semibold().child("Add a machine")).child(div().id("ma-esc").px(6).py(2).rounded(5).text_size(11).text_color(t.dim).cursor_pointer().hover((s) => s.bg(t.hover).text_color(t.foreground)).on_click(() => this.close()).child("Esc")))
       .child(
         div()
           .pt(6)
@@ -354,6 +343,6 @@ export default class MachineAdd extends View {
               .child("Add"),
           ),
       )
-      .when(Boolean(this.typed.trim() && this.state[this.typed.trim()]), (el) => el.child(div().pt(6).text_size(12).text_color(t.blocked).child(String(this.state[this.typed.trim()]))));
+      .when(Boolean(this.typed.trim() && this.state[this.typed.trim()]), (el) => el.child(div().pt(6).child(this.message(t, this.typed.trim()))));
   }
 }

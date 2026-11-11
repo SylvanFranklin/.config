@@ -22197,10 +22197,11 @@ declare module "herdr" {
     stderr: string;
   }
 
-  /** Runs a program with the user's real environment (HOME, PATH, auth). 30 s limit, 8 MiB output.
+  /** Runs a program with the user's real environment (HOME, PATH, auth). 8 MiB output.
+   *  `timeout`: milliseconds, defaults to 30,000, capped at 600,000 (10 minutes).
    *  `on`: on that machine (a space's `machine`) through herdr-core, its home by default.
    *  Rejects when it can't start (not installed, no such folder, the machine is unreachable). */
-  export function exec(command: string, args?: string[], options?: { cwd?: string; on?: string | null }): Promise<ExecResult>;
+  export function exec(command: string, args?: string[], options?: { cwd?: string; on?: string | null; timeout?: number }): Promise<ExecResult>;
 
   /** Runs `hc` (herdr-core) with the given arguments. Add "--json" for machine output. */
   export function hc(args: string[]): Promise<ExecResult>;
@@ -22245,13 +22246,15 @@ declare module "herdr" {
    *   tab.close {id?}, tab.rename {id?, name}, tab.move {id, index}, tab.select {index | id},
    *   tab.next, tab.prev.
    * Panes: pane.split {direction: "right" | "down", pane?}, pane.close {pane?}, pane.zoom {pane?},
-   *   pane.focus {pane | terminal}, pane.go {direction}, pane.swap {direction}. Pane menus get target { pane, terminal }.
+   *   pane.focus {pane | terminal}, pane.go {direction}, pane.swap {pane?, direction | target}.
+   *   Pane menus get target { pane, terminal }.
    * Terminals: terminal.open {argv?, folder?, place?: "tab" | "right" | "down"}, terminal.kill {terminal},
    *   terminal.keep {terminal, place?} (a running one without a pane, e.g. a sub-agent, gets one),
    *   terminal.park {terminal} (its pane goes, it keeps running; the menu's "Send back"),
    *   terminal.peek {terminal} (peek over the tab, with keep-as-tab and close),
    *   terminal.show {terminal?, pane?} (shown in the pane for now, in place of its own), terminal.copy, terminal.paste,
    *   terminal.right_click {to: "program" | "menu", terminal?} (right-clicks to a program that takes the mouse; Shift: the menu).
+   *   terminal.scroll {lines | pages | to: "top" | "bottom", terminal?} (Herdr's view of the history: negative goes up; pages may be fractional).
    * Agents: agent.next, agent.prev (the agents list's order), agent.focus {terminal} (sub-agents too).
    * Layout (the shown layout's nodes by id): layout.toggle|show|hide {id}, layout.resize {id, px | weight},
    *   layout.select {stack, child}, layout.set {layout} (personal trees; shipped layouts: click/look fields only), layout.switch {name?} (no name: the next one).
@@ -22410,6 +22413,9 @@ declare module "herdr" {
    *  `terminal` and `cwd` describe it; `pane` and `shown` are null, not its source pane.
    *  Implicit pane split/close/zoom/go/swap and terminal.show fail in that case, as do
    *  terminal.open/keep with place right/down. An explicit pane id targets a model pane.
+   *  A terminal in a window (openOverlay with a layout) that has the keyboard is reported
+   *  the same way (`pane` and `shown` null); implicit pane commands still act on the
+   *  focused pane under the window.
    *  pane.focus {terminal} prefers the first visible layout terminal block, then a model pane.
    *  `shown`: terminal.show replacement, if any. `agent`: the agent an agent block shows.
    *  `terminal` is null for mod panes. Live. */

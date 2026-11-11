@@ -1,15 +1,15 @@
 {
   "agents": {
-    "main.js": "2a835dd6c3ed356f",
+    "main.js": "292e8b6f8ff61305",
     "mod.json": "c1d087260ba7b076"
   },
   "changes": {
     "changes.svg": "8a5b4c45adcb0ef1",
-    "main.js": "b00568f69f7b7ff9",
+    "main.js": "10c3b0792f63b814",
     "mod.json": "433fbf9dfa3e359a"
   },
   "confirm": {
-    "main.js": "46dc0fcb00ab42fb",
+    "main.js": "ab8a063c8532a03f",
     "mod.json": "433fbf9dfa3e359a"
   },
   "files": {
@@ -17,11 +17,11 @@
     "chevron-right.svg": "7867764fc431794c",
     "file.svg": "316c5ba4beaebfe1",
     "folder.svg": "64e7b5165472b129",
-    "main.js": "00328fa91b49111d",
+    "main.js": "95e3448d12d57c8c",
     "mod.json": "433fbf9dfa3e359a"
   },
   "help": {
-    "main.js": "bc85f24e043cf071",
+    "main.js": "bbec02b722cce59e",
     "mod.json": "433fbf9dfa3e359a"
   },
   "layout:main": {
@@ -34,20 +34,20 @@
     "json": "657fdb5a0f469344"
   },
   "machine-add": {
-    "main.js": "0e00544ee1b8e02c",
+    "main.js": "edd5ed426d5ccbba",
     "mod.json": "20fc0fe012d028a0"
   },
   "menu": {
-    "main.js": "71e2d915a0dc1976",
+    "main.js": "8b5fe9d0ffa3be3a",
     "mod.json": "433fbf9dfa3e359a"
   },
   "new-menu": {
-    "main.js": "163ca2db28639df5",
+    "main.js": "2f13095cb116c3cf",
     "mod.json": "433fbf9dfa3e359a"
   },
   "pane": {
     "close.svg": "a5b3c4e8f1b96e70",
-    "main.js": "f986585391c53ade",
+    "main.js": "0baad3eb9f8b8df1",
     "mod.json": "100e8915b26fb6b1",
     "split-down.svg": "5fb017357dcb7d15",
     "split-right.svg": "3f66f78fb7e964b4",
@@ -59,7 +59,7 @@
     "mod.json": "4f60f6ff15f11c9b"
   },
   "picker": {
-    "main.js": "bbae52d90ac9e130",
+    "main.js": "926f800a7c1ee141",
     "mod.json": "e83a267b6fca8488"
   },
   "prompt": {
@@ -67,11 +67,11 @@
     "mod.json": "433fbf9dfa3e359a"
   },
   "spaces": {
-    "main.js": "ab767ba06ac5f0d7",
+    "main.js": "b53526708eb1ddab",
     "mod.json": "4a42ed2202338077"
   },
   "tabs": {
-    "main.js": "7e5362914f6154d5",
+    "main.js": "c5e6c89ffea5c47a",
     "mod.json": "a504d5ac991bc4cc",
     "win-close.svg": "ca74932a6d3f1a90",
     "win-max.svg": "4bbb4fb6a79ab51d",
@@ -94,7 +94,7 @@
     "mod.json": "d8c5e5fe692faad8"
   },
   "toast": {
-    "main.js": "21df6f0e7ff131ce",
+    "main.js": "c2563eb708ecb359",
     "mod.json": "433fbf9dfa3e359a"
   },
   "win98": {
@@ -356,7 +356,7 @@
     "git-branch.svg": "4755be35a17a666b",
     "git-compare.svg": "695c80dd79512403",
     "layers.svg": "10b2f6a8868f3320",
-    "main.js": "411dacc4a3d5d26f",
+    "main.js": "7449619c284351c5",
     "minus.svg": "9f34bc47ac7d5194",
     "mod.json": "433fbf9dfa3e359a",
     "monitor.svg": "dfa84aaf3437b005",
@@ -380,7 +380,7 @@
     "mod.json": "433fbf9dfa3e359a"
   },
   "worktree": {
-    "main.js": "b29c1fb575b13320",
+    "main.js": "cfc208e54751fe6d",
     "mod.json": "433fbf9dfa3e359a"
   }
 }

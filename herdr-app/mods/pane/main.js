@@ -6,7 +6,23 @@
 
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex } from "gpui-base";
-import { panes, props, run, theme, home } from "herdr";
+import { panes, props, run, theme, home, layout } from "herdr";
+
+// Match the first visible tab frame, including the active child of a stack.
+function paneFrame(node) {
+  if (!node || node.hidden) return null;
+  if (node.content?.tab && node.content.pane) return node.content.pane;
+  let children = node.children ?? [];
+  if (node.type === "stack") {
+    const visible = children.filter(child => !child.hidden);
+    children = [visible.find(child => child.id === node.active) ?? visible[0]];
+  }
+  for (const child of children) {
+    const frame = paneFrame(child);
+    if (frame) return frame;
+  }
+  return null;
+}
 
 function icon(p, size, color) {
   if (!p?.icon) return null;
@@ -48,6 +64,7 @@ export default class Pane extends View {
     const pic = icon(p.program, 14, t.dim);
     const st = p.status;
     const pane = p.pane;
+    const bottom = paneFrame(layout())?.header?.position === "bottom";
     return h_flex()
       .id(`pane-head-${pane}`)
       .size_full()
@@ -55,7 +72,8 @@ export default class Pane extends View {
       .gap(8)
       .items_center()
       .bg(t.background)
-      .border_b(1)
+      .when(bottom, el => el.border_t(1))
+      .when(!bottom, el => el.border_b(1))
       .border_color(t.border)
       .text_size(12)
       .on_hover((hovered, cx) => { this.hovered = hovered; cx.notify(); })

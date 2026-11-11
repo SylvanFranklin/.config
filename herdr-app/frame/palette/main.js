@@ -294,7 +294,7 @@ export default class Palette extends View {
           .border_1()
           .border_color(t.accent)
           .bg(t.background)
-          .child(svg("frame/palette/command.svg").size(16).text_color(t.dim))
+          .child(svg(win()?.platform === "macos" ? "frame/palette/command.svg" : "mods/workspace-chrome/search.svg").size(16).text_color(t.dim))
           .child(Input.new(this.input).flex_1().h_full().text_size(12.8).text_color(t.foreground))
           .child(div().text_size(11).text_color(t.dim).child("Esc")),
       )
@@ -306,11 +306,11 @@ export default class Palette extends View {
               .mb(6)
               .when(fixed, (el) => el.h(LIST_H).overflow_hidden())
               .on_scroll_wheel((e, cx) => {
-                // Wheels report lines, touchpads pixels.
-                const d = Math.abs(e.delta.y) < 4 ? e.delta.y * ROW_H : e.delta.y;
-                this.scroll = Math.max(0, Math.min(this.scroll - d, this.maxScroll));
+                // The event bridge converts both wheel and touchpad deltas to pixels.
+                this.scroll = Math.max(0, Math.min(this.scroll - e.delta.y, this.maxScroll));
                 // The selection stays on screen, so the next frame doesn't scroll back to it.
-                while (this.at < rows.length - 1 && tops[this.at].row < this.scroll) this.at++;
+                // A row that opens a group is shown with its title, so the title counts.
+                while (this.at < rows.length - 1 && (tops[this.at].head ? tops[this.at].title : tops[this.at].row) < this.scroll) this.at++;
                 while (this.at > 0 && tops[this.at].row + ROW_H > this.scroll + LIST_H) this.at--;
                 cx.notify();
               })

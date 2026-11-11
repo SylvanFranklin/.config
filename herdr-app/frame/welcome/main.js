@@ -320,7 +320,11 @@ export default class Welcome extends View {
           .bg(t.background)
           .overflow_hidden()
           .child(this.machineRow(t, "monitor", "This computer", "here", true))
-          .children(this.machines.map((m) => this.machineRow(t, "server", m.name, m.state === "connected" ? "connected" : (m.state ?? "offline").replace(/_/g, " "), m.state === "connected")))
+          .children(this.machines.map((m) => v_flex()
+            .child(this.machineRow(t, "server", m.name, m.state === "connected" ? "connected" : (m.state ?? "offline").replace(/_/g, " "), m.state === "connected"))
+            .when(m.state === "needs_login", el => el.child(v_flex().p(12).gap(6)
+              .child(div().text_size(12).text_color(t.blocked).child("needs a login: run"))
+              .child(this.copyLine(t, `hc machine login ${m.name}`, `w-login-copy-${m.name}`))))))
           .child(
             h_flex()
               .id("w-add-machine")
