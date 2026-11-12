@@ -32,3 +32,4 @@ nvim/ggapi.lua
 weechat
 mole
 /kubectl.sha256
+/herdr-app/telemetry
