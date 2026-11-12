@@ -33,3 +33,21 @@ weechat
 mole
 /kubectl.sha256
 /herdr-app/telemetry
+
+# Herdr app state and generated files
+/herdr-app/view.json
+/herdr-app/shared.json*
+/herdr-app/seen.json
+/herdr-app/installed.json
+/herdr-app/window.json
+/herdr-app/windows.json
+/herdr-app/data/
+/herdr-app/layouts/.state/
+/herdr-app/update-notes.json
+/herdr-app/update-notes-cache.md
+/herdr-app/update-notes-media/
+/herdr-app/frame/
+/herdr-app/icons/
+/herdr-app/AGENTS.md
+/herdr-app/gpui-kit.d.ts
+/herdr-app/herdr.d.ts
